@@ -1,0 +1,66 @@
+.logo-text {
+    float: left;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 28.6062px;
+    margin-left: 10px;
+}
+.donate {
+    float: right;
+    font-style: normal;
+    font-weight: 300;
+    font-size: 16px;
+}
+.social-icons {
+    float: right;
+}
+.social-icon {
+    margin: 0 6px;
+}
+.search-icon {
+    margin-right: 10px;
+}
+.header {
+    height: 100px;
+    width: 100%;
+}
+
+.flex-container {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-content: stretch;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px white solid;
+    }
+
+.flex-item:nth-child(1) {
+    order: 0;
+    flex: 10 1 auto;
+    align-self: stretch;
+    }
+
+.flex-item:nth-child(2) {
+    order: 0;
+    flex: 10 1 auto;
+    align-self: stretch;
+    }
+
+.flex-item:nth-child(3) {
+    order: 0;
+    flex: 10 1 auto;
+    align-self: stretch;
+    }
+
+.flex-item:nth-child(4) {
+    order: 0;
+    flex: 0 1 auto;
+    align-self: stretch;
+    }
+
+.flex-item:nth-child(5) {
+    order: 0;
+    flex: 0 1 auto;
+    align-self: stretch;
+    }
