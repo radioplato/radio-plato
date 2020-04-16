@@ -1,0 +1,36 @@
+.header-container {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-content: stretch;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px white solid;
+    }
+.header {
+        height: 100px;
+        width: 100%;
+    }
+.logo-text {
+    float: left;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 28.6062px;
+    margin-left: 10px;
+}
+.social-icons {
+    float: right;
+}
+.social-icon {
+    margin: 0 6px;
+}
+.donate {
+    float: right;
+    font-style: normal;
+    font-weight: 300;
+    font-size: 16px;
+}
+.search-icon {
+    margin-right: 10px;
+}
+
