@@ -18,11 +18,11 @@ function Header() {
         <div className='social-icons'>
             <a target="_blank" href="https://www.mixcloud.com/radioplato/" rel="noopener noreferrer"><Icon className='social-icon' icon={mixcloudIcon} width='2em' color='white'/></a>
             <a target="_blank" href="https://www.facebook.com/radioplato.by/" rel="noopener noreferrer"><Icon className='social-icon' icon={facebookIcon} width='1.8em' color='white'/></a>
-            <a target="_blank" href="https://vk.com/radioplato" rel="noopener noreferrer"> <Icon className='social-icon' icon={vkIcon} width='1.8em' color='white'/></a>
-            <a target="_blank" href="mailto:hey@radioplato.by" rel="noopener noreferrer"> <Icon className='social-icon' icon={mailRu} width='1.8em' color='white'/></a>
-            <a target="_blank" href="https://www.instagram.com/radio_plato/" rel="noopener noreferrer"> <Icon className='social-icon' icon={instagramIcon} width='1.8em' color='white'/></a>
-            <a target="_blank" href="https://t.me/radioplato" rel="noopener noreferrer"> <Icon className='social-icon' icon={telegramIcon} width='1.8em' color='white'/></a>
-            <a target="_blank" href="https://play.google.com/store/apps/details?id=com.radioplato" rel="noopener noreferrer"> <Icon className='social-icon' icon={googlePlay} width='1.8em' color='white'/></a>
+            <a target="_blank" href="https://vk.com/radioplato" rel="noopener noreferrer"><Icon className='social-icon' icon={vkIcon} width='1.8em' color='white'/></a>
+            <a target="_blank" href="mailto:hey@radioplato.by" rel="noopener noreferrer"><Icon className='social-icon' icon={mailRu} width='1.8em' color='white'/></a>
+            <a target="_blank" href="https://www.instagram.com/radio_plato/" rel="noopener noreferrer"><Icon className='social-icon' icon={instagramIcon} width='1.8em' color='white'/></a>
+            <a target="_blank" href="https://t.me/radioplato" rel="noopener noreferrer"><Icon className='social-icon' icon={telegramIcon} width='1.8em' color='white'/></a>
+            <a target="_blank" href="https://play.google.com/store/apps/details?id=com.radioplato" rel="noopener noreferrer"><Icon className='social-icon' icon={googlePlay} width='1.8em' color='white'/></a>
         </div>
         <p className="donate">DONATE</p>
         <div className='search-icon'>
