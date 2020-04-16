@@ -6,6 +6,8 @@ import { playerService } from './PlayerService';
 import { PlayerState } from './interfaces';
 import { DEFAULT_PLAYER_STATE, STREAM_URL } from './constants';
 
+import './Player.css';
+
 export class Player extends Component {
     state = DEFAULT_PLAYER_STATE;
     subscription: Subscription | null = null;
@@ -30,19 +32,20 @@ export class Player extends Component {
         } = this.state;
 
         return (
-        <>
-            <ReactPlayer
-                url={ STREAM_URL }
-                playing={ playing }
-                muted={ muted }
-                volume={ volume }
-                config={{
-                    file: {
-                        forceAudio: true
-                    }
-                }} 
-            />
-        </>);
+            <div className="audio">
+                <ReactPlayer
+                    url={ STREAM_URL }
+                    playing={ playing }
+                    muted={ muted }
+                    volume={ volume }
+                    config={{
+                        file: {
+                            forceAudio: true
+                        }
+                    }}
+                />
+            </div>
+        );
     }
 }
 

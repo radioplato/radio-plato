@@ -1,6 +1,6 @@
 .main-player {
     width: 480px;
-    height: 800px;
+    height: calc(100vh - 181px);
 
     padding: 40px;
 
@@ -10,10 +10,13 @@
     justify-content: flex-start;
     align-content: stretch;
     align-items: flex-start;
+
+    border-right: 1px white solid;
 }
 
 .onair {
     margin-top: 40px;
+
     font-weight: 500;
     font-size: 14px;
     line-height: 90%;
@@ -23,5 +26,6 @@
 
 .track-title {
     color: #ffffff;
+    font-weight: 500;
     font-size: 48px;
 }
