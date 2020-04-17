@@ -1,14 +1,3 @@
-button {
-    outline: none;
-    border: 0;
-    padding: 0;
-}
-
-button:active {
-    transform: translateY(1px);
-    filter: saturate(150%);
-}
-
 .controls-container {
     width: 100%;
 
@@ -35,7 +24,7 @@ button:active {
 }
 
 .volume-controls {
-    width: 220px;
+    width: 160px;
     display: flex;
     flex-direction: row;
     flex-wrap: nowrap;
@@ -51,7 +40,7 @@ button:active {
 }
 
 .horizontal-slider {
-    width: 180px;
+    width: 120px;
     background: #ffffff11;
     height: 4px;
 }
