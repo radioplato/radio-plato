@@ -1,0 +1,31 @@
+.main-player {
+    width: 480px;
+    height: calc(100vh - 181px);
+
+    padding: 40px;
+
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+    align-content: stretch;
+    align-items: flex-start;
+
+    border-right: 1px white solid;
+}
+
+.onair {
+    margin-top: 40px;
+
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 90%;
+    text-transform: uppercase;
+    color: #ffffff;
+}
+
+.track-title {
+    color: #ffffff;
+    font-weight: 500;
+    font-size: 48px;
+}
