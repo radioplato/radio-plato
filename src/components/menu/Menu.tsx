@@ -1,5 +1,10 @@
 import React from 'react'
 
+import {
+    BrowserRouter as Router,
+    Link
+} from "react-router-dom";
+
 import { Icon } from '@iconify/react';
 import crossIcon from '@iconify/icons-gridicons/cross';
 
@@ -20,7 +25,13 @@ interface MenuParameters {
 function Menu({ menuRef }: MenuParameters) {
 
     const buildMenuItem = (title: string) => {
-        return <li className="menu-item" key={ title }>{ title }</li>
+        const route = `/${ title.toLowerCase() }`;
+
+        return (
+            <li className="menu-item" key={ title }>
+                <Link to={ route } onClick={ toggleMenu }>{ title }</Link>
+            </li>
+        );
     }
 
     const toggleMenu = () => {

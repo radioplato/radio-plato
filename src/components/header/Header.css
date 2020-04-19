@@ -1,3 +1,11 @@
+
+header {
+    height: 100px;
+    width: 100%;
+
+    text-transform: uppercase;
+}
+
 .header-container {
     display: flex;
     flex-direction: row;
@@ -17,16 +25,12 @@
     align-items: center;
 }
 
-.header {
-    height: 100px;
-    width: 100%;
-}
-
 .logo-text {
     font-style: normal;
     font-weight: 500;
     font-size: 28.6062px;
     margin-left: 40px;
+    color: #ffffff;
 }
 
 .social-icons {
