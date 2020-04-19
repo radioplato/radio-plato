@@ -1,0 +1,22 @@
+.menuButton {
+    width: 160px;
+    height: calc(100vh - 101px);
+
+    border-right: 1px solid #ffffff;
+    background: #000000;
+
+    cursor: pointer;
+
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: center;
+    align-content: stretch;
+    align-items: center;
+}
+
+.label {
+    text-transform: uppercase;
+    transform: rotate(-90deg);
+    user-select: none;
+}

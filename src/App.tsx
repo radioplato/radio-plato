@@ -1,7 +1,7 @@
 import React from 'react';
 import Header from './components/header/Header';
+import Main from './components/main/Main';
 import Player from './components/player/Player';
-import MainPlayer from './components/player/MainPlayer/MainPlayer';
 
 import './App.css';
 
@@ -9,7 +9,7 @@ function App() {
     return (
         <>
             <Header />
-            <MainPlayer />
+            <Main />
             <Player />
         </>
     );

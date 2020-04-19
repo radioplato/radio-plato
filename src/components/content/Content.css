@@ -1,0 +1,6 @@
+section {
+    width: 100%;
+    height: calc(100vh - 181px);
+
+    padding: 40px;
+}
