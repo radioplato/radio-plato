@@ -1,18 +1,30 @@
 import React from 'react'
+
+import { PlaylistShow } from './interfaces'
+
 import './ScheduleShowline.css'
 
 
-function ScheduleShowline() {
+function ScheduleShowline({
+    title,
+    description,
+    start,
+    end 
+}: PlaylistShow) {
+    const startTime = `${ start.getHours() }:${ start.getMinutes() }`;
+    const endTime = `${ end.getHours() }:${ end.getMinutes() }`;
+    const interval = `${ startTime } - ${ endTime }`;
+
     return (
         <div className='show-title-container'>
             <div className='show-date'>
-                <p>02:00 - 07:00</p>
+                <p>{ interval }</p>
             </div>
             <div className='show-title'>
-                <p>Palamany Podcast</p>
+                <p>{ title }</p>
             </div>
             <div className='show-desc'>
-                <p>DNB for the space hedgehog</p>
+                <p>{ description }</p>
             </div>
         </div>
     )
