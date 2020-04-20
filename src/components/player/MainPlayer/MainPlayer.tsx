@@ -4,7 +4,7 @@ import PlayerControls from '../PlayerControls/PlayerControls';
 import { DATA_URL, DATA_REQUEST_INTERVAL, ONAIR } from '../constants';
 
 import './MainPlayer.css';
-import { withRouter } from 'react-router-dom';
+
 
 export class MainPlayer extends Component {
     state = {
@@ -41,4 +41,4 @@ export class MainPlayer extends Component {
     }
 }
 
-export default withRouter(MainPlayer as any);
+export default MainPlayer;
