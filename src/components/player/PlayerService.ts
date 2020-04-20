@@ -1,6 +1,6 @@
 import { Subject } from 'rxjs'
 
-import { PlayerState } from "./interfaces";
+import { PlayerState } from './interfaces';
 import { DEFAULT_PLAYER_STATE } from './constants';
 
 class PlayerService {

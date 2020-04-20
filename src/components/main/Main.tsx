@@ -1,5 +1,11 @@
 import React from 'react'
 
+import {
+    Switch,
+    Route,
+    withRouter,
+} from 'react-router-dom';
+
 import MenuButton from '../menu/menu-button/MenuButton'
 import MainPlayer from '../player/MainPlayer/MainPlayer'
 import Content from '../content/Content'
@@ -11,10 +17,12 @@ function Main() {
     return (
         <main>
             <MenuButton />
-            <MainPlayer />
+                <Switch>
+                    <Route exact path='/' component={ MainPlayer }/>
+                </Switch>
             <Content />
         </main>
-    )
-  }
+    );
+}
   
-  export default Main
+export default withRouter(Main);

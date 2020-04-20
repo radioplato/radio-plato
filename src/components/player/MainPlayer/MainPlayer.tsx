@@ -5,9 +5,10 @@ import { DATA_URL, DATA_REQUEST_INTERVAL, ONAIR } from '../constants';
 
 import './MainPlayer.css';
 
+
 export class MainPlayer extends Component {
     state = {
-        trackName: ""
+        trackName: ''
     }
 
     componentDidMount () {
@@ -31,10 +32,10 @@ export class MainPlayer extends Component {
         } = this.state;
 
         return (
-            <div className="main-player">
+            <div className='main-player'>
                 <PlayerControls />
-                <p className="onair">{ ONAIR }</p>
-                <p className="track-title">{ trackName }</p>
+                <p className='onair'>{ ONAIR }</p>
+                <p className='track-title'>{ trackName }</p>
             </div>
         );
     }
