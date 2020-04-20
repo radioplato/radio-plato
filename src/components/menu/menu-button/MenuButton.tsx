@@ -9,14 +9,16 @@ const MENU = 'menu';
 
 function MenuButton() {
     const menuRef = React.createRef<HTMLDivElement>()
+    const wrapperRef = React.createRef<HTMLDivElement>()
     
     const toggleMenu = () => {
+        wrapperRef.current?.classList.toggle('wrapper-show');
         menuRef.current?.classList.toggle('menu-open');
     }
 
     return (
         <>
-            <Menu menuRef={ menuRef } />
+            <Menu menuRef={ menuRef } wrapperRef={ wrapperRef }/>
             <div className='menuButton' onClick={ toggleMenu }>
                 <p className='label'>{ MENU }</p>
             </div>

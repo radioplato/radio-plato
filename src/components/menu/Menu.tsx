@@ -16,10 +16,11 @@ const PAGES = [
 ];
 
 interface MenuParameters {
-    menuRef: React.RefObject<HTMLDivElement>
+    menuRef: React.RefObject<HTMLDivElement>;
+    wrapperRef: React.RefObject<HTMLDivElement>;
 }
 
-function Menu({ menuRef }: MenuParameters) {
+function Menu({ menuRef, wrapperRef }: MenuParameters) {
 
     const buildMenuItem = (title: string) => {
         const route = `/${ title.toLowerCase() }`;
@@ -32,25 +33,29 @@ function Menu({ menuRef }: MenuParameters) {
     }
 
     const toggleMenu = () => {
+        wrapperRef.current?.classList.toggle('wrapper-show');
         menuRef.current?.classList.toggle('menu-open');
     }
 
     return (
-        <nav ref={ menuRef }>
-            <div className='close-button-container'>
-                <button 
-                    className='close-button'
-                    onClick={ toggleMenu }
-                >
-                    <Icon icon={ crossIcon } width={ 48 } height={ 48 }/>    
-                </button>
-            </div>
-            <div className='menu-items-container'>
-                <ul className='menu-items'>
-                    { PAGES.map(title => buildMenuItem(title)) }
-                </ul>
-            </div>
-        </nav>
+        <>
+            <div className='wrapper' ref={ wrapperRef } onClick={ toggleMenu } />
+            <nav ref={ menuRef }>
+                <div className='close-button-container'>
+                    <button 
+                        className='close-button'
+                        onClick={ toggleMenu }
+                    >
+                        <Icon icon={ crossIcon } width={ 48 } height={ 48 }/>    
+                    </button>
+                </div>
+                <div className='menu-items-container'>
+                    <ul className='menu-items'>
+                        { PAGES.map(title => buildMenuItem(title)) }
+                    </ul>
+                </div>
+            </nav>
+        </>     
     );
   }
   
