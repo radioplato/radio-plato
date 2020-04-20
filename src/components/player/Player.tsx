@@ -17,7 +17,9 @@ export class Player extends Component {
     }
 
     subscribeOnPlayerStateChange () {
-        this.subscription = playerService.subscribe((data: PlayerState) => this.setState(data));
+        this.subscription = playerService.subscribeOnPlayerStateChanges(
+            (data: PlayerState) => this.setState(data)
+        );
     }
 
     componentWillUnmount () {

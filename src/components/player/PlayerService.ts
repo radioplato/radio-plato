@@ -1,42 +1,71 @@
 import { Subject } from 'rxjs'
 
 import { PlayerState } from './interfaces';
-import { DEFAULT_PLAYER_STATE } from './constants';
+import { DEFAULT_PLAYER_STATE, DATA_URL, DATA_REQUEST_INTERVAL } from './constants';
 
 class PlayerService {
-    private state: PlayerState;
-    private subject: Subject<PlayerState>;
+    private playerState: PlayerState;
+    private track = '';
+    private playerStateSubject: Subject<PlayerState>;
+    private trackNameSubject: Subject<string>;
 
     constructor (state: PlayerState) {
-        this.state = state;
-        this.subject = new Subject();
+        this.playerState = state;
+        this.playerStateSubject = new Subject();
+        this.trackNameSubject = new Subject();
+
+        this.updateTrackName();
+        setInterval(this.updateTrackName.bind(this), DATA_REQUEST_INTERVAL);
     }
 
     set playing (isPlaying: boolean) {
-        this.state.playing = isPlaying;
-        this.subject.next(this.state);
+        this.playerState.playing = isPlaying;
+        this.playerStateSubject.next(this.playerState);
     }
 
     get playing () {
-        return this.state.playing;
+        return this.playerState.playing;
     }
 
     set volume (volumeLevel: number) {
-        this.state.volume = volumeLevel;
-        this.subject.next(this.state);
+        this.playerState.volume = volumeLevel;
+        this.playerStateSubject.next(this.playerState);
+    }
+
+    get volume () {
+        return this.playerState.volume;
     }
 
     set muted (isMuted: boolean) {
-        this.state.muted = isMuted;
-        this.subject.next(this.state);
+        this.playerState.muted = isMuted;
+        this.playerStateSubject.next(this.playerState);
     }
 
     get muted () {
-        return this.state.muted;
+        return this.playerState.muted;
     }
 
-    subscribe (onNext: Function) {
-        return this.subject.subscribe(data => onNext(data));
+    get trackName () {
+        return this.track;
+    }
+
+    subscribeOnPlayerStateChanges (onNext: Function) {
+        return this.playerStateSubject.subscribe(data => onNext(data));
+    }
+
+    subscribeOnTrackNameChanges (onNext: Function) {
+        return this.trackNameSubject.subscribe(data => onNext(data));
+    }
+
+    async updateTrackName () {
+        const response = await fetch(DATA_URL);
+        const data = await response.json();
+        const trackName = data.icestats.source[0].title;
+
+        if (trackName !== this.track) {
+            this.track = trackName;
+            this.trackNameSubject.next(this.track);
+        }
     }
 }
 
