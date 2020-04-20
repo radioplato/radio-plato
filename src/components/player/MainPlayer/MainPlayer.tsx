@@ -8,7 +8,7 @@ import { withRouter } from 'react-router-dom';
 
 export class MainPlayer extends Component {
     state = {
-        trackName: ""
+        trackName: ''
     }
 
     componentDidMount () {
@@ -31,17 +31,11 @@ export class MainPlayer extends Component {
             trackName
         } = this.state;
 
-        const {
-            location
-        } = this.props as any;
-
-        console.log(location);
-
         return (
-            <div className="main-player">
+            <div className='main-player'>
                 <PlayerControls />
-                <p className="onair">{ ONAIR }</p>
-                <p className="track-title">{ trackName }</p>
+                <p className='onair'>{ ONAIR }</p>
+                <p className='track-title'>{ trackName }</p>
             </div>
         );
     }

@@ -4,7 +4,7 @@ import {
     Switch,
     Route,
     withRouter,
-} from "react-router-dom";
+} from 'react-router-dom';
 
 import MenuButton from '../menu/menu-button/MenuButton'
 import MainPlayer from '../player/MainPlayer/MainPlayer'

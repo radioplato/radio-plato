@@ -32,7 +32,7 @@ export class Player extends Component {
         } = this.state;
 
         return (
-            <div className="audio">
+            <div className='audio'>
                 <ReactPlayer
                     url={ STREAM_URL }
                     playing={ playing }

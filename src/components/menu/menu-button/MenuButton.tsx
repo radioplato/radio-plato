@@ -5,7 +5,7 @@ import Menu from '../Menu';
 import './MenuButton.css'
 
 
-const MENU = "menu";
+const MENU = 'menu';
 
 function MenuButton() {
     const menuRef = React.createRef<HTMLDivElement>()
@@ -17,8 +17,8 @@ function MenuButton() {
     return (
         <>
             <Menu menuRef={ menuRef } />
-            <div className="menuButton" onClick={ toggleMenu }>
-                <p className="label">{ MENU }</p>
+            <div className='menuButton' onClick={ toggleMenu }>
+                <p className='label'>{ MENU }</p>
             </div>
         </>
     );
