@@ -18,9 +18,10 @@ const PAGES = [
 interface MenuParameters {
     menuRef: React.RefObject<HTMLDivElement>;
     wrapperRef: React.RefObject<HTMLDivElement>;
+    toggleMenu: () => void;
 }
 
-function Menu({ menuRef, wrapperRef }: MenuParameters) {
+function Menu({ menuRef, wrapperRef, toggleMenu }: MenuParameters) {
 
     const buildMenuItem = (title: string) => {
         const route = `/${ title.toLowerCase() }`;
@@ -30,11 +31,6 @@ function Menu({ menuRef, wrapperRef }: MenuParameters) {
                 <Link to={ route } onClick={ toggleMenu }>{ title }</Link>
             </li>
         );
-    }
-
-    const toggleMenu = () => {
-        wrapperRef.current?.classList.toggle('wrapper-show');
-        menuRef.current?.classList.toggle('menu-open');
     }
 
     return (

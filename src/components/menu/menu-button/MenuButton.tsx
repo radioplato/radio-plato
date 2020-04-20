@@ -18,7 +18,7 @@ function MenuButton() {
 
     return (
         <>
-            <Menu menuRef={ menuRef } wrapperRef={ wrapperRef }/>
+            <Menu menuRef={ menuRef } wrapperRef={ wrapperRef } toggleMenu={ toggleMenu }/>
             <div className='menuButton' onClick={ toggleMenu }>
                 <p className='label'>{ MENU }</p>
             </div>
