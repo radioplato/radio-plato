@@ -7,10 +7,11 @@ import {
 } from 'react-router-dom';
 
 import MenuButton from '../menu/menu-button/MenuButton'
-import MainPlayer from '../player/MainPlayer/MainPlayer'
+import PlayerComponent from '../player/PlayerComponent/PlayerComponent'
 import Content from '../content/Content'
 
 import './Main.css'
+import { PlayerTypes } from '../player/constants';
 
 
 function Main() {
@@ -18,7 +19,9 @@ function Main() {
         <main>
             <MenuButton />
                 <Switch>
-                    <Route exact path='/' component={ MainPlayer }/>
+                    <Route exact path='/' render={
+                        props => <PlayerComponent { ...props } playerType={ PlayerTypes.Main }/>
+                    }/>
                 </Switch>
             <Content />
         </main>

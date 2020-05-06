@@ -1,0 +1,81 @@
+.main-player {
+    width: 400px;
+    height: calc(100vh - 181px);
+
+    padding: 40px;
+
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+    align-content: stretch;
+    align-items: flex-start;
+
+    border-right: 1px white solid;
+}
+
+.header-player {
+    width: 800px;
+    height: 100px;
+    margin-right: 80px;
+
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: flex-end;
+    align-content: stretch;
+    align-items: center;
+}
+
+.controls-container {
+    width: 100%;
+
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: space-around;
+    align-content: center;
+    align-items: center;
+}
+
+.onair {
+    margin-top: 40px;
+
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 90%;
+    text-transform: uppercase;
+    color: #ffffff;
+}
+
+.track-title {
+    color: #ffffff;
+    font-weight: 500;
+}
+
+.main-player .track-title {
+    font-size: 48px;
+}
+
+.header-player .track-title {
+    font-size: 18px;
+    width: 400px;
+    margin-right: 40px;
+}
+
+.header-player .track-title p {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.main-player .play-button {
+    width: 100px;
+    height: 100px;
+}
+
+.header-player .play-button {
+    width: 44px;
+    height: 44px;
+    margin-right: 40px;
+}

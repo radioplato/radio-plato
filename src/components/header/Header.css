@@ -33,18 +33,6 @@ header {
     color: #ffffff;
 }
 
-.social-icons {
-    margin-right: 40px;
-}
-
-.social-icon {
-    margin: 0 12px;
-}
-
-.social-icon > a {
-    text-decoration: none;
-}
-
 .donate {
     margin-right: 40px;
 
