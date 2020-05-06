@@ -12,10 +12,19 @@ body {
   -moz-osx-font-smoothing: grayscale;
   background-color: black;
 
+  overflow: hidden;
 }
 
 h1, h2, h3, h5, h6, p {
   color: white;
+  margin-block-start: 0;
+  margin-block-end: 0;
+  margin-inline-start: 0;
+  margin-inline-end: 0;
+  padding-block-start: 0;
+  padding-block-end: 0;
+  padding-inline-start: 0;
+  padding-inline-end: 0;
 }
 
 button {
