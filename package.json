@@ -50,6 +50,8 @@
     "@iconify/icons-cib": "^1.0.1",
     "@iconify/icons-el": "^1.0.4",
     "@iconify/icons-gridicons": "^1.0.5",
+    "@iconify/icons-ps": "^1.0.3",
+    "@iconify/icons-simple-icons": "^1.0.31",
     "@iconify/react": "^1.1.3",
     "gh-pages": "^2.2.0"
   }

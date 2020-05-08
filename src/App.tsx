@@ -6,7 +6,7 @@ import {
 
 import Header from './components/header/Header';
 import Main from './components/main/Main';
-import Player from './components/player/Player';
+import Player from './components/shared/Player/Player';
 
 import './App.css';
 

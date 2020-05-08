@@ -7,11 +7,12 @@ import {
 } from 'react-router-dom';
 
 import MenuButton from '../menu/menu-button/MenuButton'
-import PlayerComponent from '../player/PlayerComponent/PlayerComponent'
+import PlayerComponent from '../shared/Player/PlayerComponent/PlayerComponent'
 import Content from '../content/Content'
+import { PlayerTypes } from '../shared/enums';
 
 import './Main.css'
-import { PlayerTypes } from '../player/constants';
+
 
 
 function Main() {

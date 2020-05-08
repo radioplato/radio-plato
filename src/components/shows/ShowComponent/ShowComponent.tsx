@@ -4,6 +4,7 @@ import { BACKEND_URL } from '../constants';
 import { ShowDto, Show } from '../interfaces';
 
 import './ShowComponent.css';
+import SocialLinksComponent from '../../shared/SocialLinksComponent/SocialLinksComponent';
 
 
 interface ShowComponentProperties {
@@ -28,7 +29,16 @@ export class ShowComponent extends Component<ShowComponentProperties> {
                 url: showDto.ShowCover.url
             },
             title: showDto.Title,
-            showLinks: showDto.ShowLinks
+            showLinks: {
+                mixcloud: showDto.ShowLink.mixcloud,
+                spotify: showDto.ShowLink.spotify,
+                itunes: showDto.ShowLink.itunes,
+                castbox: showDto.ShowLink.castbox,
+                facebook: showDto.ShowLink.facebook,
+                vk: showDto.ShowLink.vk,
+                instagram: showDto.ShowLink.instagram,
+                telegram: showDto.ShowLink.telegram, 
+            }
         } : null
     }
 
@@ -48,13 +58,14 @@ export class ShowComponent extends Component<ShowComponentProperties> {
 
     render () {
         const { show } = this.state;
-        const imageSrc = show ? `${ BACKEND_URL }${ show.showCover.url }` : '';
+        const imageSrc = show ? show.showCover.url : '';
 
         return show ? (
             <article>
                 <div className="information">
                     <h1>{ show.title }</h1>
                     <p>{ show.description }</p>
+                    <SocialLinksComponent socialLinks={ show.showLinks }/>
                 </div>
                 <div className="image">
                     <img src={ imageSrc } loading='lazy' alt={ show.showCover.alternativeText }/>

@@ -10,8 +10,3 @@ export const DEFAULT_PLAYER_STATE: PlayerState = {
     muted: false,
     volume: 1
 };
-
-export enum PlayerTypes {
-    Main = 'main',
-    Header = 'header'
-};

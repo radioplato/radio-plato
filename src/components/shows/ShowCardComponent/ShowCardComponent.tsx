@@ -2,7 +2,6 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 import { ShowCard } from '../interfaces';
-import { BACKEND_URL } from '../constants';
 
 import './ShowCardComponent.css';
 
@@ -19,12 +18,11 @@ function ShowCardComponent({ showCard }: ShowCardParameters) {
     } = showCard;
 
     const route = `/shows/${ slug }`;
-    const imageSrc = `${ BACKEND_URL }${ showCover.url }`
 
     return (
         <Link to={ route }>
             <div className="show-card">
-                <img src={ imageSrc } loading='lazy' alt={ showCover.alternativeText }/>
+                <img src={ showCover.url } loading='lazy' alt={ showCover.alternativeText }/>
                 <h2>{ title }</h2>
                 <p>{ excerpt }</p>
             </div>    

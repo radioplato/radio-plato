@@ -1,3 +1,5 @@
+import { SocialLinks } from "../shared/interfaces";
+
 interface StrapiObjectDto {
     createdAt: string;
     id: string;
@@ -30,11 +32,22 @@ interface ShowCoverDto extends StrapiObjectDto, ImageDto {
     related: string[];
 }
 
+interface ShowLinkDto extends StrapiObjectDto {
+    castbox?: string;
+    facebook?: string;
+    instagram?: string;
+    itunes?: string;
+    mixcloud?: string;
+    spotify?: string;
+    telegram?: string;
+    vk?: string;
+}
+
 export interface ShowDto extends StrapiObjectDto {
     Description: string;
     Excerpt: string;
     ShowCover: ShowCoverDto;
-    ShowLinks?: string | string[];
+    ShowLink: ShowLinkDto;
     Slug: string;
     Title: string;
 }
@@ -56,5 +69,5 @@ export interface Show {
     description: string;
     title: string;
     showCover: ShowCover;
-    showLinks?: string | string[];
+    showLinks: SocialLinks;
 }

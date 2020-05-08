@@ -1,0 +1,18 @@
+.social-icons {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+    align-content: stretch;
+    align-items: center;
+
+    margin-right: 40px;
+}
+
+.social-icon {
+    margin: 0 12px;
+}
+
+.social-icon > a {
+    text-decoration: none;
+}

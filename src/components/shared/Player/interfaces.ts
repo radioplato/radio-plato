@@ -1,4 +1,5 @@
-import { PlayerTypes } from "./constants";
+import { PlayerTypes } from "../enums";
+
 
 export interface PlayerState {
     playing: boolean;
