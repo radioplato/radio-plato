@@ -6,7 +6,7 @@ import pauseIcon from '@iconify/icons-el/pause';
 
 import { playerService } from '../../PlayerService';
 import { PlayerProps } from '../../interfaces';
-import { PlayerTypes } from '../../constants';
+import { PlayerTypes } from '../../../enums';
 
 import './PlayButton.css';
 

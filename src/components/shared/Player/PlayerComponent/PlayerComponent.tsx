@@ -6,7 +6,7 @@ import PlayButton from '../PlayerControls/PlayButton/PlayButton';
 import VolumeControls from '../PlayerControls/VolumeControls/VolumeControls';
 import { playerService } from '../PlayerService';
 import { PlayerProps } from '../interfaces';
-import { PlayerTypes } from '../constants';
+import { PlayerTypes } from '../../enums';
 
 import './PlayerComponent.css';
 
