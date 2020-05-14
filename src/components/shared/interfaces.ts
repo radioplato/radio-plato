@@ -14,3 +14,25 @@ export enum Socials {
 export type SocialLinks = {
     [key in Socials]?: string;
 }
+
+export interface StrapiObjectDto {
+    createdAt: string;
+    id: string;
+    updatedAt: string;
+    __v: number;
+    _id: number;
+}
+
+export interface ImageDto {
+    ext: string;
+    hash: string;
+    height: number;
+    mime: string;
+    size: number;
+    url: string;
+    width: number;
+}
+
+export interface FormatsDto {
+    thumbnail?: ImageDto;
+}

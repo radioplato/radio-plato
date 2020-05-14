@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-import { BACKEND_URL } from '../constants';
+import { BACKEND_URL } from '../../shared/constants';
 import { ShowDto, Show } from '../interfaces';
 
 import './ShowComponent.css';

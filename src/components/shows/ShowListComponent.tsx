@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 import ShowCardComponent from './ShowCardComponent/ShowCardComponent';
 
 import { ShowDto, ShowCard } from './interfaces';
-import { BACKEND_URL } from './constants';
+import { BACKEND_URL } from '../shared/constants';
 
 import './ShowListComponent.css';
 
