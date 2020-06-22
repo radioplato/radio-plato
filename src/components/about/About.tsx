@@ -44,7 +44,7 @@ export class AboutComponent extends Component {
 
 
         return about ? (
-            <article>
+            <article className="about">
                 <div className="information">
                     <h1>{ about.title }</h1>
                     <p>{ about.description }</p>

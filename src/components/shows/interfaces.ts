@@ -1,3 +1,4 @@
+
 import { SocialLinks } from "../shared/interfaces";
 
 interface StrapiObjectDto {
@@ -70,4 +71,12 @@ export interface Show {
     title: string;
     showCover: ShowCover;
     showLinks: SocialLinks;
+}
+
+export interface ShowEpisode {
+    title: string;
+    image: string;
+    url: string;
+    date: string;
+    slug: string;
 }

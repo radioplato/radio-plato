@@ -1,10 +1,12 @@
 import React, { Component } from 'react';
 
+import SocialLinksComponent from '../../shared/SocialLinksComponent/SocialLinksComponent';
+import ShowEpisodesComponent from '../ShowEpisodesComponent/ShowEpisodesComponent';
+
 import { BACKEND_URL } from '../../shared/constants';
 import { ShowDto, Show } from '../interfaces';
 
 import './ShowComponent.css';
-import SocialLinksComponent from '../../shared/SocialLinksComponent/SocialLinksComponent';
 
 
 interface ShowComponentProperties {
@@ -58,18 +60,22 @@ export class ShowComponent extends Component<ShowComponentProperties> {
 
     render () {
         const { show } = this.state;
+        const { slug } = this.props;
         const imageSrc = show ? show.showCover.url : '';
 
         return show ? (
-            <article>
-                <div className="information">
-                    <h1>{ show.title }</h1>
-                    <p>{ show.description }</p>
-                    <SocialLinksComponent socialLinks={ show.showLinks }/>
+            <article className="show">
+                <div className="show-description">
+                    <div className="information">
+                        <h1>{ show.title }</h1>
+                        <p>{ show.description }</p>
+                        <SocialLinksComponent socialLinks={ show.showLinks }/>
+                    </div>
+                    <div className="show-cover">
+                        <img src={ imageSrc } loading='lazy' alt={ show.showCover.alternativeText }/>
+                    </div>
                 </div>
-                <div className="image">
-                    <img src={ imageSrc } loading='lazy' alt={ show.showCover.alternativeText }/>
-                </div>
+                <ShowEpisodesComponent slug={ slug } />
             </article>
         ) : null;
     }

@@ -1,6 +1,6 @@
-article {
+.show {
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     flex-wrap: nowrap;
     justify-content: flex-start;
     align-content: stretch;
@@ -13,7 +13,22 @@ article {
     overflow: auto;
 }
 
-.information, .image {
+.show::-webkit-scrollbar {
+    display: none;
+}
+
+.show-description {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+    align-content: stretch;
+    align-items: flex-start;
+
+    margin-bottom: 40px;
+}
+
+.information, .show-cover {
     width: 50%;
 }
 
@@ -44,7 +59,7 @@ article {
     margin-right: 40px;
 }
 
-.image {
+.show-cover {
     display: flex;
     flex-direction: row;
     flex-wrap: nowrap;
@@ -53,7 +68,7 @@ article {
     align-items: center;
 }
 
-.image img {
+.show-cover img {
     width: 500px;
     height: auto;
 }

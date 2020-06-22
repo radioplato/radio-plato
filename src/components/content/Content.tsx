@@ -27,7 +27,7 @@ function Content() {
         <Switch>
             <Route exact path={ SCHEDULE } component={ schedule }/>
             <Route exact path={ SHOWS } component={ ShowListComponent }/>
-    <Route path={ `${ SHOWS }/:slug` } component={(routerProps: any) => <ShowComponent slug={routerProps.match.params.slug}/>}/>
+            <Route path={ `${ SHOWS }/:slug` } component={(routerProps: any) => <ShowComponent slug={routerProps.match.params.slug}/>}/>
             <Route exact path={ NEWS } component={ news }/>
             <Route exact path={ ABOUT } component={ AboutComponent }/>
         </Switch>

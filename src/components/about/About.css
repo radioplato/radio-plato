@@ -1,6 +1,6 @@
 /*reused from ShowComponent.css*/
 
-article {
+.about {
     display: flex;
     flex-direction: row;
     flex-wrap: nowrap;
