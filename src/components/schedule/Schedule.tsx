@@ -51,8 +51,7 @@ const SCHEDULE = "SCHEDULE";
 class Schedule extends Component {
     state = {
         schedule: [ [], [], [], [], [], [], [] ],
-        dailySchedule: [],
-        selectedDay: null
+        selectedDay: moment().isoWeekday() - 1
     };
 
     scheduleShowlineBuilder = (showline: ScheduleShow) => {
@@ -65,7 +64,6 @@ class Schedule extends Component {
 
     async componentDidMount () {
         await this.fetchSchedules();
-        this.selectDay(moment().isoWeekday() - 1);
     }
 
     async fetchSchedules () {
@@ -147,18 +145,9 @@ class Schedule extends Component {
         }
     }
 
-    showDay = (day: IndexesOfDay) => {
-        const { schedule } = this.state;
-
-        return schedule[day].length ?
-            schedule[day].map((playlistShow: ScheduleShow) => this.scheduleShowlineBuilder(playlistShow)) :
-            [];
-    };
-
     selectDay = (day: IndexesOfDay) => {
         this.setState({
-            selectedDay: day,
-            dailySchedule: this.showDay(day)
+            selectedDay: day
         });
     };
 
@@ -174,9 +163,18 @@ class Schedule extends Component {
         ))
     }
 
-    render () {
-        const { dailySchedule } = this.state;
+    renderDailySchedule = () => {
+        const {
+            schedule,
+            selectedDay
+        } = this.state;
 
+        return schedule[selectedDay].length ?
+            schedule[selectedDay].map((playlistShow: ScheduleShow) => this.scheduleShowlineBuilder(playlistShow)) :
+            [];
+    }
+
+    render () {
         return (
             <div className='schedule-container'>
                 <div className='schedule-headline-container'>        
@@ -188,7 +186,7 @@ class Schedule extends Component {
                     </div>
                 </div>
                 <div>
-                    { dailySchedule }
+                    { this.renderDailySchedule() }
                 </div>
             </div>
         )
