@@ -9,6 +9,7 @@ import {
 import ShowListComponent from '../shows/ShowListComponent';
 import ShowComponent from '../shows/ShowComponent/ShowComponent';
 import AboutComponent from '../about/About';
+import Schedule from '../schedule/Schedule';
 
 import './Content.css';
 
@@ -19,13 +20,12 @@ const ABOUT = '/about';
 
 
 function Content() {
-    const schedule = () => (<div>{ SCHEDULE }</div>);
-
     const news = () => (<div>{ NEWS }</div>);
 
     return (
         <Switch>
-            <Route exact path={ SCHEDULE } component={ schedule }/>
+            <Route exact path="/" component={ Schedule }/>
+            <Route exact path={ SCHEDULE } component={ Schedule }/>
             <Route exact path={ SHOWS } component={ ShowListComponent }/>
             <Route path={ `${ SHOWS }/:slug` } component={(routerProps: any) => <ShowComponent slug={routerProps.match.params.slug}/>}/>
             <Route exact path={ NEWS } component={ news }/>

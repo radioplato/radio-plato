@@ -1,0 +1,27 @@
+.show-title-container {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+    align-content: flex-start;
+    align-items: center;
+    text-transform: uppercase;
+    border-bottom: 1px white solid;
+    min-height: 90px;
+}
+
+.show-date {
+    margin: 0px 20px 0px 40px;
+    flex: 0 0 auto;
+}
+
+.show-title {
+    flex: 0 0 auto;
+    margin: 0px 40px;
+    width: 160px;
+}
+
+.show-desc {
+    margin: 0px 40px 0px 20px;
+    flex: 4 1 100%;
+}

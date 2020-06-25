@@ -10,6 +10,7 @@ import Player from './components/shared/Player/Player';
 
 import './App.css';
 
+
 function App() {
     return (
         <Router>
