@@ -19,12 +19,12 @@ function Main() {
     return (
         <main>
             <MenuButton />
-                <Switch>
-                    <Route exact path='/' render={
-                        props => <PlayerComponent { ...props } playerType={ PlayerTypes.Main }/>
-                    }/>
-                </Switch>
-            <Content />
+            <Switch>
+                <Route exact path='/' render={
+                    props => <PlayerComponent { ...props } playerType={ PlayerTypes.Main }/>
+                }/>
+            </Switch>
+            <Content />         
         </main>
     );
 }

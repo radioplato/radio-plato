@@ -1,10 +1,9 @@
 import React, { Component } from 'react'
 import moment from 'moment';
 
-
 import ScheduleShowline from './ScheduleShowline'
-import { PlaylistShow } from './interfaces';
-import { DATA } from './constants';
+import { ScheduleShow, ScheduleDto } from './interfaces';
+import { BACKEND_URL } from '../shared/constants';
 import './Schedule.css'
 
 
@@ -17,6 +16,25 @@ enum IndexesOfDay {
     Saturday,
     Sunday
 };
+
+enum PeriodicityTypes {
+    SingleTime = "SingleTime",
+    Daily = "Daily",
+    Weekly = "Weekly",
+    BiWeekly = "BiWeekly",
+    EveryThirdWeek = "Every3rdWeek",
+    Monthly = "Monthly"
+}
+
+const indexByDayName = new Map([
+    [ "Monday", IndexesOfDay.Monday ],
+    [ "Tuesday", IndexesOfDay.Tuesday ],
+    [ "Wednesday", IndexesOfDay.Wednesday ],
+    [ "Thursday", IndexesOfDay.Thursday ],
+    [ "Friday", IndexesOfDay.Friday ],
+    [ "Saturday", IndexesOfDay.Saturday ],
+    [ "Sunday", IndexesOfDay.Sunday ],
+]);
 
 const DAYS_OF_WEEK = [
     "MON",
@@ -32,54 +50,132 @@ const SCHEDULE = "SCHEDULE";
 
 class Schedule extends Component {
     state = {
-        schedule: [],
-        today: IndexesOfDay.Monday
+        schedule: [ [], [], [], [], [], [], [] ],
+        dailySchedule: [],
+        selectedDay: null
     };
 
-    scheduleShowlineBuilder = (showline: PlaylistShow) => {
-        const {
-            title,
-            description,
-            start,
-            end
-        } = showline;
-
+    scheduleShowlineBuilder = (showline: ScheduleShow) => {
         return (
             <ScheduleShowline 
-                title={ title }
-                description={ description }
-                start={ start }
-                end={ end }
+                showline={ showline }
             />
         );
     }
 
-    componentDidMount () {
+    async componentDidMount () {
+        await this.fetchSchedules();
         this.selectDay(moment().isoWeekday() - 1);
     }
 
+    async fetchSchedules () {
+        await fetch(`${ BACKEND_URL }/schedules`)
+            .then(response => response.json())
+            .then(data => [].concat(...data.map((datum: ScheduleDto) => this.parseScheduleLine(datum))))
+            .then(scheduleShows => this.organizeSchedule(scheduleShows));
+    }
+
+    parseScheduleLine (scheduleDto: ScheduleDto): ScheduleShow[] {
+        return scheduleDto.OnAirDateTime.map(onAirDateTime => {
+            const weekdays = [];
+
+            for (const [ key, value ] of Object.entries(onAirDateTime)) {
+                const dayIndex = indexByDayName.get(key);
+                
+                value && dayIndex !== undefined && weekdays.push(dayIndex);
+            }
+    
+            return {
+                title: scheduleDto.Title,
+                description: scheduleDto.Description,
+                type: scheduleDto.Type,
+                hide: scheduleDto.Hide,
+                link: scheduleDto.Link,
+                startDate: onAirDateTime.StartDate,
+                startTime: onAirDateTime.StartTime,
+                endDate: onAirDateTime.EndDate,
+                endTime: onAirDateTime.EndTime,
+                periodicity: onAirDateTime.Periodicity,
+                weekdays
+            };
+        });
+    }
+
+    organizeSchedule (scheduleShows: ScheduleShow[]) {
+        const schedule: ScheduleShow[][]  = [];
+
+        for (let day = IndexesOfDay.Monday; day <= IndexesOfDay.Sunday; day++) {
+            schedule[day] = [];
+
+            scheduleShows.forEach(show => {
+                this.shouldShowBeOnAir(show, day) && schedule[day].push(show)
+            });
+
+            schedule[day].sort(this.sortShowsByDate);
+        }
+
+        this.setState({
+            schedule
+        });
+    }
+
+    sortShowsByDate (first: ScheduleShow, second: ScheduleShow) {
+        return +first.startTime.slice(0, 2) - +second.startTime.slice(0, 2);
+    }
+
+    shouldShowBeOnAir (show: ScheduleShow, day: IndexesOfDay): boolean {
+        if (show.hide) {
+            return false;
+        }
+
+        const showStartDate = moment(show.startDate);
+        const dateOfDay = moment().add(moment().isoWeekday() - day + 1, 'days');
+        const weeksPassed = +(moment().week() - showStartDate.week());
+
+        switch (show.periodicity) {
+            case PeriodicityTypes.Daily: 
+                return show.weekdays.includes(day);
+            case PeriodicityTypes.Weekly:
+                return show.weekdays.includes(day);
+            case PeriodicityTypes.BiWeekly:
+                return show.weekdays.includes(day) && weeksPassed % 2 === 0;
+            case PeriodicityTypes.EveryThirdWeek:
+                return show.weekdays.includes(day) && weeksPassed % 3 === 0;
+            case PeriodicityTypes.SingleTime:
+                return showStartDate.startOf('day').isSame(dateOfDay.startOf('day'));
+            default: return false;
+        }
+    }
+
     showDay = (day: IndexesOfDay) => {
-        return DATA[day].map((playlistShow: PlaylistShow) => this.scheduleShowlineBuilder(playlistShow));
+        const { schedule } = this.state;
+
+        return schedule[day].length ?
+            schedule[day].map((playlistShow: ScheduleShow) => this.scheduleShowlineBuilder(playlistShow)) :
+            [];
     };
 
     selectDay = (day: IndexesOfDay) => {
         this.setState({
-            schedule: this.showDay(day)
+            selectedDay: day,
+            dailySchedule: this.showDay(day)
         });
     };
 
     renderButtons = () => {
+        const { selectedDay } = this.state;
+
         return DAYS_OF_WEEK.map((day, index) => (
-            <button className='schedule-day-button' onClick={ () => this.selectDay(index) }>
+            <button className={ `schedule-day-button ${ selectedDay === index ? "active" : ""}` }
+                    onClick={ () => this.selectDay(index) }
+            >
                 { day }
             </button>
         ))
     }
 
     render () {
-        const {
-            schedule
-        } = this.state;
+        const { dailySchedule } = this.state;
 
         return (
             <div className='schedule-container'>
@@ -92,7 +188,7 @@ class Schedule extends Component {
                     </div>
                 </div>
                 <div>
-                    { schedule }
+                    { dailySchedule }
                 </div>
             </div>
         )

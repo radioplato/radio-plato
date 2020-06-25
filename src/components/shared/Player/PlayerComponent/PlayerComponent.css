@@ -1,5 +1,6 @@
 .main-player {
     width: 400px;
+    min-width: 400px;
     height: calc(100vh - 181px);
 
     padding: 40px;

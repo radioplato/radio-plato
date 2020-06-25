@@ -1,8 +1,18 @@
 .schedule-container {
     display: flex;
     flex-direction: column;
-    flex: 0 1 100%;
+    flex: 2 1 100%;
+
+    height: calc(100vh - 101px);
+    width: 100%;
+
+    overflow: auto;
 }
+
+.schedule-container::-webkit-scrollbar {
+    display: none;
+}
+
 .schedule-headline-container {
     display: flex;
     flex-direction: row;
@@ -12,21 +22,28 @@
     align-items: center;
     border-bottom: 1px white solid;
 }
+
 .schedule-title {
     font-size: 36px;
     font-weight: 500;
     line-height: 120%;
     display: flex;
     flex-direction: row;
-    margin: 0px 0px 0px 40px;
+    margin: 40px;
 }
+
 .schedule-day {
     float: right;
     font-size: 14px;
     margin-right: 20px;
 }
+
 .schedule-day-button {
     background: none;
     color: white;
     margin: 0px 20px;
+}
+
+.schedule-day-button.active {
+    text-decoration: underline;
 }
