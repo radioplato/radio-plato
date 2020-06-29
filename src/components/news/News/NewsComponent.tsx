@@ -6,6 +6,7 @@ import { BACKEND_URL } from '../../shared/constants';
 import { NewsDto, News } from '../interfaces';
 
 import './NewsComponent.css';
+import moment from 'moment';
 
 
 interface NewsComponentProperties {
@@ -15,6 +16,8 @@ interface NewsComponentProperties {
 interface NewsComponentState {
     news: News | null
 }
+
+const DATE_FORMAT = 'DD.MM.YYYY';
 
 export class NewsComponent extends Component<NewsComponentProperties> {
     state: NewsComponentState = {
@@ -55,22 +58,30 @@ export class NewsComponent extends Component<NewsComponentProperties> {
     render () {
         const { news } = this.state;
         const imageSrc = news ? news.newsCover.url : '';
+        const imageStyle = {
+            backgroundRepeat: 'no-repeat',
+            backgroundAttachment: 'fixed',
+            backgroundSize: 'cover',
+            backgroundImage: `url(${ imageSrc })`
+        }
+        const date = moment(news?.publishDate).format(DATE_FORMAT);
+        const wordsBy = news?.wordsBy ? `| Author: ${ news.wordsBy }` : '';
+        const photosBy = news?.photosBy ? `| Ph.: ${ news.photosBy }` : '';
 
         return news ? (
             <article className="news">
-                <div className="news-description">
-                    <div className="information">
-                        <h1>{ news.title }</h1>
-                        <p>{ news.excerpt }</p>
-                    </div>
-                    <div className="news-cover">
-                        <img src={ imageSrc } loading='lazy' alt={ news.newsCover.alternativeText }/>
+                <div className="news-description" style={ imageStyle }>
+                    <div className="news-information">
+                        <h1 className="news-title">{ news.title }</h1>
+                        <p className="news-excerpt">{ news.excerpt }</p>
+                        <p className="news-meta">
+                            { `${ date } ${ wordsBy } ${ photosBy }` }
+                        </p>
                     </div>
                 </div>
-                <hr className="separator" />
                 <div className="news-content-container">
                     <div className="news-content">
-                        <ReactMarkdown source={ news.content } />
+                        <ReactMarkdown source={ news.content } escapeHtml={ false } />
                     </div>
                 </div>
             </article>

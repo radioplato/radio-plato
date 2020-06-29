@@ -57,17 +57,11 @@
     margin: 20px 0;
 }
 
-.news-card.fresh h2 {
-    margin: 0 0 20px;
-}
-
-.news-card p {
-    font-style: normal;
-    font-weight: 400;
+.news-card-excerpt {
+    font-style: italic;
+    font-weight: 300;
     font-size: 18px;
     line-height: 160%;
-}
 
-.news-card.fresh p {
-    margin: 0 0 20px;
+    margin: 20px 0;
 }

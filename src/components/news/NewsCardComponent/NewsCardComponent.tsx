@@ -26,7 +26,7 @@ function NewsCardComponent({ newsCard, type }: NewsCardParameters) {
                 <img src={ newsCover.url } loading='lazy' alt={ newsCover.alternativeText }/>
                 <div className="news-card-text">
                     <h2>{ title }</h2>
-                    <p>{ excerpt }</p>
+                    <p className="news-card-excerpt">{ excerpt }</p>
                 </div>
                   
             </Link>
