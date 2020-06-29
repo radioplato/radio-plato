@@ -6,11 +6,18 @@ import { NewsDto, NewsCard } from './interfaces';
 import { BACKEND_URL } from '../shared/constants';
 
 import './NewsListComponent.css';
+import moment from 'moment';
 
+
+const NEWS_LIMIT = 9;
+const VISIBILITY_LIMIT = 800;
 
 export class NewsListComponent extends Component {
     state = {
-        newsCards: []
+        newsCards: [],
+        page: 0,
+        loading: false,
+        end: false
     }
 
     parseNewsCard (newsDto: NewsDto): NewsCard {
@@ -22,19 +29,42 @@ export class NewsListComponent extends Component {
                 url: newsDto.PostCover.url
             },
             slug: newsDto.Slug,
-            title: newsDto.Title
+            title: newsDto.Title,
+            publishDate: newsDto.PublishDate
         };
     }
 
+    sortCardsByDate (first: NewsCard, second: NewsCard) {
+        return moment(second.publishDate).diff(moment(first.publishDate));
+    }
+
+    handleResponse (newsCards: NewsCard[]) {
+        if (newsCards && newsCards.length) {
+            const cards = [ ...this.state.newsCards, ...newsCards ].sort(this.sortCardsByDate);
+
+            this.setState({
+                newsCards: cards,
+                loading: false,
+                page: this.state.page + 1
+            });
+        } else {
+            this.setState({ end: true });
+        }
+    }
+
     fetchNews () {
-        fetch(`${ BACKEND_URL }/posts?_sort=PublishDate:DESC`)
+        const { page } = this.state;
+        const start = page * NEWS_LIMIT;
+
+        this.setState({ loading: true });
+
+        fetch(`${ BACKEND_URL }/posts?_sort=PublishDate:DESC&_start=${ start }&_limit=${ NEWS_LIMIT }`)
             .then(response => response.json())
             .then(data => data.map((datum: NewsDto) => this.parseNewsCard(datum)))
-            .then(newsCards => this.setState({ newsCards }));
+            .then(newsCards => this.handleResponse(newsCards));
     }
 
     renderNewsCards (newsCards: NewsCard[]) {
-        // <NewsCardComponent key={ newsCard.slug } newsCard={ newsCard }></NewsCardComponent>
         return newsCards.length ? (
             <>
                 <div className="latest-news">
@@ -60,13 +90,21 @@ export class NewsListComponent extends Component {
         this.fetchNews();
     }
 
+    handleScroll = (event: any) => {
+        const { loading, end } = this.state;
+
+        if (event.target.scrollHeight - event.target.scrollTop < VISIBILITY_LIMIT) {
+            !loading && !end && this.fetchNews();
+        }
+    }
+
     render () {
         const {
             newsCards
         } = this.state;
 
         return (
-            <div className="news-list">
+            <div onScroll={ this.handleScroll } className="news-list">
                 <div className="news-cards">
                     { this.renderNewsCards(newsCards) }
                 </div>
