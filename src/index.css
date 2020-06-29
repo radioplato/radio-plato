@@ -15,7 +15,7 @@ body {
   overflow: hidden;
 }
 
-h1, h2, h3, h5, h6, p {
+h1, h2, h3, h5, h6, p, code, hr {
   color: white;
   margin-block-start: 0;
   margin-block-end: 0;
@@ -25,6 +25,11 @@ h1, h2, h3, h5, h6, p {
   padding-block-end: 0;
   padding-inline-start: 0;
   padding-inline-end: 0;
+}
+
+table, thead, th, tr, td {
+  color: white;
+  border: 1px solid white;
 }
 
 button {
