@@ -11,7 +11,7 @@ import NewsListComponent from '../news/NewsListComponent';
 import ShowComponent from '../shows/ShowComponent/ShowComponent';
 import NewsComponent from '../news/News/NewsComponent';
 import AboutComponent from '../about/About';
-import Schedule from '../schedule/Schedule';
+import Schedule from '../shared/schedule/Schedule';
 import DonateComponent from '../donate/Donate'
 
 import './Content.css';

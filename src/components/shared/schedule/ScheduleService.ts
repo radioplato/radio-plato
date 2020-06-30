@@ -1,21 +1,9 @@
-import React, { Component } from 'react'
+import { Subject } from 'rxjs'
 import moment from 'moment';
 
-import ScheduleShowline from './ScheduleShowline'
-import { ScheduleShow, ScheduleDto } from './interfaces';
-import { BACKEND_URL } from '../shared/constants';
-import './Schedule.css'
-
-
-enum IndexesOfDay {
-    Monday = 0,
-    Tuesday,
-    Wednesday,
-    Thursday,
-    Friday,
-    Saturday,
-    Sunday
-};
+import { ScheduleShow, ScheduleDto } from "./interfaces";
+import { IndexesOfDay } from "./enums";
+import { BACKEND_URL } from "../constants";
 
 enum PeriodicityTypes {
     SingleTime = "SingleTime",
@@ -36,34 +24,23 @@ const indexByDayName = new Map([
     [ "Sunday", IndexesOfDay.Sunday ],
 ]);
 
-const DAYS_OF_WEEK = [
-    "MON",
-    "TUE",
-    "WED",
-    "THU",
-    "FRI",
-    "SAT",
-    "SUN"
-];
+class ScheduleService {
+    private _schedule: ScheduleShow[][] = [ [], [], [], [], [], [], [] ];
+    private scheduleSubject: Subject<ScheduleShow[][]>;
 
-const SCHEDULE = "SCHEDULE";
+    constructor () {
+        this.scheduleSubject = new Subject();
 
-class Schedule extends Component {
-    state = {
-        schedule: [ [], [], [], [], [], [], [] ],
-        selectedDay: moment().isoWeekday() - 1
-    };
-
-    scheduleShowlineBuilder = (showline: ScheduleShow) => {
-        return (
-            <ScheduleShowline 
-                showline={ showline }
-            />
-        );
+        this.fetchSchedules();
     }
 
-    async componentDidMount () {
-        await this.fetchSchedules();
+    set schedule (schedule: ScheduleShow[][]) {
+        this._schedule = schedule;
+        this.scheduleSubject.next(this.schedule);
+    }
+
+    get schedule () {
+        return this._schedule;
     }
 
     async fetchSchedules () {
@@ -73,7 +50,11 @@ class Schedule extends Component {
             .then(scheduleShows => this.organizeSchedule(scheduleShows));
     }
 
-    parseScheduleLine (scheduleDto: ScheduleDto): ScheduleShow[] {
+    subscribeOnScheduleChanges (onNext: Function) {
+        return this.scheduleSubject.subscribe(data => onNext(data));
+    }
+
+    private parseScheduleLine (scheduleDto: ScheduleDto): ScheduleShow[] {
         return scheduleDto.OnAirDateTime.map(onAirDateTime => {
             const weekdays = [];
 
@@ -99,7 +80,7 @@ class Schedule extends Component {
         });
     }
 
-    organizeSchedule (scheduleShows: ScheduleShow[]) {
+    private organizeSchedule (scheduleShows: ScheduleShow[]) {
         const schedule: ScheduleShow[][]  = [];
 
         for (let day = IndexesOfDay.Monday; day <= IndexesOfDay.Sunday; day++) {
@@ -112,16 +93,14 @@ class Schedule extends Component {
             schedule[day].sort(this.sortShowsByDate);
         }
 
-        this.setState({
-            schedule
-        });
+        this.schedule = schedule;
     }
 
-    sortShowsByDate (first: ScheduleShow, second: ScheduleShow) {
+    private sortShowsByDate (first: ScheduleShow, second: ScheduleShow) {
         return +first.startTime.slice(0, 2) - +second.startTime.slice(0, 2);
     }
 
-    shouldShowBeOnAir (show: ScheduleShow, day: IndexesOfDay): boolean {
+    private shouldShowBeOnAir (show: ScheduleShow, day: IndexesOfDay): boolean {
         if (show.hide) {
             return false;
         }
@@ -144,53 +123,8 @@ class Schedule extends Component {
             default: return false;
         }
     }
-
-    selectDay = (day: IndexesOfDay) => {
-        this.setState({
-            selectedDay: day
-        });
-    };
-
-    renderButtons = () => {
-        const { selectedDay } = this.state;
-
-        return DAYS_OF_WEEK.map((day, index) => (
-            <button className={ `schedule-day-button ${ selectedDay === index ? "active" : ""}` }
-                    onClick={ () => this.selectDay(index) }
-            >
-                { day }
-            </button>
-        ))
-    }
-
-    renderDailySchedule = () => {
-        const {
-            schedule,
-            selectedDay
-        } = this.state;
-
-        return schedule[selectedDay].length ?
-            schedule[selectedDay].map((playlistShow: ScheduleShow) => this.scheduleShowlineBuilder(playlistShow)) :
-            [];
-    }
-
-    render () {
-        return (
-            <div className='schedule-container'>
-                <div className='schedule-headline-container'>        
-                    <div className='schedule-title'>
-                        <p>{ SCHEDULE }</p>
-                    </div>
-                    <div className='schedule-day'>
-                        { this.renderButtons() }
-                    </div>
-                </div>
-                <div>
-                    { this.renderDailySchedule() }
-                </div>
-            </div>
-        )
-    }
 }
-  
-export default Schedule
+
+const scheduleService = new ScheduleService();
+
+export { scheduleService };

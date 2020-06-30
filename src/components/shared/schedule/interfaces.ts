@@ -1,4 +1,4 @@
-import { StrapiObjectDto } from "../shared/interfaces";
+import { StrapiObjectDto } from "../interfaces";
 
 
 export interface ScheduleDto extends StrapiObjectDto{
