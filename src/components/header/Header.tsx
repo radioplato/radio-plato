@@ -44,7 +44,7 @@ function Header() {
                         props => (<PlayerComponent { ...props } playerType={ PlayerTypes.Header }/>)
                     }/>
                 </Switch>
-                <p className='donate'>{ DONATE }</p>
+                <Link to='/donate' className='donate'>{ DONATE }</Link>
                 <div className='search-icon'>
                     <Icon icon={ bxSearch } width='1.8em' color='white'/>
                 </div>
