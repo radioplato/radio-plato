@@ -36,3 +36,12 @@ export interface ImageDto {
 export interface FormatsDto {
     thumbnail?: ImageDto;
 }
+
+export interface CoverDto extends StrapiObjectDto, ImageDto {
+    alternativeText: string;
+    caption: string;
+    formats: FormatsDto;
+    name: string;
+    provider: string;
+    related: string[];
+}
