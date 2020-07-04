@@ -8,7 +8,9 @@ import { scheduleService } from './ScheduleService';
 
 import { ScheduleShow } from './interfaces';
 import { IndexesOfDay } from './enums';
-import './Schedule.css'
+
+import './ScheduleComponent.css'
+import ScrollableWrapper from '../scrollable-wrapper/ScrollableWrapper';
 
 
 const DAYS_OF_WEEK = [
@@ -23,7 +25,7 @@ const DAYS_OF_WEEK = [
 
 const SCHEDULE = "SCHEDULE";
 
-class Schedule extends Component {
+class ScheduleComponent extends Component {
     subscription: Subscription | null = null;
     state = {
         schedule: scheduleService.schedule,
@@ -44,6 +46,7 @@ class Schedule extends Component {
         return (
             <ScheduleShowline 
                 showline={ showline }
+                key={ `${ showline.title }-${ showline.startDate }-${ showline.endDate }` }
             />
         );
     }
@@ -53,6 +56,10 @@ class Schedule extends Component {
             selectedDay: day
         });
     };
+
+    componentWillUnmount () {
+        this.subscription?.unsubscribe();
+    }
 
     renderButtons = () => {
         const { selectedDay } = this.state;
@@ -96,5 +103,7 @@ class Schedule extends Component {
         )
     }
 }
+
+const ScrollableScheduleComponent = () => (<ScrollableWrapper children={ <ScheduleComponent /> }/>)
   
-export default Schedule
+export { ScheduleComponent, ScrollableScheduleComponent }

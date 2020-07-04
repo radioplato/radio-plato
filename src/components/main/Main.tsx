@@ -24,7 +24,7 @@ function Main() {
                     props => <PlayerComponent { ...props } playerType={ PlayerTypes.Main }/>
                 }/>
             </Switch>
-            <Content />         
+            <Content />
         </main>
     );
 }

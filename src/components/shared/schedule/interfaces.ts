@@ -1,4 +1,4 @@
-import { StrapiObjectDto } from "../interfaces";
+import { StrapiObjectDto, CoverDto, SimpleImage } from "../interfaces";
 
 
 export interface ScheduleDto extends StrapiObjectDto{
@@ -7,6 +7,7 @@ export interface ScheduleDto extends StrapiObjectDto{
     Title: string;
     Description: string;
     Link?: string;
+    ShowImg?: CoverDto;
     OnAirDateTime: ScheduleDateTimeDto[];
 }
 
@@ -37,4 +38,5 @@ export interface ScheduleShow {
     endTime: string;
     periodicity: string;
     weekdays: number[];
+    image?: SimpleImage | null;
 }

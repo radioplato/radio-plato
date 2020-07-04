@@ -1,4 +1,4 @@
-import { StrapiObjectDto, CoverDto } from "../shared/interfaces";
+import { StrapiObjectDto, CoverDto, SimpleImage } from "../shared/interfaces";
 
 export interface NewsDto extends StrapiObjectDto {
     Category: string;
@@ -12,15 +12,9 @@ export interface NewsDto extends StrapiObjectDto {
     WordsBy: string;
 }
 
-export interface NewsCover {
-    alternativeText: string;
-    caption: string;
-    url: string;
-}
-
 export interface NewsCard {
     excerpt: string;
-    newsCover: NewsCover;
+    newsCover: SimpleImage;
     slug: string;
     title: string;
     publishDate: string;

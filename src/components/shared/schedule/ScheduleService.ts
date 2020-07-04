@@ -5,6 +5,10 @@ import { ScheduleShow, ScheduleDto } from "./interfaces";
 import { IndexesOfDay } from "./enums";
 import { BACKEND_URL } from "../constants";
 
+
+const DATA_REQUEST_INTERVAL = 14400000;
+const CURRENT_SHOW_REFRESH_INTERVAL = 300000;
+
 enum PeriodicityTypes {
     SingleTime = "SingleTime",
     Daily = "Daily",
@@ -26,21 +30,47 @@ const indexByDayName = new Map([
 
 class ScheduleService {
     private _schedule: ScheduleShow[][] = [ [], [], [], [], [], [], [] ];
+    private _currentShow: ScheduleShow | undefined;
     private scheduleSubject: Subject<ScheduleShow[][]>;
+    private currentShowSubject: Subject<ScheduleShow>;
 
     constructor () {
         this.scheduleSubject = new Subject();
+        this.currentShowSubject = new Subject();
 
         this.fetchSchedules();
+        this.updateCurrentShow();
+        setInterval(this.fetchSchedules.bind(this), DATA_REQUEST_INTERVAL);
+        setInterval(this.updateCurrentShow.bind(this), CURRENT_SHOW_REFRESH_INTERVAL);
     }
 
     set schedule (schedule: ScheduleShow[][]) {
         this._schedule = schedule;
-        this.scheduleSubject.next(this.schedule);
+        this.scheduleSubject.next(schedule);
     }
 
     get schedule () {
         return this._schedule;
+    }
+
+    get currentShow () {
+        return this._currentShow;
+    }
+
+    set currentShow (show: ScheduleShow | undefined) {
+        this._currentShow = show;
+        this.currentShowSubject.next(show)
+    }
+
+    updateCurrentShow () {
+        const weekday = moment().isoWeekday() - 1;
+        const currentDate = new Date().toISOString().substr(0, 10);
+        const start = (showline: ScheduleShow) => moment(`${ currentDate } ${ showline.startTime }`);
+        const end = (showline: ScheduleShow) => moment(`${ currentDate } ${ showline.endTime }`);
+
+        this._currentShow = this.schedule[weekday].find(showline => {
+            return showline.type === "Show" && moment().isBetween(start(showline), end(showline));
+        });
     }
 
     async fetchSchedules () {
@@ -54,8 +84,12 @@ class ScheduleService {
         return this.scheduleSubject.subscribe(data => onNext(data));
     }
 
-    private parseScheduleLine (scheduleDto: ScheduleDto): ScheduleShow[] {
-        return scheduleDto.OnAirDateTime.map(onAirDateTime => {
+    subscribeOnCurrentShowChanges (onNext: Function) {
+        return this.currentShowSubject.subscribe(data => onNext(data));
+    }
+
+    private parseScheduleLine (dto: ScheduleDto): ScheduleShow[] {
+        return dto.OnAirDateTime.map(onAirDateTime => {
             const weekdays = [];
 
             for (const [ key, value ] of Object.entries(onAirDateTime)) {
@@ -65,17 +99,22 @@ class ScheduleService {
             }
     
             return {
-                title: scheduleDto.Title,
-                description: scheduleDto.Description,
-                type: scheduleDto.Type,
-                hide: scheduleDto.Hide,
-                link: scheduleDto.Link,
+                title: dto.Title,
+                description: dto.Description,
+                type: dto.Type,
+                hide: dto.Hide,
+                link: dto.Link,
                 startDate: onAirDateTime.StartDate,
                 startTime: onAirDateTime.StartTime,
                 endDate: onAirDateTime.EndDate,
                 endTime: onAirDateTime.EndTime,
                 periodicity: onAirDateTime.Periodicity,
-                weekdays
+                weekdays,
+                image: dto ? {
+                    alternativeText: dto.ShowImg?.alternativeText,
+                    caption: dto.ShowImg?.caption,
+                    url: dto.ShowImg?.url
+                } : null
             };
         });
     }
