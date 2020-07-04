@@ -1,5 +1,5 @@
 
-import { SocialLinks, StrapiObjectDto, CoverDto } from "../shared/interfaces";
+import { SocialLinks, StrapiObjectDto, CoverDto, SimpleImage } from "../shared/interfaces";
 
 interface ShowLinkDto extends StrapiObjectDto {
     castbox?: string;
@@ -21,15 +21,9 @@ export interface ShowDto extends StrapiObjectDto {
     Title: string;
 }
 
-export interface ShowCover {
-    alternativeText: string;
-    caption: string;
-    url: string;
-}
-
 export interface ShowCard {
     excerpt: string;
-    showCover: ShowCover;
+    showCover: SimpleImage;
     slug: string;
     title: string;
 }
@@ -37,7 +31,7 @@ export interface ShowCard {
 export interface Show {
     description: string;
     title: string;
-    showCover: ShowCover;
+    showCover: SimpleImage;
     showLinks: SocialLinks;
 }
 

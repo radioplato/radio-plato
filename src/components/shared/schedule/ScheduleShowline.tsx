@@ -17,8 +17,8 @@ function ScheduleShowline({ showline }: ScheduleShowlineProperties) {
         startTime,
         endTime
     } = showline;
-    const interval = `${ startTime.slice(0, 5) } - ${ endTime.slice(0, 5) }`;
-    const href = link ? link : "#";
+    const interval = startTime && endTime ? `${ startTime.slice(0, 5) } - ${ endTime.slice(0, 5) }` : "";
+    const href = link ? link : "";
 
     return (
         <a href={ href }>
@@ -27,10 +27,10 @@ function ScheduleShowline({ showline }: ScheduleShowlineProperties) {
                     <p>{ interval }</p>
                 </div>
                 <div className='show-title'>
-                    <p>{ title }</p>
+                    <p>{ title ? title : "" }</p>
                 </div>
                 <div className='show-desc'>
-                    <p>{ description }</p>
+                    <p>{ description ? description : "" }</p>
                 </div>
             </div>
         </a>

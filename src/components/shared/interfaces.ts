@@ -45,3 +45,9 @@ export interface CoverDto extends StrapiObjectDto, ImageDto {
     provider: string;
     related: string[];
 }
+
+export interface SimpleImage {
+    alternativeText?: string;
+    caption?: string;
+    url?: string;
+}

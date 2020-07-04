@@ -3,10 +3,8 @@
     flex-direction: column;
     flex: 2 1 100%;
 
-    height: calc(100vh - 101px);
     width: 100%;
-
-    overflow: auto;
+    height: auto;
 }
 
 .schedule-container::-webkit-scrollbar {

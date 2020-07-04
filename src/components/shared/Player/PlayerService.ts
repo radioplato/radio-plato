@@ -69,6 +69,6 @@ class PlayerService {
     }
 }
 
-const playerService = new PlayerService(DEFAULT_PLAYER_STATE)
+const playerService = new PlayerService(DEFAULT_PLAYER_STATE);
 
 export { playerService };
