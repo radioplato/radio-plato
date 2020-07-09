@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 
 import { Subscription } from 'rxjs';
 
@@ -13,7 +13,7 @@ import './PlayerComponent.css';
 
 const ONAIR = 'onair';
 
-export class PlayerComponent extends Component<PlayerProps> {
+export class PlayerComponent extends PureComponent<PlayerProps> {
     state = {
         trackName: ''
     };
