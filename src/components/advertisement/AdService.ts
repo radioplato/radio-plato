@@ -13,10 +13,12 @@ class AdService {
     private _advertisements: Advertisement[] = [];
     private advertisementsSubject: Subject<Advertisement[] | null>;
     private newsCardAdSubject: Subject<Advertisement | null>;
+    private newsPostAdSubject: Subject<Advertisement | null>;
 
     constructor () {
         this.advertisementsSubject = new Subject();
         this.newsCardAdSubject = new Subject();
+        this.newsPostAdSubject = new Subject();
 
         this.fetchAdvertisements();
     }
@@ -25,15 +27,12 @@ class AdService {
         return this._advertisements;
     }
 
-    get newsCardAdvertisement () {
-        return this.advertisements.find((ad: Advertisement) => ad.placement === AdPlacements.NewsList && moment().isBefore(moment(ad.endDate)));
-    }
-
     set advertisements (ads: any) {
         this._advertisements = ads;
 
         this.advertisementsSubject.next(this.advertisements);
-        this.newsCardAdSubject.next(this.newsCardAdvertisement)
+        this.newsCardAdSubject.next(this.getSpecificAdvertisementByType(AdPlacements.NewsList));
+        this.newsPostAdSubject.next(this.getSpecificAdvertisementByType(AdPlacements.NewsPost));
     }
 
     subscribeOnAdvertisementsChanges (onNext: Function) {
@@ -44,11 +43,19 @@ class AdService {
         return this.newsCardAdSubject.subscribe(data => onNext(data));
     }
 
+    subscribeOnNewsPostAdUpdate (onNext: Function) {
+        return this.newsPostAdSubject.subscribe(data => onNext(data));
+    }
+
     async fetchAdvertisements () {
         await fetch(`${ BACKEND_URL }/advertisements`)
             .then(response => response.json())
             .then(data => this.parseAdvertisements(data))
             .then(advertisements => this.updateAdvertisements(advertisements));
+    }
+
+    private getSpecificAdvertisementByType (type: string) {
+        return this.advertisements.find((ad: Advertisement) => ad.placement === type && moment().isBefore(moment(ad.endDate)));
     }
 
     private parseAdvertisements (data: AdvertisementDto[]) {
