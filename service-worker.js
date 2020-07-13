@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
 importScripts(
-  "/radio-plato/precache-manifest.849d05e64ceb96fabf0f3d41e1502000.js"
+  "/radio-plato/precache-manifest.6c53ea6d4e6e47f0e0b460060dced621.js"
 );
 
 self.addEventListener('message', (event) => {
