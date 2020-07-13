@@ -26,6 +26,10 @@
     margin: 20px 0;
 }
 
+.show-card:hover h2 {
+    text-decoration: underline;
+}
+
 .show-card p {
     font-style: normal;
     font-weight: 400;

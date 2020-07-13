@@ -20,7 +20,7 @@ function ShowCardComponent({ showCard }: ShowCardParameters) {
     const route = `/shows/${ slug }`;
 
     return (
-        <Link to={ route }>
+        <Link to={ route } title={ title }>
             <div className="show-card">
                 <img src={ showCover.url } loading='lazy' alt={ showCover.alternativeText }/>
                 <h2>{ title }</h2>

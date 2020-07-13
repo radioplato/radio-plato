@@ -37,11 +37,35 @@
 }
 
 .schedule-day-button {
-    background: none;
-    color: white;
+    position: relative;
+    color: #b3b3b3;
     margin: 0px 20px;
 }
 
+.schedule-day-button:before {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 1px;
+    bottom: -1px;
+    left: 0;
+    background-color: #b3b3b3;
+    visibility: hidden;
+    transform: scaleX(0);
+    transition: all 0.2s ease-in-out 0s;
+}
+
+.schedule-day-button:hover:before {
+    visibility: visible;
+    transform: scaleX(1);
+}
+
 .schedule-day-button.active {
-    text-decoration: underline;
+    color: white;
+}
+
+.schedule-day-button.active:before {
+    color: white;
+    visibility: visible;
+    transform: scaleX(1);
 }
