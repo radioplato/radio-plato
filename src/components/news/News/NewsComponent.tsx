@@ -1,12 +1,17 @@
 import React, { Component } from 'react';
+import { Subscription } from 'rxjs';
+import moment from 'moment';
 
 import ReactMarkdown from 'react-markdown'
 
+import AdComponent from '../../advertisement/AdComponent/AdComponent';
+import adService from '../../advertisement/AdService';
+
 import { BACKEND_URL } from '../../shared/constants';
+import { Advertisement } from '../../advertisement/interfaces';
 import { NewsDto, News } from '../interfaces';
 
 import './NewsComponent.css';
-import moment from 'moment';
 
 
 interface NewsComponentProperties {
@@ -14,15 +19,18 @@ interface NewsComponentProperties {
 }
 
 interface NewsComponentState {
-    news: News | null
+    news: News | null,
+    advertisement: Advertisement | null
 }
 
 const DATE_FORMAT = 'DD.MM.YYYY';
 
 export class NewsComponent extends Component<NewsComponentProperties> {
     state: NewsComponentState = {
-        news: null
-    }
+        news: null,
+        advertisement: null
+    };
+    subscription: Subscription | null = null;
 
     parseNews(newsDto: NewsDto): News | null {
         return newsDto ? {
@@ -50,13 +58,20 @@ export class NewsComponent extends Component<NewsComponentProperties> {
             .then(news => this.setState({ news }));
     }
     
-
     componentDidMount () {
         this.fetchNews();
+        this.subscribeOnGalleryChange();
+        adService.fetchAdvertisements();
+    }
+
+    subscribeOnGalleryChange () {
+        this.subscription = adService.subscribeOnNewsPostAdUpdate(
+            (advertisement: Advertisement) => this.setState({ advertisement })
+        );
     }
 
     render () {
-        const { news } = this.state;
+        const { news, advertisement } = this.state;
         const imageSrc = news ? news.newsCover.url : '';
         const imageStyle = {
             backgroundRepeat: 'no-repeat',
@@ -84,6 +99,7 @@ export class NewsComponent extends Component<NewsComponentProperties> {
                         <ReactMarkdown source={ news.content } escapeHtml={ false } />
                     </div>
                 </div>
+                <AdComponent advertisement={ advertisement } />
             </article>
         ) : null;
     }

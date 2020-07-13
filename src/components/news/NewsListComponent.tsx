@@ -1,24 +1,29 @@
 import React, { Component } from 'react';
+import { Subscription } from 'rxjs';
 
 import NewsCardComponent from './NewsCardComponent/NewsCardComponent';
+import adService from './../advertisement/AdService';
 
 import { NewsDto, NewsCard } from './interfaces';
 import { BACKEND_URL } from '../shared/constants';
 
 import './NewsListComponent.css';
 import moment from 'moment';
+import { Advertisement } from '../advertisement/interfaces';
 
 
-const NEWS_LIMIT = 9;
+const NEWS_LIMIT = 12;
 const VISIBILITY_LIMIT = 800;
 
 export class NewsListComponent extends Component {
     state = {
+        advertisement: null,
         newsCards: [],
         page: 0,
         loading: false,
         end: false
     }
+    subscription: Subscription | null = null;
 
     parseNewsCard (newsDto: NewsDto): NewsCard {
         return {
@@ -64,22 +69,36 @@ export class NewsListComponent extends Component {
             .then(newsCards => this.handleResponse(newsCards));
     }
 
-    renderNewsCards (newsCards: NewsCard[]) {
+    advertisementToNewsCard (advertisement: Advertisement | null) {
+        return {
+            excerpt: advertisement ? advertisement.text : "",
+            newsCover: advertisement ? advertisement.image : {},
+            link: advertisement ? advertisement.link : "",
+            title: advertisement ? advertisement.title : "",
+            publishDate: advertisement ? advertisement.startDate : ""
+        };
+    }
+
+    renderNewsCards (newsCards: NewsCard[], advertisement: Advertisement | null) {
+        const adNewsCard = this.advertisementToNewsCard(advertisement);
+
         return newsCards.length ? (
             <>
                 <div className="latest-news">
                     <div className="main-news">
-                        <NewsCardComponent key={ newsCards[0].slug } newsCard={ newsCards[0] } type="main"></NewsCardComponent>
+                        <NewsCardComponent key={ newsCards[0].slug } newsCard={ newsCards[0] } type="main" />
                     </div>
                     <div className="fresh-news">
-                        { newsCards.slice(1, 3).map(newsCard => (
-                            <NewsCardComponent key={ newsCard.slug } newsCard={ newsCard } type="fresh"></NewsCardComponent>
+                        <NewsCardComponent newsCard={ adNewsCard } type="fresh"/>
+                        { newsCards.slice(1, 5).map(newsCard => (
+                            <NewsCardComponent key={ newsCard.slug } newsCard={ newsCard } type="fresh" />
                         )) }
+                        
                     </div>
                 </div>
                 <div className="other-news">
-                    { newsCards.slice(3, newsCards.length).map(newsCard => (
-                        <NewsCardComponent key={ newsCard.slug } newsCard={ newsCard } type="other"></NewsCardComponent>
+                    { newsCards.slice(5, newsCards.length).map(newsCard => (
+                        <NewsCardComponent key={ newsCard.slug } newsCard={ newsCard } type="other" />
                     )) }
                 </div>
             </>
@@ -87,7 +106,15 @@ export class NewsListComponent extends Component {
     }
 
     componentDidMount () {
+        adService.fetchAdvertisements();
         this.fetchNews();
+        this.subscribeOnAdvertisementChange();
+    }
+
+    subscribeOnAdvertisementChange () {
+        this.subscription = adService.subscribeOnNewsCardAdUpdate(
+            (advertisement: Advertisement) => this.setState({ advertisement })
+        );
     }
 
     handleScroll = (event: any) => {
@@ -100,13 +127,14 @@ export class NewsListComponent extends Component {
 
     render () {
         const {
+            advertisement,
             newsCards
         } = this.state;
 
         return (
             <div onScroll={ this.handleScroll } className="news-list">
                 <div className="news-cards">
-                    { this.renderNewsCards(newsCards) }
+                    { this.renderNewsCards(newsCards, advertisement) }
                 </div>
             </div>
             

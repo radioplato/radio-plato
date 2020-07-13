@@ -5,31 +5,42 @@ import { NewsCard } from '../interfaces';
 
 import './NewsCardComponent.css';
 
+
+interface LinkElementParameters {
+    children: React.ReactNode,
+    newsCard: NewsCard,
+}
+
 interface NewsCardParameters {
     newsCard: NewsCard,
     type?: string
+}
+
+function LinkElement({ newsCard, children }: LinkElementParameters) {
+    const slug = newsCard.slug;
+    const route = `/news/${ slug }`;
+
+    return slug ? <Link to={ route }>{ children }</Link> : <a href={ newsCard.link } title={ newsCard.title }>{ children }</a>;
 }
 
 function NewsCardComponent({ newsCard, type }: NewsCardParameters) {
     const {
         excerpt,
         newsCover,
-        slug,
         title,
     } = newsCard;
 
-    const route = `/news/${ slug }`;
-
     return (
         <div className={ `news-card ${ type }` }>
-            <Link to={ route }>
-                <img src={ newsCover.url } loading='lazy' alt={ newsCover.alternativeText }/>
+            <LinkElement newsCard={ newsCard }>
+                <div className="news-card-image">
+                    <img src={ newsCover.url } loading='lazy' alt={ newsCover.alternativeText }/>
+                </div>
                 <div className="news-card-text">
                     <h2>{ title }</h2>
                     <p className="news-card-excerpt">{ excerpt }</p>
                 </div>
-                  
-            </Link>
+            </LinkElement>
         </div>
     );
 }
