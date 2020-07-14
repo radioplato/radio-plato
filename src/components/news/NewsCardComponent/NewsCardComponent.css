@@ -74,8 +74,13 @@
 }
 
 .news-card.main img {
-    width: 720px;
-    height: 405px;
+    width: 100%;
+    max-width: 800px;
+    height: 450px;
+}
+
+.news-card.main .news-card-image {
+    width: 100%;
 }
 
 .news-card.fresh .news-card-image {

@@ -1,6 +1,6 @@
 /*reused from ShowComponent.css*/
 
-.about {
+.donate {
     display: flex;
     flex-direction: row;
     flex-wrap: nowrap;
@@ -10,25 +10,32 @@
 
     width: 100%;
     height: calc(100vh - 101px);
-    padding: 60px;
+    padding: 40px;
 
     overflow: auto;
 }
 
-.information, .image {
+.donate::-webkit-scrollbar {
+    display: none;
+}
+
+.donate .information, .donate .image {
     width: 50%;
 }
 
-.information {
+.donate .information {
     display: flex;
     flex-direction: column;
     flex-wrap: nowrap;
     justify-content: flex-start;
     align-content: center;
     align-items: flex-start;
+
+    margin-right: 40px;
+    margin-bottom: 101px;
 }
 
-.information h1 {
+.donate .information h1 {
     font-style: normal;
     font-weight: 500;
     font-size: 68px;
@@ -36,17 +43,7 @@
     color: #ffffff;
 }
 
-.information p {
-    font-style: normal;
-    font-weight: 500;
-    font-size: 18px;
-    line-height: 180%;
-
-    margin: 60px 0;
-    margin-right: 40px;
-}
-
-.image {
+.donate .image {
     display: flex;
     flex-direction: row;
     flex-wrap: nowrap;
@@ -55,11 +52,27 @@
     align-items: center;
 }
 
-.image img {
-    width: 700px;
+.donate .image img {
+    width: 100%;
+    max-width: 640px;
     height: auto;
 }
 
-.text-content {
+.donate .text-content {
+    margin-top: 40px;
     color: #ffffff;
 }
+
+.donate .text-content p, ul, ol, li {
+    font-style: normal;
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 180%;
+
+    margin: 10px 0;
+}
+
+.donate .text-content a {
+    text-decoration: underline;
+}
+

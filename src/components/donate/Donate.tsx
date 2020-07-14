@@ -4,6 +4,7 @@ import { BACKEND_URL } from '../shared/constants';
 import { DonateDto, Donate } from '../donate/interfaces';
 
 import './Donate.css';
+import ReactMarkdown from 'react-markdown';
 
 interface DonateComponentState {
     donate: Donate | null
@@ -44,10 +45,12 @@ export class DonateComponent extends Component {
 
 
         return donate ? (
-            <article className="about">
+            <article className="donate">
                 <div className="information">
                     <h1>{ donate.title }</h1>
-                    <div className="text-content">{ donate.description }</div>
+                    <div className="text-content">
+                        <ReactMarkdown source={ donate.description } escapeHtml={ false } />
+                    </div>
                 </div>
                 <div className="image">
                     <img src={ imageSrc } loading='lazy' alt={ donate.donateCover.alternativeText }/>
