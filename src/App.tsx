@@ -1,7 +1,7 @@
 import React from 'react';
 
 import {
-    BrowserRouter as Router,
+    HashRouter,
 } from 'react-router-dom';
 
 import Header from './components/header/Header';
@@ -13,11 +13,11 @@ import './App.css';
 
 function App() {
     return (
-        <Router>
+        <HashRouter basename="/">
             <Header />
             <Main />
             <Player />
-        </Router>
+        </HashRouter>
     );
 }
 
