@@ -21,7 +21,7 @@ function ShowCardComponent({ showCard }: ShowCardParameters) {
 
     return (
         <Link to={ route } title={ title }>
-            <div className="show-card">
+            <div className='show-card'>
                 <img src={ showCover.url } loading='lazy' alt={ showCover.alternativeText }/>
                 <h2>{ title }</h2>
                 <p>{ excerpt }</p>

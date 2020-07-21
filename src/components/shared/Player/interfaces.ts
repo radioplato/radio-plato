@@ -1,4 +1,4 @@
-import { PlayerTypes } from "../enums";
+import { PlayerTypes } from '../enums';
 
 
 export interface PlayerState {

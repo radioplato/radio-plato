@@ -6,7 +6,7 @@ import adService from './../advertisement/AdService';
 
 import { NewsDto, NewsCard } from './interfaces';
 import { BACKEND_URL, BASIC_SEO_IMG } from '../shared/constants';
-import Seo from '../shared/seo/Seo'
+import { Seo } from '../shared/wrappers/seo/Seo'
 
 import './NewsListComponent.css';
 import moment from 'moment';
@@ -20,8 +20,6 @@ const VISIBILITY_LIMIT = 800;
 const NEWS = 'NEWS';
 const NEWS_LIST_SEO_TITLE = 'News'
 const NEWS_LIST_SEO_DESCRIPTION = 'The best place to read about electronic music, both local and global.'
-
-
 
 interface NewsListComponentProperties {
     type: string;
@@ -111,10 +109,11 @@ export class NewsListComponent extends Component<NewsListComponentProperties> {
 
         return newsCards.length ? (
             <div onScroll={ this.handleScroll } className='news-list'>
-                <Seo   
-                    title={NEWS_LIST_SEO_TITLE}
-                    description={NEWS_LIST_SEO_DESCRIPTION}
-                    thumbnail={BASIC_SEO_IMG}
+                <Seo meta={{
+                        title: NEWS_LIST_SEO_TITLE,
+                        description: NEWS_LIST_SEO_DESCRIPTION,
+                        thumbnail: BASIC_SEO_IMG
+                    }}
                 />
                 <div className='news-cards'>
                     <div className='latest-news'>
@@ -141,7 +140,6 @@ export class NewsListComponent extends Component<NewsListComponentProperties> {
 
     renderNewsCards (newsCards: NewsCard[], advertisement: Advertisement | null) {
         const { type } = this.props;
-        console.log(type)
 
         return type === NewsListTypes.Full ? this.renderFullNewsList(newsCards, advertisement) : this.renderSimpleNewsList(newsCards);
     }

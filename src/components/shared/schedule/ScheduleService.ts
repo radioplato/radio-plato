@@ -1,31 +1,31 @@
 import { Subject } from 'rxjs'
 import moment from 'moment';
 
-import { ScheduleShow, ScheduleDto } from "./interfaces";
-import { IndexesOfDay } from "./enums";
-import { BACKEND_URL } from "../constants";
+import { ScheduleShow, ScheduleDto } from './interfaces';
+import { IndexesOfDay } from './enums';
+import { BACKEND_URL } from '../constants';
 
 
 const DATA_REQUEST_INTERVAL = 14400000;
 const CURRENT_SHOW_REFRESH_INTERVAL = 300000;
 
 enum PeriodicityTypes {
-    SingleTime = "SingleTime",
-    Daily = "Daily",
-    Weekly = "Weekly",
-    BiWeekly = "BiWeekly",
-    EveryThirdWeek = "Every3rdWeek",
-    Monthly = "Monthly"
+    SingleTime = 'SingleTime',
+    Daily = 'Daily',
+    Weekly = 'Weekly',
+    BiWeekly = 'BiWeekly',
+    EveryThirdWeek = 'Every3rdWeek',
+    Monthly = 'Monthly'
 }
 
 const indexByDayName = new Map([
-    [ "Monday", IndexesOfDay.Monday ],
-    [ "Tuesday", IndexesOfDay.Tuesday ],
-    [ "Wednesday", IndexesOfDay.Wednesday ],
-    [ "Thursday", IndexesOfDay.Thursday ],
-    [ "Friday", IndexesOfDay.Friday ],
-    [ "Saturday", IndexesOfDay.Saturday ],
-    [ "Sunday", IndexesOfDay.Sunday ],
+    [ 'Monday', IndexesOfDay.Monday ],
+    [ 'Tuesday', IndexesOfDay.Tuesday ],
+    [ 'Wednesday', IndexesOfDay.Wednesday ],
+    [ 'Thursday', IndexesOfDay.Thursday ],
+    [ 'Friday', IndexesOfDay.Friday ],
+    [ 'Saturday', IndexesOfDay.Saturday ],
+    [ 'Sunday', IndexesOfDay.Sunday ],
 ]);
 
 class ScheduleService {
@@ -69,7 +69,7 @@ class ScheduleService {
         const end = (showline: ScheduleShow) => moment(`${ currentDate } ${ showline.endTime }`);
 
         this._currentShow = this.schedule[weekday].find(showline => {
-            return showline.type === "Show" && moment().isBetween(start(showline), end(showline));
+            return showline.type === 'Show' && moment().isBetween(start(showline), end(showline));
         });
     }
 

@@ -1,8 +1,8 @@
-import { Subject } from "rxjs";
+import { Subject } from 'rxjs';
 
-import { IndexGallery, IndexGalleryDto } from "./interfaces";
-import { CoverDto, SimpleImage } from "../shared/interfaces";
-import { BACKEND_URL } from "../shared/constants";
+import { IndexGallery, IndexGalleryDto } from './interfaces';
+import { CoverDto, SimpleImage } from '../shared/interfaces';
+import { BACKEND_URL } from '../shared/constants';
 
 
 const GALLERY_REQUEST_INTERVAL = 300000;

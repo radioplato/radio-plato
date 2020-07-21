@@ -1,4 +1,4 @@
-import { StrapiObjectDto, CoverDto, SimpleImage } from "../shared/interfaces";
+import { StrapiObjectDto, CoverDto, SimpleImage } from '../shared/interfaces';
 
 export interface NewsDto extends StrapiObjectDto {
     Category: string;

@@ -33,12 +33,12 @@ function NewsCardComponent({ newsCard, type }: NewsCardParameters) {
     return (
         <div className={ `news-card ${ type }` }>
             <LinkElement newsCard={ newsCard }>
-                <div className="news-card-image">
+                <div className='news-card-image'>
                     <img src={ newsCover.url } loading='lazy' alt={ newsCover.alternativeText }/>
                 </div>
-                <div className="news-card-text">
+                <div className='news-card-text'>
                     <h2>{ title }</h2>
-                    <p className="news-card-excerpt">{ excerpt }</p>
+                    <p className='news-card-excerpt'>{ excerpt }</p>
                 </div>
             </LinkElement>
         </div>

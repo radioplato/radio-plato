@@ -9,23 +9,23 @@ import { scheduleService } from './ScheduleService';
 import { ScheduleShow } from './interfaces';
 import { IndexesOfDay } from './enums';
 
-import Seo from '../../shared/seo/Seo'
-import './ScheduleComponent.css'
-import ScrollableWrapper from '../scrollable-wrapper/ScrollableWrapper';
+import { withSeo } from '../wrappers/seo/Seo'
+import { withScroll } from '../wrappers/scrollable/Scrollable';
 import { BASIC_SEO_IMG } from '../../shared/constants';
+import './ScheduleComponent.css'
 
 
 const DAYS_OF_WEEK = [
-    "MON",
-    "TUE",
-    "WED",
-    "THU",
-    "FRI",
-    "SAT",
-    "SUN"
+    'MON',
+    'TUE',
+    'WED',
+    'THU',
+    'FRI',
+    'SAT',
+    'SUN'
 ];
 
-const SCHEDULE = "SCHEDULE";
+const SCHEDULE = 'SCHEDULE';
 const SCHEDULE_SEO_TITLE = 'Schedule'
 const SCHEDULE_SEO_DESCRIPTION = 'We broadcast 24/7, here is what you will hear.'
 
@@ -69,7 +69,7 @@ class ScheduleComponent extends Component {
         const { selectedDay } = this.state;
 
         return DAYS_OF_WEEK.map((day, index) => (
-            <button className={ `schedule-day-button ${ selectedDay === index ? "active" : ""}` }
+            <button className={ `schedule-day-button ${ selectedDay === index ? 'active' : ''}` }
                     onClick={ () => this.selectDay(index) }
                     key={ `${ day.toLowerCase() }-${ index }`}
             >
@@ -92,11 +92,6 @@ class ScheduleComponent extends Component {
     render () {
         return (
             <div className='schedule-container'>
-                 <Seo   
-                    title={SCHEDULE_SEO_TITLE}
-                    description={SCHEDULE_SEO_DESCRIPTION}
-                    thumbnail={BASIC_SEO_IMG}
-                />
                 <div className='schedule-headline-container'>        
                     <div className='schedule-title'>
                         <p>{ SCHEDULE }</p>
@@ -113,6 +108,10 @@ class ScheduleComponent extends Component {
     }
 }
 
-const ScrollableScheduleComponent = () => (<ScrollableWrapper children={ <ScheduleComponent /> }/>)
+const SchedulePageComponent = () => withSeo({
+    title: SCHEDULE_SEO_TITLE,
+    description: SCHEDULE_SEO_DESCRIPTION,
+    thumbnail: BASIC_SEO_IMG
+}, withScroll(<ScheduleComponent />));
   
-export { ScheduleComponent, ScrollableScheduleComponent }
+export { ScheduleComponent, SchedulePageComponent };
