@@ -85,3 +85,31 @@
 
     padding-top: 40px;
 }
+
+.simple-news {
+    width: 100%;
+}
+
+.news-list-title {
+    width: 100%;
+
+    border-top: 1px solid white;
+    border-bottom: 1px solid white;
+    padding: 40px;
+}
+
+.news-list-title a {
+    display: block;
+}
+
+.news-list-title p {
+    font-size: 36px;
+    font-weight: 500;
+    line-height: 120%;
+    display: flex;
+    flex-direction: row;
+}
+
+.news-list-title a:hover p {
+    text-decoration: underline;
+}

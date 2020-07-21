@@ -10,12 +10,19 @@ import { BACKEND_URL } from '../shared/constants';
 import './NewsListComponent.css';
 import moment from 'moment';
 import { Advertisement } from '../advertisement/interfaces';
+import { NewsListTypes } from '../shared/enums';
+import { Link } from 'react-router-dom';
 
 
 const NEWS_LIMIT = 12;
 const VISIBILITY_LIMIT = 800;
+const NEWS = "NEWS";
 
-export class NewsListComponent extends Component {
+interface NewsListComponentProperties {
+    type: string;
+}
+
+export class NewsListComponent extends Component<NewsListComponentProperties> {
     state = {
         advertisement: null,
         newsCards: [],
@@ -79,30 +86,54 @@ export class NewsListComponent extends Component {
         };
     }
 
-    renderNewsCards (newsCards: NewsCard[], advertisement: Advertisement | null) {
+    renderSimpleNewsList (newsCards: NewsCard[]) {
+        return newsCards.length ? (
+            <div className="simple-news">
+                <div className="news-list-title">
+                    <Link to="/news">
+                        <p>{ NEWS }</p>
+                    </Link>
+                </div>
+                { newsCards.slice(0, 3).map(newsCard => (
+                    <NewsCardComponent key={ newsCard.slug } newsCard={ newsCard } type="simple" />
+                )) }
+            </div>
+        ) : null;
+    }
+
+    renderFullNewsList (newsCards: NewsCard[], advertisement: Advertisement | null) {
         const adNewsCard = this.advertisementToNewsCard(advertisement);
 
         return newsCards.length ? (
-            <>
-                <div className="latest-news">
-                    <div className="main-news">
-                        <NewsCardComponent key={ newsCards[0].slug } newsCard={ newsCards[0] } type="main" />
+            <div onScroll={ this.handleScroll } className="news-list">
+                <div className="news-cards">
+                    <div className="latest-news">
+                        <div className="main-news">
+                            <NewsCardComponent key={ newsCards[0].slug } newsCard={ newsCards[0] } type="main" />
+                        </div>
+                        <div className="fresh-news">
+                            <NewsCardComponent newsCard={ adNewsCard } type="fresh"/>
+                            { newsCards.slice(1, 5).map(newsCard => (
+                                <NewsCardComponent key={ newsCard.slug } newsCard={ newsCard } type="fresh" />
+                            )) }
+                            
+                        </div>
                     </div>
-                    <div className="fresh-news">
-                        <NewsCardComponent newsCard={ adNewsCard } type="fresh"/>
-                        { newsCards.slice(1, 5).map(newsCard => (
-                            <NewsCardComponent key={ newsCard.slug } newsCard={ newsCard } type="fresh" />
+                    <div className="other-news">
+                        { newsCards.slice(5, newsCards.length).map(newsCard => (
+                            <NewsCardComponent key={ newsCard.slug } newsCard={ newsCard } type="other" />
                         )) }
-                        
                     </div>
                 </div>
-                <div className="other-news">
-                    { newsCards.slice(5, newsCards.length).map(newsCard => (
-                        <NewsCardComponent key={ newsCard.slug } newsCard={ newsCard } type="other" />
-                    )) }
-                </div>
-            </>
+            </div>
         ) : null;
+    }
+
+    renderNewsCards (newsCards: NewsCard[], advertisement: Advertisement | null) {
+        const { type } = this.props;
+        console.log(type)
+
+        return type === NewsListTypes.Full ? this.renderFullNewsList(newsCards, advertisement) : this.renderSimpleNewsList(newsCards);
     }
 
     componentDidMount () {
@@ -131,14 +162,7 @@ export class NewsListComponent extends Component {
             newsCards
         } = this.state;
 
-        return (
-            <div onScroll={ this.handleScroll } className="news-list">
-                <div className="news-cards">
-                    { this.renderNewsCards(newsCards, advertisement) }
-                </div>
-            </div>
-            
-        );
+        return this.renderNewsCards(newsCards, advertisement);
     }
 }
   
