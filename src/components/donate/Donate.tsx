@@ -2,9 +2,12 @@ import React, { Component } from 'react';
 
 import { BACKEND_URL } from '../shared/constants';
 import { DonateDto, Donate } from '../donate/interfaces';
+import Seo from '../shared/seo/Seo'
 
 import './Donate.css';
 import ReactMarkdown from 'react-markdown';
+
+const DONATE_SEO_DESCRIPTION = "Support us!"
 
 interface DonateComponentState {
     donate: Donate | null
@@ -46,6 +49,11 @@ export class DonateComponent extends Component {
 
         return donate ? (
             <article className="donate">
+                 <Seo   
+                    title={donate.title}
+                    description={DONATE_SEO_DESCRIPTION}
+                    thumbnail={imageSrc}
+                />
                 <div className="information">
                     <h1>{ donate.title }</h1>
                     <div className="text-content">

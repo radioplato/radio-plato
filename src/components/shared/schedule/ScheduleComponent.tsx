@@ -9,8 +9,10 @@ import { scheduleService } from './ScheduleService';
 import { ScheduleShow } from './interfaces';
 import { IndexesOfDay } from './enums';
 
+import Seo from '../../shared/seo/Seo'
 import './ScheduleComponent.css'
 import ScrollableWrapper from '../scrollable-wrapper/ScrollableWrapper';
+import { BASIC_SEO_IMG } from '../../shared/constants';
 
 
 const DAYS_OF_WEEK = [
@@ -24,6 +26,8 @@ const DAYS_OF_WEEK = [
 ];
 
 const SCHEDULE = "SCHEDULE";
+const SCHEDULE_SEO_TITLE = 'Schedule'
+const SCHEDULE_SEO_DESCRIPTION = 'We broadcast 24/7, here is what you will hear.'
 
 class ScheduleComponent extends Component {
     subscription: Subscription | null = null;
@@ -88,6 +92,11 @@ class ScheduleComponent extends Component {
     render () {
         return (
             <div className='schedule-container'>
+                 <Seo   
+                    title={SCHEDULE_SEO_TITLE}
+                    description={SCHEDULE_SEO_DESCRIPTION}
+                    thumbnail={BASIC_SEO_IMG}
+                />
                 <div className='schedule-headline-container'>        
                     <div className='schedule-title'>
                         <p>{ SCHEDULE }</p>

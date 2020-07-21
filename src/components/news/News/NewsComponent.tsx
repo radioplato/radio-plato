@@ -7,6 +7,7 @@ import ReactMarkdown from 'react-markdown'
 import AdComponent from '../../advertisement/AdComponent/AdComponent';
 import adService from '../../advertisement/AdService';
 
+import Seo from '../../shared/seo/Seo'
 import { BACKEND_URL } from '../../shared/constants';
 import { Advertisement } from '../../advertisement/interfaces';
 import { NewsDto, News } from '../interfaces';
@@ -85,6 +86,11 @@ export class NewsComponent extends Component<NewsComponentProperties> {
 
         return news ? (
             <article className="news">
+                <Seo   
+                    title={news.title}
+                    description={news.excerpt}
+                    thumbnail={imageSrc}
+                />
                 <div className="news-description" style={ imageStyle }>
                     <div className="news-information">
                         <h1 className="news-title">{ news.title }</h1>

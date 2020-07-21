@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 import SocialLinksComponent from '../../shared/SocialLinksComponent/SocialLinksComponent';
 import ShowEpisodesComponent from '../ShowEpisodesComponent/ShowEpisodesComponent';
 
+import Seo from '../../shared/seo/Seo'
 import { BACKEND_URL } from '../../shared/constants';
 import { ShowDto, Show } from '../interfaces';
 
@@ -65,6 +66,11 @@ export class ShowComponent extends Component<ShowComponentProperties> {
 
         return show ? (
             <article className="show">
+                <Seo   
+                    title={show.title}
+                    description={show.description}
+                    thumbnail={imageSrc}
+                />
                 <div className="show-description">
                     <div className="information">
                         <h1>{ show.title }</h1>
