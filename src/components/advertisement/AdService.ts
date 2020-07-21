@@ -1,12 +1,12 @@
-import { BACKEND_URL } from "../shared/constants";
-import { AdvertisementDto, Advertisement } from "./interfaces";
-import { Subject } from "rxjs/internal/Subject";
-import moment from "moment";
+import { BACKEND_URL } from '../shared/constants';
+import { AdvertisementDto, Advertisement } from './interfaces';
+import { Subject } from 'rxjs/internal/Subject';
+import moment from 'moment';
 
 
 enum AdPlacements {
-    NewsList = "NewsList",
-    NewsPost = "NewsPost"
+    NewsList = 'NewsList',
+    NewsPost = 'NewsPost'
 }
 
 class AdService {

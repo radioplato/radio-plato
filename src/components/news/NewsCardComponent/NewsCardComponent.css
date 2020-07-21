@@ -51,7 +51,7 @@
     color: #b3b3b3;
 }
 
-/* "Main" news cards */
+/* 'Main' news cards */
 
 .news-card.main a {
     flex-direction: column;
@@ -74,7 +74,7 @@
     width: 100%;
 }
 
-/* "Fresh" news cards */
+/* 'Fresh' news cards */
 
 .news-card.fresh {
     width: 100%;
@@ -125,7 +125,7 @@
     margin-top: 10px;
 }
 
-/* "Other" news cards */
+/* 'Other' news cards */
 
 .news-card.other a {
     flex-direction: column;
@@ -150,7 +150,7 @@
     font-size: 16px;
 }
 
-/* "Simple" news cards */
+/* 'Simple' news cards */
 
 .news-card.simple {
     border-bottom: 1px solid white;

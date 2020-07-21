@@ -2,10 +2,15 @@ import React, { Component } from 'react';
 
 import ShowCardComponent from './ShowCardComponent/ShowCardComponent';
 
+import { Seo } from '../shared/wrappers/seo/Seo'
 import { ShowDto, ShowCard } from './interfaces';
-import { BACKEND_URL } from '../shared/constants';
+import { BACKEND_URL, BASIC_SEO_IMG } from '../shared/constants';
 
 import './ShowListComponent.css';
+
+
+const SHOW_LIST_SEO_TITLE = 'Shows'
+const SHOW_LIST_SEO_DESCRIPTION = 'Awesome shows from Radio Plato crew'
 
 
 export class ShowListComponent extends Component {
@@ -47,9 +52,15 @@ export class ShowListComponent extends Component {
         } = this.state;
 
         return (
-            <div className="show-list">
+            <div className='show-list'>
+                 <Seo meta={{
+                        title: SHOW_LIST_SEO_TITLE,
+                        description: SHOW_LIST_SEO_DESCRIPTION,
+                        thumbnail: BASIC_SEO_IMG
+                    }}
+                />
                 <h1>Shows</h1>
-                <div className="show-cards">
+                <div className='show-cards'>
                     { this.renderShowCards(showCards) }
                 </div>
             </div>

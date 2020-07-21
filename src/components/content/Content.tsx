@@ -12,7 +12,7 @@ import NewsListComponent from '../news/NewsListComponent';
 import ShowComponent from '../shows/ShowComponent/ShowComponent';
 import NewsComponent from '../news/News/NewsComponent';
 import AboutComponent from '../about/About';
-import { ScrollableScheduleComponent } from '../shared/schedule/ScheduleComponent';
+import { SchedulePageComponent } from '../shared/schedule/ScheduleComponent';
 import DonateComponent from '../donate/Donate'
 
 import { NewsListTypes } from '../shared/enums';
@@ -28,8 +28,8 @@ const DONATE = '/donate';
 function Content() {
     return (
         <Switch>
-            <Route exact path="/" component={ StartPageComponent } />
-            <Route exact path={ SCHEDULE } component={ ScrollableScheduleComponent } />
+            <Route exact path='/' component={ StartPageComponent } />
+            <Route exact path={ SCHEDULE } component={ SchedulePageComponent } />
             <Route exact path={ SHOWS } component={ ShowListComponent } />
             <Route path={ `${ SHOWS }/:slug` } component={(routerProps: any) => <ShowComponent slug={routerProps.match.params.slug} />} />
             <Route exact path={ NEWS } component={ () => <NewsListComponent type={ NewsListTypes.Full } /> } />

@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 
 import { BACKEND_URL } from '../shared/constants';
 import { AboutDto, About } from '../about/interfaces';
+import { Seo } from '../shared/wrappers/seo/Seo'
 
 import './About.css';
 
@@ -44,12 +45,18 @@ export class AboutComponent extends Component {
 
 
         return about ? (
-            <article className="about">
-                <div className="information">
+            <article className='about'>
+                <Seo meta={{
+                        title: about.title,
+                        description: about.description,
+                        thumbnail: imageSrc
+                    }}
+                />
+                <div className='information'>
                     <h1>{ about.title }</h1>
                     <p>{ about.description }</p>
                 </div>
-                <div className="image">
+                <div className='image'>
                     <img src={ imageSrc } loading='lazy' alt={ about.aboutCover.alternativeText }/>
                 </div>
             </article>

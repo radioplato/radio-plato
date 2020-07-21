@@ -49,7 +49,7 @@ class GalleryComponent extends Component {
 
         if (gallery?.photoExhibition) {
             return (
-                <Carousel className="carousel"
+                <Carousel className='carousel'
                           showArrows={ false }
                           showStatus={ false }
                           showThumbs={ false }
@@ -71,7 +71,7 @@ class GalleryComponent extends Component {
 
         if (scheduleService.currentShow && scheduleService.currentShow.image) {
             return (
-                <img className="gallery-image"
+                <img className='gallery-image'
                      src={ scheduleService.currentShow.image.url }
                      alt={ scheduleService.currentShow.image.alternativeText }
                 ></img>
@@ -79,7 +79,7 @@ class GalleryComponent extends Component {
         }
 
         return (
-            <Carousel className="carousel"
+            <Carousel className='carousel'
                       showArrows={ false }
                       showStatus={ false }
                       showThumbs={ false }
@@ -101,7 +101,7 @@ class GalleryComponent extends Component {
 
     render () {
         return (
-            <div className="visual-container">
+            <div className='visual-container'>
                 { this.graphicContentSelection() }
             </div>
         );

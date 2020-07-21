@@ -5,7 +5,8 @@ import NewsCardComponent from './NewsCardComponent/NewsCardComponent';
 import adService from './../advertisement/AdService';
 
 import { NewsDto, NewsCard } from './interfaces';
-import { BACKEND_URL } from '../shared/constants';
+import { BACKEND_URL, BASIC_SEO_IMG } from '../shared/constants';
+import { Seo } from '../shared/wrappers/seo/Seo'
 
 import './NewsListComponent.css';
 import moment from 'moment';
@@ -16,7 +17,9 @@ import { Link } from 'react-router-dom';
 
 const NEWS_LIMIT = 12;
 const VISIBILITY_LIMIT = 800;
-const NEWS = "NEWS";
+const NEWS = 'NEWS';
+const NEWS_LIST_SEO_TITLE = 'News'
+const NEWS_LIST_SEO_DESCRIPTION = 'The best place to read about electronic music, both local and global.'
 
 interface NewsListComponentProperties {
     type: string;
@@ -78,24 +81,24 @@ export class NewsListComponent extends Component<NewsListComponentProperties> {
 
     advertisementToNewsCard (advertisement: Advertisement | null) {
         return {
-            excerpt: advertisement ? advertisement.text : "",
+            excerpt: advertisement ? advertisement.text : '',
             newsCover: advertisement ? advertisement.image : {},
-            link: advertisement ? advertisement.link : "",
-            title: advertisement ? advertisement.title : "",
-            publishDate: advertisement ? advertisement.startDate : ""
+            link: advertisement ? advertisement.link : '',
+            title: advertisement ? advertisement.title : '',
+            publishDate: advertisement ? advertisement.startDate : ''
         };
     }
 
     renderSimpleNewsList (newsCards: NewsCard[]) {
         return newsCards.length ? (
-            <div className="simple-news">
-                <div className="news-list-title">
-                    <Link to="/news">
+            <div className='simple-news'>
+                <div className='news-list-title'>
+                    <Link to='/news'>
                         <p>{ NEWS }</p>
                     </Link>
                 </div>
                 { newsCards.slice(0, 3).map(newsCard => (
-                    <NewsCardComponent key={ newsCard.slug } newsCard={ newsCard } type="simple" />
+                    <NewsCardComponent key={ newsCard.slug } newsCard={ newsCard } type='simple' />
                 )) }
             </div>
         ) : null;
@@ -105,23 +108,29 @@ export class NewsListComponent extends Component<NewsListComponentProperties> {
         const adNewsCard = this.advertisementToNewsCard(advertisement);
 
         return newsCards.length ? (
-            <div onScroll={ this.handleScroll } className="news-list">
-                <div className="news-cards">
-                    <div className="latest-news">
-                        <div className="main-news">
-                            <NewsCardComponent key={ newsCards[0].slug } newsCard={ newsCards[0] } type="main" />
+            <div onScroll={ this.handleScroll } className='news-list'>
+                <Seo meta={{
+                        title: NEWS_LIST_SEO_TITLE,
+                        description: NEWS_LIST_SEO_DESCRIPTION,
+                        thumbnail: BASIC_SEO_IMG
+                    }}
+                />
+                <div className='news-cards'>
+                    <div className='latest-news'>
+                        <div className='main-news'>
+                            <NewsCardComponent key={ newsCards[0].slug } newsCard={ newsCards[0] } type='main' />
                         </div>
-                        <div className="fresh-news">
-                            <NewsCardComponent newsCard={ adNewsCard } type="fresh"/>
+                        <div className='fresh-news'>
+                            <NewsCardComponent newsCard={ adNewsCard } type='fresh'/>
                             { newsCards.slice(1, 5).map(newsCard => (
-                                <NewsCardComponent key={ newsCard.slug } newsCard={ newsCard } type="fresh" />
+                                <NewsCardComponent key={ newsCard.slug } newsCard={ newsCard } type='fresh' />
                             )) }
                             
                         </div>
                     </div>
-                    <div className="other-news">
+                    <div className='other-news'>
                         { newsCards.slice(5, newsCards.length).map(newsCard => (
-                            <NewsCardComponent key={ newsCard.slug } newsCard={ newsCard } type="other" />
+                            <NewsCardComponent key={ newsCard.slug } newsCard={ newsCard } type='other' />
                         )) }
                     </div>
                 </div>
@@ -131,7 +140,6 @@ export class NewsListComponent extends Component<NewsListComponentProperties> {
 
     renderNewsCards (newsCards: NewsCard[], advertisement: Advertisement | null) {
         const { type } = this.props;
-        console.log(type)
 
         return type === NewsListTypes.Full ? this.renderFullNewsList(newsCards, advertisement) : this.renderSimpleNewsList(newsCards);
     }

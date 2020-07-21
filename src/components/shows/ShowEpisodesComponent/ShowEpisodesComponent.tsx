@@ -16,7 +16,7 @@ export class ShowEpisodesComponent extends Component<ShowEpisodesProperties> {
     parseShowEpisode (datum: any): ShowEpisode {
         return {
             title: datum.name,
-            image: datum.pictures["1024wx1024h"],
+            image: datum.pictures['1024wx1024h'],
             url: datum.url,
             date: datum.created_time,
             slug: datum.slug
@@ -42,13 +42,13 @@ export class ShowEpisodesComponent extends Component<ShowEpisodesProperties> {
 
     renderShowEpisode (episode: ShowEpisode) {
         const key = `${ episode.slug }-${ new Date().getTime() }`;
-        const date = new Date(episode.date).toISOString().slice(0,10).split("-").reverse().join(".");
+        const date = new Date(episode.date).toISOString().slice(0,10).split('-').reverse().join('.');
 
         return (
             <a key={ key } href={ episode.url }>
-                <div className="episode-container">
-                    <img className="episode-image" src={ episode.image } alt={ episode.title }/>
-                    <div className="episode-information">
+                <div className='episode-container'>
+                    <img className='episode-image' src={ episode.image } alt={ episode.title }/>
+                    <div className='episode-information'>
                         <h3>{ episode.title }</h3>
                         <p>{ date }</p>
                     </div>
@@ -61,7 +61,7 @@ export class ShowEpisodesComponent extends Component<ShowEpisodesProperties> {
         return episodes ? (
             <>
                 <h2>Latest Episodes</h2>
-                <div className="episode-cards">
+                <div className='episode-cards'>
                     { episodes.map(episode => this.renderShowEpisode(episode)) }
                 </div>
             </>
@@ -78,7 +78,7 @@ export class ShowEpisodesComponent extends Component<ShowEpisodesProperties> {
         } = this.state;
 
         return (
-            <div className="episode-list">
+            <div className='episode-list'>
                 { this.renderShowEpisodes(showEpisodes) }
             </div>
             

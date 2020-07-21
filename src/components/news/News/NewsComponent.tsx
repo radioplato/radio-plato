@@ -7,6 +7,7 @@ import ReactMarkdown from 'react-markdown'
 import AdComponent from '../../advertisement/AdComponent/AdComponent';
 import adService from '../../advertisement/AdService';
 
+import { Seo } from '../../shared/wrappers/seo/Seo'
 import { BACKEND_URL } from '../../shared/constants';
 import { Advertisement } from '../../advertisement/interfaces';
 import { NewsDto, News } from '../interfaces';
@@ -84,18 +85,24 @@ export class NewsComponent extends Component<NewsComponentProperties> {
         const photosBy = news?.photosBy ? `| Ph.: ${ news.photosBy }` : '';
 
         return news ? (
-            <article className="news">
-                <div className="news-description" style={ imageStyle }>
-                    <div className="news-information">
-                        <h1 className="news-title">{ news.title }</h1>
-                        <p className="news-excerpt">{ news.excerpt }</p>
-                        <p className="news-meta">
+            <article className='news'>
+                <Seo meta={{
+                        title: news.title,
+                        description: news.excerpt,
+                        thumbnail: imageSrc
+                    }}
+                />
+                <div className='news-description' style={ imageStyle }>
+                    <div className='news-information'>
+                        <h1 className='news-title'>{ news.title }</h1>
+                        <p className='news-excerpt'>{ news.excerpt }</p>
+                        <p className='news-meta'>
                             { `${ date } ${ wordsBy } ${ photosBy }` }
                         </p>
                     </div>
                 </div>
-                <div className="news-content-container">
-                    <div className="news-content">
+                <div className='news-content-container'>
+                    <div className='news-content'>
                         <ReactMarkdown source={ news.content } escapeHtml={ false } />
                     </div>
                 </div>

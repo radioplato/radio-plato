@@ -9,15 +9,18 @@ import Main from './components/main/Main';
 import Player from './components/shared/Player/Player';
 
 import './App.css';
+import { HelmetProvider } from 'react-helmet-async';
 
 
 function App() {
     return (
-        <HashRouter basename="/">
-            <Header />
-            <Main />
-            <Player />
-        </HashRouter>
+        <HelmetProvider>
+            <HashRouter basename='/'>
+                <Header />
+                <Main />
+                <Player />
+            </HashRouter>
+        </HelmetProvider>
     );
 }
 

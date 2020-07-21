@@ -4,6 +4,6 @@ export enum PlayerTypes {
 };
 
 export enum NewsListTypes {
-    Full = "full",
-    Simple = "simple"
+    Full = 'full',
+    Simple = 'simple'
 };
