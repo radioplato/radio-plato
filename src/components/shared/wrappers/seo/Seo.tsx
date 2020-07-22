@@ -25,7 +25,7 @@ function Seo ({ meta }: SeoProperties) {
         <meta property='og:title' content={ meta?.title } />
         <meta property='og:image' content={ meta?.thumbnail } />
         <meta property='og:description' content={ description } />
-        <meta property='description' content={ description } />
+        <meta name='description' content={ description } />
     </Helmet>
   )
 }

@@ -34,6 +34,7 @@ function VolumeControls() {
         <div className='volume-controls'>
             <button 
                 className='volume-mode-button'
+                aria-label='Toggle volume button'
                 onClick={ toggleVolumeMode }
             >
                 { muted ? FullVolumeIcon : MuteVolumeIcon }

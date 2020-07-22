@@ -40,6 +40,7 @@ function Menu({ menuRef, wrapperRef, toggleMenu }: MenuParameters) {
                 <div className='close-button-container'>
                     <button 
                         className='close-button'
+                        aria-label='Close menu button'
                         onClick={ toggleMenu }
                     >
                         <Icon icon={ crossIcon } width={ 48 } height={ 48 }/>    

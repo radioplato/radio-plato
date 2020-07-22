@@ -33,22 +33,26 @@ interface SocialLinksProperties {
     socialLinks: SocialLinks;
 }
 
-function buildSocialLink (key: string, href: string | undefined, icon: object | undefined) {
+function buildSocialLink (service: string, href: string | undefined) {
+    const key = `${ service }-${ new Date().getTime() }`;
+    const icon = SOCIAL_ICONS.get(service);
+
     return href && icon ? (
-        <a className='social-link' target='_blank' key={ key } href={ href } rel='noopener noreferrer'>
+        <a  className='social-link'
+            target='_blank'
+            key={ key }
+            href={ href }
+            title={ `A link to ${ service }` }
+            aria-label={ `A link to ${ service }` }
+            rel='noopener noreferrer'
+        >
             <Icon className='social-icon' icon={ icon } width='1.5em' color='white'/>
         </a>
     ) : (null);
 }
 
 function SocialLinksComponent({ socialLinks }: SocialLinksProperties) {
-    const linkElements = Object.entries(socialLinks).map(entry => {
-        const key = `${ entry[0] }-${ new Date().getTime() }`;
-        const href = entry[1];
-        const icon = SOCIAL_ICONS.get(entry[0]);
-
-        return buildSocialLink(key, href, icon);
-    });
+    const linkElements = Object.entries(socialLinks).map(entry => buildSocialLink(entry[0], entry[1]));
 
     return (
         <div className='social-icons'>
