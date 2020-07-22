@@ -59,7 +59,7 @@ class GalleryComponent extends Component {
                           interval={ 30000 }
                 >
                     { gallery.photoExhibitionMedia.map(photo => (
-                        <div>
+                        <div key={ photo.url }>
                             <img src={ photo.url }
                                  alt={ photo.alternativeText }
                             />
@@ -89,7 +89,7 @@ class GalleryComponent extends Component {
                       interval={ 30000 }
             >
                 { gallery.regularGallery.map(photo => (
-                    <div>
+                    <div key={ photo.url }>
                         <img src={ photo.url }
                              alt={ photo.alternativeText }
                         />
