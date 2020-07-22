@@ -1,0 +1,49 @@
+.episode-list {
+    width: 100%;
+    height: auto;
+
+    margin-bottom: 101px;
+}
+
+.episode-list h2 {
+    font-style: normal;
+    font-weight: 500;
+    font-size: 32px;
+    line-height: 120%;
+    color: #ffffff;
+
+    padding-bottom: 40px;
+}
+
+.episode-cards {
+    border-width: 1px 1px 0 1px;
+    border-style: solid;
+    border-color: #ffffff;
+}
+
+.episode-container {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+    align-content: stretch;
+    align-items: center;
+
+    border-width: 0 0 1px 0;
+    border-style: solid;
+    border-color: #ffffff;
+
+    width: auto;
+    height: auto;
+
+    padding: 40px;
+}
+
+.episode-image {
+    width: 128px;
+    height: auto;
+}
+
+.episode-information {
+    margin-left: 40px;
+}

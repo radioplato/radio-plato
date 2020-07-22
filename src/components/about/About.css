@@ -1,0 +1,68 @@
+/*reused from ShowComponent.css*/
+
+.about {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+    align-content: stretch;
+    align-items: flex-start;
+
+    width: 100%;
+    height: calc(100vh - 101px);
+    padding: 40px;
+
+    overflow: auto;
+}
+
+.about::-webkit-scrollbar {
+    display: none;
+}
+
+.about .information, .about .image {
+    width: 50%;
+}
+
+.about .information {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+    align-content: center;
+    align-items: flex-start;
+
+    margin-bottom: 101px;
+}
+
+.about .information h1 {
+    font-style: normal;
+    font-weight: 500;
+    font-size: 68px;
+    line-height: 120%;
+    color: #ffffff;
+}
+
+.about .information p {
+    font-style: normal;
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 180%;
+
+    margin-top: 40px;
+}
+
+.image {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: center;
+    align-content: center;
+    align-items: center;
+}
+
+.image img {
+    width: 100%;
+    max-width: 640px;
+    height: auto;
+}
+

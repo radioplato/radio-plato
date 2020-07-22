@@ -1,0 +1,37 @@
+.show-list {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+    align-content: stretch;
+
+    width: 100%;
+    height: calc(100vh - 101px);
+    padding: 40px;
+
+    overflow: auto;
+}
+
+.show-list::-webkit-scrollbar {
+    display: none;
+}
+
+.show-list h1 {
+    font-style: normal;
+    font-weight: 500;
+    font-size: 36px;
+    line-height: 120%;
+    text-transform: uppercase;
+    color: #ffffff;
+}
+
+.show-cards {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    align-content: flex-start;
+    align-items: flex-start;
+
+    margin-top: 40px;
+}

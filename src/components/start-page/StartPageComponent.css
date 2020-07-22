@@ -1,0 +1,17 @@
+.start-page-container {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+    align-content: center;
+    align-items: flex-start;
+
+    width: 100%;
+    height: calc(100vh - 101px);
+    
+    overflow: auto;
+}
+
+.start-page-container::-webkit-scrollbar {
+    display: none;
+}

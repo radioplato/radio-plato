@@ -1,0 +1,9 @@
+.scrollable-container {
+    width: 100%;
+    height: calc(100vh - 101px);
+    overflow: auto;
+}
+
+.scrollable-container::-webkit-scrollbar {
+    display: none;
+}

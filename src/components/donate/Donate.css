@@ -1,0 +1,78 @@
+/*reused from ShowComponent.css*/
+
+.donate {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+    align-content: stretch;
+    align-items: flex-start;
+
+    width: 100%;
+    height: calc(100vh - 101px);
+    padding: 40px;
+
+    overflow: auto;
+}
+
+.donate::-webkit-scrollbar {
+    display: none;
+}
+
+.donate .information, .donate .image {
+    width: 50%;
+}
+
+.donate .information {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+    align-content: center;
+    align-items: flex-start;
+
+    margin-right: 40px;
+    margin-bottom: 101px;
+}
+
+.donate .information h1 {
+    font-style: normal;
+    font-weight: 500;
+    font-size: 68px;
+    line-height: 120%;
+    color: #ffffff;
+}
+
+.donate .image {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: center;
+    align-content: center;
+    align-items: center;
+}
+
+.donate .image img {
+    width: 100%;
+    max-width: 640px;
+    height: auto;
+}
+
+.donate .text-content {
+    margin-top: 40px;
+    color: #ffffff;
+}
+
+.donate .text-content p, ul, ol, li {
+    font-style: normal;
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 180%;
+
+    margin: 10px 0;
+}
+
+.donate .text-content a {
+    text-decoration: underline;
+}
+

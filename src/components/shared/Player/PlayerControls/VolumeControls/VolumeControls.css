@@ -1,0 +1,43 @@
+.volume-controls {
+    width: 160px;
+    
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+    align-content: center;
+    align-items: center;
+}
+
+.volume-mode-button {
+    width: 24px;
+    height: 24px;
+    background-color: #ffffff00;
+}
+
+.horizontal-slider {
+    width: 120px;
+    background: #ffffff11;
+    height: 4px;
+}
+
+.horizontal-slider > .track-1 {
+    visibility: hidden;
+}
+
+.thumb {
+    background: #ffffff;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    text-align: center;
+    outline: none;
+    cursor: grab;
+    border: #ffffff solid 1px;
+    top: -4px;
+}
+
+.track {
+    background: #ffffff;
+    height: 2px;
+}
