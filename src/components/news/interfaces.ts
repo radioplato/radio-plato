@@ -14,6 +14,7 @@ export interface NewsDto extends StrapiObjectDto {
 
 export interface NewsCard {
     excerpt: string;
+    category: string;
     newsCover: SimpleImage;
     slug?: string;
     link?: string;
