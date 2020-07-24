@@ -18,27 +18,41 @@
 
 /* General styles */
 
-.news-card a {
+.news-card {
     display: flex;
     flex-wrap: nowrap;
     justify-content: flex-start;
     align-content: stretch;
 }
 
+.news-card-tag {
+    display: block;
+    text-transform: uppercase;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 140%;
+
+    color: #dbdbdb;
+    margin: 12px 0;
+}
+
+.news-card-text a:hover {
+    text-decoration: underline;
+}
+
 .news-card img {
     object-fit: cover;
+    font-weight: 300;
 }
 
 .news-card h2 {
     font-style: normal;
     font-weight: 400;
     font-size: 36px;
-    line-height: 120%;
-
-    margin: 20px 0;
+    line-height: 110%;
 }
 
-.news-card:hover h2 {
+.news-card h2:hover {
     text-decoration: underline;
 }
 
@@ -46,14 +60,16 @@
     font-style: italic;
     font-weight: 300;
     font-size: 18px;
-    line-height: 160%;
+    line-height: 140%;
 
     color: #b3b3b3;
+
+    margin-top: 8px;
 }
 
 /* 'Main' news cards */
 
-.news-card.main a {
+.news-card.main {
     flex-direction: column;
     justify-content: flex-start;
     align-content: center;
@@ -80,7 +96,7 @@
     width: 100%;
 }
 
-.news-card.fresh a {
+.news-card.fresh {
     flex-direction: row;
     height: auto;
     width: 100%;
@@ -106,11 +122,17 @@
     flex-wrap: nowrap;
     justify-content: center;
     align-content: center;
-    align-items: center;
+    align-items: flex-start;
 }
 
 .news-card.fresh:hover img {
     animation-play-state: running;
+}
+
+.news-card.fresh .news-card-tag {
+    margin: 0;
+    margin-bottom: 4px;
+    font-size: 14px;
 }
 
 .news-card.fresh h2 {
@@ -122,12 +144,12 @@
 .news-card.fresh .news-card-excerpt {
     font-size: 14px;
 
-    margin-top: 10px;
+    margin-top: 4px;
 }
 
 /* 'Other' news cards */
 
-.news-card.other a {
+.news-card.other {
     flex-direction: column;
     width: 370px;
 
@@ -140,10 +162,13 @@
     width: 368px;
 }
 
+.news-card.other .news-card-tag {
+    font-size: 16px;
+}
+
 .news-card.other h2 {
     font-size: 24px;
 
-    margin: 16px 0;
 }
 
 .news-card.other .news-card-excerpt {
@@ -189,6 +214,12 @@
     justify-content: center;
     align-content: center;
     align-items: flex-start;
+}
+
+.news-card.simple .news-card-tag {
+    margin: 0;
+    margin-bottom: 2px;
+    font-size: 18px;
 }
 
 .news-card.simple .news-card-text h2 {

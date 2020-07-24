@@ -37,6 +37,7 @@ export class NewsComponent extends Component<NewsComponentProperties> {
         return newsDto ? {
             title: newsDto.Title,
             content: newsDto.Content,
+            category: newsDto.Category,
             wordsBy: newsDto.WordsBy,
             photosBy: newsDto.PhotosBy,
             excerpt:  newsDto.Excerpt,

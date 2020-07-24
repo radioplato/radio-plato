@@ -1,18 +1,19 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 import { Subscription } from 'rxjs';
+import moment from 'moment';
 
 import NewsCardComponent from './NewsCardComponent/NewsCardComponent';
 import adService from './../advertisement/AdService';
 
 import { NewsDto, NewsCard } from './interfaces';
+import { Advertisement } from '../advertisement/interfaces';
+import { NewsListTypes } from '../shared/enums';
 import { BACKEND_URL, BASIC_SEO_IMG } from '../shared/constants';
+import { AD_CATEGORY } from './constants';
 import { Seo } from '../shared/wrappers/seo/Seo'
 
 import './NewsListComponent.css';
-import moment from 'moment';
-import { Advertisement } from '../advertisement/interfaces';
-import { NewsListTypes } from '../shared/enums';
-import { Link } from 'react-router-dom';
 
 
 const NEWS_LIMIT = 12;
@@ -23,6 +24,7 @@ const NEWS_LIST_SEO_DESCRIPTION = 'The best place to read about electronic music
 
 interface NewsListComponentProperties {
     type: string;
+    category?: string;
 }
 
 export class NewsListComponent extends Component<NewsListComponentProperties> {
@@ -38,6 +40,7 @@ export class NewsListComponent extends Component<NewsListComponentProperties> {
     parseNewsCard (newsDto: NewsDto): NewsCard {
         return {
             excerpt: newsDto.Excerpt,
+            category: newsDto.Category,
             newsCover: {
                 alternativeText: newsDto.PostCover.alternativeText,
                 caption: newsDto.PostCover.caption,
@@ -69,11 +72,13 @@ export class NewsListComponent extends Component<NewsListComponentProperties> {
 
     fetchNews () {
         const { page } = this.state;
+        const { category } = this.props;
         const start = page * NEWS_LIMIT;
+        const filter = category ? `Category=${ category[0].toUpperCase() + category.slice(1) }&` : '';
 
         this.setState({ loading: true });
 
-        fetch(`${ BACKEND_URL }/posts?_sort=PublishDate:DESC&_start=${ start }&_limit=${ NEWS_LIMIT }`)
+        fetch(`${ BACKEND_URL }/posts?${ filter }_sort=PublishDate:DESC&_start=${ start }&_limit=${ NEWS_LIMIT }`)
             .then(response => response.json())
             .then(data => data.map((datum: NewsDto) => this.parseNewsCard(datum)))
             .then(newsCards => this.handleResponse(newsCards));
@@ -82,6 +87,7 @@ export class NewsListComponent extends Component<NewsListComponentProperties> {
     advertisementToNewsCard (advertisement: Advertisement | null) {
         return {
             excerpt: advertisement ? advertisement.text : '',
+            category: AD_CATEGORY,
             newsCover: advertisement ? advertisement.image : {},
             link: advertisement ? advertisement.link : '',
             title: advertisement ? advertisement.title : '',
