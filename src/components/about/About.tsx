@@ -10,6 +10,8 @@ interface AboutComponentState {
     about: About | null
 }
 
+const ABOUT_SEO_DESCRIPTION = 'Independent internet radio based in Minsk (Belarus).'
+
 export class AboutComponent extends Component {
     state: AboutComponentState = {
         about: null
@@ -48,7 +50,7 @@ export class AboutComponent extends Component {
             <article className='about'>
                 <Seo meta={{
                         title: about.title,
-                        description: about.description,
+                        description: ABOUT_SEO_DESCRIPTION,
                         thumbnail: imageSrc
                     }}
                 />

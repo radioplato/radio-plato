@@ -100,7 +100,7 @@ class ScheduleComponent extends Component {
                         { this.renderButtons() }
                     </div>
                 </div>
-                <div>
+                <div className='schedule-showline-container'>
                     { this.renderDailySchedule() }
                 </div>
             </div>

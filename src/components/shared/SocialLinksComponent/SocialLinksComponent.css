@@ -5,14 +5,21 @@
     justify-content: flex-start;
     align-content: stretch;
     align-items: center;
-
     margin-right: 40px;
 }
 
+.social-icons a:hover {
+    color: white;
+    background-color: black;
+}
 .social-icon {
     margin: 0 12px;
 }
 
 .social-icon > a {
     text-decoration: none;
+}
+
+a.social-link {
+    padding: 0px;
 }

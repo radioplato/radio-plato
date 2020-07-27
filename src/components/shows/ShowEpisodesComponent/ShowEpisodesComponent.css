@@ -5,6 +5,11 @@
     margin-bottom: 101px;
 }
 
+.episode-cards a:hover {
+    color: white;
+    background-color: black;
+}
+
 .episode-list h2 {
     font-style: normal;
     font-weight: 500;
@@ -19,6 +24,10 @@
     border-width: 1px 1px 0 1px;
     border-style: solid;
     border-color: #ffffff;
+}
+.episode-cards a {
+    display: inline;
+    padding: 0px;
 }
 
 .episode-container {

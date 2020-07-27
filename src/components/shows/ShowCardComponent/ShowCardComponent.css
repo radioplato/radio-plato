@@ -10,6 +10,11 @@
     margin-bottom: 80px;
 }
 
+.show-cards a:hover {
+    color: white;
+    background-color: black!important;
+}
+
 .show-card img {
     height: 370px;
     width: 370px;

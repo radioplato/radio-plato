@@ -86,6 +86,7 @@ nav.menu-open {
 
 .menu-item a {
     position: relative;
+    text-decoration: none;
 }
 
 .menu-item a:before {
@@ -97,8 +98,11 @@ nav.menu-open {
     left: 0;
     background-color: #000;
     visibility: hidden;
+    transform-origin: 0 0;
     transform: scaleX(0);
     transition: all 0.2s ease-in-out 0s;
+    color: #ffffff;
+    background-color: #000;
 }
 
 .menu-item a:hover:before {

@@ -25,6 +25,15 @@
     align-content: stretch;
 }
 
+.news-cards a:hover {
+    color: white;
+    background-color: black;
+}
+.news-card a:hover {
+    color: white;
+    background-color: black;
+}
+
 .news-card img {
     object-fit: cover;
 }

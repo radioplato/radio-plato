@@ -48,7 +48,19 @@ button {
 }
 
 a {
-  text-decoration: none;
+  display: inline-block;
   font: inherit;
   color: inherit;
+  padding: 3px;
+  width: fit-content;
+  text-decoration: underline;
+  -webkit-transition: color 0.5s;
+  transition: color 0.5s;
+  -webkit-transition: background-color 0.5s;
+  transition: background-color 0.5s;
+}
+a:hover {
+  color: black;
+  background-color: white;
+  text-decoration: none;
 }

@@ -10,6 +10,11 @@
     min-height: 90px;
 }
 
+a.show-title-container:hover {
+    color: white;
+    background-color: black;  
+}
+
 .show-date {
     margin: 0px 20px 0px 40px;
     flex: 0 0 auto;
@@ -24,4 +29,8 @@
 .show-desc {
     margin: 0px 40px 0px 20px;
     flex: 4 1 100%;
+}
+
+.schedule-showline-container a {
+    display: inline-block;
 }

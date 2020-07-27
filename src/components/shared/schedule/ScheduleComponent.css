@@ -21,6 +21,19 @@
     border-bottom: 1px white solid;
 }
 
+.schedule-container a{
+    display: inline;
+    padding: 0px;
+    text-decoration: none;
+    -webkit-transition: none;
+    transition: none;
+}
+
+.schedule-container a:hover{
+    color: white;
+    background-color: black;
+}
+
 .schedule-title {
     font-size: 36px;
     font-weight: 500;
