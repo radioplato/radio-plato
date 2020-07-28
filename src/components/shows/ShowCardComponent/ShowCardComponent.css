@@ -12,7 +12,7 @@
 
 .show-cards a:hover {
     color: white;
-    background-color: black!important;
+    background-color: black;
 }
 
 .show-card img {
