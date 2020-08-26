@@ -5,6 +5,8 @@ import {
     Route,
 } from 'react-router-dom';
 
+import { BrowserView } from 'react-device-detect';
+
 import MenuButton from '../menu/menu-button/MenuButton'
 import PlayerComponent from '../shared/Player/PlayerComponent/PlayerComponent'
 import Content from '../content/Content'
@@ -17,7 +19,9 @@ import './Main.css'
 function Main() {
     return (
         <main>
-            <MenuButton />
+            <BrowserView>
+                <MenuButton />
+            </BrowserView>
             <Switch>
                 <Route exact path='/' render={
                     props => <PlayerComponent { ...props } playerType={ PlayerTypes.Main }/>

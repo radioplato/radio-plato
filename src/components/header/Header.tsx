@@ -6,8 +6,7 @@ import {
   Route
 } from 'react-router-dom';
 
-import { Icon } from '@iconify/react';
-import bxSearch from '@iconify/icons-bx/bx-search';
+import { BrowserView } from 'react-device-detect';
 
 import SocialLinksComponent from '../shared/SocialLinksComponent/SocialLinksComponent';
 import PlayerComponent from '../shared/Player/PlayerComponent/PlayerComponent';
@@ -34,20 +33,19 @@ function Header() {
     return (
         <header className='header-container'>
             <Link to='/' className='logo-text'>{ RADIO_PLATO }</Link>
-            <div className='social-container'>
-                <Switch>
-                    <Route exact path='/' render={
-                        props => (<SocialLinksComponent { ...props } socialLinks={ HEADER_SOCIAL_LINKS }/>)
-                    }/>
-                    <Route path='/' render={
-                        props => (<PlayerComponent { ...props } playerType={ PlayerTypes.Header }/>)
-                    }/>
-                </Switch>
-                <Link to='/donate' className='donate-link'>{ DONATE }</Link>
-                <div className='search-icon'>
-                    <Icon icon={ bxSearch } width='1.8em' color='white'/>
+            <BrowserView>
+                <div className='social-container'>
+                    <Switch>
+                        <Route exact path='/' render={
+                            props => (<SocialLinksComponent { ...props } socialLinks={ HEADER_SOCIAL_LINKS }/>)
+                        }/>
+                        <Route path='/' render={
+                            props => (<PlayerComponent { ...props } playerType={ PlayerTypes.Header }/>)
+                        }/>
+                    </Switch>
+                    <Link to='/donate' className='donate-link'>{ DONATE }</Link>
                 </div>
-            </div>
+            </BrowserView>
         </header>
     );
 }
