@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-import { isMobile } from 'react-device-detect';
+import { isMobileOnly } from 'react-device-detect';
 
 import SocialLinksComponent from '../../shared/SocialLinksComponent/SocialLinksComponent';
 import ShowEpisodesComponent from '../ShowEpisodesComponent/ShowEpisodesComponent';
@@ -64,7 +64,7 @@ export class ShowComponent extends Component<ShowComponentProperties> {
         const { show } = this.state;
         const { slug } = this.props;
         const imageSrc = show ? show.showCover.url : '';
-        const className = `show ${ isMobile ? 'mobile' : 'desktop' }`;
+        const className = `show ${ isMobileOnly ? 'mobile' : 'desktop' }`;
 
         return show ? (
             <article className={ className }>

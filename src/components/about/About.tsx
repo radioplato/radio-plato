@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-import { isMobile } from 'react-device-detect';
+import { isMobileOnly } from 'react-device-detect';
 
 import { AboutDto, About } from '../about/interfaces';
 import { Seo } from '../shared/wrappers/seo/Seo'
@@ -42,7 +42,7 @@ export class AboutComponent extends Component {
 
     render () {
         const { about } = this.state;
-        const className = `about ${ isMobile ? 'mobile' : 'desktop' }`;
+        const className = `about ${ isMobileOnly ? 'mobile' : 'desktop' }`;
         const imageSrc = about ? about.aboutCover.url : '';
 
         return about ? (

@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserView, isMobile } from 'react-device-detect';
+import { BrowserView, isMobileOnly } from 'react-device-detect';
 
 import { Seo } from '../shared/wrappers/seo/Seo'
 import GalleryComponent from '../gallery/GalleryComponent';
@@ -15,7 +15,7 @@ const INDEX_SEO_TITLE = 'From Minsk with ❤'
 const INDEX_SEO_DESCRIPTION = 'Independent internet radio based in Minsk (Belarus). We stream classic bangers and authentic world music as well as modern indie and rhythmic DJ edits.'
 
 function StartPageComponent() {
-    const device = isMobile ? 'mobile' : 'desktop';
+    const device = isMobileOnly ? 'mobile' : 'desktop';
     const className = `start-page-container ${ device }`
 
     return (

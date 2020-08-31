@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-import { isMobile } from 'react-device-detect';
+import { isMobileOnly } from 'react-device-detect';
 
 import { DonateDto, Donate } from '../donate/interfaces';
 import { Seo } from '../shared/wrappers/seo/Seo'
@@ -45,7 +45,7 @@ export class DonateComponent extends Component {
 
     render () {
         const { donate } = this.state;
-        const className = `donate ${ isMobile ? 'mobile' : 'desktop' }`;
+        const className = `donate ${ isMobileOnly ? 'mobile' : 'desktop' }`;
         const imageSrc = donate ? donate.donateCover.url : '';
 
         return donate ? (

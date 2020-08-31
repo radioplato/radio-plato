@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 
 import { Subscription } from 'rxjs';
 
-import { isMobile } from 'react-device-detect';
+import { isMobileOnly } from 'react-device-detect';
 
 import moment from 'moment';
 
@@ -94,7 +94,7 @@ class ScheduleComponent extends Component {
     }
 
     render () {
-        const className = `schedule-container ${ isMobile ? 'mobile' : 'desktop' }`;
+        const className = `schedule-container ${ isMobileOnly ? 'mobile' : 'desktop' }`;
 
         return (
             <div className={ className }>

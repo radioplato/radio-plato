@@ -12,7 +12,7 @@ import { Advertisement } from '../../advertisement/interfaces';
 import { NewsDto, News } from '../interfaces';
 
 import './NewsComponent.css';
-import { isMobile } from 'react-device-detect';
+import { isMobileOnly } from 'react-device-detect';
 
 
 interface NewsComponentProperties {
@@ -74,7 +74,7 @@ export class NewsComponent extends Component<NewsComponentProperties> {
 
     render () {
         const { news, advertisement } = this.state;
-        const className = `news ${ isMobile ? 'mobile' : 'desktop' }`;
+        const className = `news ${ isMobileOnly ? 'mobile' : 'desktop' }`;
         const imageSrc = news ? news.newsCover.url : '';
         const imageStyle = {
             backgroundRepeat: 'no-repeat',

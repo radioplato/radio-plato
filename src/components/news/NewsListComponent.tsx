@@ -14,7 +14,7 @@ import { BASIC_SEO_IMG } from '../shared/constants';
 import { Seo } from '../shared/wrappers/seo/Seo'
 
 import './NewsListComponent.css';
-import { isMobile } from 'react-device-detect';
+import { isMobileOnly } from 'react-device-detect';
 
 
 const NEWS_LIMIT = 12;
@@ -112,7 +112,7 @@ export class NewsListComponent extends Component<NewsListComponentProperties> {
     }
 
     renderFullNewsList (newsCards: NewsCard[], advertisement: Advertisement | null) {
-        const className = `news-list ${ isMobile ? 'mobile' : 'desktop' }`;
+        const className = `news-list ${ isMobileOnly ? 'mobile' : 'desktop' }`;
         const adNewsCard = this.advertisementToNewsCard(advertisement);
 
         return newsCards.length ? (

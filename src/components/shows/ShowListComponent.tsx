@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-import { isMobile } from 'react-device-detect';
+import { isMobileOnly } from 'react-device-detect';
 
 import ShowCardComponent from './ShowCardComponent/ShowCardComponent';
 
@@ -52,7 +52,7 @@ export class ShowListComponent extends Component {
         const {
             showCards
         } = this.state;
-        const className = `show-list ${ isMobile ? 'mobile' : 'desktop' }`;
+        const className = `show-list ${ isMobileOnly ? 'mobile' : 'desktop' }`;
 
         return (
             <div className={ className }>

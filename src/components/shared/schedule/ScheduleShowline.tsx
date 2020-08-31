@@ -1,6 +1,6 @@
 import React from 'react'
 
-import { BrowserView, isMobile } from 'react-device-detect';
+import { BrowserView, isMobileOnly } from 'react-device-detect';
 
 import { ScheduleShow } from './interfaces'
 
@@ -21,7 +21,7 @@ function ScheduleShowline({ showline }: ScheduleShowlineProperties) {
     } = showline;
     const interval = startTime && endTime ? `${ startTime.slice(0, 5) } - ${ endTime.slice(0, 5) }` : '';
     const href = link ? link : '';
-    const className = `show-title-container ${ isMobile ? 'mobile' : 'desktop' }`;
+    const className = `show-title-container ${ isMobileOnly ? 'mobile' : 'desktop' }`;
 
     return (
         <a href={ href }>

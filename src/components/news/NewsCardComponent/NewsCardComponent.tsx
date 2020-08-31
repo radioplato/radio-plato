@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-import { isMobile } from 'react-device-detect';
+import { isMobileOnly } from 'react-device-detect';
 
 import { NewsCard } from '../interfaces';
 import { AD_CATEGORY } from '../constants';
@@ -44,7 +44,7 @@ function NewsCardComponent({ newsCard, type }: NewsCardParameters) {
         title,
         category
     } = newsCard;
-    const device = isMobile ? 'mobile' : 'desktop';
+    const device = isMobileOnly ? 'mobile' : 'desktop';
 
     return (
         <div className={ `news-card ${ type } ${ device }` }>

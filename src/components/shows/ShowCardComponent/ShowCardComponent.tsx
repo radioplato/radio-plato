@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-import { isMobile } from 'react-device-detect';
+import { isMobileOnly } from 'react-device-detect';
 
 import { ShowCard } from '../interfaces';
 
@@ -18,7 +18,7 @@ function ShowCardComponent({ showCard }: ShowCardParameters) {
         slug,
         title,
     } = showCard;
-    const className = `show-card ${ isMobile ? 'mobile' : 'desktop' }`;
+    const className = `show-card ${ isMobileOnly ? 'mobile' : 'desktop' }`;
     const route = `/shows/${ slug }`;
 
     return (
