@@ -18,7 +18,8 @@
 
 .main-player.mobile {
     width: 100%;
-    height: calc(100vh - 101px);
+    height: auto;
+    min-height: calc(100vh - 101px);
     box-sizing: border-box;
 }
 

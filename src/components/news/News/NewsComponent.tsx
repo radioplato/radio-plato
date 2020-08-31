@@ -12,6 +12,7 @@ import { Advertisement } from '../../advertisement/interfaces';
 import { NewsDto, News } from '../interfaces';
 
 import './NewsComponent.css';
+import { isMobile } from 'react-device-detect';
 
 
 interface NewsComponentProperties {
@@ -73,6 +74,7 @@ export class NewsComponent extends Component<NewsComponentProperties> {
 
     render () {
         const { news, advertisement } = this.state;
+        const className = `news ${ isMobile ? 'mobile' : 'desktop' }`;
         const imageSrc = news ? news.newsCover.url : '';
         const imageStyle = {
             backgroundRepeat: 'no-repeat',
@@ -85,7 +87,7 @@ export class NewsComponent extends Component<NewsComponentProperties> {
         const photosBy = news?.photosBy ? `| Ph.: ${ news.photosBy }` : '';
 
         return news ? (
-            <article className='news'>
+            <article className={ className }>
                 <Seo meta={{
                         title: news.title,
                         description: news.excerpt,
@@ -106,7 +108,7 @@ export class NewsComponent extends Component<NewsComponentProperties> {
                         <ReactMarkdown source={ news.content } escapeHtml={ false } />
                     </div>
                 </div>
-                <AdComponent advertisement={ advertisement } />
+                { advertisement ? (<AdComponent advertisement={ advertisement } />) : null }
             </article>
         ) : null;
     }

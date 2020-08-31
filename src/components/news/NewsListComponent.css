@@ -22,7 +22,7 @@
 }
 
 .news-list.mobile::-webkit-scrollba {
-    display: visible;
+    display: block;
 }
 
 .news-list h1 {
