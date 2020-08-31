@@ -13,6 +13,12 @@
     overflow: auto;
 }
 
+.show.mobile {
+    height: auto;
+    overflow: visible;
+    box-sizing: border-box;
+}
+
 .show::-webkit-scrollbar {
     display: none;
 }
@@ -28,8 +34,17 @@
     margin-bottom: 40px;
 }
 
+.show.mobile .show-description {
+    flex-direction: column-reverse;
+}
+
 .information, .show-cover {
     width: 50%;
+}
+
+.show.mobile .information,
+.show.mobile .show-cover {
+    width: 100%;
 }
 
 .show .information {
@@ -49,6 +64,11 @@
     color: #ffffff;
 }
 
+.show.mobile .information h1 {
+    font-size: 40px;
+    margin: 20px 0;
+}
+
 .show .information p {
     font-style: normal;
     font-weight: 500;
@@ -57,6 +77,11 @@
 
     margin: 60px 0;
     margin-right: 40px;
+}
+
+.show.mobile .information p {
+    margin: 0;
+    margin-bottom: 40px;
 }
 
 .show-cover {
@@ -68,8 +93,18 @@
     align-items: center;
 }
 
+.show.mobile .show-cover {
+    width: 100%;
+    height: auto;
+}
+
 .show-cover img {
     width: 500px;
+    height: auto;
+}
+
+.show.mobile .show-cover img {
+    width: 100%;
     height: auto;
 }
 

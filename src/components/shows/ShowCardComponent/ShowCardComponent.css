@@ -10,11 +10,22 @@
     margin-bottom: 80px;
 }
 
+.show-card.mobile {
+    width: 100%;
+    margin-right: 0;
+    margin-bottom: 60px;
+}
+
 .show-card img {
     height: 370px;
     width: 370px;
 
     margin-bottom: 20px;
+}
+
+.show-card.mobile img {
+    width: 100%;
+    height: auto;
 }
 
 .show-card h2 {
@@ -24,6 +35,10 @@
     line-height: 120%;
 
     margin: 20px 0;
+}
+
+.show-card.mobile h2 {
+    margin-top: 0;
 }
 
 .show-card:hover h2 {

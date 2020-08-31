@@ -7,9 +7,14 @@
 
     width: 100%;
     height: calc(100vh - 101px);
+    box-sizing: border-box;
     padding: 40px;
 
     overflow: auto;
+}
+
+.show-list.mobile {
+    overflow: visible;
 }
 
 .show-list::-webkit-scrollbar {

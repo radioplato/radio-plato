@@ -22,7 +22,3 @@
     height: auto;
     overflow: visible;
 }
-
-.start-page-container.mobile::-webkit-scrollbar {
-    display: auto;
-}

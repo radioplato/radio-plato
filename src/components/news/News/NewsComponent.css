@@ -21,10 +21,6 @@
     display: none;
 }
 
-.news.mobile::-webkit-scrollbar {
-    display: block;
-}
-
 .news-description {
     display: flex;
     flex-direction: row;

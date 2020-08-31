@@ -1,6 +1,8 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
+import { isMobile } from 'react-device-detect';
+
 import { ShowCard } from '../interfaces';
 
 import './ShowCardComponent.css';
@@ -16,12 +18,12 @@ function ShowCardComponent({ showCard }: ShowCardParameters) {
         slug,
         title,
     } = showCard;
-
+    const className = `show-card ${ isMobile ? 'mobile' : 'desktop' }`;
     const route = `/shows/${ slug }`;
 
     return (
         <Link to={ route } title={ title }>
-            <div className='show-card'>
+            <div className={ className }>
                 <img src={ showCover.url } loading='lazy' alt={ showCover.alternativeText }/>
                 <h2>{ title }</h2>
                 <p>{ excerpt }</p>
