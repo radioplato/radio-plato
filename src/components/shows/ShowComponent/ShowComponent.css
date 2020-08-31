@@ -15,8 +15,8 @@
 
 .show.mobile {
     height: auto;
-    overflow: visible;
     box-sizing: border-box;
+    overflow: visible;
 }
 
 .show::-webkit-scrollbar {

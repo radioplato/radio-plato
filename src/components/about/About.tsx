@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 
+import { isMobile } from 'react-device-detect';
+
 import { AboutDto, About } from '../about/interfaces';
 import { Seo } from '../shared/wrappers/seo/Seo'
 
@@ -40,11 +42,11 @@ export class AboutComponent extends Component {
 
     render () {
         const { about } = this.state;
+        const className = `about ${ isMobile ? 'mobile' : 'desktop' }`;
         const imageSrc = about ? about.aboutCover.url : '';
 
-
         return about ? (
-            <article className='about'>
+            <article className={ className }>
                 <Seo meta={{
                         title: about.title,
                         description: about.description,

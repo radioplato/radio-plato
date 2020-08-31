@@ -243,10 +243,9 @@
 .news-card.mobile {
     flex-direction: column;
     width: 100%;
-
+    box-sizing: border-box;
     margin: 0;
     padding: 40px;
-    box-sizing: border-box;
 }
 
 .news-card.mobile .news-card-image {
