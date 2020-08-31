@@ -14,6 +14,7 @@ import { BASIC_SEO_IMG } from '../shared/constants';
 import { Seo } from '../shared/wrappers/seo/Seo'
 
 import './NewsListComponent.css';
+import { isMobile } from 'react-device-detect';
 
 
 const NEWS_LIMIT = 12;
@@ -85,14 +86,14 @@ export class NewsListComponent extends Component<NewsListComponentProperties> {
     }
 
     advertisementToNewsCard (advertisement: Advertisement | null) {
-        return {
+        return advertisement ? {
             excerpt: advertisement ? advertisement.text : '',
             category: AD_CATEGORY,
             newsCover: advertisement ? advertisement.image : {},
             link: advertisement ? advertisement.link : '',
             title: advertisement ? advertisement.title : '',
             publishDate: advertisement ? advertisement.startDate : ''
-        };
+        } : null;
     }
 
     renderSimpleNewsList (newsCards: NewsCard[]) {
@@ -111,10 +112,11 @@ export class NewsListComponent extends Component<NewsListComponentProperties> {
     }
 
     renderFullNewsList (newsCards: NewsCard[], advertisement: Advertisement | null) {
+        const className = `news-list ${ isMobile ? 'mobile' : 'desktop' }`;
         const adNewsCard = this.advertisementToNewsCard(advertisement);
 
         return newsCards.length ? (
-            <div onScroll={ this.handleScroll } className='news-list'>
+            <div onScroll={ this.handleScroll } className={ className }>
                 <Seo meta={{
                         title: NEWS_LIST_SEO_TITLE,
                         description: NEWS_LIST_SEO_DESCRIPTION,
@@ -127,7 +129,7 @@ export class NewsListComponent extends Component<NewsListComponentProperties> {
                             <NewsCardComponent key={ newsCards[0].slug } newsCard={ newsCards[0] } type='main' />
                         </div>
                         <div className='fresh-news'>
-                            <NewsCardComponent newsCard={ adNewsCard } type='fresh'/>
+                            { adNewsCard ? (<NewsCardComponent newsCard={ adNewsCard } type='fresh'/>) : null }
                             { newsCards.slice(1, 5).map(newsCard => (
                                 <NewsCardComponent key={ newsCard.slug } newsCard={ newsCard } type='fresh' />
                             )) }
