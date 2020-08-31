@@ -21,6 +21,10 @@
     border-bottom: 1px white solid;
 }
 
+.schedule-container.mobile .schedule-headline-container {
+    justify-content: flex-start;
+}
+
 .schedule-title {
     font-size: 36px;
     font-weight: 500;
@@ -30,10 +34,21 @@
     margin: 40px;
 }
 
+.schedule-container.mobile .schedule-title {
+    margin-right: 20px;
+}
+
 .schedule-day {
     float: right;
     font-size: 14px;
     margin-right: 20px;
+}
+
+.schedule-container.mobile .schedule-day {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin-right: 0;
 }
 
 .schedule-day-button {
@@ -69,3 +84,8 @@
     visibility: visible;
     transform: scaleX(1);
 }
+
+.schedule-container.mobile .schedule-day-button:not(.active) {
+    display: none;
+}
+

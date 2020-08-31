@@ -5,7 +5,7 @@ import {
     Route,
 } from 'react-router-dom';
 
-import { BrowserView } from 'react-device-detect';
+import { BrowserView, isMobile } from 'react-device-detect';
 
 import MenuButton from '../menu/menu-button/MenuButton'
 import PlayerComponent from '../shared/Player/PlayerComponent/PlayerComponent'
@@ -14,11 +14,11 @@ import { PlayerTypes } from '../shared/enums';
 
 import './Main.css'
 
-
-
 function Main() {
+    const device = isMobile ? 'mobile' : 'desktop';
+
     return (
-        <main>
+        <main className={ device }>
             <BrowserView>
                 <MenuButton />
             </BrowserView>

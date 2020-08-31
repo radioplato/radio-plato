@@ -146,9 +146,9 @@
     margin-top: 4px;
 }
 
-/* 'Other' news cards */
+/* 'Other' news cards. */
 
-.news-card.other {
+.news-card.other, .news-card.mobile {
     flex-direction: column;
     width: 370px;
 
@@ -236,6 +236,43 @@
     font-weight: 300;
     font-size: 18px;
     line-height: 120%;
+}
+
+/* 'Mobile' view is very close to 'Other' type of cards */
+
+.news-card.mobile {
+    flex-direction: column;
+    width: 100%;
+
+    margin: 0;
+    padding: 40px;
+    box-sizing: border-box;
+}
+
+.news-card.mobile .news-card-image {
+    width: 100%;
+    
+    margin: 0;
+    margin-bottom: 20px;
+    padding: 0;
+}
+
+.news-card.mobile .news-card-image img {
+    height: auto;
+    width: 100%;
+}
+
+.news-card.mobile .news-card-text .news-card-tag {
+    font-size: 16px;
+}
+
+.news-card.mobile .news-card-text h2 {
+    font-size: 24px;
+
+}
+
+.news-card.mobile .news-card-text .news-card-excerpt {
+    font-size: 16px;
 }
 
 

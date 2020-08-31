@@ -1,8 +1,4 @@
 .main-player {
-    width: 400px;
-    min-width: 400px;
-    height: calc(100vh - 181px);
-
     padding: 40px;
 
     display: flex;
@@ -11,8 +7,19 @@
     justify-content: flex-start;
     align-content: stretch;
     align-items: flex-start;
+}
 
+.main-player.desktop {
+    width: 400px;
+    min-width: 400px;
+    height: calc(100vh - 181px);
     border-right: 1px white solid;
+}
+
+.main-player.mobile {
+    width: 100%;
+    height: calc(100vh - 101px);
+    box-sizing: border-box;
 }
 
 .header-player {

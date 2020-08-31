@@ -1,5 +1,9 @@
 import React, { Component } from 'react'
+
 import { Subscription } from 'rxjs';
+
+import { isMobile } from 'react-device-detect';
+
 import moment from 'moment';
 
 import ScheduleShowline from './ScheduleShowline'
@@ -90,8 +94,10 @@ class ScheduleComponent extends Component {
     }
 
     render () {
+        const className = `schedule-container ${ isMobile ? 'mobile' : 'desktop' }`;
+
         return (
-            <div className='schedule-container'>
+            <div className={ className }>
                 <div className='schedule-headline-container'>        
                     <div className='schedule-title'>
                         <p>{ SCHEDULE }</p>

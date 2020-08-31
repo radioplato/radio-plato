@@ -1,6 +1,8 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
+import { isMobile } from 'react-device-detect';
+
 import { NewsCard } from '../interfaces';
 import { AD_CATEGORY } from '../constants';
 
@@ -42,9 +44,10 @@ function NewsCardComponent({ newsCard, type }: NewsCardParameters) {
         title,
         category
     } = newsCard;
+    const device = isMobile ? 'mobile' : 'desktop';
 
     return (
-        <div className={ `news-card ${ type }` }>
+        <div className={ `news-card ${ type } ${ device }` }>
             <div className='news-card-image'>
                 <LinkElement newsCard={ newsCard }>
                     <img src={ newsCover.url } loading='lazy' alt={ newsCover.alternativeText }/>

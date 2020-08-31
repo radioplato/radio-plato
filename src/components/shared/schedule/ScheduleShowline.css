@@ -10,15 +10,32 @@
     min-height: 90px;
 }
 
+.show-title-container.mobile {
+    width: 100%;
+}
+
 .show-date {
     margin: 0px 20px 0px 40px;
     flex: 0 0 auto;
+}
+
+.show-title-container.mobile .show-date {
+    margin: 0px 15px 0px 40px;
 }
 
 .show-title {
     flex: 0 0 auto;
     margin: 0px 40px;
     width: 160px;
+}
+
+.show-title-container.mobile .show-title {
+    margin: 0px 40px 0px 15px;
+    width: auto;
+}
+
+.show-title-container.mobile .show-title p {
+    text-overflow: ellipsis;
 }
 
 .show-desc {
