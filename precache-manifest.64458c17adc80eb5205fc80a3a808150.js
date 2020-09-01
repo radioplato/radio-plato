@@ -1,6 +1,6 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "18648355fad1ed8150a9a85fe2316c24",
+    "revision": "0d093221b96e62f3692e5f1ff761f811",
     "url": "/radio-plato/index.html"
   },
   {
