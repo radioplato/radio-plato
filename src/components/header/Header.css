@@ -16,6 +16,10 @@ header {
     border-bottom: 1px white solid;
 }
 
+.header-container.mobile {
+    justify-content: flex-start;
+}
+
 .social-container {
     display: flex;
     flex-direction: row;
@@ -31,6 +35,10 @@ header {
     font-size: 28.6062px;
     margin-left: 40px;
     color: #ffffff;
+}
+
+.header-container.mobile .logo-text {
+    margin: 0;
 }
 
 .donate-link {

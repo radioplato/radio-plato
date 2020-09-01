@@ -1,4 +1,4 @@
-.menuButton {
+.menu-button-aside {
     width: 120px;
     min-width: 120px;
     height: calc(100vh - 101px);
@@ -20,4 +20,16 @@
     text-transform: uppercase;
     transform: rotate(-90deg);
     user-select: none;
+}
+
+.menu-button-header {
+    height: 100px;
+    width: 100px;
+
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: center;
+    align-content: center;
+    align-items: center;
 }

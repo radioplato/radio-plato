@@ -6,8 +6,9 @@ import {
   Route
 } from 'react-router-dom';
 
-import { BrowserView } from 'react-device-detect';
+import { BrowserView, isMobileOnly } from 'react-device-detect';
 
+import MenuButton from '../menu/menu-button/MenuButton';
 import SocialLinksComponent from '../shared/SocialLinksComponent/SocialLinksComponent';
 import PlayerComponent from '../shared/Player/PlayerComponent/PlayerComponent';
 import { SocialLinks } from '../shared/interfaces';
@@ -30,8 +31,11 @@ const HEADER_SOCIAL_LINKS: SocialLinks = {
 }
 
 function Header() {
+    const className = `header-container ${ isMobileOnly ? 'mobile' : 'desktop' }`;
+
     return (
-        <header className='header-container'>
+        <header className={ className }>
+            { isMobileOnly && <MenuButton /> }
             <Link to='/' className='logo-text'>{ RADIO_PLATO }</Link>
             <BrowserView>
                 <div className='social-container'>
