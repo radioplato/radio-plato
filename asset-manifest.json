@@ -1,25 +1,25 @@
 {
   "files": {
-    "main.css": "'/radio-plato/static/css/main.a26154cd.chunk.css",
-    "main.js": "'/radio-plato/static/js/main.130d4d4d.chunk.js",
-    "main.js.map": "'/radio-plato/static/js/main.130d4d4d.chunk.js.map",
-    "runtime-main.js": "'/radio-plato/static/js/runtime-main.04ecbc66.js",
-    "runtime-main.js.map": "'/radio-plato/static/js/runtime-main.04ecbc66.js.map",
-    "static/css/2.fb346933.chunk.css": "'/radio-plato/static/css/2.fb346933.chunk.css",
-    "static/js/2.99cc4092.chunk.js": "'/radio-plato/static/js/2.99cc4092.chunk.js",
-    "static/js/2.99cc4092.chunk.js.map": "'/radio-plato/static/js/2.99cc4092.chunk.js.map",
-    "index.html": "'/radio-plato/index.html",
-    "precache-manifest.f56d16406010ac5b8847a7b8186b9f72.js": "'/radio-plato/precache-manifest.f56d16406010ac5b8847a7b8186b9f72.js",
-    "service-worker.js": "'/radio-plato/service-worker.js",
-    "static/css/2.fb346933.chunk.css.map": "'/radio-plato/static/css/2.fb346933.chunk.css.map",
-    "static/css/main.a26154cd.chunk.css.map": "'/radio-plato/static/css/main.a26154cd.chunk.css.map",
-    "static/js/2.99cc4092.chunk.js.LICENSE.txt": "'/radio-plato/static/js/2.99cc4092.chunk.js.LICENSE.txt"
+    "main.css": "/radio-plato/static/css/main.a26154cd.chunk.css",
+    "main.js": "/radio-plato/static/js/main.3d31d23b.chunk.js",
+    "main.js.map": "/radio-plato/static/js/main.3d31d23b.chunk.js.map",
+    "runtime-main.js": "/radio-plato/static/js/runtime-main.28ed98e0.js",
+    "runtime-main.js.map": "/radio-plato/static/js/runtime-main.28ed98e0.js.map",
+    "static/css/2.fb346933.chunk.css": "/radio-plato/static/css/2.fb346933.chunk.css",
+    "static/js/2.32042a4e.chunk.js": "/radio-plato/static/js/2.32042a4e.chunk.js",
+    "static/js/2.32042a4e.chunk.js.map": "/radio-plato/static/js/2.32042a4e.chunk.js.map",
+    "index.html": "/radio-plato/index.html",
+    "precache-manifest.724d0a962b7a1380a40155223338b9f5.js": "/radio-plato/precache-manifest.724d0a962b7a1380a40155223338b9f5.js",
+    "service-worker.js": "/radio-plato/service-worker.js",
+    "static/css/2.fb346933.chunk.css.map": "/radio-plato/static/css/2.fb346933.chunk.css.map",
+    "static/css/main.a26154cd.chunk.css.map": "/radio-plato/static/css/main.a26154cd.chunk.css.map",
+    "static/js/2.32042a4e.chunk.js.LICENSE.txt": "/radio-plato/static/js/2.32042a4e.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
-    "static/js/runtime-main.04ecbc66.js",
+    "static/js/runtime-main.28ed98e0.js",
     "static/css/2.fb346933.chunk.css",
-    "static/js/2.99cc4092.chunk.js",
+    "static/js/2.32042a4e.chunk.js",
     "static/css/main.a26154cd.chunk.css",
-    "static/js/main.130d4d4d.chunk.js"
+    "static/js/main.3d31d23b.chunk.js"
   ]
 }
