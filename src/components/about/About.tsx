@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 
-import { BACKEND_URL } from '../shared/constants';
 import { AboutDto, About } from '../about/interfaces';
 import { Seo } from '../shared/wrappers/seo/Seo'
 
@@ -28,7 +27,7 @@ export class AboutComponent extends Component {
     }
 
     fetchAbout () {
-        fetch(`${ BACKEND_URL }/about`)
+        fetch(`${ process.env.REACT_APP_BACKEND_URL }/about`)
             .then(response => response.json())
             .then((data: AboutDto) => this.parseAbout(data))
             .then(about => this.setState({ about }));

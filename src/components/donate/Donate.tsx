@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 
-import { BACKEND_URL } from '../shared/constants';
 import { DonateDto, Donate } from '../donate/interfaces';
 import { Seo } from '../shared/wrappers/seo/Seo'
 
@@ -31,7 +30,7 @@ export class DonateComponent extends Component {
     }
 
     fetchDonate () {
-        fetch(`${ BACKEND_URL }/donate`)
+        fetch(`${ process.env.REACT_APP_BACKEND_URL }/donate`)
             .then(response => response.json())
             .then((data: DonateDto) => this.parseDonate(data))
             .then(donate => this.setState({ donate }));

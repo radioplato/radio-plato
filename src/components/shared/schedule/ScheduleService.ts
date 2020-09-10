@@ -3,7 +3,6 @@ import moment from 'moment';
 
 import { ScheduleShow, ScheduleDto } from './interfaces';
 import { IndexesOfDay } from './enums';
-import { BACKEND_URL } from '../constants';
 
 
 const DATA_REQUEST_INTERVAL = 14400000;
@@ -74,7 +73,7 @@ class ScheduleService {
     }
 
     async fetchSchedules () {
-        await fetch(`${ BACKEND_URL }/schedules`)
+        await fetch(`${ process.env.REACT_APP_BACKEND_URL }/schedules`)
             .then(response => response.json())
             .then(data => [].concat(...data.map((datum: ScheduleDto) => this.parseScheduleLine(datum))))
             .then(scheduleShows => this.organizeSchedule(scheduleShows));

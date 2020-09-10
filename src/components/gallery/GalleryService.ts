@@ -2,7 +2,6 @@ import { Subject } from 'rxjs';
 
 import { IndexGallery, IndexGalleryDto } from './interfaces';
 import { CoverDto, SimpleImage } from '../shared/interfaces';
-import { BACKEND_URL } from '../shared/constants';
 
 
 const GALLERY_REQUEST_INTERVAL = 300000;
@@ -32,7 +31,7 @@ class GalleryService {
     }
 
     async fetchIndexGallery () {
-        await fetch(`${ BACKEND_URL }/index-gallery`)
+        await fetch(`${ process.env.REACT_APP_BACKEND_URL }/index-gallery`)
             .then(response => response.json())
             .then(data => this.parseIndexGallery(data))
             .then(indexGallery => this.updateIndexGallery(indexGallery));

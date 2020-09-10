@@ -4,7 +4,6 @@ import SocialLinksComponent from '../../shared/SocialLinksComponent/SocialLinksC
 import ShowEpisodesComponent from '../ShowEpisodesComponent/ShowEpisodesComponent';
 
 import { Seo } from '../../shared/wrappers/seo/Seo'
-import { BACKEND_URL } from '../../shared/constants';
 import { ShowDto, Show } from '../interfaces';
 
 import './ShowComponent.css';
@@ -48,7 +47,7 @@ export class ShowComponent extends Component<ShowComponentProperties> {
     fetchShow () {
         const { slug } = this.props;
 
-        fetch(`${ BACKEND_URL }/shows?Slug=${ slug }`)
+        fetch(`${ process.env.REACT_APP_BACKEND_URL }/shows?Slug=${ slug }`)
             .then(response => response.json())
             .then((data: ShowDto[]) => this.parseShow(data[0]))
             .then(show => this.setState({ show }));

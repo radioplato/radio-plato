@@ -3,8 +3,8 @@ import React, { Component } from 'react';
 import ShowCardComponent from './ShowCardComponent/ShowCardComponent';
 
 import { Seo } from '../shared/wrappers/seo/Seo'
+import { BASIC_SEO_IMG } from '../shared/constants';
 import { ShowDto, ShowCard } from './interfaces';
-import { BACKEND_URL, BASIC_SEO_IMG } from '../shared/constants';
 
 import './ShowListComponent.css';
 
@@ -32,7 +32,7 @@ export class ShowListComponent extends Component {
     }
 
     fetchShows () {
-        fetch(`${ BACKEND_URL }/shows`)
+        fetch(`${ process.env.REACT_APP_BACKEND_URL }/shows`)
             .then(response => response.json())
             .then(data => data.map((datum: ShowDto) => this.parseShowCard(datum)))
             .then(showCards => this.setState({ showCards }));

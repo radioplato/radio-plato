@@ -1,7 +1,7 @@
 import { Subject } from 'rxjs'
 
 import { PlayerState } from './interfaces';
-import { DEFAULT_PLAYER_STATE, DATA_URL, DATA_REQUEST_INTERVAL } from './constants';
+import { DEFAULT_PLAYER_STATE, DATA_REQUEST_INTERVAL } from './constants';
 
 class PlayerService {
     private playerState: PlayerState;
@@ -58,9 +58,12 @@ class PlayerService {
     }
 
     async updateTrackName () {
-        const response = await fetch(DATA_URL);
+        const url = process.env.REACT_APP_DATA_URL as string;
+        const response = await fetch(url);
         const data = await response.json();
-        const trackName = data.icestats.source[0].title;
+        const trackName = process.env.REACT_APP_ENV !== 'staging' ?
+            data.now_playing.song.title :
+            data.icestats.source[0].title;
 
         if (trackName !== this.track) {
             this.track = trackName;

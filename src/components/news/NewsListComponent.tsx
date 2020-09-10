@@ -9,8 +9,8 @@ import adService from './../advertisement/AdService';
 import { NewsDto, NewsCard } from './interfaces';
 import { Advertisement } from '../advertisement/interfaces';
 import { NewsListTypes } from '../shared/enums';
-import { BACKEND_URL, BASIC_SEO_IMG } from '../shared/constants';
 import { AD_CATEGORY } from './constants';
+import { BASIC_SEO_IMG } from '../shared/constants';
 import { Seo } from '../shared/wrappers/seo/Seo'
 
 import './NewsListComponent.css';
@@ -78,7 +78,7 @@ export class NewsListComponent extends Component<NewsListComponentProperties> {
 
         this.setState({ loading: true });
 
-        fetch(`${ BACKEND_URL }/posts?${ filter }_sort=PublishDate:DESC&_start=${ start }&_limit=${ NEWS_LIMIT }`)
+        fetch(`${ process.env.REACT_APP_BACKEND_URL }/posts?${ filter }_sort=PublishDate:DESC&_start=${ start }&_limit=${ NEWS_LIMIT }`)
             .then(response => response.json())
             .then(data => data.map((datum: NewsDto) => this.parseNewsCard(datum)))
             .then(newsCards => this.handleResponse(newsCards));

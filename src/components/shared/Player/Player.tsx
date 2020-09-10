@@ -4,7 +4,7 @@ import { Subscription } from 'rxjs';
 
 import { playerService } from './PlayerService';
 import { PlayerState } from './interfaces';
-import { DEFAULT_PLAYER_STATE, STREAM_URL } from './constants';
+import { DEFAULT_PLAYER_STATE } from './constants';
 
 import './Player.css';
 
@@ -36,7 +36,7 @@ export class Player extends Component {
         return (
             <div className='audio'>
                 <ReactPlayer
-                    url={ STREAM_URL }
+                    url={ process.env.REACT_APP_STREAM_URL }
                     playing={ playing }
                     muted={ muted }
                     volume={ volume }

@@ -8,7 +8,6 @@ import AdComponent from '../../advertisement/AdComponent/AdComponent';
 import adService from '../../advertisement/AdService';
 
 import { Seo } from '../../shared/wrappers/seo/Seo'
-import { BACKEND_URL } from '../../shared/constants';
 import { Advertisement } from '../../advertisement/interfaces';
 import { NewsDto, News } from '../interfaces';
 
@@ -54,7 +53,7 @@ export class NewsComponent extends Component<NewsComponentProperties> {
     fetchNews () {
         const { slug } = this.props;
 
-        fetch(`${ BACKEND_URL }/posts?Slug=${ slug }`)
+        fetch(`${ process.env.REACT_APP_BACKEND_URL }/posts?Slug=${ slug }`)
             .then(response => response.json())
             .then((data: NewsDto[]) => this.parseNews(data[0]))
             .then(news => this.setState({ news }));
