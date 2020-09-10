@@ -33,7 +33,7 @@
   "scripts": {
     "start": "cross-env PUBLIC_URL='.' env-cmd -f .env.local react-scripts start",
     "build": "cross-env PUBLIC_URL='.' env-cmd -f .env.production react-scripts build",
-    "build:staging": "cross-env PUBLIC_URL='/radio-plato env-cmd -f .env.staging react-scripts build",
+    "build:staging": "cross-env PUBLIC_URL='/radio-plato' env-cmd -f .env.staging react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "predeploy": "npm run build-stage",

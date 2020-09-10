@@ -3,7 +3,6 @@ import React from 'react'
 import {
     Switch,
     Route,
-    withRouter,
 } from 'react-router-dom';
 
 import MenuButton from '../menu/menu-button/MenuButton'
@@ -29,4 +28,4 @@ function Main() {
     );
 }
   
-export default withRouter(Main);
+export default Main;

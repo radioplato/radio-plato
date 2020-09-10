@@ -3,7 +3,6 @@ import React from 'react';
 import {
     Switch,
     Route,
-    withRouter,
 } from 'react-router-dom';
 
 import StartPageComponent from '../start-page/StartPageComponent';
@@ -41,4 +40,4 @@ function Content() {
     );
 }
   
-export default withRouter(Content);
+export default Content;

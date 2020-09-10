@@ -2,7 +2,6 @@ import React from 'react'
 
 import {
   Link,
-  withRouter,
   Switch,
   Route
 } from 'react-router-dom';
@@ -53,4 +52,4 @@ function Header() {
     );
 }
   
-export default withRouter(Header);
+export default Header;
