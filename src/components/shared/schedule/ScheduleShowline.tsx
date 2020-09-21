@@ -24,7 +24,7 @@ function ScheduleShowline({ showline }: ScheduleShowlineProperties) {
     const className = `show-title-container ${ isMobileOnly ? 'mobile' : 'desktop' }`;
 
     return (
-        <a href={ href }>
+        <a href={ href } rel='noopener noreferrer' target='_blank'>
             <div className={ className }>
                 <div className='show-date'>
                     <p>{ interval }</p>

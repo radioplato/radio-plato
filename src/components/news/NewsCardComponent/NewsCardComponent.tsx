@@ -27,7 +27,9 @@ function LinkElement({ newsCard, children }: LinkElementParameters) {
     const slug = newsCard.slug;
     const route = `/news/${ newsCard.category.toLowerCase() }/${ slug }`;
 
-    return slug ? <Link to={ route } title={ newsCard.title }>{ children }</Link> : <a href={ newsCard.link } title={ newsCard.title }>{ children }</a>;
+    return slug ?
+        <Link to={ route } title={ newsCard.title }>{ children }</Link> :
+        <a href={ newsCard.link } title={ newsCard.title } rel='noopener noreferrer' target='_blank'>{ children }</a>;
 }
 
 function TagElement({ category }: TagElementParameters) {

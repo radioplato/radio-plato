@@ -47,7 +47,7 @@ export class ShowEpisodesComponent extends Component<ShowEpisodesProperties> {
         const date = new Date(episode.date).toISOString().slice(0,10).split('-').reverse().join('.');
 
         return (
-            <a key={ key } href={ episode.url }>
+            <a key={ key } href={ episode.url } rel='noopener noreferrer' target='_blank'>
                 <div className='episode-container'>
                     <img className='episode-image' src={ episode.image } alt={ episode.title }/>
                     <div className='episode-information'>
