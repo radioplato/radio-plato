@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserView, isMobileOnly } from 'react-device-detect';
+import { isMobileOnly } from 'react-device-detect';
 
 import { Seo } from '../shared/wrappers/seo/Seo'
 import GalleryComponent from '../gallery/GalleryComponent';
@@ -26,9 +26,7 @@ function StartPageComponent() {
                         thumbnail: BASIC_SEO_IMG
                     }}
                 />
-            <BrowserView>
-                <GalleryComponent />
-            </BrowserView>
+            { isMobileOnly ? null : <GalleryComponent /> }
             <NewsListComponent type={ NewsListTypes.Simple }/>
             <ScheduleComponent />
         </div>
