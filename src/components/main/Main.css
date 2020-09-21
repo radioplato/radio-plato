@@ -1,7 +1,15 @@
 main {
     display: flex;
-    flex-direction: row;
     flex-wrap: nowrap;
     justify-content: flex-start;
     align-content: stretch;
 }
+
+main.mobile {
+    flex-direction: column;
+}
+
+main.desktop {
+    flex-direction: row;
+}
+

@@ -2,6 +2,8 @@ import React, { PureComponent } from 'react';
 
 import { Subscription } from 'rxjs';
 
+import { isMobileOnly } from 'react-device-detect';
+
 import PlayButton from '../PlayerControls/PlayButton/PlayButton';
 import VolumeControls from '../PlayerControls/VolumeControls/VolumeControls';
 import { playerService } from '../PlayerService';
@@ -24,7 +26,7 @@ export class PlayerComponent extends PureComponent<PlayerProps> {
     }
 
     get className () {
-        return `${ this.props.playerType }-player`;
+        return `${ this.props.playerType }-player ${ isMobileOnly ? 'mobile' : 'desktop' }`;
     }
 
     componentDidMount () {

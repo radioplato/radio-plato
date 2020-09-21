@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 
+import { isMobileOnly } from 'react-device-detect';
+
 import './ShowEpisodesComponent.css';
 import { ShowEpisode } from '../interfaces';
 
@@ -45,7 +47,7 @@ export class ShowEpisodesComponent extends Component<ShowEpisodesProperties> {
         const date = new Date(episode.date).toISOString().slice(0,10).split('-').reverse().join('.');
 
         return (
-            <a key={ key } href={ episode.url }>
+            <a key={ key } href={ episode.url } rel='noopener noreferrer' target='_blank'>
                 <div className='episode-container'>
                     <img className='episode-image' src={ episode.image } alt={ episode.title }/>
                     <div className='episode-information'>
@@ -76,9 +78,10 @@ export class ShowEpisodesComponent extends Component<ShowEpisodesProperties> {
         const {
             showEpisodes
         } = this.state;
+        const className = `episode-list ${ isMobileOnly ? 'mobile' : 'desktop' }`;
 
         return (
-            <div className='episode-list'>
+            <div className={ className }>
                 { this.renderShowEpisodes(showEpisodes) }
             </div>
             

@@ -7,11 +7,18 @@
     align-items: flex-start;
 
     width: 100%;
+}
+
+.start-page-container.desktop {
     height: calc(100vh - 101px);
-    
     overflow: auto;
 }
 
-.start-page-container::-webkit-scrollbar {
+.start-page-container.desktop::-webkit-scrollbar {
     display: none;
+}
+
+.start-page-container.mobile {
+    height: auto;
+    overflow: visible;
 }

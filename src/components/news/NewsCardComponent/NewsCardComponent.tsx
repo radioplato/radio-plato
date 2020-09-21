@@ -1,6 +1,8 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
+import { isMobileOnly } from 'react-device-detect';
+
 import { NewsCard } from '../interfaces';
 import { AD_CATEGORY } from '../constants';
 
@@ -25,7 +27,9 @@ function LinkElement({ newsCard, children }: LinkElementParameters) {
     const slug = newsCard.slug;
     const route = `/news/${ newsCard.category.toLowerCase() }/${ slug }`;
 
-    return slug ? <Link to={ route } title={ newsCard.title }>{ children }</Link> : <a href={ newsCard.link } title={ newsCard.title }>{ children }</a>;
+    return slug ?
+        <Link to={ route } title={ newsCard.title }>{ children }</Link> :
+        <a href={ newsCard.link } title={ newsCard.title } rel='noopener noreferrer' target='_blank'>{ children }</a>;
 }
 
 function TagElement({ category }: TagElementParameters) {
@@ -42,9 +46,10 @@ function NewsCardComponent({ newsCard, type }: NewsCardParameters) {
         title,
         category
     } = newsCard;
+    const device = isMobileOnly ? 'mobile' : 'desktop';
 
     return (
-        <div className={ `news-card ${ type }` }>
+        <div className={ `news-card ${ type } ${ device }` }>
             <div className='news-card-image'>
                 <LinkElement newsCard={ newsCard }>
                     <img src={ newsCover.url } loading='lazy' alt={ newsCover.alternativeText }/>

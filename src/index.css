@@ -15,6 +15,16 @@ body {
   overflow: hidden;
 }
 
+@media (pointer:none), (pointer:coarse) {
+  html, body {
+    height: auto;
+  }
+
+  body {
+    overflow: visible;
+  }
+}
+
 h1, h2, h3, h5, h6, p, code, hr {
   color: white;
   margin-block-start: 0;

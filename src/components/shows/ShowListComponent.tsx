@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 
+import { isMobileOnly } from 'react-device-detect';
+
 import ShowCardComponent from './ShowCardComponent/ShowCardComponent';
 
 import { Seo } from '../shared/wrappers/seo/Seo'
@@ -50,9 +52,10 @@ export class ShowListComponent extends Component {
         const {
             showCards
         } = this.state;
+        const className = `show-list ${ isMobileOnly ? 'mobile' : 'desktop' }`;
 
         return (
-            <div className='show-list'>
+            <div className={ className }>
                  <Seo meta={{
                         title: SHOW_LIST_SEO_TITLE,
                         description: SHOW_LIST_SEO_DESCRIPTION,

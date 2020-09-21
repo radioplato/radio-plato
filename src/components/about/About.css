@@ -15,12 +15,24 @@
     overflow: auto;
 }
 
+.about.mobile {
+    flex-direction: column-reverse;
+    height: auto;
+    box-sizing: border-box;
+    overflow: visible;
+}
+
 .about::-webkit-scrollbar {
     display: none;
 }
 
 .about .information, .about .image {
     width: 50%;
+}
+
+.about.mobile .information,
+.about.mobile .image {
+    width: 100%;
 }
 
 .about .information {
@@ -34,12 +46,20 @@
     margin-bottom: 101px;
 }
 
+.about.mobile .information {
+    margin: 0;
+}
+
 .about .information h1 {
     font-style: normal;
     font-weight: 500;
     font-size: 68px;
     line-height: 120%;
     color: #ffffff;
+}
+
+.about.mobile .information h1 {
+    margin-top: 20px;
 }
 
 .about .information p {
@@ -51,7 +71,11 @@
     margin-top: 40px;
 }
 
-.image {
+.about.mobile .information p {
+    margin-top: 20px;
+}
+
+.about .image {
     display: flex;
     flex-direction: row;
     flex-wrap: nowrap;
@@ -60,9 +84,12 @@
     align-items: center;
 }
 
-.image img {
-    width: 100%;
-    max-width: 640px;
+.about .image img {
+    width: 80%;
     height: auto;
+}
+
+.about.mobile .image img {
+    width: 100%;
 }
 

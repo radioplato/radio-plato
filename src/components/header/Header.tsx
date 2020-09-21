@@ -6,9 +6,9 @@ import {
   Route
 } from 'react-router-dom';
 
-import { Icon } from '@iconify/react';
-import bxSearch from '@iconify/icons-bx/bx-search';
+import { BrowserView, isMobileOnly } from 'react-device-detect';
 
+import MenuButton from '../menu/menu-button/MenuButton';
 import SocialLinksComponent from '../shared/SocialLinksComponent/SocialLinksComponent';
 import PlayerComponent from '../shared/Player/PlayerComponent/PlayerComponent';
 import { SocialLinks } from '../shared/interfaces';
@@ -31,23 +31,25 @@ const HEADER_SOCIAL_LINKS: SocialLinks = {
 }
 
 function Header() {
+    const className = `header-container ${ isMobileOnly ? 'mobile' : 'desktop' }`;
+
     return (
-        <header className='header-container'>
+        <header className={ className }>
+            { isMobileOnly && <MenuButton /> }
             <Link to='/' className='logo-text'>{ RADIO_PLATO }</Link>
-            <div className='social-container'>
-                <Switch>
-                    <Route exact path='/' render={
-                        props => (<SocialLinksComponent { ...props } socialLinks={ HEADER_SOCIAL_LINKS }/>)
-                    }/>
-                    <Route path='/' render={
-                        props => (<PlayerComponent { ...props } playerType={ PlayerTypes.Header }/>)
-                    }/>
-                </Switch>
-                <Link to='/donate' className='donate-link'>{ DONATE }</Link>
-                <div className='search-icon'>
-                    <Icon icon={ bxSearch } width='1.8em' color='white'/>
+            <BrowserView>
+                <div className='social-container'>
+                    <Switch>
+                        <Route exact path='/' render={
+                            props => (<SocialLinksComponent { ...props } socialLinks={ HEADER_SOCIAL_LINKS }/>)
+                        }/>
+                        <Route path='/' render={
+                            props => (<PlayerComponent { ...props } playerType={ PlayerTypes.Header }/>)
+                        }/>
+                    </Switch>
+                    <Link to='/donate' className='donate-link'>{ DONATE }</Link>
                 </div>
-            </div>
+            </BrowserView>
         </header>
     );
 }
