@@ -1,6 +1,6 @@
 {
   "name": "radio-plato",
-  "version": "1.1.0",
+  "version": "1.2.1",
   "private": true,
   "homepage": ".",
   "dependencies": {
@@ -35,9 +35,7 @@
     "start": "cross-env PUBLIC_URL='.' env-cmd -f .env.local react-scripts start",
     "build": "cross-env PUBLIC_URL='.' env-cmd -f .env.production react-scripts build",
     "build:staging": "cross-env PUBLIC_URL='/radio-plato' env-cmd -f .env.staging react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject",
-    "predeploy": "npm run build-stage",
+    "predeploy": "npm run build:staging",
     "deploy:staging": "gh-pages -d build"
   },
   "eslintConfig": {
