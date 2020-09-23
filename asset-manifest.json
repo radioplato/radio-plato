@@ -1,25 +1,25 @@
 {
   "files": {
-    "main.css": "/radio-plato/static/css/main.ee320d2b.chunk.css",
-    "main.js": "/radio-plato/static/js/main.6ad022e4.chunk.js",
-    "main.js.map": "/radio-plato/static/js/main.6ad022e4.chunk.js.map",
+    "main.css": "/radio-plato/static/css/main.e04d497e.chunk.css",
+    "main.js": "/radio-plato/static/js/main.39e27597.chunk.js",
+    "main.js.map": "/radio-plato/static/js/main.39e27597.chunk.js.map",
     "runtime-main.js": "/radio-plato/static/js/runtime-main.28ed98e0.js",
     "runtime-main.js.map": "/radio-plato/static/js/runtime-main.28ed98e0.js.map",
     "static/css/2.fb346933.chunk.css": "/radio-plato/static/css/2.fb346933.chunk.css",
     "static/js/2.58a5d407.chunk.js": "/radio-plato/static/js/2.58a5d407.chunk.js",
     "static/js/2.58a5d407.chunk.js.map": "/radio-plato/static/js/2.58a5d407.chunk.js.map",
     "index.html": "/radio-plato/index.html",
-    "precache-manifest.a156e0ccb6fad9bc7a463ca30267f057.js": "/radio-plato/precache-manifest.a156e0ccb6fad9bc7a463ca30267f057.js",
+    "precache-manifest.4b0939148deae11980b47455a380d1c1.js": "/radio-plato/precache-manifest.4b0939148deae11980b47455a380d1c1.js",
     "service-worker.js": "/radio-plato/service-worker.js",
     "static/css/2.fb346933.chunk.css.map": "/radio-plato/static/css/2.fb346933.chunk.css.map",
-    "static/css/main.ee320d2b.chunk.css.map": "/radio-plato/static/css/main.ee320d2b.chunk.css.map",
+    "static/css/main.e04d497e.chunk.css.map": "/radio-plato/static/css/main.e04d497e.chunk.css.map",
     "static/js/2.58a5d407.chunk.js.LICENSE.txt": "/radio-plato/static/js/2.58a5d407.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
     "static/js/runtime-main.28ed98e0.js",
     "static/css/2.fb346933.chunk.css",
     "static/js/2.58a5d407.chunk.js",
-    "static/css/main.ee320d2b.chunk.css",
-    "static/js/main.6ad022e4.chunk.js"
+    "static/css/main.e04d497e.chunk.css",
+    "static/js/main.39e27597.chunk.js"
   ]
 }
