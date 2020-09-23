@@ -1,25 +1,25 @@
 {
   "files": {
     "main.css": "/radio-plato/static/css/main.e04d497e.chunk.css",
-    "main.js": "/radio-plato/static/js/main.6b00e765.chunk.js",
-    "main.js.map": "/radio-plato/static/js/main.6b00e765.chunk.js.map",
+    "main.js": "/radio-plato/static/js/main.0f0f8540.chunk.js",
+    "main.js.map": "/radio-plato/static/js/main.0f0f8540.chunk.js.map",
     "runtime-main.js": "/radio-plato/static/js/runtime-main.28ed98e0.js",
     "runtime-main.js.map": "/radio-plato/static/js/runtime-main.28ed98e0.js.map",
     "static/css/2.fb346933.chunk.css": "/radio-plato/static/css/2.fb346933.chunk.css",
-    "static/js/2.58a5d407.chunk.js": "/radio-plato/static/js/2.58a5d407.chunk.js",
-    "static/js/2.58a5d407.chunk.js.map": "/radio-plato/static/js/2.58a5d407.chunk.js.map",
+    "static/js/2.eac04d9f.chunk.js": "/radio-plato/static/js/2.eac04d9f.chunk.js",
+    "static/js/2.eac04d9f.chunk.js.map": "/radio-plato/static/js/2.eac04d9f.chunk.js.map",
     "index.html": "/radio-plato/index.html",
-    "precache-manifest.bc129c34c4be131767e8270408594a1c.js": "/radio-plato/precache-manifest.bc129c34c4be131767e8270408594a1c.js",
+    "precache-manifest.cd6606774f08a777df66393ec22e523b.js": "/radio-plato/precache-manifest.cd6606774f08a777df66393ec22e523b.js",
     "service-worker.js": "/radio-plato/service-worker.js",
     "static/css/2.fb346933.chunk.css.map": "/radio-plato/static/css/2.fb346933.chunk.css.map",
     "static/css/main.e04d497e.chunk.css.map": "/radio-plato/static/css/main.e04d497e.chunk.css.map",
-    "static/js/2.58a5d407.chunk.js.LICENSE.txt": "/radio-plato/static/js/2.58a5d407.chunk.js.LICENSE.txt"
+    "static/js/2.eac04d9f.chunk.js.LICENSE.txt": "/radio-plato/static/js/2.eac04d9f.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
     "static/js/runtime-main.28ed98e0.js",
     "static/css/2.fb346933.chunk.css",
-    "static/js/2.58a5d407.chunk.js",
+    "static/js/2.eac04d9f.chunk.js",
     "static/css/main.e04d497e.chunk.css",
-    "static/js/main.6b00e765.chunk.js"
+    "static/js/main.0f0f8540.chunk.js"
   ]
 }
