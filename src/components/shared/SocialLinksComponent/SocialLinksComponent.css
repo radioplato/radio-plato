@@ -16,3 +16,9 @@
 .social-icon > a {
     text-decoration: none;
 }
+.social-link {
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    align-items: center;
+}

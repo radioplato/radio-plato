@@ -77,6 +77,7 @@ export class NewsComponent extends Component<NewsComponentProperties> {
         const className = `news ${ isMobileOnly ? 'mobile' : 'desktop' }`;
         const imageSrc = news ? news.newsCover.url : '';
         const imageStyle = {
+            backgroundPosition: 'center',
             backgroundRepeat: 'no-repeat',
             backgroundAttachment: 'fixed',
             backgroundSize: 'cover',
@@ -84,7 +85,7 @@ export class NewsComponent extends Component<NewsComponentProperties> {
         }
         const date = moment(news?.publishDate).format(DATE_FORMAT);
         const wordsBy = news?.wordsBy ? `| Author: ${ news.wordsBy }` : '';
-        const photosBy = news?.photosBy ? `| Ph.: ${ news.photosBy }` : '';
+        const photosBy = news?.photosBy ? `| Photo by: ${ news.photosBy }` : '';
 
         return news ? (
             <article className={ className }>

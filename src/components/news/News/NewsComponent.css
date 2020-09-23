@@ -70,6 +70,7 @@
     font-size: 68px;
     line-height: 120%;
     text-align: center;
+    width: 95%;
 
     color: #ffffff;
 }
@@ -138,15 +139,13 @@
     font-weight: 300;
     font-size: 18px;
     line-height: 1.5em;
-    text-indent: .5em;
     
     margin: 10px 0;
-    color: #b3b3b3;
+    color: #cacaca;
 }
 
 .news.mobile .news-content p {
     font-size: 16px;
-    text-indent: 0;
 }
 
 .news-content p img {
