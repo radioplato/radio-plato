@@ -154,9 +154,14 @@
     margin: 40px 0;
 }
 
+.news-content span {
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    align-items: center;
+}
+
 .news-content iframe {
-    width: 800px;
-    height: auto;
     margin: 20px 0;
 }
 
