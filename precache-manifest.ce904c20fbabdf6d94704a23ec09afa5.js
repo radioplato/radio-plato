@@ -1,6 +1,6 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "7a21ee5e35249dc233ce6eceb93a643b",
+    "revision": "c86054e67422194b196aaaa8f9a3af2e",
     "url": "/radio-plato/index.html"
   },
   {
@@ -8,7 +8,7 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/radio-plato/static/css/2.fb346933.chunk.css"
   },
   {
-    "revision": "cbe1002130853a4c23e5",
+    "revision": "0ac2007653a8fc92f69d",
     "url": "/radio-plato/static/css/main.e04d497e.chunk.css"
   },
   {
@@ -20,8 +20,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/radio-plato/static/js/2.eac04d9f.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "cbe1002130853a4c23e5",
-    "url": "/radio-plato/static/js/main.0f0f8540.chunk.js"
+    "revision": "0ac2007653a8fc92f69d",
+    "url": "/radio-plato/static/js/main.82d677e5.chunk.js"
   },
   {
     "revision": "1628fb29eb7272e956ca",
