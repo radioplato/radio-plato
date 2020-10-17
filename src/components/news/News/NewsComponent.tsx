@@ -106,7 +106,11 @@ export class NewsComponent extends Component<NewsComponentProperties> {
                 </div>
                 <div className='news-content-container'>
                     <div className='news-content'>
-                        <ReactMarkdown source={ news.content } escapeHtml={ false } />
+                        <ReactMarkdown
+                            source={ news.content }
+                            escapeHtml={ false }
+                            renderers={{ link: props => <a href={ props.href } target="_blank" rel="noopener noreferrer">{ props.children }</a> }}
+                        />
                     </div>
                 </div>
                 { advertisement ? (<AdComponent advertisement={ advertisement } />) : null }

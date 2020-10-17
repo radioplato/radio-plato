@@ -59,7 +59,11 @@ export class DonateComponent extends Component {
                 <div className='information'>
                     <h1>{ donate.title }</h1>
                     <div className='text-content'>
-                        <ReactMarkdown source={ donate.description } escapeHtml={ false } />
+                        <ReactMarkdown
+                            source={ donate.description }
+                            escapeHtml={ false }
+                            renderers={{ link: props => <a href={ props.href } target="_blank" rel="noopener noreferrer">{ props.children }</a> }}
+                        />
                     </div>
                 </div>
                 <div className='image'>
