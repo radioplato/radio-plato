@@ -3,6 +3,13 @@ import { Subject } from 'rxjs'
 import { PlayerState } from './interfaces';
 import { DEFAULT_PLAYER_STATE } from './constants';
 
+
+enum StorageKey {
+    Volume = 'volume'
+}
+
+const parseVolume = (value: string | null): number => value !== null ? parseFloat(value) : 1;
+
 class PlayerService {
     private playerState: PlayerState;
     private track = '';
@@ -18,8 +25,12 @@ class PlayerService {
 
     constructor (state: PlayerState) {
         this.playerState = state;
+
         this.playerStateSubject = new Subject();
         this.trackNameSubject = new Subject();
+
+        this.volume = parseVolume(localStorage.getItem(StorageKey.Volume));
+
         this.connection.onmessage = event => this.onMessage(event);
     }
 
@@ -33,6 +44,8 @@ class PlayerService {
     }
 
     set volume (volumeLevel: number) {
+        localStorage.setItem(StorageKey.Volume, volumeLevel.toString());
+
         this.playerState.volume = volumeLevel;
         this.playerStateSubject.next(this.playerState);
     }
