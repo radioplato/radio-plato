@@ -52,8 +52,8 @@ export class ShowEpisodesComponent extends Component<ShowEpisodesProperties> {
                     <img className='episode-image' src={ episode.image } alt={ episode.title }/>
                     <div className='episode-information'>
                         <h3>{ episode.title }</h3>
-                        <p>{ date }</p>
                     </div>
+                    <p>{ date }</p>
                 </div>
             </a>
         );
