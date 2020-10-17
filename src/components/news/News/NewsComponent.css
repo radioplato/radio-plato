@@ -151,7 +151,7 @@
 .news-content p img {
     width: 800px;
     height: auto;
-    margin: 40px 0;
+    margin: 20px 0;
 }
 
 .news-content span {
@@ -188,3 +188,8 @@
     color: #b3b3b3;
 }
 
+img + em {
+    display: block;
+    font-size: 14px;
+    margin-bottom: 17px;
+}

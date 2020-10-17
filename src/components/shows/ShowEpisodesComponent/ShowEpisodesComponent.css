@@ -51,6 +51,11 @@
     padding: 40px;
 }
 
+.episode-container p {
+    flex: 1 1 auto;
+    text-align: right;
+}
+
 .episode-list.mobile .episode-container {
     padding: 0;
     padding-bottom: 20px;
