@@ -30,10 +30,10 @@ function Content() {
             <Route exact path='/' component={ StartPageComponent } />
             <Route exact path={ SCHEDULE } component={ SchedulePageComponent } />
             <Route exact path={ SHOWS } component={ ShowListComponent } />
-            <Route path={ `${ SHOWS }/:slug` } component={(routerProps: any) => <ShowComponent slug={ routerProps.match.params.slug } />} />
+            <Route exact path={ `${ SHOWS }/:slug` } component={(routerProps: any) => <ShowComponent slug={ routerProps.match.params.slug } />} />
             <Route exact path={ NEWS } component={ () => <NewsListComponent type={ NewsListTypes.Full } /> } />
             <Route exact path={ `${ NEWS }/:category` } component={ (routerProps: any) => <NewsListComponent type={ NewsListTypes.Full } category={ routerProps.match.params.category } /> } />
-            <Route path={ `${ NEWS }/:category/:slug` } component={(routerProps: any) => <NewsComponent slug={routerProps.match.params.slug} />} />
+            <Route exact path={ `${ NEWS }/:category/:slug` } component={(routerProps: any) => <NewsComponent slug={routerProps.match.params.slug} />} />
             <Route exact path={ ABOUT } component={ AboutComponent } />
             <Route exact path={ DONATE } component={ DonateComponent } />
         </Switch>

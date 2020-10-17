@@ -43,7 +43,7 @@ function Header() {
                         <Route exact path='/' render={
                             props => (<SocialLinksComponent { ...props } socialLinks={ HEADER_SOCIAL_LINKS }/>)
                         }/>
-                        <Route path='/' render={
+                        <Route exact path='/' render={
                             props => (<PlayerComponent { ...props } playerType={ PlayerTypes.Header }/>)
                         }/>
                     </Switch>
