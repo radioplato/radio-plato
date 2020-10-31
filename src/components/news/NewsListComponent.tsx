@@ -49,7 +49,7 @@ export class NewsListComponent extends Component<NewsListComponentProperties> {
             },
             slug: newsDto.Slug,
             title: newsDto.Title,
-            publishDate: newsDto.PublishDate
+            publishDate: newsDto.publish_at
         };
     }
 
@@ -79,7 +79,7 @@ export class NewsListComponent extends Component<NewsListComponentProperties> {
 
         this.setState({ loading: true });
 
-        fetch(`${ process.env.REACT_APP_BACKEND_URL }/posts?${ filter }_sort=PublishDate:DESC&_start=${ start }&_limit=${ NEWS_LIMIT }`)
+        fetch(`${ process.env.REACT_APP_BACKEND_URL }/posts?${ filter }_sort=publish_at:DESC&_start=${ start }&_limit=${ NEWS_LIMIT }`)
             .then(response => response.json())
             .then(data => data.map((datum: NewsDto) => this.parseNewsCard(datum)))
             .then(newsCards => this.handleResponse(newsCards));

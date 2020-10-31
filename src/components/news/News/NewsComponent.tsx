@@ -42,7 +42,7 @@ export class NewsComponent extends Component<NewsComponentProperties> {
             photosBy: newsDto.PhotosBy,
             excerpt:  newsDto.Excerpt,
             slug: newsDto.Slug,
-            publishDate: newsDto.PublishDate,
+            publishDate: newsDto.publish_at,
             newsCover: {
                 alternativeText: newsDto.PostCover.alternativeText,
                 caption: newsDto.PostCover.caption,
