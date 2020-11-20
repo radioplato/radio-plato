@@ -13,6 +13,7 @@ import { NewsDto, News } from '../interfaces';
 
 import './NewsComponent.css';
 import { isMobileOnly } from 'react-device-detect';
+import { Link } from 'react-router-dom';
 
 
 interface NewsComponentProperties {
@@ -21,7 +22,8 @@ interface NewsComponentProperties {
 
 interface NewsComponentState {
     news: News | null,
-    advertisement: Advertisement | null
+    advertisement: Advertisement | null,
+    articles: News[]
 }
 
 const DATE_FORMAT = 'DD.MM.YYYY';
@@ -29,7 +31,8 @@ const DATE_FORMAT = 'DD.MM.YYYY';
 export class NewsComponent extends Component<NewsComponentProperties> {
     state: NewsComponentState = {
         news: null,
-        advertisement: null
+        advertisement: null,
+        articles: []
     };
     subscription: Subscription | null = null;
 
@@ -51,19 +54,32 @@ export class NewsComponent extends Component<NewsComponentProperties> {
         } : null
     }
 
-    fetchNews () {
+    fetchCurrentArticle () {
         const { slug } = this.props;
 
-        fetch(`${ process.env.REACT_APP_BACKEND_URL }/posts?Slug=${ slug }`)
+        return fetch(`${ process.env.REACT_APP_BACKEND_URL }/posts?Slug=${ slug }`)
             .then(response => response.json())
             .then((data: NewsDto[]) => this.parseNews(data[0]))
             .then(news => this.setState({ news }));
     }
+
+    fetchLastArticles () {
+        const category = this.state.news?.category;
+        const filter = category ? `Category=${ category[0].toUpperCase() + category.slice(1) }&` : '';
+
+        return fetch(`${ process.env.REACT_APP_BACKEND_URL }/posts?${ filter }_sort=publish_at:DESC&_start=0&_limit=10`)
+            .then(response => response.json())
+            .then((data: NewsDto[]) => data.map(datum => this.parseNews(datum)))
+            .then(articles => this.setState({ articles }));
+    }
     
-    componentDidMount () {
-        this.fetchNews();
+    async componentDidMount () {
+        await this.fetchCurrentArticle();
+
         this.subscribeOnGalleryChange();
         adService.fetchAdvertisements();
+
+        await this.fetchLastArticles();
     }
 
     subscribeOnGalleryChange () {
@@ -74,7 +90,6 @@ export class NewsComponent extends Component<NewsComponentProperties> {
 
     render () {
         const { news, advertisement } = this.state;
-        const className = `news ${ isMobileOnly ? 'mobile' : 'desktop' }`;
         const imageSrc = news ? news.newsCover.url : '';
         const imageStyle = {
             backgroundPosition: 'center',
@@ -88,7 +103,7 @@ export class NewsComponent extends Component<NewsComponentProperties> {
         const photosBy = news?.photosBy ? `| Photo by: ${ news.photosBy }` : '';
 
         return news ? (
-            <article className={ className }>
+            <article className={ `news ${ isMobileOnly ? 'mobile' : 'desktop' }` }>
                 <Seo meta={{
                         title: news.title,
                         description: news.excerpt,
@@ -114,6 +129,24 @@ export class NewsComponent extends Component<NewsComponentProperties> {
                     </div>
                 </div>
                 { advertisement ? (<AdComponent advertisement={ advertisement } />) : null }
+                <h2 className="more-news-title">MORE NEWS</h2>
+                <div className="more-news">
+                    
+                    {
+                        this.state.articles.filter(article => article.slug !== this.state.news?.slug)
+                            .sort(() => 0.5 - Math.random())
+                            .slice(0, 3)
+                            .map(article => (
+                                <Link to={ `/news/${ article.category.toLowerCase() }/${ article.slug }` } title={ article.title }>
+                                    <div className={ `card ${ isMobileOnly ? 'mobile' : 'desktop' }` }>
+                                        <img src={ article.newsCover.url } loading='lazy' alt={ article.newsCover.alternativeText }/>
+                                        <h2>{ article.title }</h2>
+                                        <p>{ article.excerpt }</p>
+                                    </div>    
+                                </Link>
+                            ))
+                    }
+                </div>
             </article>
         ) : null;
     }
