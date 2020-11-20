@@ -10,6 +10,7 @@
     padding: 40px;
 
     overflow: auto;
+    box-sizing: border-box;
 }
 
 .show-list.mobile {

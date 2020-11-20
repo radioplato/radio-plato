@@ -19,6 +19,7 @@ export interface ShowDto extends StrapiObjectDto {
     ShowLink: ShowLinkDto;
     Slug: string;
     Title: string;
+    Weight: number;
 }
 
 export interface ShowCard {
@@ -26,6 +27,7 @@ export interface ShowCard {
     showCover: SimpleImage;
     slug: string;
     title: string;
+    weight: number;
 }
 
 export interface Show {
