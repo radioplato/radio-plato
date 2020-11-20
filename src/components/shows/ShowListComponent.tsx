@@ -29,7 +29,8 @@ export class ShowListComponent extends Component {
                 url: showDto.ShowCover.url
             },
             slug: showDto.Slug,
-            title: showDto.Title
+            title: showDto.Title,
+            weight: showDto.Weight
         };
     }
 
@@ -37,7 +38,7 @@ export class ShowListComponent extends Component {
         fetch(`${ process.env.REACT_APP_BACKEND_URL }/shows`)
             .then(response => response.json())
             .then(data => data.map((datum: ShowDto) => this.parseShowCard(datum)))
-            .then(showCards => this.setState({ showCards }));
+            .then(shows => this.setState({ showCards: shows.sort((a: ShowCard, b: ShowCard) => a.weight - b.weight) }));
     }
 
     renderShowCards (showCards: ShowCard[]) {
