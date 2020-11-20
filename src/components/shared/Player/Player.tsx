@@ -17,9 +17,14 @@ export class Player extends Component {
     }
 
     subscribeOnPlayerStateChange () {
-        this.subscription = playerService.subscribeOnPlayerStateChanges(
-            (data: PlayerState) => this.setState(data)
-        );
+        this.subscription = playerService.subscribeOnPlayerStateChanges((data: PlayerState) => {
+            if (data.playing !== this.state.playing) {
+                const audio = document.querySelector('audio') as HTMLAudioElement;
+
+                audio.src = data.playing ? process.env.REACT_APP_STREAM_URL as string : '';
+            }
+            this.setState(data);
+        });
     }
 
     componentWillUnmount () {
