@@ -61,6 +61,7 @@
 .track-title {
     color: #ffffff;
     font-weight: 500;
+    overflow: hidden;
 }
 
 .main-player .track-title {
@@ -69,15 +70,26 @@
 
 .header-player .track-title {
     font-size: 18px;
-    width: 400px;
+    width: 300px;
     margin-right: 40px;
 }
 
 .header-player .track-title p {
     white-space: nowrap;
     overflow: hidden;
-    text-overflow: ellipsis;
-}
+    text-overflow: hidden;
+    white-space: nowrap;
+    animation: floatText 15s infinite linear;
+    transform: translate(100%);
+  }
+  .header-player p:hover {
+    animation-play-state: paused;
+  }
+    @keyframes floatText {
+        to {
+            transform: translateX(-100%);
+        }
+    }
 
 .main-player .play-button {
     width: 100px;
