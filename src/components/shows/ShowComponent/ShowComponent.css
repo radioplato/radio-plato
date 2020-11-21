@@ -41,6 +41,7 @@
 }
 
 .show-description {
+    width: 100%;
     display: flex;
     flex-direction: row;
     flex-wrap: nowrap;
@@ -53,6 +54,40 @@
 
 .show.mobile .show-description {
     flex-direction: column-reverse;
+}
+
+.title-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-content: center;
+    align-items: center;
+
+    width: 100%;
+}
+
+.more-shows-title {
+    text-align: center;
+    font-size: 36px;
+    font-weight: 500;
+    line-height: 120%;
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 40px;
+    text-indent: 0;
+}
+
+.more-shows {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-content: center;
+    align-items: flex-start;
+
+    width: 100%;
+
+    margin-top: 40px;
 }
 
 .information, .show-cover {
@@ -113,6 +148,7 @@
 .show.mobile .show-cover {
     width: 100%;
     height: auto;
+    justify-content: flex-start;
 }
 
 .show-cover img {

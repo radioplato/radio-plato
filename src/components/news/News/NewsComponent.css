@@ -218,7 +218,7 @@ img + em {
     align-content: center;
     align-items: flex-start;
 
-    width: 100%;
+    width: calc(100% - 40px);
 
     margin-top: 40px;
 }
@@ -241,14 +241,13 @@ img + em {
     align-content: stretch;
 
     width: 370px;
-    margin-right: 60px;
-    margin-bottom: 80px;
+    margin: 0 30px 80px 30px;
 }
 
 .card.mobile {
     width: 100%;
-    margin-right: 0;
-    margin-bottom: 60px;
+    margin: 0;
+    margin-bottom: 40px;
 }
 
 .card img {

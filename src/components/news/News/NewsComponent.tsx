@@ -82,6 +82,17 @@ export class NewsComponent extends Component<NewsComponentProperties> {
         await this.fetchLastArticles();
     }
 
+    componentDidUpdate (previousProps: NewsComponentProperties) {
+        if (this.props.slug !== previousProps.slug) {
+            this.setState({
+                news: null,
+                advertisement: null,
+                articles: []
+            });
+            this.componentDidMount();
+        }
+    }
+
     subscribeOnGalleryChange () {
         this.subscription = adService.subscribeOnNewsPostAdUpdate(
             (advertisement: Advertisement) => this.setState({ advertisement })
@@ -131,13 +142,12 @@ export class NewsComponent extends Component<NewsComponentProperties> {
                 { advertisement ? (<AdComponent advertisement={ advertisement } />) : null }
                 <h2 className="more-news-title">MORE NEWS</h2>
                 <div className="more-news">
-                    
                     {
                         this.state.articles.filter(article => article.slug !== this.state.news?.slug)
                             .sort(() => 0.5 - Math.random())
                             .slice(0, 3)
                             .map(article => (
-                                <Link to={ `/news/${ article.category.toLowerCase() }/${ article.slug }` } title={ article.title }>
+                                <Link to={ `../../../news/${ article.category.toLowerCase() }/${ article.slug }` } title={ article.title } key={ article.slug }>
                                     <div className={ `card ${ isMobileOnly ? 'mobile' : 'desktop' }` }>
                                         <img src={ article.newsCover.url } loading='lazy' alt={ article.newsCover.alternativeText }/>
                                         <h2>{ article.title }</h2>

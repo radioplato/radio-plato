@@ -6,13 +6,12 @@
     align-content: stretch;
 
     width: 370px;
-    margin-right: 60px;
-    margin-bottom: 80px;
+    margin: 0 30px 80px 30px;
 }
 
 .show-card.mobile {
     width: 100%;
-    margin-right: 0;
+    margin: 0;
     margin-bottom: 60px;
 }
 

@@ -33,6 +33,7 @@ export interface ShowCard {
 export interface Show {
     description: string;
     title: string;
+    slug: string;
     showCover: SimpleImage;
     showLinks: SocialLinks;
 }

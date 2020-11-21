@@ -60,9 +60,9 @@ export class ShowEpisodesComponent extends Component<ShowEpisodesProperties> {
     }
 
     renderShowEpisodes (episodes: ShowEpisode[]) {
-        return episodes ? (
+        return episodes && episodes.length ? (
             <>
-                <h2>Latest Episodes</h2>
+                <h2>LATEST EPISODES</h2>
                 <div className='episode-cards'>
                     { episodes.map(episode => this.renderShowEpisode(episode)) }
                 </div>
