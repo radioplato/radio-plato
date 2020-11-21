@@ -4,9 +4,6 @@ import { Link } from 'react-router-dom';
 
 import { isMobileOnly } from 'react-device-detect';
 
-import { Icon } from '@iconify/react';
-import crossIcon from '@iconify/icons-gridicons/cross';
-
 import './Menu.css'
 
 
@@ -40,14 +37,8 @@ function Menu({ menuRef, wrapperRef, toggleMenu }: MenuParameters) {
         <>
             <div className={`wrapper ${ device }`} ref={ wrapperRef } onClick={ toggleMenu } />
             <nav ref={ menuRef } className={ device }>
-                <div className='close-button-container'>
-                    <button 
-                        className='close-button'
-                        aria-label='Close menu button'
-                        onClick={ toggleMenu }
-                    >
-                        <Icon icon={ crossIcon } width={ 48 } height={ 48 }/>    
-                    </button>
+                <div className='menu-button-aside white' onClick={ toggleMenu }>
+                    <p className='label close-button'>CLOSE</p>
                 </div>
                 <div className='menu-items-container'>
                     <ul className='menu-items'>

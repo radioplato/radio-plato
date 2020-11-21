@@ -51,16 +51,19 @@ function Header() {
                         }/>
                     </Switch>
                     
-                    <a  className='android-link'
-                        target='_blank'
-                        href={ HEADER_SOCIAL_LINKS.googlePlay }
-                        title={ `A link to Android App` }
-                        aria-label={ `A link to Android App` }
-                        rel='noopener noreferrer'
-                    >
-                        <Icon className='social-icon' icon={ googlePlay  } width='1.5em' color='white'/>
-                        { ANDROID_APP }
-                    </a>
+                    <div className="android-link-wrapper">
+                        <a className='android-link'
+                            target='_blank'
+                            href={ HEADER_SOCIAL_LINKS.googlePlay }
+                            title={ `A link to Android App` }
+                            aria-label={ `A link to Android App` }
+                            rel='noopener noreferrer'
+                        >
+                            <Icon className='google-play-icon' icon={ googlePlay }/>
+                            { ANDROID_APP }
+                        </a>
+                    </div>
+                    
 
                     <Link to='/donate' className='donate-link'>{ DONATE }</Link>
                 </div>

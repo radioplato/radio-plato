@@ -75,7 +75,6 @@ header {
 
 .android-link {
     color: white;
-    margin-right: 40px;
     color: #ffffff;
     font-style: normal;
     font-weight: 500;
@@ -86,4 +85,31 @@ header {
     justify-content: flex-start;
     align-content: stretch;
     align-items: center;
+}
+
+.android-link-wrapper {
+    position: relative;
+    margin-right: 40px;
+}
+
+.android-link:before {
+    content: '';
+    position: absolute;
+    width: 1%;
+    height: 2px;
+    bottom: 0;
+    left: 0;
+    background-color: #ffffff;
+    visibility: hidden;
+}
+
+.android-link:hover:before {
+    visibility: visible;
+    width: 100%;
+}
+
+.google-play-icon {
+    width: 1.1em;  
+    margin-left:0px;
+    margin-right: 12px;
 }

@@ -29,8 +29,8 @@ function MenuButton() {
 
     const renderAsideButton = () => {
         return (
-            <div className='menu-button-aside' onClick={ toggleMenu }>
-                <p className='label'>{ MENU }</p>
+            <div className='menu-button-aside black' onClick={ toggleMenu }>
+                <p className='label open-button'>{ MENU }</p>
             </div>
         );
     }
