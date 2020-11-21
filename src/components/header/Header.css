@@ -72,3 +72,18 @@ header {
     height: 100%;
     visibility: visible;
 }
+
+.android-link {
+    color: white;
+    margin-right: 40px;
+    color: #ffffff;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 16px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+    align-content: stretch;
+    align-items: center;
+}
