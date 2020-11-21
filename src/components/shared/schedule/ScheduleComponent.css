@@ -5,9 +5,26 @@
 
     width: 100%;
     height: auto;
+
+    overflow: auto;
+    overflow-y: overlay;
+    box-sizing: border-box;
 }
 
 .schedule-container::-webkit-scrollbar {
+    width: 2px;
+}
+
+.schedule-container::-webkit-scrollbar-track {
+    background-color: #00000000;
+    border: 0;
+}
+
+.schedule-container::-webkit-scrollbar-thumb {
+    background-color: #ffffff13;
+}
+
+.schedule-container::-webkit-scrollbar-button {
     display: none;
 }
 

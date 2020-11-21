@@ -13,6 +13,7 @@
     padding: 40px;
 
     overflow: auto;
+    overflow-y: overlay;
     box-sizing: border-box;
 }
 
@@ -24,6 +25,19 @@
 }
 
 .donate::-webkit-scrollbar {
+    width: 2px;
+}
+
+.donate::-webkit-scrollbar-track {
+    background-color: #00000000;
+    border: 0;
+}
+
+.donate::-webkit-scrollbar-thumb {
+    background-color: #ffffff13;
+}
+
+.donate::-webkit-scrollbar-button {
     display: none;
 }
 

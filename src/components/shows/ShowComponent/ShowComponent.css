@@ -13,6 +13,8 @@
     padding: 40px;
 
     overflow: auto;
+    overflow-y: overlay;
+    box-sizing: border-box;
 }
 
 .show.mobile {
@@ -22,6 +24,19 @@
 }
 
 .show::-webkit-scrollbar {
+    width: 2px;
+}
+
+.show::-webkit-scrollbar-track {
+    background-color: #00000000;
+    border: 0;
+}
+
+.show::-webkit-scrollbar-thumb {
+    background-color: #ffffff13;
+}
+
+.show::-webkit-scrollbar-button {
     display: none;
 }
 

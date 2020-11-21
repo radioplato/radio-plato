@@ -10,6 +10,7 @@
     padding: 0 40px;
 
     overflow: auto;
+    overflow-y: overlay;
 }
 
 .news-list.mobile {
@@ -19,10 +20,23 @@
 }
 
 .news-list::-webkit-scrollbar {
+    width: 2px;
+}
+
+.news-list::-webkit-scrollbar-track {
+    background-color: #00000000;
+    border: 0;
+}
+
+.news-list::-webkit-scrollbar-thumb {
+    background-color: #ffffff13;
+}
+
+.news-list::-webkit-scrollbar-button {
     display: none;
 }
 
-.news-list.mobile::-webkit-scrollba {
+.news-list.mobile::-webkit-scrollbar {
     display: block;
 }
 

@@ -13,6 +13,7 @@
     padding: 40px;
 
     overflow: auto;
+    overflow-y: overlay;
     box-sizing: border-box;
 }
 
@@ -24,6 +25,19 @@
 }
 
 .about::-webkit-scrollbar {
+    width: 2px;
+}
+
+.about::-webkit-scrollbar-track {
+    background-color: #00000000;
+    border: 0;
+}
+
+.about::-webkit-scrollbar-thumb {
+    background-color: #ffffff13;
+}
+
+.about::-webkit-scrollbar-button {
     display: none;
 }
 
