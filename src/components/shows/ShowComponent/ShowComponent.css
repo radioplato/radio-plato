@@ -6,6 +6,8 @@
     align-content: stretch;
     align-items: flex-start;
 
+    box-sizing: border-box;
+
     width: 100%;
     height: calc(100vh - 101px);
     padding: 40px;
