@@ -60,6 +60,7 @@ export class PlayerComponent extends PureComponent<PlayerProps> {
             <>
                 <PlayButton playerType={ this.props.playerType }/>
                 <div className='track-title'>
+                    <div className="overlay"></div>
                     <p>{ trackName }</p>
                 </div>
                 <VolumeControls />
