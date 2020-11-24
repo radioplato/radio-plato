@@ -22,11 +22,15 @@ RUN addgroup -S pptruser && adduser -S -g pptruser pptruser \
     && chown -R pptruser:pptruser /home/pptruser \
     && chown -R pptruser:pptruser /app
 
-USER pptruser
-
 RUN npm install --silent
 RUN npm install react-scripts cross-env -g --silent
+
+USER pptruser
+
 RUN npm run build
+
+USER radioplato
+
 COPY . /app
 
 FROM nginx:alpine
