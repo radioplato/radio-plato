@@ -12,8 +12,6 @@ WORKDIR /app
 ENV PATH /app/node_modules/.bin:$PATH
 COPY package.json /app
 COPY package-lock.json /app
-RUN npm install --silent
-RUN npm install react-scripts cross-env -g --silent
 COPY . /app
 
 ENV PUPPETEER_SKIP_CHROMIUM_DOWNLOAD true
@@ -26,7 +24,10 @@ RUN addgroup -S pptruser && adduser -S -g pptruser pptruser \
 
 USER pptruser
 
+RUN npm install --silent
+RUN npm install react-scripts cross-env -g --silent
 RUN npm run build
+COPY . /app
 
 FROM nginx:alpine
 COPY --from=builder /app/build /usr/share/nginx/html

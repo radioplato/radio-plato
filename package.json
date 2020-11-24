@@ -49,6 +49,8 @@
     "puppeteer": {
       "waitUntil": "networkidle2"
     },
+    "concurrency": 1,
+    "puppeteerExecutablePath": "/usr/bin/chromium-browser",
     "inlineCss": false
   },
   "browserslist": {
