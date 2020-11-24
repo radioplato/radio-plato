@@ -47,10 +47,8 @@
       "--disable-setuid-sandbox"
     ],
     "puppeteer": {
-      "waitUntil": "networkidle2",
-      "timeout": 60000
+      "waitUntil": "networkidle2"
     },
-    "headless": false,
     "inlineCss": false
   },
   "browserslist": {
