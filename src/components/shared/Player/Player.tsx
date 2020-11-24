@@ -14,6 +14,7 @@ export class Player extends Component {
     
     componentDidMount () {
         this.subscribeOnPlayerStateChange();
+        this.setState({ playing: false });
     }
 
     subscribeOnPlayerStateChange () {
@@ -41,7 +42,7 @@ export class Player extends Component {
         return (
             <div className='audio'>
                 <ReactPlayer
-                    url={ process.env.REACT_APP_STREAM_URL }
+                    url={ "https://upload.wikimedia.org/wikipedia/commons/2/2e/LatinTriangle.ogg" }
                     playing={ playing }
                     muted={ muted }
                     volume={ volume }
