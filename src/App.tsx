@@ -1,15 +1,17 @@
-import React from 'react';
+import React, { Component } from 'react';
 
 import {
     BrowserRouter, HashRouter
 } from 'react-router-dom';
+
+import { HelmetProvider } from 'react-helmet-async';
 
 import Header from './components/header/Header';
 import Main from './components/main/Main';
 import Player from './components/shared/Player/Player';
 
 import './App.css';
-import { HelmetProvider } from 'react-helmet-async';
+
 
 const Components = (
     <>
@@ -33,12 +35,14 @@ function withEnvironmentalRouter (children: JSX.Element) {
     )
 }
 
-function App() {
-    return (
-        <HelmetProvider>
-            { withEnvironmentalRouter(Components) }
-        </HelmetProvider>
-    );
+class App extends Component {
+    render() {
+        return (
+            <HelmetProvider>
+                { withEnvironmentalRouter(Components) }
+            </HelmetProvider>
+        );
+    }
 }
 
 export default App;

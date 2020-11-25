@@ -22,10 +22,9 @@ function showlineWrapper (showline: ScheduleShow) {
     } = showline;
     const interval = startTime && endTime ? `${ startTime.slice(0, 5) } - ${ endTime.slice(0, 5) }` : '';
     const href = link ? link : null;
-    const className = `show-title-container ${ isMobileOnly ? 'mobile' : 'desktop' }`;
 
     const content = (
-        <div className={ className }>
+        <div className={ `show-title-container ${ isMobileOnly ? 'mobile' : 'desktop' }` }>
             <div className='show-date'>
                 <p>{ interval }</p>
             </div>

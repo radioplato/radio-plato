@@ -53,10 +53,9 @@ export class ShowListComponent extends Component {
         const {
             showCards
         } = this.state;
-        const className = `show-list ${ isMobileOnly ? 'mobile' : 'desktop' }`;
 
         return (
-            <div className={ className }>
+            <div className={ `show-list ${ isMobileOnly ? 'mobile' : 'desktop' }` }>
                  <Seo meta={{
                         title: SHOW_LIST_SEO_TITLE,
                         description: SHOW_LIST_SEO_DESCRIPTION,

@@ -111,10 +111,10 @@
     margin-right: 40px;
 }
 
-.main-player .play-button > svg {
+.main-player .play-button.paused > svg {
     margin-left: 8px;
 }
 
-.header-player .play-button > svg {
+.header-player .play-button.paused > svg {
     margin-left: 2px;
 }

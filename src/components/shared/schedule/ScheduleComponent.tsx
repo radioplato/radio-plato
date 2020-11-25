@@ -94,10 +94,8 @@ class ScheduleComponent extends Component {
     }
 
     render () {
-        const className = `schedule-container ${ isMobileOnly ? 'mobile' : 'desktop' }`;
-
         return (
-            <div className={ className }>
+            <div className={ `schedule-container ${ isMobileOnly ? 'mobile' : 'desktop' }` }>
                 <div className='schedule-headline-container'>        
                     <div className='schedule-title'>
                         <p>{ SCHEDULE }</p>

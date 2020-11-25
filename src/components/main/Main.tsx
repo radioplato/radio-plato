@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { Component } from 'react'
 
 import {
     Switch,
@@ -14,22 +14,22 @@ import { PlayerTypes } from '../shared/enums';
 
 import './Main.css'
 
-function Main() {
-    const device = isMobileOnly ? 'mobile' : 'desktop';
-
-    return (
-        <main className={ device }>
-            <BrowserView>
-                <MenuButton />
-            </BrowserView>
-            <Switch>
-                <Route exact path='/' render={
-                    props => <PlayerComponent { ...props } playerType={ PlayerTypes.Main }/>
-                }/>
-            </Switch>
-            <Content />
-        </main>
-    );
+class Main extends Component {
+    render() {
+        return (
+            <main className={ isMobileOnly ? 'mobile' : 'desktop' }>
+                <BrowserView>
+                    <MenuButton />
+                </BrowserView>
+                <Switch>
+                    <Route exact path='/' render={
+                        props => <PlayerComponent { ...props } playerType={ PlayerTypes.Main }/>
+                    }/>
+                </Switch>
+                <Content />
+            </main>
+        );
+    }
 }
   
 export default Main;

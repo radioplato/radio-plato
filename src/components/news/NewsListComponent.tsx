@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { Subscription } from 'rxjs';
 import moment from 'moment';
+import { isMobileOnly } from 'react-device-detect';
 
 import NewsCardComponent from './NewsCardComponent/NewsCardComponent';
 import adService from './../advertisement/AdService';
@@ -14,7 +15,6 @@ import { BASIC_SEO_IMG } from '../shared/constants';
 import { Seo } from '../shared/wrappers/seo/Seo'
 
 import './NewsListComponent.css';
-import { isMobileOnly } from 'react-device-detect';
 
 
 const NEWS_LIMIT = 12;
@@ -112,11 +112,10 @@ export class NewsListComponent extends Component<NewsListComponentProperties> {
     }
 
     renderFullNewsList (newsCards: NewsCard[], advertisement: Advertisement | null) {
-        const className = `news-list ${ isMobileOnly ? 'mobile' : 'desktop' }`;
         const adNewsCard = this.advertisementToNewsCard(advertisement);
 
         return newsCards.length ? (
-            <div onScroll={ this.handleScroll } className={ className }>
+            <div onScroll={ this.handleScroll } className={ `news-list ${ isMobileOnly ? 'mobile' : 'desktop' }` }>
                 <Seo meta={{
                         title: NEWS_LIST_SEO_TITLE,
                         description: NEWS_LIST_SEO_DESCRIPTION,

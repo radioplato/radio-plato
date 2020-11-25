@@ -1,12 +1,13 @@
 import React, { Component } from 'react';
 
 import { isMobileOnly } from 'react-device-detect';
+import ReactMarkdown from 'react-markdown';
 
 import { DonateDto, Donate } from '../donate/interfaces';
 import { Seo } from '../shared/wrappers/seo/Seo'
 
 import './Donate.css';
-import ReactMarkdown from 'react-markdown';
+
 
 const DONATE_SEO_DESCRIPTION = 'Support us!'
 
@@ -45,11 +46,10 @@ export class DonateComponent extends Component {
 
     render () {
         const { donate } = this.state;
-        const className = `donate ${ isMobileOnly ? 'mobile' : 'desktop' }`;
         const imageSrc = donate ? donate.donateCover.url : '';
 
         return donate ? (
-            <article className={ className }>
+            <article className={ `donate ${ isMobileOnly ? 'mobile' : 'desktop' }` }>
                  <Seo meta={{
                         title: donate.title,
                         description: DONATE_SEO_DESCRIPTION,

@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { Component } from 'react'
 
 import {
   Link,
@@ -33,43 +33,43 @@ const HEADER_SOCIAL_LINKS: SocialLinks = {
     googlePlay: 'https://play.google.com/store/apps/details?id=com.radioplato'
 }
 
-function Header() {
-    const className = `header-container ${ isMobileOnly ? 'mobile' : 'desktop' }`;
-
-    return (
-        <header className={ className }>
-            { isMobileOnly && <MenuButton /> }
-            <Link to='/' className='logo-text'>{ RADIO_PLATO }</Link>
-            <BrowserView>
-                <div className='social-container'>
-                    <Switch>
-                        <Route exact path='/' render={
-                            props => (<SocialLinksComponent { ...props } socialLinks={ HEADER_SOCIAL_LINKS }/>)
-                        }/>
-                        <Route path='/' render={
-                            props => (<PlayerComponent { ...props } playerType={ PlayerTypes.Header }/>)
-                        }/>
-                    </Switch>
-                    
-                    <div className="android-link-wrapper">
-                        <a className='android-link'
-                            target='_blank'
-                            href={ HEADER_SOCIAL_LINKS.googlePlay }
-                            title={ `A link to Android App` }
-                            aria-label={ `A link to Android App` }
-                            rel='noopener noreferrer'
-                        >
-                            <Icon className='google-play-icon' icon={ googlePlay }/>
-                            { ANDROID_APP }
-                        </a>
+export class Header extends Component {
+    render() {
+        return (
+            <header className={ `header-container ${ isMobileOnly ? 'mobile' : 'desktop' }` }>
+                { isMobileOnly && <MenuButton /> }
+                <Link to='/' className='logo-text'>{ RADIO_PLATO }</Link>
+                <BrowserView>
+                    <div className='social-container'>
+                        <Switch>
+                            <Route exact path='/' render={
+                                props => (<SocialLinksComponent { ...props } socialLinks={ HEADER_SOCIAL_LINKS }/>)
+                            }/>
+                            <Route path='/' render={
+                                props => (<PlayerComponent { ...props } playerType={ PlayerTypes.Header }/>)
+                            }/>
+                        </Switch>
+                        
+                        <div className="android-link-wrapper">
+                            <a className='android-link'
+                                target='_blank'
+                                href={ HEADER_SOCIAL_LINKS.googlePlay }
+                                title={ `A link to Android App` }
+                                aria-label={ `A link to Android App` }
+                                rel='noopener noreferrer'
+                            >
+                                <Icon className='google-play-icon' icon={ googlePlay }/>
+                                { ANDROID_APP }
+                            </a>
+                        </div>
+                        
+    
+                        <Link to='/donate' className='donate-link'>{ DONATE }</Link>
                     </div>
-                    
-
-                    <Link to='/donate' className='donate-link'>{ DONATE }</Link>
-                </div>
-            </BrowserView>
-        </header>
-    );
+                </BrowserView>
+            </header>
+        );
+    }
 }
   
 export default Header;

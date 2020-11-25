@@ -21,8 +21,6 @@ interface MenuParameters {
 }
 
 function Menu({ menuRef, wrapperRef, toggleMenu }: MenuParameters) {
-    const device = isMobileOnly ? 'mobile' : 'desktop';
-
     const buildMenuItem = (title: string) => {
         const route = `/${ title.toLowerCase() }`;
 
@@ -35,8 +33,8 @@ function Menu({ menuRef, wrapperRef, toggleMenu }: MenuParameters) {
 
     return (
         <>
-            <div className={`wrapper ${ device }`} ref={ wrapperRef } onClick={ toggleMenu } />
-            <nav ref={ menuRef } className={ device }>
+            <div className={`wrapper ${ isMobileOnly ? 'mobile' : 'desktop' }`} ref={ wrapperRef } onClick={ toggleMenu } />
+            <nav ref={ menuRef } className={ isMobileOnly ? 'mobile' : 'desktop' }>
                 <div className='menu-button-aside white' onClick={ toggleMenu }>
                     <p className='label close-button'>CLOSE</p>
                 </div>

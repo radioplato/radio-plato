@@ -2,8 +2,9 @@ import React, { Component } from 'react';
 
 import { isMobileOnly } from 'react-device-detect';
 
-import './ShowEpisodesComponent.css';
 import { ShowEpisode } from '../interfaces';
+
+import './ShowEpisodesComponent.css';
 
 
 interface ShowEpisodesProperties {
@@ -78,10 +79,9 @@ export class ShowEpisodesComponent extends Component<ShowEpisodesProperties> {
         const {
             showEpisodes
         } = this.state;
-        const className = `episode-list ${ isMobileOnly ? 'mobile' : 'desktop' }`;
 
         return (
-            <div className={ className }>
+            <div className={ `episode-list ${ isMobileOnly ? 'mobile' : 'desktop' }` }>
                 { this.renderShowEpisodes(showEpisodes) }
             </div>
             

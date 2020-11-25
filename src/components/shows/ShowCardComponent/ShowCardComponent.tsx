@@ -18,12 +18,11 @@ function ShowCardComponent({ showCard }: ShowCardParameters) {
         slug,
         title,
     } = showCard;
-    const className = `show-card ${ isMobileOnly ? 'mobile' : 'desktop' }`;
     const route = `/shows/${ slug }`;
 
     return (
         <Link to={ route } title={ title }>
-            <div className={ className }>
+            <div className={ `show-card ${ isMobileOnly ? 'mobile' : 'desktop' }` }>
                 <img src={ showCover.url } loading='lazy' alt={ showCover.alternativeText }/>
                 <h2>{ title }</h2>
                 <p>{ excerpt }</p>

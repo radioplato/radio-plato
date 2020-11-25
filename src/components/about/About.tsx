@@ -42,11 +42,10 @@ export class AboutComponent extends Component {
 
     render () {
         const { about } = this.state;
-        const className = `about ${ isMobileOnly ? 'mobile' : 'desktop' }`;
         const imageSrc = about ? about.aboutCover.url : '';
 
         return about ? (
-            <article className={ className }>
+            <article className={ `about ${ isMobileOnly ? 'mobile' : 'desktop' }` }>
                 <Seo meta={{
                         title: about.title,
                         description: about.description,

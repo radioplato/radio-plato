@@ -4,12 +4,12 @@ import { isMobileOnly } from 'react-device-detect';
 
 import SocialLinksComponent from '../../shared/SocialLinksComponent/SocialLinksComponent';
 import ShowEpisodesComponent from '../ShowEpisodesComponent/ShowEpisodesComponent';
+import ShowCardComponent from '../ShowCardComponent/ShowCardComponent';
 
 import { Seo } from '../../shared/wrappers/seo/Seo'
 import { ShowDto, Show, ShowCard } from '../interfaces';
 
 import './ShowComponent.css';
-import ShowCardComponent from '../ShowCardComponent/ShowCardComponent';
 
 
 interface ShowComponentProperties {
@@ -100,10 +100,9 @@ export class ShowComponent extends Component<ShowComponentProperties> {
         const { show, showCards } = this.state;
         const { slug } = this.props;
         const imageSrc = show ? show.showCover.url : '';
-        const className = `show ${ isMobileOnly ? 'mobile' : 'desktop' }`;
 
         return show ? (
-            <article className={ className }>
+            <article className={ `show ${ isMobileOnly ? 'mobile' : 'desktop' }` }>
                 <Seo meta={{
                         title: show.title,
                         description: show.description,

@@ -6,6 +6,7 @@ import { isMobileOnly } from 'react-device-detect';
 
 import PlayButton from '../PlayerControls/PlayButton/PlayButton';
 import VolumeControls from '../PlayerControls/VolumeControls/VolumeControls';
+
 import { playerService } from '../PlayerService';
 import { PlayerProps } from '../interfaces';
 import { PlayerTypes } from '../../enums';
@@ -23,10 +24,6 @@ export class PlayerComponent extends PureComponent<PlayerProps> {
 
     get isMainPlayer () {
         return this.props.playerType === PlayerTypes.Main;
-    }
-
-    get className () {
-        return `${ this.props.playerType }-player ${ isMobileOnly ? 'mobile' : 'desktop' }`;
     }
 
     componentDidMount () {
@@ -80,7 +77,7 @@ export class PlayerComponent extends PureComponent<PlayerProps> {
 
     render () {
         return (
-            <div className={ this.className }>
+            <div className={ `${ this.props.playerType }-player ${ isMobileOnly ? 'mobile' : 'desktop' }` }>
                 { this.renderPlayer() }
             </div>
         );
