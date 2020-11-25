@@ -5,8 +5,13 @@ RUN apk add --update nodejs npm && apk upgrade && \
     echo @edge http://nl.alpinelinux.org/alpine/edge/community >> /etc/apk/repositories && \
     echo @edge http://nl.alpinelinux.org/alpine/edge/main >> /etc/apk/repositories && \
     apk add --no-cache \
-        chromium@edge \
-        nss@edge
+        chromium \
+        nss \
+        freetype \
+        freetype-dev \
+        harfbuzz \
+        ca-certificates \
+        ttf-freefont
 
 WORKDIR /app
 ENV PATH /app/node_modules/.bin:$PATH
@@ -14,8 +19,10 @@ COPY package.json /app
 COPY package-lock.json /app
 COPY . /app
 
-ENV PUPPETEER_SKIP_CHROMIUM_DOWNLOAD true
-RUN npm install puppeteer@0.11.0
+ENV PUPPETEER_SKIP_CHROMIUM_DOWNLOAD true \
+    PUPPETEER_EXECUTABLE_PATH=/usr/bin/chromium-browser
+
+RUN npm install puppeteer@5.2.1
 
 RUN addgroup -S pptruser && adduser -S -g pptruser pptruser \
     && mkdir -p /home/pptruser/Downloads \
