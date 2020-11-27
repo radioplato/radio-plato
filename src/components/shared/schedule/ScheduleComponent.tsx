@@ -65,8 +65,28 @@ class ScheduleComponent extends Component {
         });
     };
 
+    handleDropdownChoise = (event: any) => {
+        this.selectDay(event.currentTarget.value)
+    }
+
     componentWillUnmount () {
         this.subscription?.unsubscribe();
+    }
+
+    renderDropdown = () => {
+        const { selectedDay } = this.state;
+
+        return (
+            <select value={ selectedDay } onChange={ this.handleDropdownChoise }> 
+                { DAYS_OF_WEEK.map((day, index) => (
+                    <option key={ `${ day.toLowerCase() }-${ index }` }
+                            value={ index }
+                    >
+                        { day }
+                    </option>
+                )) }
+            </select>
+        )
     }
 
     renderButtons = () => {
@@ -75,7 +95,7 @@ class ScheduleComponent extends Component {
         return DAYS_OF_WEEK.map((day, index) => (
             <button className={ `schedule-day-button ${ selectedDay === index ? 'active' : ''}` }
                     onClick={ () => this.selectDay(index) }
-                    key={ `${ day.toLowerCase() }-${ index }`}
+                    key={ `${ day.toLowerCase() }-${ index }` }
             >
                 { day }
             </button>
@@ -100,9 +120,17 @@ class ScheduleComponent extends Component {
                     <div className='schedule-title'>
                         <p>{ SCHEDULE }</p>
                     </div>
-                    <div className='schedule-day'>
-                        { this.renderButtons() }
-                    </div>
+                    {
+                        isMobileOnly
+                            ? (<div>
+                                { this.renderDropdown() }
+                            </div>)
+                            : (<div className='schedule-day'>
+                                { this.renderButtons() }
+                            </div>)
+                    }
+                    
+                    
                 </div>
                 <div>
                     { this.renderDailySchedule() }

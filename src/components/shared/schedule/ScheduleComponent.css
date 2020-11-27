@@ -87,3 +87,16 @@
     display: none;
 }
 
+select {
+    appearance: none;
+    margin: 0 20px;
+    padding: 20px 14px 20px 20px;
+    font-size: 14px;
+    line-height: 1.1em;
+    box-sizing: content-box;
+    border: none;
+    color: white;
+    text-decoration: underline;
+    background-color: black;
+  }
+

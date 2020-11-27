@@ -7,31 +7,20 @@ import {
 } from 'react-router-dom';
 
 import { BrowserView, isMobileOnly } from 'react-device-detect';
+import googlePlay from '@iconify/icons-cib/google-play';
+import Icon from '@iconify/react';
 
 import MenuButton from '../menu/menu-button/MenuButton';
 import SocialLinksComponent from '../shared/SocialLinksComponent/SocialLinksComponent';
 import PlayerComponent from '../shared/Player/PlayerComponent/PlayerComponent';
-import { SocialLinks } from '../shared/interfaces';
+import { ANDROID_APP, HEADER_SOCIAL_LINKS } from '../shared/constants';
 import { PlayerTypes } from '../shared/enums';
 
 import './Header.css'
-import Icon from '@iconify/react';
-import googlePlay from '@iconify/icons-cib/google-play';
 
 
 const RADIO_PLATO = 'Radio Plato';
 const DONATE = 'Donate';
-const ANDROID_APP = 'Android App';
-
-const HEADER_SOCIAL_LINKS: SocialLinks = {
-    mixcloud: 'https://www.mixcloud.com/radioplato/',
-    facebook: 'https://www.facebook.com/radioplato.by/',
-    vk: 'https://vk.com/radioplato',
-    email: 'mailto:hey@radioplato.by',
-    instagram: 'https://www.instagram.com/radio_plato/',
-    telegram: 'https://t.me/radioplato',
-    googlePlay: 'https://play.google.com/store/apps/details?id=com.radioplato'
-}
 
 export class Header extends Component {
     render() {
