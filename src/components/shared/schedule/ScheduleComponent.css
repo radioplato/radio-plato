@@ -98,5 +98,11 @@ select {
     color: white;
     text-decoration: underline;
     background-color: black;
-  }
+}
+
+select:focus {
+    border: 1px solid white;
+    box-shadow: none;
+    outline: none;
+}
 
