@@ -8,6 +8,7 @@ header {
 
 .header-container {
     display: flex;
+    display: -webkit-flex;
     flex-direction: row;
     flex-wrap: nowrap;
     align-content: stretch;
@@ -22,6 +23,7 @@ header {
 
 .social-container {
     display: flex;
+    display: -webkit-flex;
     flex-direction: row;
     flex-wrap: nowrap;
     align-content: stretch;
@@ -80,6 +82,7 @@ header {
     font-weight: 500;
     font-size: 16px;
     display: flex;
+    display: -webkit-flex;
     flex-direction: row;
     flex-wrap: nowrap;
     justify-content: flex-start;

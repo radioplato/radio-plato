@@ -1,5 +1,6 @@
 .schedule-container {
     display: flex;
+    display: -webkit-flex;
     flex-direction: column;
     flex: 2 1 100%;
 
@@ -11,6 +12,7 @@
 
 .schedule-headline-container {
     display: flex;
+    display: -webkit-flex;
     flex-direction: row;
     flex-wrap: nowrap;
     align-content: stretch;
@@ -28,6 +30,7 @@
     font-weight: 500;
     line-height: 120%;
     display: flex;
+    display: -webkit-flex;
     flex-direction: row;
     margin: 40px;
 }
@@ -45,6 +48,7 @@
 .schedule-container.mobile .schedule-day {
     width: 100%;
     display: flex;
+    display: -webkit-flex;
     justify-content: center;
     margin-right: 0;
 }

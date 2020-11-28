@@ -1,5 +1,6 @@
 .start-page-container {
     display: flex;
+    display: -webkit-flex;
     flex-direction: column;
     flex-wrap: nowrap;
     justify-content: flex-start;
