@@ -35,7 +35,10 @@
 
 .episode-container {
     display: flex;
-    display: -webkit-flex;
+    -webkit-display: flex;
+    -moz-display: flex;
+    -ms--display: flex;
+    
     flex-direction: row;
     flex-wrap: nowrap;
     justify-content: flex-start;

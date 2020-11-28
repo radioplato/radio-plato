@@ -1,6 +1,9 @@
 .news {
     display: flex;
-    display: -webkit-flex;
+    -webkit-display: flex;
+    -moz-display: flex;
+    -ms--display: flex;
+    
     flex-direction: column;
     flex-wrap: nowrap;
     justify-content: flex-start;
@@ -39,7 +42,10 @@
 
 .news-description {
     display: flex;
-    display: -webkit-flex;
+    -webkit-display: flex;
+    -moz-display: flex;
+    -ms--display: flex;
+    
     flex-direction: row;
     flex-wrap: nowrap;
     justify-content: center;
@@ -61,7 +67,10 @@
 
 .news-information {
     display: flex;
-    display: -webkit-flex;
+    -webkit-display: flex;
+    -moz-display: flex;
+    -ms--display: flex;
+    
     flex-direction: column;
     flex-wrap: nowrap;
     justify-content: center;
@@ -123,7 +132,10 @@
 
 .news-cover {
     display: flex;
-    display: -webkit-flex;
+    -webkit-display: flex;
+    -moz-display: flex;
+    -ms--display: flex;
+    
     flex-direction: row;
     flex-wrap: nowrap;
     justify-content: center;
@@ -139,7 +151,10 @@
 
 .news-content-container {
     display: flex;
-    display: -webkit-flex;
+    -webkit-display: flex;
+    -moz-display: flex;
+    -ms--display: flex;
+    
     flex-direction: column;
     flex-wrap: nowrap;
     justify-content: center;
@@ -176,7 +191,10 @@
 
 .news-content span {
     display: flex;
-    display: -webkit-flex;
+    -webkit-display: flex;
+    -moz-display: flex;
+    -ms--display: flex;
+    
     justify-content: center;
     align-content: center;
     align-items: center;
@@ -218,7 +236,10 @@ img + em {
 
 .more-news {
     display: flex;
-    display: -webkit-flex;
+    -webkit-display: flex;
+    -moz-display: flex;
+    -ms--display: flex;
+    
     flex-direction: row;
     flex-wrap: wrap;
     justify-content: center;
@@ -236,14 +257,20 @@ img + em {
     font-weight: 500;
     line-height: 120%;
     display: flex;
-    display: -webkit-flex;
+    -webkit-display: flex;
+    -moz-display: flex;
+    -ms--display: flex;
+    
     flex-direction: row;
     margin: 40px 0;
 }
 
 .card {
     display: flex;
-    display: -webkit-flex;
+    -webkit-display: flex;
+    -moz-display: flex;
+    -ms--display: flex;
+    
     flex-direction: column;
     flex-wrap: nowrap;
     justify-content: flex-start;

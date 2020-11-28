@@ -20,7 +20,10 @@
 
 .news-card {
     display: flex;
-    display: -webkit-flex;
+    -webkit-display: flex;
+    -moz-display: flex;
+    -ms--display: flex;
+    
     flex-wrap: nowrap;
     justify-content: flex-start;
     align-content: stretch;
@@ -118,7 +121,10 @@
 
 .news-card.fresh .news-card-image {
     display: flex;
-    display: -webkit-flex;
+    -webkit-display: flex;
+    -moz-display: flex;
+    -ms--display: flex;
+    
     flex-direction: row;
     flex-wrap: nowrap;
     justify-content: center;
@@ -184,7 +190,10 @@
 
 .news-card.simple .news-card-image {
     display: flex;
-    display: -webkit-flex;
+    -webkit-display: flex;
+    -moz-display: flex;
+    -ms--display: flex;
+    
     flex-direction: row;
     flex-wrap: nowrap;
     justify-content: center;
@@ -211,7 +220,10 @@
 
 .news-card.simple .news-card-text {
     display: flex;
-    display: -webkit-flex;
+    -webkit-display: flex;
+    -moz-display: flex;
+    -ms--display: flex;
+    
     flex-direction: column;
     flex-wrap: nowrap;
     justify-content: center;

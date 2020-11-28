@@ -1,6 +1,9 @@
 main {
     display: flex;
-    display: -webkit-flex;
+    -webkit-display: flex;
+    -moz-display: flex;
+    -ms--display: flex;
+    
     flex-wrap: nowrap;
     justify-content: flex-start;
     align-content: stretch;

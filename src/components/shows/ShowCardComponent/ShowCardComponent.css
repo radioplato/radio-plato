@@ -1,6 +1,9 @@
 .show-card {
     display: flex;
-    display: -webkit-flex;
+    -webkit-display: flex;
+    -moz-display: flex;
+    -ms--display: flex;
+    
     flex-direction: column;
     flex-wrap: nowrap;
     justify-content: flex-start;

@@ -1,6 +1,9 @@
 .news-list {
     display: flex;
-    display: -webkit-flex;
+    -webkit-display: flex;
+    -moz-display: flex;
+    -ms--display: flex;
+    
     flex-direction: column;
     flex-wrap: nowrap;
     justify-content: flex-start;
@@ -52,7 +55,10 @@
 
 .news-cards {
     display: flex;
-    display: -webkit-flex;
+    -webkit-display: flex;
+    -moz-display: flex;
+    -ms--display: flex;
+    
     flex-direction: row;
     flex-wrap: wrap;
     justify-content: flex-start;
@@ -68,7 +74,10 @@
 
 .latest-news {
     display: flex;
-    display: -webkit-flex;
+    -webkit-display: flex;
+    -moz-display: flex;
+    -ms--display: flex;
+    
     flex-direction: row;
     flex-wrap: wrap;
     justify-content: flex-start;
@@ -84,7 +93,10 @@
 
 .main-news {
     display: flex;
-    display: -webkit-flex;
+    -webkit-display: flex;
+    -moz-display: flex;
+    -ms--display: flex;
+    
     flex-direction: row;
     flex-wrap: nowrap;
     justify-content: flex-start;
@@ -104,7 +116,10 @@
 
 .fresh-news {
     display: flex;
-    display: -webkit-flex;
+    -webkit-display: flex;
+    -moz-display: flex;
+    -ms--display: flex;
+    
     flex-direction: column;
     flex-wrap: nowrap;
     justify-content: space-around;
@@ -124,7 +139,10 @@
 
 .other-news {
     display: flex;
-    display: -webkit-flex;
+    -webkit-display: flex;
+    -moz-display: flex;
+    -ms--display: flex;
+    
     flex-direction: row;
     flex-wrap: wrap;
     justify-content: center;
@@ -156,7 +174,10 @@
     font-weight: 500;
     line-height: 120%;
     display: flex;
-    display: -webkit-flex;
+    -webkit-display: flex;
+    -moz-display: flex;
+    -ms--display: flex;
+    
     flex-direction: row;
 }
 
