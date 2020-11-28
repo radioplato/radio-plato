@@ -1,5 +1,6 @@
 .social-icons {
     display: flex;
+    display: -webkit-flex;
     flex-direction: row;
     flex-wrap: nowrap;
     justify-content: flex-start;
@@ -18,6 +19,7 @@
 }
 .social-link {
     display: flex;
+    display: -webkit-flex;
     justify-content: center;
     align-content: center;
     align-items: center;

@@ -1,5 +1,6 @@
 .show-list {
     display: flex;
+    display: -webkit-flex;
     flex-direction: column;
     flex-wrap: nowrap;
     justify-content: flex-start;
@@ -48,6 +49,7 @@
 
 .show-cards {
     display: flex;
+    display: -webkit-flex;
     flex-direction: row;
     flex-wrap: wrap;
     justify-content: center;
