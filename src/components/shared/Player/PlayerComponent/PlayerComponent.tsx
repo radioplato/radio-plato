@@ -33,10 +33,22 @@ export class PlayerComponent extends PureComponent<PlayerProps> {
         });
     }
 
+    onTrackChange (trackName: string) {
+        if (isMobileOnly) {
+            this.setState({ trackName });
+        } else {
+            const tracktitle = document.querySelector("p.track-title");
+
+            tracktitle?.classList.remove("shown")
+            tracktitle?.classList.add("hidden");
+    
+            setTimeout(() => { tracktitle?.classList.add("shown"); this.setState({ trackName }) }, 1000)
+            setTimeout(() => tracktitle?.classList.remove("hidden"), 2000);
+        } 
+    }
+
     subscribeOnPlayerStateChange () {
-        this.subscription = playerService.subscribeOnTrackNameChanges(
-            (trackName: string) => this.setState({ trackName })
-        );
+        this.subscription = playerService.subscribeOnTrackNameChanges((trackName: string) => this.onTrackChange(trackName));
     }
     
     renderMainPlayer (trackName: string) {
@@ -56,10 +68,10 @@ export class PlayerComponent extends PureComponent<PlayerProps> {
         return (
             <>
                 <PlayButton playerType={ this.props.playerType }/>
-                <div className='track-title'>
-                    <div className="overlay"></div>
-                    <p>{ trackName }</p>
-                </div>
+                    <div className='track-title'>
+                        <div className="overlay"></div>
+                        <p>{ trackName }</p>
+                    </div>
                 <VolumeControls />
             </>
         );

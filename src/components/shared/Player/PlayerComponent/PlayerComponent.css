@@ -130,3 +130,15 @@
 .header-player .play-button.paused > svg {
     margin-left: 2px;
 }
+
+.main-player .track-title.hidden {
+    opacity: 0;
+    overflow: hidden;
+    transition: opacity 1s ease-in-out;
+}
+
+.main-player .track-title.shown {
+    opacity: 1;
+    overflow: hidden;
+    transition: opacity 1s ease-in-out;
+}
