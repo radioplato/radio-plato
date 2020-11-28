@@ -45,7 +45,10 @@ export class ShowComponent extends Component<ShowComponentProperties> {
                 facebook: showDto.ShowLink.facebook,
                 vk: showDto.ShowLink.vk,
                 instagram: showDto.ShowLink.instagram,
-                telegram: showDto.ShowLink.telegram, 
+                telegram: showDto.ShowLink.telegram,
+                googlepodcasts: showDto.ShowLink.googlepodcasts,
+                soundcloud: showDto.ShowLink.soundcloud,
+                patreon: showDto.ShowLink.patreon, 
             }
         } : null
     }

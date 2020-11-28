@@ -10,6 +10,9 @@ import vkIcon from '@iconify/icons-cib/vk';
 import mailRu from '@iconify/icons-cib/mail-ru';
 import instagramIcon from '@iconify/icons-cib/instagram';
 import telegramIcon from '@iconify/icons-cib/telegram';
+import soundcloudIcon from '@iconify/icons-cib/soundcloud';
+import googlepodcastsIcon from '@iconify/icons-cib/google-podcasts';
+import patreonIcon from '@iconify/icons-cib/patreon';
 
 import { SocialLinks, Socials } from '../interfaces';
 
@@ -25,6 +28,9 @@ const SOCIAL_ICONS = new Map<string, object>([
     [ Socials.Email, mailRu ],
     [ Socials.Instagram, instagramIcon ],
     [ Socials.Telegram, telegramIcon ],
+    [ Socials.Soundcloud, soundcloudIcon ],
+    [ Socials.GooglePodcasts, googlepodcastsIcon ],
+    [ Socials.Patreon, patreonIcon ],
 ]);
 
 interface SocialLinksProperties {
