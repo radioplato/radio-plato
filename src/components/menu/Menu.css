@@ -19,7 +19,7 @@ nav {
 }
 
 nav.mobile {
-    height: 100vh;
+    height: 100%;
     width: 100vw;
     top: 0;
     left: -100vw;
@@ -109,7 +109,7 @@ nav.mobile .menu-item {
 nav.mobile > .menu-button-aside {
     width: 25%;
     min-width: 25%;
-    height: 100vh;
+    height: 100%;
 }
 
 .menu-item a {
