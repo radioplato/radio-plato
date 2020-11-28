@@ -10,6 +10,9 @@ interface ShowLinkDto extends StrapiObjectDto {
     spotify?: string;
     telegram?: string;
     vk?: string;
+    googlepodcasts?: string;
+    patreon?: string;
+    soundcloud?: string;
 }
 
 export interface ShowDto extends StrapiObjectDto {

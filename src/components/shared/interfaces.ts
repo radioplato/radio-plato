@@ -8,7 +8,10 @@ export enum Socials {
     Email = 'email',
     Instagram = 'instagram',
     Telegram = 'telegram',
-    GooglePlay = 'googlePlay',  
+    GooglePlay = 'googlePlay',
+    GooglePodcasts = 'googlepodcasts',
+    Patreon = 'patreon',
+    Soundcloud = 'soundcloud'
 }
 
 export type SocialLinks = {
