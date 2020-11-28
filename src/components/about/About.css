@@ -126,12 +126,12 @@
     align-items: center;
 }
 
-.android-link-wrapper {
+.about-android-link-wrapper {
     position: relative;
     margin-bottom: 20px;
 }
 
-.android-link:before {
+.about-android-link-wrapper .android-link:before {
     content: '';
     position: absolute;
     width: 1%;
@@ -142,12 +142,12 @@
     visibility: hidden;
 }
 
-.android-link:hover:before {
+.about-android-link-wrapper .android-link:hover:before {
     visibility: visible;
     width: 100%;
 }
 
-.google-play-icon {
+.about-android-link-wrapper .google-play-icon {
     width: 1.1em;  
     margin: 0 12px;
 }

@@ -63,18 +63,22 @@ export class AboutComponent extends Component {
                     <div className="social-links">
                         <SocialLinksComponent socialLinks={ HEADER_SOCIAL_LINKS }></SocialLinksComponent>
                     </div>
-                    <div className="android-link-wrapper">
-                        <a className='android-link'
-                            target='_blank'
-                            href={ HEADER_SOCIAL_LINKS.googlePlay }
-                            title={ `A link to Android App` }
-                            aria-label={ `A link to Android App` }
-                            rel='noopener noreferrer'
-                        >
-                            <Icon className='google-play-icon' icon={ googlePlay }/>
-                            { ANDROID_APP }
-                        </a>
-                    </div>
+                    {
+                        isMobileOnly && (
+                            <div className="about-android-link-wrapper">
+                                <a className='android-link'
+                                    target='_blank'
+                                    href={ HEADER_SOCIAL_LINKS.googlePlay }
+                                    title={ `A link to Android App` }
+                                    aria-label={ `A link to Android App` }
+                                    rel='noopener noreferrer'
+                                >
+                                    <Icon className='google-play-icon' icon={ googlePlay }/>
+                                    { ANDROID_APP }
+                                </a>
+                            </div>
+                        )
+                    }
                 </div>
                 <div className='image'>
                     <img src={ imageSrc } loading='lazy' alt={ about.aboutCover.alternativeText }/>
