@@ -1,15 +1,14 @@
 .show-card {
     display: flex;
-    -webkit-display: flex;
-    -moz-display: flex;
-    -ms--display: flex;
+    display: -webkit-flex;
+    flex: 0 0 auto;
     
     flex-direction: column;
     flex-wrap: nowrap;
     justify-content: flex-start;
     align-content: stretch;
 
-    width: 370px;
+    width: 300px;
     margin: 0 30px 80px 30px;
 }
 
@@ -20,8 +19,8 @@
 }
 
 .show-card img {
-    height: 370px;
-    width: 370px;
+    height: 300px;
+    width: 300px;
 
     margin-bottom: 20px;
 }

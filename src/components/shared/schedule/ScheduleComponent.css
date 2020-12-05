@@ -1,8 +1,7 @@
 .schedule-container {
     display: flex;
-    -webkit-display: flex;
-    -moz-display: flex;
-    -ms--display: flex;
+    display: -webkit-flex;
+    flex: 0 0 auto;
     
     flex-direction: column;
     flex: 2 1 100%;
@@ -15,9 +14,8 @@
 
 .schedule-headline-container {
     display: flex;
-    -webkit-display: flex;
-    -moz-display: flex;
-    -ms--display: flex;
+    display: -webkit-flex;
+    flex: 0 0 auto;
     
     flex-direction: row;
     flex-wrap: nowrap;
@@ -36,9 +34,8 @@
     font-weight: 500;
     line-height: 120%;
     display: flex;
-    -webkit-display: flex;
-    -moz-display: flex;
-    -ms--display: flex;
+    display: -webkit-flex;
+    flex: 0 0 auto;
     
     flex-direction: row;
     margin: 40px;
@@ -57,9 +54,8 @@
 .schedule-container.mobile .schedule-day {
     width: 100%;
     display: flex;
-    -webkit-display: flex;
-    -moz-display: flex;
-    -ms--display: flex;
+    display: -webkit-flex;
+    flex: 0 0 auto;
     
     justify-content: center;
     margin-right: 0;

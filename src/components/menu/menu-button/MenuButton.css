@@ -8,9 +8,8 @@
     cursor: pointer;
 
     display: flex;
-    -webkit-display: flex;
-    -moz-display: flex;
-    -ms--display: flex;
+    display: -webkit-flex;
+    flex: 0 0 auto;
     
     flex-direction: row;
     flex-wrap: nowrap;
@@ -56,9 +55,8 @@
     width: 100px;
 
     display: flex;
-    -webkit-display: flex;
-    -moz-display: flex;
-    -ms--display: flex;
+    display: -webkit-flex;
+    flex: 0 0 auto;
     
     flex-direction: row;
     flex-wrap: nowrap;

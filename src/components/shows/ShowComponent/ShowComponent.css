@@ -1,8 +1,7 @@
 .show {
     display: flex;
-    -webkit-display: flex;
-    -moz-display: flex;
-    -ms--display: flex;
+    display: -webkit-flex;
+    flex: 0 0 auto;
     
     flex-direction: column;
     flex-wrap: nowrap;
@@ -12,11 +11,11 @@
 
     box-sizing: border-box;
 
-    width: 100%;
+    width: calc(100% - 121px);
     height: calc(100vh - 101px);
     padding: 40px;
 
-    overflow: auto;
+    overflow-x: hidden;
     overflow-y: overlay;
     box-sizing: border-box;
 }
@@ -47,9 +46,8 @@
 .show-description {
     width: 100%;
     display: flex;
-    -webkit-display: flex;
-    -moz-display: flex;
-    -ms--display: flex;
+    display: -webkit-flex;
+    flex: 0 0 auto;
     
     flex-direction: row;
     flex-wrap: nowrap;
@@ -66,9 +64,8 @@
 
 .title-container {
     display: flex;
-    -webkit-display: flex;
-    -moz-display: flex;
-    -ms--display: flex;
+    display: -webkit-flex;
+    flex: 0 0 auto;
     
     flex-direction: row;
     justify-content: center;
@@ -84,9 +81,8 @@
     font-weight: 500;
     line-height: 120%;
     display: flex;
-    -webkit-display: flex;
-    -moz-display: flex;
-    -ms--display: flex;
+    display: -webkit-flex;
+    flex: 0 0 auto;
     
     flex-direction: row;
     margin-bottom: 40px;
@@ -95,9 +91,8 @@
 
 .more-shows {
     display: flex;
-    -webkit-display: flex;
-    -moz-display: flex;
-    -ms--display: flex;
+    display: -webkit-flex;
+    flex: 0 0 auto;
     
     flex-direction: row;
     flex-wrap: wrap;
@@ -121,9 +116,8 @@
 
 .show .information {
     display: flex;
-    -webkit-display: flex;
-    -moz-display: flex;
-    -ms--display: flex;
+    display: -webkit-flex;
+    flex: 0 0 auto;
     
     flex-direction: column;
     flex-wrap: nowrap;
@@ -162,9 +156,8 @@
 
 .show-cover {
     display: flex;
-    -webkit-display: flex;
-    -moz-display: flex;
-    -ms--display: flex;
+    display: -webkit-flex;
+    flex: 0 0 auto;
     
     flex-direction: row;
     flex-wrap: nowrap;

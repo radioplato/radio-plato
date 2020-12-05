@@ -1,8 +1,7 @@
 .news {
     display: flex;
-    -webkit-display: flex;
-    -moz-display: flex;
-    -ms--display: flex;
+    display: -webkit-flex;
+    flex: 0 0 auto;
     
     flex-direction: column;
     flex-wrap: nowrap;
@@ -10,10 +9,10 @@
     align-content: stretch;
     align-items: center;
 
-    width: 100%;
+    width: calc(100% - 121px);
     height: calc(100vh - 101px);
 
-    overflow: auto;
+    overflow-x: hidden;
     overflow-y: overlay;
     box-sizing: border-box;
 }
@@ -42,9 +41,8 @@
 
 .news-description {
     display: flex;
-    -webkit-display: flex;
-    -moz-display: flex;
-    -ms--display: flex;
+    display: -webkit-flex;
+    flex: 0 0 auto;
     
     flex-direction: row;
     flex-wrap: nowrap;
@@ -67,9 +65,8 @@
 
 .news-information {
     display: flex;
-    -webkit-display: flex;
-    -moz-display: flex;
-    -ms--display: flex;
+    display: -webkit-flex;
+    flex: 0 0 auto;
     
     flex-direction: column;
     flex-wrap: nowrap;
@@ -132,9 +129,8 @@
 
 .news-cover {
     display: flex;
-    -webkit-display: flex;
-    -moz-display: flex;
-    -ms--display: flex;
+    display: -webkit-flex;
+    flex: 0 0 auto;
     
     flex-direction: row;
     flex-wrap: nowrap;
@@ -151,9 +147,8 @@
 
 .news-content-container {
     display: flex;
-    -webkit-display: flex;
-    -moz-display: flex;
-    -ms--display: flex;
+    display: -webkit-flex;
+    flex: 0 0 auto;
     
     flex-direction: column;
     flex-wrap: nowrap;
@@ -191,9 +186,8 @@
 
 .news-content span {
     display: flex;
-    -webkit-display: flex;
-    -moz-display: flex;
-    -ms--display: flex;
+    display: -webkit-flex;
+    flex: 0 0 auto;
     
     justify-content: center;
     align-content: center;
@@ -236,9 +230,8 @@ img + em {
 
 .more-news {
     display: flex;
-    -webkit-display: flex;
-    -moz-display: flex;
-    -ms--display: flex;
+    display: -webkit-flex;
+    flex: 0 0 auto;
     
     flex-direction: row;
     flex-wrap: wrap;
@@ -257,9 +250,8 @@ img + em {
     font-weight: 500;
     line-height: 120%;
     display: flex;
-    -webkit-display: flex;
-    -moz-display: flex;
-    -ms--display: flex;
+    display: -webkit-flex;
+    flex: 0 0 auto;
     
     flex-direction: row;
     margin: 40px 0;
@@ -267,16 +259,15 @@ img + em {
 
 .card {
     display: flex;
-    -webkit-display: flex;
-    -moz-display: flex;
-    -ms--display: flex;
+    display: -webkit-flex;
+    flex: 0 0 auto;
     
     flex-direction: column;
     flex-wrap: nowrap;
     justify-content: flex-start;
     align-content: stretch;
 
-    width: 370px;
+    width: 300px;
     margin: 0 30px 80px 30px;
 }
 
@@ -287,8 +278,8 @@ img + em {
 }
 
 .card img {
-    height: 370px;
-    width: 370px;
+    height: 300px;
+    width: 300px;
 
     margin-bottom: 20px;
 

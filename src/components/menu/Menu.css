@@ -10,9 +10,8 @@ nav {
     background: #ffffff;
 
     display: flex;
-    -webkit-display: flex;
-    -moz-display: flex;
-    -ms--display: flex;
+    display: -webkit-flex;
+    flex: 0 0 auto;
     
     flex-direction: row;
     flex-wrap: nowrap;
@@ -79,9 +78,8 @@ nav.menu-open, nav.mobile.menu-open {
     margin-left: 60px;
 
     display: flex;
-    -webkit-display: flex;
-    -moz-display: flex;
-    -ms--display: flex;
+    display: -webkit-flex;
+    flex: 0 0 auto;
     
     flex-direction: row;
     flex-wrap: nowrap;

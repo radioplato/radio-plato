@@ -20,9 +20,8 @@
 
 .news-card {
     display: flex;
-    -webkit-display: flex;
-    -moz-display: flex;
-    -ms--display: flex;
+    display: -webkit-flex;
+    flex: 0 0 auto;
     
     flex-wrap: nowrap;
     justify-content: flex-start;
@@ -121,9 +120,8 @@
 
 .news-card.fresh .news-card-image {
     display: flex;
-    -webkit-display: flex;
-    -moz-display: flex;
-    -ms--display: flex;
+    display: -webkit-flex;
+    flex: 0 0 auto;
     
     flex-direction: row;
     flex-wrap: nowrap;
@@ -186,13 +184,13 @@
 
 .news-card.simple {
     border-bottom: 1px solid white;
+    width: 100%;
 }
 
 .news-card.simple .news-card-image {
     display: flex;
-    -webkit-display: flex;
-    -moz-display: flex;
-    -ms--display: flex;
+    display: -webkit-flex;
+    flex: 0 0 auto;
     
     flex-direction: row;
     flex-wrap: nowrap;
@@ -220,9 +218,8 @@
 
 .news-card.simple .news-card-text {
     display: flex;
-    -webkit-display: flex;
-    -moz-display: flex;
-    -ms--display: flex;
+    display: -webkit-flex;
+    flex: 0 0 auto;
     
     flex-direction: column;
     flex-wrap: nowrap;
@@ -230,6 +227,7 @@
     align-content: center;
     align-items: flex-start;
     margin-right: 40px;
+    width: calc(100% - 440px);
 }
 
 .news-card.simple .news-card-tag {

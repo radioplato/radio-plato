@@ -1,8 +1,7 @@
 .start-page-container {
     display: flex;
-    -webkit-display: flex;
-    -moz-display: flex;
-    -ms--display: flex;
+    display: -webkit-flex;
+    flex: 0 0 auto;
     
     flex-direction: column;
     flex-wrap: nowrap;
@@ -14,8 +13,9 @@
 }
 
 .start-page-container.desktop {
+    width: calc(100% - 602px);
     height: calc(100vh - 101px);
-    overflow: auto;
+    overflow-x: hidden;
     overflow-y: overlay;
 }
 
