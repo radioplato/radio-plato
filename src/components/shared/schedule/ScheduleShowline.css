@@ -1,7 +1,5 @@
 .show-title-container {
     display: flex;
-    display: -webkit-flex;
-    flex: 0 0 auto;
     
     flex-direction: row;
     flex-wrap: nowrap;
@@ -10,7 +8,9 @@
     align-items: center;
     text-transform: uppercase;
     border-bottom: 1px white solid;
-    min-height: 90px;
+    box-sizing: border-box;
+    min-height: 91px;
+    height: fit-content;
 }
 
 .show-title-container.mobile {
