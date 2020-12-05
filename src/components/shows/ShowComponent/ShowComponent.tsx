@@ -49,7 +49,8 @@ export class ShowComponent extends Component<ShowComponentProperties> {
                 googlepodcasts: showDto.ShowLink.googlepodcasts,
                 soundcloud: showDto.ShowLink.soundcloud,
                 patreon: showDto.ShowLink.patreon, 
-            }
+            },
+            mixcloudPlaylist: showDto.MixcloudPlaylist,
         } : null
     }
 
@@ -122,7 +123,7 @@ export class ShowComponent extends Component<ShowComponentProperties> {
                         <img src={ imageSrc } loading='lazy' alt={ show.showCover.alternativeText }/>
                     </div>
                 </div>
-                <ShowEpisodesComponent slug={ slug } />
+                <ShowEpisodesComponent mixcloudPlaylist={ show.mixcloudPlaylist }/>
                 <div className="title-container">
                     <h2 className="more-shows-title">MORE SHOWS</h2>
                 </div>

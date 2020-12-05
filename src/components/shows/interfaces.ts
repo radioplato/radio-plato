@@ -23,6 +23,7 @@ export interface ShowDto extends StrapiObjectDto {
     Slug: string;
     Title: string;
     Weight: number;
+    MixcloudPlaylist: string;
 }
 
 export interface ShowCard {
@@ -39,6 +40,7 @@ export interface Show {
     slug: string;
     showCover: SimpleImage;
     showLinks: SocialLinks;
+    mixcloudPlaylist: string;
 }
 
 export interface ShowEpisode {

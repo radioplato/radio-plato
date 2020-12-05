@@ -8,7 +8,7 @@ import './ShowEpisodesComponent.css';
 
 
 interface ShowEpisodesProperties {
-    slug: string;
+    mixcloudPlaylist: string;
 }
 
 export class ShowEpisodesComponent extends Component<ShowEpisodesProperties> {
@@ -35,9 +35,9 @@ export class ShowEpisodesComponent extends Component<ShowEpisodesProperties> {
     }
 
     fetchPlaylist () {
-        const { slug } = this.props;
+        const { mixcloudPlaylist } = this.props;
         
-        fetch(`https://api.mixcloud.com/radioplato/playlists/${ slug }/cloudcasts/`)
+        fetch(`${ mixcloudPlaylist }`)
             .then(response => response.json())
             .then(playlist => this.parseShowEpisodes(playlist)?.reverse().slice(0, 9))
             .then(showEpisodes => this.setState({ showEpisodes }));
