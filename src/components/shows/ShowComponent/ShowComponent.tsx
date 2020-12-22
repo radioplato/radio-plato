@@ -123,7 +123,7 @@ export class ShowComponent extends Component<ShowComponentProperties> {
                         <img src={ imageSrc } loading='lazy' alt={ show.showCover.alternativeText }/>
                     </div>
                 </div>
-                <ShowEpisodesComponent mixcloudPlaylist={ show.mixcloudPlaylist }/>
+                {  navigator.userAgent !== "ReactSnap" && <ShowEpisodesComponent mixcloudPlaylist={ show.mixcloudPlaylist }/> }
                 <div className="title-container">
                     <h2 className="more-shows-title">MORE SHOWS</h2>
                 </div>
