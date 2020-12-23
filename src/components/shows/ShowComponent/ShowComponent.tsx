@@ -102,7 +102,6 @@ export class ShowComponent extends Component<ShowComponentProperties> {
 
     render () {
         const { show, showCards } = this.state;
-        const { slug } = this.props;
         const imageSrc = show ? show.showCover.url : '';
 
         return show ? (

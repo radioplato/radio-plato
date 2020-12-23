@@ -13,6 +13,7 @@ import NewsComponent from '../news/News/NewsComponent';
 import AboutComponent from '../about/About';
 import { SchedulePageComponent } from '../shared/schedule/ScheduleComponent';
 import DonateComponent from '../donate/Donate'
+import { NotFoundComponent } from '../not-found/NotFoundComponent';
 
 import { NewsListTypes } from '../shared/enums';
 
@@ -36,6 +37,7 @@ function Content() {
             <Route exact path={ `${ NEWS }/:category/:slug` } component={(routerProps: any) => <NewsComponent slug={routerProps.match.params.slug} />} />
             <Route exact path={ ABOUT } component={ AboutComponent } />
             <Route exact path={ DONATE } component={ DonateComponent } />
+            <Route component={ NotFoundComponent } />
         </Switch>
     );
 }
