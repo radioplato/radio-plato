@@ -22,6 +22,7 @@
 
 .donate.mobile {
     flex-direction: column-reverse;
+    width: 100%;
     height: auto;
     box-sizing: border-box;
     overflow: visible;

@@ -18,6 +18,7 @@
 }
 
 .news.mobile {
+    width: 100%;
     height: auto;
     overflow: visible;
 }
@@ -244,6 +245,12 @@ img + em {
     margin-top: 40px;
 }
 
+.news.mobile .more-news {
+    box-sizing: border-box;
+    width: 100%;
+    padding: 0 40px;
+}
+
 .more-news-title {
     text-align: center;
     font-size: 36px;
@@ -255,6 +262,11 @@ img + em {
     
     flex-direction: row;
     margin: 40px 0;
+}
+
+.news.mobile .more-news-title {
+    font-size: 32px;
+    margin: 20px 0 0 0;
 }
 
 .card {

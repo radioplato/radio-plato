@@ -1,3 +1,7 @@
+main.mobile > .scrollable-container {
+    width: 100%;
+}
+
 .scrollable-container {
     width: calc(100% - 121px);
     height: calc(100vh - 101px);

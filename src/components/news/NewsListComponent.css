@@ -17,6 +17,7 @@
 }
 
 .news-list.mobile {
+    width: 100%;
     height: auto;
     padding: 0;
     overflow: visible;

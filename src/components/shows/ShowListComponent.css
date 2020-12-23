@@ -18,6 +18,7 @@
 }
 
 .show-list.mobile {
+    width: 100%;
     height: auto;
     box-sizing: border-box;
     overflow: visible;

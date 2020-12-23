@@ -227,7 +227,6 @@
     align-content: center;
     align-items: flex-start;
     margin-right: 40px;
-    width: calc(100% - 440px);
 }
 
 .news-card.simple .news-card-tag {
