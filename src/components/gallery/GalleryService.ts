@@ -45,7 +45,7 @@ class GalleryService {
             photoExhibitionLink: dto.PhotoExhibitionLink,
             photoExhibitionMedia: dto.PhotoExhibitionMedia.map(imageDto => this.mapImageDto(imageDto)),
             photoExhibitionTitle: dto.PhotoExhibitionTitle,
-            regularGallery: dto.RegularGallery.map(imageDto => this.mapImageDto(imageDto)),
+            regularGallery: dto.RegularGallery.map(imageDto => this.mapImageDto(imageDto)).sort(() => Math.random() - 0.5),
             video: dto.Video,
             videoEmbedCode: dto.VideoEmbedCode,
         }

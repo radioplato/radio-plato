@@ -34,26 +34,35 @@ const SCHEDULE_SEO_TITLE = 'Schedule'
 const SCHEDULE_SEO_DESCRIPTION = 'We broadcast 24/7, here is what you will hear.'
 
 class ScheduleComponent extends Component {
-    subscription: Subscription | null = null;
+    scheduleSubscription: Subscription | null = null;
+    currentShowSubscription: Subscription | null = null;
     state = {
         schedule: scheduleService.schedule,
         selectedDay: moment().isoWeekday() - 1
     };
 
     componentDidMount () {
-        this.subscribeOnScheduleChange();
+        this.subscribeOnScheduleChanges();
+        this.subscribeOnCurrentShowChanges();
     }
 
-    subscribeOnScheduleChange () {
-        this.subscription = scheduleService.subscribeOnScheduleChanges(
+    subscribeOnScheduleChanges () {
+        this.scheduleSubscription = scheduleService.subscribeOnScheduleChanges(
             (schedule: ScheduleShow[][]) => this.setState({ schedule })
+        );
+    }
+
+    subscribeOnCurrentShowChanges () {
+        this.currentShowSubscription = scheduleService.subscribeOnCurrentShowChanges(
+            () => this.setState(this.state)
         );
     }
 
     scheduleShowlineBuilder = (showline: ScheduleShow) => {
         return (
-            <ScheduleShowline 
+            <ScheduleShowline
                 showline={ showline }
+                selectedDay={ this.state.selectedDay }
                 key={ `${ showline.title }-${ showline.startDate }-${ showline.endDate }` }
             />
         );
@@ -70,7 +79,7 @@ class ScheduleComponent extends Component {
     }
 
     componentWillUnmount () {
-        this.subscription?.unsubscribe();
+        this.scheduleSubscription?.unsubscribe();
     }
 
     renderDropdown = () => {

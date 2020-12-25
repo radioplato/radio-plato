@@ -6,7 +6,7 @@ import { IndexesOfDay } from './enums';
 
 
 const DATA_REQUEST_INTERVAL = 14400000;
-const CURRENT_SHOW_REFRESH_INTERVAL = 300000;
+const CURRENT_SHOW_REFRESH_INTERVAL = 60000;
 
 enum PeriodicityTypes {
     SingleTime = 'SingleTime',
@@ -37,8 +37,7 @@ class ScheduleService {
         this.scheduleSubject = new Subject();
         this.currentShowSubject = new Subject();
 
-        this.fetchSchedules();
-        this.updateCurrentShow();
+        this.fetchSchedules().then(() => this.updateCurrentShow());
         setInterval(this.fetchSchedules.bind(this), DATA_REQUEST_INTERVAL);
         setInterval(this.updateCurrentShow.bind(this), CURRENT_SHOW_REFRESH_INTERVAL);
     }
@@ -67,7 +66,7 @@ class ScheduleService {
         const start = (showline: ScheduleShow) => moment(`${ currentDate } ${ showline.startTime }`);
         const end = (showline: ScheduleShow) => moment(`${ currentDate } ${ showline.endTime }`);
 
-        this._currentShow = this.schedule[weekday].find(showline => {
+        this.currentShow = this.schedule[weekday].find(showline => {
             return showline.type === 'Show' && moment().isBetween(start(showline), end(showline));
         });
     }
@@ -93,10 +92,10 @@ class ScheduleService {
 
             for (const [ key, value ] of Object.entries(onAirDateTime)) {
                 const dayIndex = indexByDayName.get(key);
-                
+
                 value && dayIndex !== undefined && weekdays.push(dayIndex);
             }
-    
+
             return {
                 title: dto.Title,
                 description: dto.Description,

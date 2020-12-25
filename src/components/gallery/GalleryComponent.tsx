@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import ReactPlayer from 'react-player'
 import { Subscription } from 'rxjs';
 import { Carousel } from 'react-responsive-carousel';
+import { Link } from 'react-router-dom';
 
 import galleryService from './GalleryService';
 import { IndexGallery } from './interfaces';
@@ -69,12 +70,21 @@ class GalleryComponent extends Component {
             );
         }
 
-        if (scheduleService.currentShow && scheduleService.currentShow.image) {
+        const currentShow = scheduleService.currentShow;
+
+        if (currentShow && currentShow.image) {
             return (
-                <img className='gallery-image'
-                     src={ scheduleService.currentShow.image.url }
-                     alt={ scheduleService.currentShow.image.alternativeText }
-                ></img>
+                currentShow.link
+                ? (<Link to={ `${ currentShow.link }` } title={ currentShow.title } >
+                    <img className='gallery-image'
+                        src={ currentShow.image.url }
+                        alt={ currentShow.image.alternativeText }
+                    ></img>
+                </Link>)
+                : (<img className='gallery-image'
+                    src={ currentShow.image.url }
+                    alt={ currentShow.image.alternativeText }
+                ></img>)
             );
         }
 

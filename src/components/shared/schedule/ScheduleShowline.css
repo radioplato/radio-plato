@@ -13,6 +13,18 @@
     height: fit-content;
 }
 
+a > .show-title-container:hover > div.show-date > p {
+    text-decoration: underline;
+}
+
+a > .show-title-container:hover > div.show-title > p {
+    text-decoration: underline;
+}
+
+a > .show-title-container:hover > div > div.show-desc > p {
+    text-decoration: underline;
+}
+
 .show-title-container.mobile {
     width: 100%;
 }
@@ -20,6 +32,23 @@
 .show-date {
     margin: 0px 20px 0px 40px;
     flex: 0 0 auto;
+}
+
+.white {
+    background-color: white;
+    color: black;
+}
+
+.white > div.show-date > p {
+    color: black;
+}
+
+.white > div.show-title > p {
+    color: black;
+}
+
+.white > div > div.show-desc > p {
+    color: black;
 }
 
 .show-title-container.mobile .show-date {

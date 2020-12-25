@@ -1,3 +1,4 @@
+import moment from 'moment';
 import React from 'react'
 
 import { BrowserView, isMobileOnly } from 'react-device-detect';
@@ -9,10 +10,13 @@ import './ScheduleShowline.css'
 
 
 interface ScheduleShowlineProperties {
-    showline: ScheduleShow
+    showline: ScheduleShow,
+    selectedDay: number
 }
 
-function showlineWrapper (showline: ScheduleShow) {
+const FORMAT = 'HH:mm:ss';
+
+function showlineWrapper (showline: ScheduleShow, selectedDay: number) {
     const {
         title,
         description,
@@ -22,9 +26,9 @@ function showlineWrapper (showline: ScheduleShow) {
     } = showline;
     const interval = startTime && endTime ? `${ startTime.slice(0, 5) } - ${ endTime.slice(0, 5) }` : '';
     const href = link ? link : null;
-
+    const isNow = moment().isoWeekday() - 1 === selectedDay && moment(moment().format(FORMAT), FORMAT).isBetween(moment(startTime, FORMAT), moment(endTime, FORMAT));
     const content = (
-        <div className={ `show-title-container ${ isMobileOnly ? 'mobile' : 'desktop' }` }>
+        <div className={ `show-title-container ${ isMobileOnly ? 'mobile' : 'desktop' } ${ isNow && 'white' }` }>
             <div className='show-date'>
                 <p>{ interval }</p>
             </div>
@@ -42,6 +46,6 @@ function showlineWrapper (showline: ScheduleShow) {
     return href ? (<Link to={ href }>{ content }</Link>) : (<div>{ content }</div>);
 }
 
-const ScheduleShowline = ({ showline }: ScheduleShowlineProperties) => showlineWrapper(showline);
+const ScheduleShowline = ({ showline, selectedDay }: ScheduleShowlineProperties) => showlineWrapper(showline, selectedDay);
 
 export default ScheduleShowline 
