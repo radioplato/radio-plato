@@ -221,12 +221,17 @@
     display: -webkit-flex;
     flex: 0 0 auto;
     
+    width: 100%;
     flex-direction: column;
     flex-wrap: nowrap;
     justify-content: center;
     align-content: center;
     align-items: flex-start;
-    margin-right: 40px;
+    padding-right: 40px;
+}
+
+.news-card.simple.desktop .news-card-text {
+    width: calc(100% - 420px);
 }
 
 .news-card.simple .news-card-tag {
@@ -241,6 +246,7 @@
     font-size: 36px;
     line-height: 120%;
 
+    width: 100%;
     margin: 0;
     margin-bottom: 10px;
 }

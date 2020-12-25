@@ -13,7 +13,6 @@ class GalleryService {
     constructor () {
         this.gallerySubject = new Subject();
 
-        this.fetchIndexGallery();
         setInterval(this.fetchIndexGallery.bind(this), GALLERY_REQUEST_INTERVAL);
     }
 

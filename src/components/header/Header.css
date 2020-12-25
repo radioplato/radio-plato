@@ -36,6 +36,7 @@ header {
 }
 
 .logo-text {
+    -webkit-user-select: none;
     font-style: normal;
     font-weight: 500;
     font-size: 28.6062px;
@@ -48,6 +49,7 @@ header {
 }
 
 .donate-link {
+    -webkit-user-select: none;
     position: relative;
     margin-right: 40px;
     color: #ffffff;
@@ -80,8 +82,8 @@ header {
 }
 
 .android-link {
+    -webkit-user-select: none;
     color: white;
-    color: #ffffff;
     font-style: normal;
     font-weight: 500;
     font-size: 16px;

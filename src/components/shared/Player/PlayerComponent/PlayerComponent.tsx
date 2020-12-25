@@ -16,6 +16,16 @@ import './PlayerComponent.css';
 
 const ONAIR = 'onair';
 
+const copyToClipboard = (text: string) => {
+    const dummy = document.createElement('textarea');
+
+    document.body.appendChild(dummy);
+    dummy.value = text;
+    dummy.select();
+    document.execCommand('copy');
+    document.body.removeChild(dummy);
+};
+
 export class PlayerComponent extends PureComponent<PlayerProps> {
     state = {
         trackName: ''
@@ -37,18 +47,25 @@ export class PlayerComponent extends PureComponent<PlayerProps> {
         if (isMobileOnly) {
             this.setState({ trackName });
         } else {
-            const tracktitle = document.querySelector("p.track-title");
+            const tracktitle = document.querySelector('p.track-title');
 
-            tracktitle?.classList.remove("shown")
-            tracktitle?.classList.add("hidden");
+            tracktitle?.classList.remove('shown')
+            tracktitle?.classList.add('hidden');
     
-            setTimeout(() => { tracktitle?.classList.add("shown"); this.setState({ trackName }) }, 1000)
-            setTimeout(() => tracktitle?.classList.remove("hidden"), 2000);
+            setTimeout(() => { tracktitle?.classList.add('shown'); this.setState({ trackName }) }, 1000)
+            setTimeout(() => tracktitle?.classList.remove('hidden'), 2000);
         } 
     }
 
     subscribeOnPlayerStateChange () {
         this.subscription = playerService.subscribeOnTrackNameChanges((trackName: string) => this.onTrackChange(trackName));
+    }
+
+    handleTrackTitleClick () {
+        const trackName = this.state.trackName;
+        copyToClipboard(trackName);
+        this.setState({ trackName: 'Copied!' });
+        setTimeout(() => this.setState({ trackName }), 1000)
     }
     
     renderMainPlayer (trackName: string) {
@@ -68,10 +85,10 @@ export class PlayerComponent extends PureComponent<PlayerProps> {
         return (
             <>
                 <PlayButton playerType={ this.props.playerType }/>
-                    <div className='track-title'>
-                        <div className="overlay"></div>
-                        <p>{ trackName }</p>
-                    </div>
+                <div className='track-title' title='Click to copy the track name to the clipboard' onClick={ () => this.handleTrackTitleClick() }>
+                    <div className='overlay'></div>
+                    <p>{ trackName }</p>
+                </div>
                 <VolumeControls />
             </>
         );

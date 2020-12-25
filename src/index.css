@@ -62,3 +62,13 @@ a {
   font: inherit;
   color: inherit;
 }
+
+::-moz-selection { 
+  color: black;
+  background: white;
+}
+
+::selection {
+  color: black;
+  background: white;
+}
