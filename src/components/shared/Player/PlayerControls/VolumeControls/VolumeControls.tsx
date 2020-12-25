@@ -47,6 +47,7 @@ function VolumeControls() {
                 trackClassName='track'
                 defaultValue={ sliderDefaultValue() }
                 onChange={ value => changeVolume(value)}
+                ariaLabel='Volume slider'
             />
         </div>
     );
