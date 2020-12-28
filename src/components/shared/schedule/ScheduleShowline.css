@@ -63,7 +63,6 @@ a > .show-title-container:hover > div > div.show-desc > p {
 
 .show-title-container.mobile .show-title {
     margin: 0px 40px 0px 15px;
-    width: auto;
 }
 
 .show-title-container.mobile .show-title p {
