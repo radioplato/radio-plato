@@ -190,6 +190,7 @@
     display: -webkit-flex;
     flex: 0 0 auto;
     
+    flex-direction: column;
     justify-content: center;
     align-content: center;
     align-items: center;
