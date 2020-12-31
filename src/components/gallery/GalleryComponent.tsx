@@ -76,12 +76,12 @@ class GalleryComponent extends Component {
             return (
                 currentShow.link
                 ? (<Link to={ `${ currentShow.link }` } title={ currentShow.title } >
-                    <img className='gallery-image'
+                    <img className='show-image'
                         src={ currentShow.image.url }
                         alt={ currentShow.image.alternativeText }
                     ></img>
                 </Link>)
-                : (<img className='gallery-image'
+                : (<img className='show-image'
                     src={ currentShow.image.url }
                     alt={ currentShow.image.alternativeText }
                 ></img>)
@@ -100,7 +100,8 @@ class GalleryComponent extends Component {
             >
                 { gallery.regularGallery.map(photo => (
                     <div key={ photo.url }>
-                        <img src={ photo.url }
+                        <img className='regular-image'
+                             src={ photo.url }
                              alt={ photo.alternativeText }
                         />
                     </div>
