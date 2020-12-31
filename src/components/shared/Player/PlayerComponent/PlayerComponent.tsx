@@ -43,6 +43,10 @@ export class PlayerComponent extends PureComponent<PlayerProps> {
         });
     }
 
+    componentWillUnmount () {
+        this.subscription?.unsubscribe();
+    }
+
     onTrackChange (trackName: string) {
         if (isMobileOnly) {
             this.setState({ trackName });

@@ -93,6 +93,10 @@ export class NewsComponent extends Component<NewsComponentProperties> {
         }
     }
 
+    componentWillUnmount () {
+        this.subscription?.unsubscribe();
+    }
+
     subscribeOnGalleryChange () {
         this.subscription = adService.subscribeOnNewsPostAdUpdate(
             (advertisement: Advertisement) => this.setState({ advertisement })

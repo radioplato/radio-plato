@@ -80,6 +80,7 @@ class ScheduleComponent extends Component {
 
     componentWillUnmount () {
         this.scheduleSubscription?.unsubscribe();
+        this.currentShowSubscription?.unsubscribe();
     }
 
     renderDropdown = () => {

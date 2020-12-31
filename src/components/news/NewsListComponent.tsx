@@ -157,6 +157,10 @@ export class NewsListComponent extends Component<NewsListComponentProperties> {
         this.subscribeOnAdvertisementChange();
     }
 
+    componentWillUnmount () {
+        this.subscription?.unsubscribe();
+    }
+
     subscribeOnAdvertisementChange () {
         this.subscription = adService.subscribeOnNewsCardAdUpdate(
             (advertisement: Advertisement) => this.setState({ advertisement })
