@@ -25,6 +25,7 @@
     "react-player": "^1.15.3",
     "react-responsive-carousel": "^3.2.9",
     "react-router-dom": "^5.1.2",
+    "react-router-ga": "^1.2.3",
     "react-scripts": "^3.4.3",
     "react-slider": "^1.0.8",
     "rxjs": "^6.5.5",
