@@ -91,7 +91,7 @@
 
 .news-title {
     font-style: normal;
-    font-weight: 500;
+    font-weight: 300;
     font-size: 68px;
     line-height: 120%;
     text-align: center;
@@ -163,7 +163,7 @@
 .news-content {
     width: 800px;
     margin-top: 40px;
-    margin-bottom: 101px;
+    margin-bottom: 40px;
 }
 
 .news-content p {
@@ -255,7 +255,7 @@ img + em {
 .more-news-title {
     text-align: center;
     font-size: 36px;
-    font-weight: 500;
+    font-weight: 300;
     line-height: 120%;
     display: flex;
     display: -webkit-flex;
@@ -306,7 +306,7 @@ img + em {
 
 .card h2 {
     font-style: normal;
-    font-weight: 400;
+    font-weight: 300;
     font-size: 36px;
     line-height: 120%;
 
