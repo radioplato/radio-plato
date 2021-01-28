@@ -19,7 +19,7 @@ import { PlayerTypes } from '../shared/enums';
 import './Header.css'
 
 
-const RADIO_PLATO = 'Radio Plato';
+const RADIO_PLATO = '';
 const DONATE = 'Donate';
 
 export class Header extends Component {
