@@ -102,7 +102,7 @@ nav.mobile .menu-items-container {
     margin: 60px 0;
 
     font-style: normal;
-    font-weight: 500;
+    font-weight: 300;
     font-size: 64px;
     line-height: 120%;
 }
@@ -126,8 +126,8 @@ nav.mobile > .menu-button-aside {
     content: '';
     position: absolute;
     width: 1%;
-    height: 4px;
-    bottom: 0;
+    height: 3px;
+    bottom: 5px;
     left: 0;
     background-color: #000;
     visibility: hidden;
