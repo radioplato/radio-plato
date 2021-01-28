@@ -50,9 +50,22 @@ header {
     background-size: 100px 82px;
 }
 
-.header-container.mobile .logo-text {
-    margin: 0 35%;
+.header-container.mobile .logo-container {
     position: absolute;
+    display: flex;
+    display: -webkit-flex;
+    flex: 0 0 auto;
+    justify-content: center;
+    align-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100px;
+
+    pointer-events: none;
+}
+
+.header-container.mobile .logo-text {
+    margin: 0;
 }
 
 .donate-link {

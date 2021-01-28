@@ -27,7 +27,9 @@ export class Header extends Component {
         return (
             <header className={ `header-container ${ isMobileOnly ? 'mobile' : 'desktop' }` }>
                 { isMobileOnly && <MenuButton /> }
-                <Link to='/' className='logo-text'>{ RADIO_PLATO }</Link>
+                <div className='logo-container'>
+                    <Link to='/' className='logo-text'>{ RADIO_PLATO }</Link>
+                </div>
                 <BrowserView>
                     <div className='social-container'>
                         <Switch>
