@@ -53,6 +53,7 @@
 .menu-button-header {
     height: 100px;
     width: 100px;
+    z-index: 20;
 
     display: flex;
     display: -webkit-flex;
