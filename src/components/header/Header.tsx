@@ -21,6 +21,7 @@ import './Header.css'
 
 const RADIO_PLATO = '';
 const DONATE = 'Donate';
+const DONATE_LINK = 'https://www.patreon.com/radioplato';
 
 export class Header extends Component {
     render() {
@@ -54,8 +55,18 @@ export class Header extends Component {
                             </a>
                         </div>
                         
+                        <div className="donate-link-wrapper">
+                            <a className='donate-link'
+                                target='_blank'
+                                href={ DONATE_LINK }
+                                title={ `A link Radio Plato Patreon` }
+                                aria-label={ `A link Radio Plato Patreon` }
+                                rel='noopener noreferrer'
+                            >
+                                { DONATE }
+                            </a>
+                        </div>
     
-                        <Link to='/donate' className='donate-link'>{ DONATE }</Link>
                     </div>
                 </BrowserView>
             </header>
