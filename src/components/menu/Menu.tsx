@@ -2,8 +2,7 @@ import React from 'react'
 
 import { Link } from 'react-router-dom';
 
-import { Icon } from '@iconify/react';
-import crossIcon from '@iconify/icons-gridicons/cross';
+import { isMobileOnly } from 'react-device-detect';
 
 import './Menu.css'
 
@@ -22,7 +21,6 @@ interface MenuParameters {
 }
 
 function Menu({ menuRef, wrapperRef, toggleMenu }: MenuParameters) {
-
     const buildMenuItem = (title: string) => {
         const route = `/${ title.toLowerCase() }`;
 
@@ -35,16 +33,10 @@ function Menu({ menuRef, wrapperRef, toggleMenu }: MenuParameters) {
 
     return (
         <>
-            <div className='wrapper' ref={ wrapperRef } onClick={ toggleMenu } />
-            <nav ref={ menuRef }>
-                <div className='close-button-container'>
-                    <button 
-                        className='close-button'
-                        aria-label='Close menu button'
-                        onClick={ toggleMenu }
-                    >
-                        <Icon icon={ crossIcon } width={ 48 } height={ 48 }/>    
-                    </button>
+            <div className={`wrapper ${ isMobileOnly ? 'mobile' : 'desktop' }`} ref={ wrapperRef } onClick={ toggleMenu } />
+            <nav ref={ menuRef } className={ isMobileOnly ? 'mobile' : 'desktop' }>
+                <div className='menu-button-aside white' onClick={ toggleMenu }>
+                    <p className='label close-button'>CLOSE</p>
                 </div>
                 <div className='menu-items-container'>
                     <ul className='menu-items'>

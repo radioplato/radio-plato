@@ -3,19 +3,16 @@ import moment from 'moment';
 
 import { ScheduleShow, ScheduleDto } from './interfaces';
 import { IndexesOfDay } from './enums';
-import { BACKEND_URL } from '../constants';
 
 
 const DATA_REQUEST_INTERVAL = 14400000;
-const CURRENT_SHOW_REFRESH_INTERVAL = 300000;
+const CURRENT_SHOW_REFRESH_INTERVAL = 60000;
 
 enum PeriodicityTypes {
     SingleTime = 'SingleTime',
-    Daily = 'Daily',
     Weekly = 'Weekly',
     BiWeekly = 'BiWeekly',
     EveryThirdWeek = 'Every3rdWeek',
-    Monthly = 'Monthly'
 }
 
 const indexByDayName = new Map([
@@ -38,8 +35,7 @@ class ScheduleService {
         this.scheduleSubject = new Subject();
         this.currentShowSubject = new Subject();
 
-        this.fetchSchedules();
-        this.updateCurrentShow();
+        this.fetchSchedules().then(() => this.updateCurrentShow());
         setInterval(this.fetchSchedules.bind(this), DATA_REQUEST_INTERVAL);
         setInterval(this.updateCurrentShow.bind(this), CURRENT_SHOW_REFRESH_INTERVAL);
     }
@@ -68,13 +64,13 @@ class ScheduleService {
         const start = (showline: ScheduleShow) => moment(`${ currentDate } ${ showline.startTime }`);
         const end = (showline: ScheduleShow) => moment(`${ currentDate } ${ showline.endTime }`);
 
-        this._currentShow = this.schedule[weekday].find(showline => {
+        this.currentShow = this.schedule[weekday].find(showline => {
             return showline.type === 'Show' && moment().isBetween(start(showline), end(showline));
         });
     }
 
     async fetchSchedules () {
-        await fetch(`${ BACKEND_URL }/schedules`)
+        await fetch(`${ process.env.REACT_APP_BACKEND_URL }/schedules`)
             .then(response => response.json())
             .then(data => [].concat(...data.map((datum: ScheduleDto) => this.parseScheduleLine(datum))))
             .then(scheduleShows => this.organizeSchedule(scheduleShows));
@@ -94,10 +90,10 @@ class ScheduleService {
 
             for (const [ key, value ] of Object.entries(onAirDateTime)) {
                 const dayIndex = indexByDayName.get(key);
-                
+
                 value && dayIndex !== undefined && weekdays.push(dayIndex);
             }
-    
+
             return {
                 title: dto.Title,
                 description: dto.Description,
@@ -145,12 +141,10 @@ class ScheduleService {
         }
 
         const showStartDate = moment(show.startDate);
-        const dateOfDay = moment().add(moment().isoWeekday() - day + 1, 'days');
+        const dateOfDay = moment().subtract(moment().isoWeekday(), 'days').add(day + 1, 'days');
         const weeksPassed = +(moment().week() - showStartDate.week());
 
         switch (show.periodicity) {
-            case PeriodicityTypes.Daily: 
-                return show.weekdays.includes(day);
             case PeriodicityTypes.Weekly:
                 return show.weekdays.includes(day);
             case PeriodicityTypes.BiWeekly:

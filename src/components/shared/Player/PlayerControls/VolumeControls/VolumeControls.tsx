@@ -21,6 +21,8 @@ function VolumeControls() {
     }
 
     const changeVolume = (value: any) => {
+        playerService.muted = false;
+        setVolumeMode(playerService.muted);
         playerService.volume = value / 100;
     }
 
@@ -37,7 +39,7 @@ function VolumeControls() {
                 aria-label='Toggle volume button'
                 onClick={ toggleVolumeMode }
             >
-                { muted ? FullVolumeIcon : MuteVolumeIcon }
+                { muted ? MuteVolumeIcon : FullVolumeIcon }
             </button>
             <ReactSlider
                 className='horizontal-slider'
@@ -45,6 +47,7 @@ function VolumeControls() {
                 trackClassName='track'
                 defaultValue={ sliderDefaultValue() }
                 onChange={ value => changeVolume(value)}
+                ariaLabel='Volume slider'
             />
         </div>
     );

@@ -1,24 +1,49 @@
 .show-list {
     display: flex;
+    display: -webkit-flex;
+    flex: 0 0 auto;
+    
     flex-direction: column;
     flex-wrap: nowrap;
     justify-content: flex-start;
     align-content: stretch;
 
-    width: 100%;
+    width: calc(100% - 121px);
     height: calc(100vh - 101px);
     padding: 40px;
 
-    overflow: auto;
+    overflow-x: hidden;
+    overflow-y: overlay;
+    box-sizing: border-box;
+}
+
+.show-list.mobile {
+    width: 100%;
+    height: auto;
+    box-sizing: border-box;
+    overflow: visible;
 }
 
 .show-list::-webkit-scrollbar {
+    width: 2px;
+}
+
+.show-list::-webkit-scrollbar-track {
+    background-color: #00000000;
+    border: 0;
+}
+
+.show-list::-webkit-scrollbar-thumb {
+    background-color: #ffffff13;
+}
+
+.show-list::-webkit-scrollbar-button {
     display: none;
 }
 
 .show-list h1 {
     font-style: normal;
-    font-weight: 500;
+    font-weight: 300;
     font-size: 36px;
     line-height: 120%;
     text-transform: uppercase;
@@ -27,10 +52,13 @@
 
 .show-cards {
     display: flex;
+    display: -webkit-flex;
+    flex: 0 0 auto;
+    
     flex-direction: row;
     flex-wrap: wrap;
-    justify-content: flex-start;
-    align-content: flex-start;
+    justify-content: center;
+    align-content: center;
     align-items: flex-start;
 
     margin-top: 40px;

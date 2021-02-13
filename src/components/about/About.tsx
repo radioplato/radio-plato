@@ -1,8 +1,14 @@
 import React, { Component } from 'react';
 
-import { BACKEND_URL } from '../shared/constants';
-import { AboutDto, About } from '../about/interfaces';
+import { isMobileOnly } from 'react-device-detect';
+import googlePlay from '@iconify/icons-cib/google-play';
+import Icon from '@iconify/react';
+
+import SocialLinksComponent from '../shared/SocialLinksComponent/SocialLinksComponent';
 import { Seo } from '../shared/wrappers/seo/Seo'
+
+import { AboutDto, About } from '../about/interfaces';
+import { ANDROID_APP, HEADER_SOCIAL_LINKS } from '../shared/constants';
 
 import './About.css';
 
@@ -28,7 +34,7 @@ export class AboutComponent extends Component {
     }
 
     fetchAbout () {
-        fetch(`${ BACKEND_URL }/about`)
+        fetch(`${ process.env.REACT_APP_BACKEND_URL }/about`)
             .then(response => response.json())
             .then((data: AboutDto) => this.parseAbout(data))
             .then(about => this.setState({ about }));
@@ -43,9 +49,8 @@ export class AboutComponent extends Component {
         const { about } = this.state;
         const imageSrc = about ? about.aboutCover.url : '';
 
-
         return about ? (
-            <article className='about'>
+            <article className={ `about ${ isMobileOnly ? 'mobile' : 'desktop' }` }>
                 <Seo meta={{
                         title: about.title,
                         description: about.description,
@@ -55,6 +60,25 @@ export class AboutComponent extends Component {
                 <div className='information'>
                     <h1>{ about.title }</h1>
                     <p>{ about.description }</p>
+                    <div className="social-links">
+                        <SocialLinksComponent socialLinks={ HEADER_SOCIAL_LINKS }></SocialLinksComponent>
+                    </div>
+                    {
+                        isMobileOnly && (
+                            <div className="about-android-link-wrapper">
+                                <a className='android-link'
+                                    target='_blank'
+                                    href={ HEADER_SOCIAL_LINKS.googlePlay }
+                                    title={ `A link to Android App` }
+                                    aria-label={ `A link to Android App` }
+                                    rel='noopener noreferrer'
+                                >
+                                    <Icon className='google-play-icon' icon={ googlePlay }/>
+                                    { ANDROID_APP }
+                                </a>
+                            </div>
+                        )
+                    }
                 </div>
                 <div className='image'>
                     <img src={ imageSrc } loading='lazy' alt={ about.aboutCover.alternativeText }/>

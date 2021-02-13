@@ -1,5 +1,8 @@
 .visual-container {
     display: flex;
+    display: -webkit-flex;
+    flex: 0 0 auto;
+    
     flex-direction: row;
     flex-wrap: nowrap;
     justify-content: center;
@@ -7,18 +10,29 @@
     align-items: center;
 
     width: 100%;
-    height: 444px;
     min-height: 444px;
+    box-sizing: border-box;
 
     padding: 40px 0;
 }
 
-.gallery-image {
+.regular-image {
+    width: 100%;
+    height: auto;
+}
+
+.show-image {
     height: 400px;
     width: auto;
 }
 
-.carousel {
+.exhibition-carousel {
     max-width: 600px;
+    height: auto;
+}
+
+.regular-carousel {
+    box-sizing: border-box;
+    width: 100%;
     height: auto;
 }

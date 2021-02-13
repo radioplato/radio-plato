@@ -1,21 +1,37 @@
 import { Subject } from 'rxjs'
 
 import { PlayerState } from './interfaces';
-import { DEFAULT_PLAYER_STATE, DATA_URL, DATA_REQUEST_INTERVAL } from './constants';
+import { DEFAULT_PLAYER_STATE } from './constants';
+
+
+enum StorageKey {
+    Volume = 'volume'
+}
+
+const parseVolume = (value: string | null): number => value !== null ? parseFloat(value) : 1;
 
 class PlayerService {
     private playerState: PlayerState;
     private track = '';
     private playerStateSubject: Subject<PlayerState>;
     private trackNameSubject: Subject<string>;
+    private connection = new WebSocket(process.env.REACT_APP_DATA_URL as string);
+
+    private onMessage (event: MessageEvent) {
+        const data = JSON.parse(event.data);
+
+        this.updateTrackName(data.now_playing.song.text);
+    }
 
     constructor (state: PlayerState) {
         this.playerState = state;
+
         this.playerStateSubject = new Subject();
         this.trackNameSubject = new Subject();
 
-        this.updateTrackName();
-        setInterval(this.updateTrackName.bind(this), DATA_REQUEST_INTERVAL);
+        this.volume = parseVolume(localStorage.getItem(StorageKey.Volume));
+
+        this.connection.onmessage = event => this.onMessage(event);
     }
 
     set playing (isPlaying: boolean) {
@@ -28,6 +44,8 @@ class PlayerService {
     }
 
     set volume (volumeLevel: number) {
+        localStorage.setItem(StorageKey.Volume, volumeLevel.toString());
+
         this.playerState.volume = volumeLevel;
         this.playerStateSubject.next(this.playerState);
     }
@@ -57,13 +75,9 @@ class PlayerService {
         return this.trackNameSubject.subscribe(data => onNext(data));
     }
 
-    async updateTrackName () {
-        const response = await fetch(DATA_URL);
-        const data = await response.json();
-        const trackName = data.icestats.source[0].title;
-
-        if (trackName !== this.track) {
-            this.track = trackName;
+    async updateTrackName (name: string = '') {
+        if (name !== this.track) {
+            this.track = name;
             this.trackNameSubject.next(this.track);
         }
     }

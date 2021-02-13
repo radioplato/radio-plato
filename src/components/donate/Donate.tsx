@@ -1,11 +1,13 @@
 import React, { Component } from 'react';
 
-import { BACKEND_URL } from '../shared/constants';
+import { isMobileOnly } from 'react-device-detect';
+import ReactMarkdown from 'react-markdown';
+
 import { DonateDto, Donate } from '../donate/interfaces';
 import { Seo } from '../shared/wrappers/seo/Seo'
 
 import './Donate.css';
-import ReactMarkdown from 'react-markdown';
+
 
 const DONATE_SEO_DESCRIPTION = 'Support us!'
 
@@ -31,7 +33,7 @@ export class DonateComponent extends Component {
     }
 
     fetchDonate () {
-        fetch(`${ BACKEND_URL }/donate`)
+        fetch(`${ process.env.REACT_APP_BACKEND_URL }/donate`)
             .then(response => response.json())
             .then((data: DonateDto) => this.parseDonate(data))
             .then(donate => this.setState({ donate }));
@@ -46,9 +48,8 @@ export class DonateComponent extends Component {
         const { donate } = this.state;
         const imageSrc = donate ? donate.donateCover.url : '';
 
-
         return donate ? (
-            <article className='donate'>
+            <article className={ `donate ${ isMobileOnly ? 'mobile' : 'desktop' }` }>
                  <Seo meta={{
                         title: donate.title,
                         description: DONATE_SEO_DESCRIPTION,
@@ -58,7 +59,11 @@ export class DonateComponent extends Component {
                 <div className='information'>
                     <h1>{ donate.title }</h1>
                     <div className='text-content'>
-                        <ReactMarkdown source={ donate.description } escapeHtml={ false } />
+                        <ReactMarkdown
+                            source={ donate.description }
+                            escapeHtml={ false }
+                            renderers={{ link: props => <a href={ props.href } target="_blank" rel="noopener noreferrer">{ props.children }</a> }}
+                        />
                     </div>
                 </div>
                 <div className='image'>

@@ -10,6 +10,9 @@ interface ShowLinkDto extends StrapiObjectDto {
     spotify?: string;
     telegram?: string;
     vk?: string;
+    googlepodcasts?: string;
+    patreon?: string;
+    soundcloud?: string;
 }
 
 export interface ShowDto extends StrapiObjectDto {
@@ -19,6 +22,8 @@ export interface ShowDto extends StrapiObjectDto {
     ShowLink: ShowLinkDto;
     Slug: string;
     Title: string;
+    Weight: number;
+    MixcloudPlaylist: string;
 }
 
 export interface ShowCard {
@@ -26,13 +31,16 @@ export interface ShowCard {
     showCover: SimpleImage;
     slug: string;
     title: string;
+    weight: number;
 }
 
 export interface Show {
     description: string;
     title: string;
+    slug: string;
     showCover: SimpleImage;
     showLinks: SocialLinks;
+    mixcloudPlaylist: string;
 }
 
 export interface ShowEpisode {

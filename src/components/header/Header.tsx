@@ -1,56 +1,77 @@
-import React from 'react'
+import React, { Component } from 'react'
 
 import {
   Link,
-  withRouter,
   Switch,
   Route
 } from 'react-router-dom';
 
-import { Icon } from '@iconify/react';
-import bxSearch from '@iconify/icons-bx/bx-search';
+import { BrowserView, isMobileOnly } from 'react-device-detect';
+import googlePlay from '@iconify/icons-cib/google-play';
+import Icon from '@iconify/react';
 
+import MenuButton from '../menu/menu-button/MenuButton';
 import SocialLinksComponent from '../shared/SocialLinksComponent/SocialLinksComponent';
 import PlayerComponent from '../shared/Player/PlayerComponent/PlayerComponent';
-import { SocialLinks } from '../shared/interfaces';
+import { ANDROID_APP, HEADER_SOCIAL_LINKS } from '../shared/constants';
 import { PlayerTypes } from '../shared/enums';
 
 import './Header.css'
 
 
-const RADIO_PLATO = 'Radio Plato';
+const RADIO_PLATO = '';
 const DONATE = 'Donate';
+const DONATE_LINK = 'https://www.patreon.com/radioplato';
 
-const HEADER_SOCIAL_LINKS: SocialLinks = {
-    mixcloud: 'https://www.mixcloud.com/radioplato/',
-    facebook: 'https://www.facebook.com/radioplato.by/',
-    vk: 'https://vk.com/radioplato',
-    email: 'mailto:hey@radioplato.by',
-    instagram: 'https://www.instagram.com/radio_plato/',
-    telegram: 'https://t.me/radioplato',
-    googlePlay: 'https://play.google.com/store/apps/details?id=com.radioplato'
-}
-
-function Header() {
-    return (
-        <header className='header-container'>
-            <Link to='/' className='logo-text'>{ RADIO_PLATO }</Link>
-            <div className='social-container'>
-                <Switch>
-                    <Route exact path='/' render={
-                        props => (<SocialLinksComponent { ...props } socialLinks={ HEADER_SOCIAL_LINKS }/>)
-                    }/>
-                    <Route path='/' render={
-                        props => (<PlayerComponent { ...props } playerType={ PlayerTypes.Header }/>)
-                    }/>
-                </Switch>
-                <Link to='/donate' className='donate-link'>{ DONATE }</Link>
-                <div className='search-icon'>
-                    <Icon icon={ bxSearch } width='1.8em' color='white'/>
+export class Header extends Component {
+    render() {
+        return (
+            <header className={ `header-container ${ isMobileOnly ? 'mobile' : 'desktop' }` }>
+                { isMobileOnly && <MenuButton /> }
+                <div className='logo-container'>
+                    <Link to='/' className='logo-text'>{ RADIO_PLATO }</Link>
                 </div>
-            </div>
-        </header>
-    );
+                <BrowserView>
+                    <div className='social-container'>
+                        <Switch>
+                            <Route exact path='/' render={
+                                props => (<SocialLinksComponent { ...props } socialLinks={ HEADER_SOCIAL_LINKS }/>)
+                            }/>
+                            <Route path='/' render={
+                                props => (<PlayerComponent { ...props } playerType={ PlayerTypes.Header }/>)
+                            }/>
+                        </Switch>
+                        
+                        <div className="android-link-wrapper">
+                            <a className='android-link'
+                                target='_blank'
+                                href={ HEADER_SOCIAL_LINKS.googlePlay }
+                                title={ `A link to Android App` }
+                                aria-label={ `A link to Android App` }
+                                rel='noopener noreferrer'
+                            >
+                                <Icon className='google-play-icon' icon={ googlePlay }/>
+                                { ANDROID_APP }
+                            </a>
+                        </div>
+                        
+                        <div className="donate-link-wrapper">
+                            <a className='donate-link'
+                                target='_blank'
+                                href={ DONATE_LINK }
+                                title={ `A link Radio Plato Patreon` }
+                                aria-label={ `A link Radio Plato Patreon` }
+                                rel='noopener noreferrer'
+                            >
+                                { DONATE }
+                            </a>
+                        </div>
+    
+                    </div>
+                </BrowserView>
+            </header>
+        );
+    }
 }
   
-export default withRouter(Header);
+export default Header;

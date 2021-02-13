@@ -1,27 +1,57 @@
-import React from 'react';
+import React, { Component } from 'react';
 
 import {
-    HashRouter,
+    BrowserRouter, HashRouter
 } from 'react-router-dom';
+import Analytics from 'react-router-ga';
+import { HelmetProvider } from 'react-helmet-async';
 
 import Header from './components/header/Header';
 import Main from './components/main/Main';
 import Player from './components/shared/Player/Player';
 
 import './App.css';
-import { HelmetProvider } from 'react-helmet-async';
 
 
-function App() {
-    return (
-        <HelmetProvider>
-            <HashRouter basename='/'>
-                <Header />
-                <Main />
-                <Player />
-            </HashRouter>
-        </HelmetProvider>
+const Components = (
+    <>
+        <Header />
+        <Main />
+        <Player />
+    </>
+);
+
+function withAnalytics (children: JSX.Element) {
+    return navigator.userAgent !== "ReactSnap" ?
+    (
+        <Analytics id={ process.env.REACT_APP_GA }>
+            { children }
+        </Analytics>
+    ) : children;
+}
+
+function withEnvironmentalRouter (children: JSX.Element) {
+    return process.env.REACT_APP_ENV === 'production' ?
+    (
+        <BrowserRouter>
+            { withAnalytics(children) }
+        </BrowserRouter>
+    ) :
+    (
+        <HashRouter basename='/'>
+            { children }
+        </HashRouter>
     );
+}
+
+class App extends Component {
+    render() {
+        return (
+            <HelmetProvider>
+                { withEnvironmentalRouter(Components) }
+            </HelmetProvider>
+        );
+    }
 }
 
 export default App;

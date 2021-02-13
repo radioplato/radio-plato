@@ -1,11 +1,14 @@
 import React, { Component } from 'react';
 
-import './ShowEpisodesComponent.css';
+import { isMobileOnly } from 'react-device-detect';
+
 import { ShowEpisode } from '../interfaces';
+
+import './ShowEpisodesComponent.css';
 
 
 interface ShowEpisodesProperties {
-    slug: string;
+    mixcloudPlaylist: string;
 }
 
 export class ShowEpisodesComponent extends Component<ShowEpisodesProperties> {
@@ -32,9 +35,9 @@ export class ShowEpisodesComponent extends Component<ShowEpisodesProperties> {
     }
 
     fetchPlaylist () {
-        const { slug } = this.props;
+        const { mixcloudPlaylist } = this.props;
         
-        fetch(`https://api.mixcloud.com/radioplato/playlists/${ slug }/cloudcasts/`)
+        fetch(`${ mixcloudPlaylist }`)
             .then(response => response.json())
             .then(playlist => this.parseShowEpisodes(playlist)?.reverse().slice(0, 9))
             .then(showEpisodes => this.setState({ showEpisodes }));
@@ -45,22 +48,22 @@ export class ShowEpisodesComponent extends Component<ShowEpisodesProperties> {
         const date = new Date(episode.date).toISOString().slice(0,10).split('-').reverse().join('.');
 
         return (
-            <a key={ key } href={ episode.url }>
+            <a key={ key } href={ episode.url } rel='noopener noreferrer' target='_blank'>
                 <div className='episode-container'>
                     <img className='episode-image' src={ episode.image } alt={ episode.title }/>
                     <div className='episode-information'>
                         <h3>{ episode.title }</h3>
-                        <p>{ date }</p>
                     </div>
+                    <p>{ date }</p>
                 </div>
             </a>
         );
     }
 
     renderShowEpisodes (episodes: ShowEpisode[]) {
-        return episodes ? (
+        return episodes && episodes.length ? (
             <>
-                <h2>Latest Episodes</h2>
+                <h2>LATEST EPISODES</h2>
                 <div className='episode-cards'>
                     { episodes.map(episode => this.renderShowEpisode(episode)) }
                 </div>
@@ -78,7 +81,7 @@ export class ShowEpisodesComponent extends Component<ShowEpisodesProperties> {
         } = this.state;
 
         return (
-            <div className='episode-list'>
+            <div className={ `episode-list ${ isMobileOnly ? 'mobile' : 'desktop' }` }>
                 { this.renderShowEpisodes(showEpisodes) }
             </div>
             

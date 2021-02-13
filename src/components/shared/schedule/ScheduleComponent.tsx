@@ -1,5 +1,9 @@
 import React, { Component } from 'react'
+
 import { Subscription } from 'rxjs';
+
+import { isMobileOnly } from 'react-device-detect';
+
 import moment from 'moment';
 
 import ScheduleShowline from './ScheduleShowline'
@@ -30,26 +34,35 @@ const SCHEDULE_SEO_TITLE = 'Schedule'
 const SCHEDULE_SEO_DESCRIPTION = 'We broadcast 24/7, here is what you will hear.'
 
 class ScheduleComponent extends Component {
-    subscription: Subscription | null = null;
+    scheduleSubscription: Subscription | null = null;
+    currentShowSubscription: Subscription | null = null;
     state = {
         schedule: scheduleService.schedule,
         selectedDay: moment().isoWeekday() - 1
     };
 
     componentDidMount () {
-        this.subscribeOnScheduleChange();
+        this.subscribeOnScheduleChanges();
+        this.subscribeOnCurrentShowChanges();
     }
 
-    subscribeOnScheduleChange () {
-        this.subscription = scheduleService.subscribeOnScheduleChanges(
+    subscribeOnScheduleChanges () {
+        this.scheduleSubscription = scheduleService.subscribeOnScheduleChanges(
             (schedule: ScheduleShow[][]) => this.setState({ schedule })
+        );
+    }
+
+    subscribeOnCurrentShowChanges () {
+        this.currentShowSubscription = scheduleService.subscribeOnCurrentShowChanges(
+            () => this.setState(this.state)
         );
     }
 
     scheduleShowlineBuilder = (showline: ScheduleShow) => {
         return (
-            <ScheduleShowline 
+            <ScheduleShowline
                 showline={ showline }
+                selectedDay={ this.state.selectedDay }
                 key={ `${ showline.title }-${ showline.startDate }-${ showline.endDate }` }
             />
         );
@@ -61,8 +74,29 @@ class ScheduleComponent extends Component {
         });
     };
 
+    handleDropdownChoise = (event: any) => {
+        this.selectDay(event.currentTarget.value)
+    }
+
     componentWillUnmount () {
-        this.subscription?.unsubscribe();
+        this.scheduleSubscription?.unsubscribe();
+        this.currentShowSubscription?.unsubscribe();
+    }
+
+    renderDropdown = () => {
+        const { selectedDay } = this.state;
+
+        return (
+            <select value={ selectedDay } onChange={ this.handleDropdownChoise }> 
+                { DAYS_OF_WEEK.map((day, index) => (
+                    <option key={ `${ day.toLowerCase() }-${ index }` }
+                            value={ index }
+                    >
+                        { day }
+                    </option>
+                )) }
+            </select>
+        )
     }
 
     renderButtons = () => {
@@ -71,7 +105,7 @@ class ScheduleComponent extends Component {
         return DAYS_OF_WEEK.map((day, index) => (
             <button className={ `schedule-day-button ${ selectedDay === index ? 'active' : ''}` }
                     onClick={ () => this.selectDay(index) }
-                    key={ `${ day.toLowerCase() }-${ index }`}
+                    key={ `${ day.toLowerCase() }-${ index }` }
             >
                 { day }
             </button>
@@ -91,14 +125,22 @@ class ScheduleComponent extends Component {
 
     render () {
         return (
-            <div className='schedule-container'>
+            <div className={ `schedule-container ${ isMobileOnly ? 'mobile' : 'desktop' }` }>
                 <div className='schedule-headline-container'>        
                     <div className='schedule-title'>
                         <p>{ SCHEDULE }</p>
                     </div>
-                    <div className='schedule-day'>
-                        { this.renderButtons() }
-                    </div>
+                    {
+                        isMobileOnly
+                            ? (<div>
+                                { this.renderDropdown() }
+                            </div>)
+                            : (<div className='schedule-day'>
+                                { this.renderButtons() }
+                            </div>)
+                    }
+                    
+                    
                 </div>
                 <div>
                     { this.renderDailySchedule() }

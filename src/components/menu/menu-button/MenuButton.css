@@ -1,14 +1,16 @@
-.menuButton {
+.menu-button-aside {
     width: 120px;
     min-width: 120px;
     height: calc(100vh - 101px);
 
     border-right: 1px solid #ffffff;
-    background: #000000;
 
     cursor: pointer;
 
     display: flex;
+    display: -webkit-flex;
+    flex: 0 0 auto;
+    
     flex-direction: row;
     flex-wrap: nowrap;
     justify-content: center;
@@ -16,8 +18,50 @@
     align-items: center;
 }
 
+.menu-button-aside.white {
+    background: #ffffff;
+    border-right: 2px black solid;
+}
+
+.menu-button-aside.black {
+    background: #000000;
+}
+
 .label {
     text-transform: uppercase;
     transform: rotate(-90deg);
     user-select: none;
+}
+
+.open-button::before {
+    content: '';
+    position: absolute;
+    width: 1%;
+    height: 2px;
+    bottom: 0;
+    left: 0;
+    background-color: #ffffff;
+    visibility: hidden;
+    transition: all 0.2s ease-in-out 0s;
+}
+
+.menu-button-aside.black:hover .open-button:before {
+    visibility: visible;
+    width: 100%;
+}
+
+.menu-button-header {
+    height: 100px;
+    width: 100px;
+    z-index: 20;
+
+    display: flex;
+    display: -webkit-flex;
+    flex: 0 0 auto;
+    
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: center;
+    align-content: center;
+    align-items: center;
 }

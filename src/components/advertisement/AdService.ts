@@ -1,4 +1,3 @@
-import { BACKEND_URL } from '../shared/constants';
 import { AdvertisementDto, Advertisement } from './interfaces';
 import { Subject } from 'rxjs/internal/Subject';
 import moment from 'moment';
@@ -48,7 +47,7 @@ class AdService {
     }
 
     async fetchAdvertisements () {
-        await fetch(`${ BACKEND_URL }/advertisements`)
+        await fetch(`${ process.env.REACT_APP_BACKEND_URL }/advertisements`)
             .then(response => response.json())
             .then(data => this.parseAdvertisements(data))
             .then(advertisements => this.updateAdvertisements(advertisements));

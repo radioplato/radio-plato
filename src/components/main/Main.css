@@ -1,7 +1,18 @@
 main {
     display: flex;
-    flex-direction: row;
+    display: -webkit-flex;
+    flex: 0 0 auto;
+    
     flex-wrap: nowrap;
     justify-content: flex-start;
     align-content: stretch;
 }
+
+main.mobile {
+    flex-direction: column;
+}
+
+main.desktop {
+    flex-direction: row;
+}
+

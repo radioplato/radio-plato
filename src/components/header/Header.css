@@ -8,6 +8,9 @@ header {
 
 .header-container {
     display: flex;
+    display: -webkit-flex;
+    flex: 0 0 auto;
+    
     flex-direction: row;
     flex-wrap: nowrap;
     align-content: stretch;
@@ -16,8 +19,15 @@ header {
     border-bottom: 1px white solid;
 }
 
+.header-container.mobile {
+    justify-content: flex-start;
+}
+
 .social-container {
     display: flex;
+    display: -webkit-flex;
+    flex: 0 0 auto;
+    
     flex-direction: row;
     flex-wrap: nowrap;
     align-content: stretch;
@@ -26,42 +36,109 @@ header {
 }
 
 .logo-text {
+    -webkit-user-select: none;
     font-style: normal;
     font-weight: 500;
     font-size: 28.6062px;
     margin-left: 40px;
     color: #ffffff;
+    display: block;
+    text-indent: -9999px;
+    width: 100px;
+    height: 82px;
+    background-image: url(../../assets/radioplato-logo.svg);
+    background-size: 100px 82px;
+}
+
+.header-container.mobile .logo-container {
+    position: absolute;
+    display: flex;
+    display: -webkit-flex;
+    flex: 0 0 auto;
+    justify-content: center;
+    align-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100px;
+}
+
+.header-container.mobile .logo-text {
+    margin: 0;
 }
 
 .donate-link {
+    -webkit-user-select: none;
     position: relative;
-
     margin-right: 40px;
     color: #ffffff;
     font-style: normal;
-    font-weight: 500;
+    font-weight: 400;
     font-size: 16px;
+}
+
+.donate-link:hover {
+    color: black;
+    transition: all 0.2s ease-in-out 0s;
 }
 
 .donate-link:before {
     content: '';
     position: absolute;
-    width: 100%;
+    width: 110%;
     height: 1px;
     bottom: 0;
-    left: 0;
+    left: -3px;
     background-color: white;
     visibility: hidden;
-    transform: scaleX(0);
     transition: all 0.2s ease-in-out 0s;
+    z-index: -1;
 }
 
 .donate-link:hover::before {
+    height: 100%;
     visibility: visible;
-    transform: scaleX(1);
 }
 
-.search-icon {
+.android-link {
+    -webkit-user-select: none;
+    color: white;
+    font-style: normal;
+    font-weight: 300;
+    font-size: 16px;
+    display: flex;
+    display: -webkit-flex;
+    flex: 0 0 auto;
+    
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+    align-content: stretch;
+    align-items: center;
+}
+
+.android-link-wrapper {
+    position: relative;
     margin-right: 40px;
 }
 
+.android-link:before {
+    content: '';
+    position: absolute;
+    width: 1%;
+    height: 2px;
+    bottom: 0;
+    left: 0;
+    background-color: #ffffff;
+    visibility: hidden;
+}
+
+.android-link:hover:before {
+    visibility: visible;
+    width: 100%;
+}
+
+.google-play-icon {
+    width: 1.1em;  
+    margin-left: 0px;
+    margin-right: 12px;
+}

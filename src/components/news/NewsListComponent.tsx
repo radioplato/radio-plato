@@ -1,18 +1,20 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 import { Subscription } from 'rxjs';
+import moment from 'moment';
+import { isMobileOnly } from 'react-device-detect';
 
 import NewsCardComponent from './NewsCardComponent/NewsCardComponent';
 import adService from './../advertisement/AdService';
 
 import { NewsDto, NewsCard } from './interfaces';
-import { BACKEND_URL, BASIC_SEO_IMG } from '../shared/constants';
+import { Advertisement } from '../advertisement/interfaces';
+import { NewsListTypes } from '../shared/enums';
+import { AD_CATEGORY } from './constants';
+import { BASIC_SEO_IMG } from '../shared/constants';
 import { Seo } from '../shared/wrappers/seo/Seo'
 
 import './NewsListComponent.css';
-import moment from 'moment';
-import { Advertisement } from '../advertisement/interfaces';
-import { NewsListTypes } from '../shared/enums';
-import { Link } from 'react-router-dom';
 
 
 const NEWS_LIMIT = 12;
@@ -23,6 +25,7 @@ const NEWS_LIST_SEO_DESCRIPTION = 'The best place to read about electronic music
 
 interface NewsListComponentProperties {
     type: string;
+    category?: string;
 }
 
 export class NewsListComponent extends Component<NewsListComponentProperties> {
@@ -38,6 +41,7 @@ export class NewsListComponent extends Component<NewsListComponentProperties> {
     parseNewsCard (newsDto: NewsDto): NewsCard {
         return {
             excerpt: newsDto.Excerpt,
+            category: newsDto.Category,
             newsCover: {
                 alternativeText: newsDto.PostCover.alternativeText,
                 caption: newsDto.PostCover.caption,
@@ -45,7 +49,7 @@ export class NewsListComponent extends Component<NewsListComponentProperties> {
             },
             slug: newsDto.Slug,
             title: newsDto.Title,
-            publishDate: newsDto.PublishDate
+            publishDate: newsDto.publish_at
         };
     }
 
@@ -69,24 +73,27 @@ export class NewsListComponent extends Component<NewsListComponentProperties> {
 
     fetchNews () {
         const { page } = this.state;
+        const { category } = this.props;
         const start = page * NEWS_LIMIT;
+        const filter = category ? `Category=${ category[0].toUpperCase() + category.slice(1) }&` : '';
 
         this.setState({ loading: true });
 
-        fetch(`${ BACKEND_URL }/posts?_sort=PublishDate:DESC&_start=${ start }&_limit=${ NEWS_LIMIT }`)
+        fetch(`${ process.env.REACT_APP_BACKEND_URL }/posts?${ filter }_sort=publish_at:DESC&_start=${ start }&_limit=${ NEWS_LIMIT }`)
             .then(response => response.json())
             .then(data => data.map((datum: NewsDto) => this.parseNewsCard(datum)))
             .then(newsCards => this.handleResponse(newsCards));
     }
 
     advertisementToNewsCard (advertisement: Advertisement | null) {
-        return {
+        return advertisement ? {
             excerpt: advertisement ? advertisement.text : '',
+            category: AD_CATEGORY,
             newsCover: advertisement ? advertisement.image : {},
             link: advertisement ? advertisement.link : '',
             title: advertisement ? advertisement.title : '',
             publishDate: advertisement ? advertisement.startDate : ''
-        };
+        } : null;
     }
 
     renderSimpleNewsList (newsCards: NewsCard[]) {
@@ -108,7 +115,7 @@ export class NewsListComponent extends Component<NewsListComponentProperties> {
         const adNewsCard = this.advertisementToNewsCard(advertisement);
 
         return newsCards.length ? (
-            <div onScroll={ this.handleScroll } className='news-list'>
+            <div onScroll={ this.handleScroll } className={ `news-list ${ isMobileOnly ? 'mobile' : 'desktop' }` }>
                 <Seo meta={{
                         title: NEWS_LIST_SEO_TITLE,
                         description: NEWS_LIST_SEO_DESCRIPTION,
@@ -121,7 +128,7 @@ export class NewsListComponent extends Component<NewsListComponentProperties> {
                             <NewsCardComponent key={ newsCards[0].slug } newsCard={ newsCards[0] } type='main' />
                         </div>
                         <div className='fresh-news'>
-                            <NewsCardComponent newsCard={ adNewsCard } type='fresh'/>
+                            { adNewsCard ? (<NewsCardComponent newsCard={ adNewsCard } type='fresh'/>) : null }
                             { newsCards.slice(1, 5).map(newsCard => (
                                 <NewsCardComponent key={ newsCard.slug } newsCard={ newsCard } type='fresh' />
                             )) }
@@ -148,6 +155,10 @@ export class NewsListComponent extends Component<NewsListComponentProperties> {
         adService.fetchAdvertisements();
         this.fetchNews();
         this.subscribeOnAdvertisementChange();
+    }
+
+    componentWillUnmount () {
+        this.subscription?.unsubscribe();
     }
 
     subscribeOnAdvertisementChange () {

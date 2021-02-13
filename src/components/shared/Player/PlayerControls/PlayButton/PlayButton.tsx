@@ -34,7 +34,7 @@ function PlayButton({ playerType }: PlayerProps) {
 
     return (
         <button 
-            className='play-button'
+            className={ `play-button ${ playing ? 'playing' : 'paused' }` }
             aria-label='Play radio button'
             onClick={ togglePlayingMode }
         >

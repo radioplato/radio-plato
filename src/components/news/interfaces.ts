@@ -5,15 +5,16 @@ export interface NewsDto extends StrapiObjectDto {
     Content: string;
     Excerpt: string;
     PhotosBy?: string;
-    PublishDate: string;
     PostCover: CoverDto;
     Slug: string;
     Title: string;
     WordsBy: string;
+    publish_at: string;
 }
 
 export interface NewsCard {
     excerpt: string;
+    category: string;
     newsCover: SimpleImage;
     slug?: string;
     link?: string;

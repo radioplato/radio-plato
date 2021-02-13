@@ -1,5 +1,6 @@
 .show-title-container {
     display: flex;
+    
     flex-direction: row;
     flex-wrap: nowrap;
     justify-content: flex-start;
@@ -7,7 +8,25 @@
     align-items: center;
     text-transform: uppercase;
     border-bottom: 1px white solid;
-    min-height: 90px;
+    box-sizing: border-box;
+    min-height: 91px;
+    height: fit-content;
+}
+
+a > .show-title-container:hover > div.show-date > p {
+    text-decoration: underline;
+}
+
+a > .show-title-container:hover > div.show-title > p {
+    text-decoration: underline;
+}
+
+a > .show-title-container:hover > div > div.show-desc > p {
+    text-decoration: underline;
+}
+
+.show-title-container.mobile {
+    width: 100%;
 }
 
 .show-date {
@@ -15,10 +34,39 @@
     flex: 0 0 auto;
 }
 
+.white {
+    background-color: white;
+    color: black;
+}
+
+.white > div.show-date > p {
+    color: black;
+}
+
+.white > div.show-title > p {
+    color: black;
+}
+
+.white > div > div.show-desc > p {
+    color: black;
+}
+
+.show-title-container.mobile .show-date {
+    margin: 0px 15px 0px 40px;
+}
+
 .show-title {
     flex: 0 0 auto;
     margin: 0px 40px;
     width: 160px;
+}
+
+.show-title-container.mobile .show-title {
+    margin: 0px 40px 0px 15px;
+}
+
+.show-title-container.mobile .show-title p {
+    text-overflow: ellipsis;
 }
 
 .show-desc {

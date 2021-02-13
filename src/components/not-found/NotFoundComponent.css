@@ -1,0 +1,41 @@
+.not-found-container {
+    display: flex;
+    display: -webkit-flex;
+    flex: 0 0 auto;
+
+    flex-direction: column;
+    flex-wrap: nowrap;
+    justify-content: center;
+    align-content: center;
+    align-items: center;
+
+    box-sizing: border-box;
+
+    width: calc(100vw - 121px);
+    height: calc(100vh - 101px);
+
+    padding: 40px 40px 101px 40px;
+}
+
+main.mobile .not-found-container {
+    width: 100%;
+}
+
+.not-found-container h1 {
+    font-size: 220px;
+    font-weight: bold;
+}
+
+main.mobile .not-found-container h1 {
+    font-size: 150px;
+}
+
+.not-found-container h3 {
+    font-size: 20px;
+    font-weight: 400;
+}
+
+main.mobile .not-found-container h3 {
+    width: 100%;
+    text-align: center;
+}

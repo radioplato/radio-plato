@@ -1,5 +1,8 @@
 .social-icons {
     display: flex;
+    display: -webkit-flex;
+    flex: 0 0 auto;
+    
     flex-direction: row;
     flex-wrap: nowrap;
     justify-content: flex-start;
@@ -15,4 +18,13 @@
 
 .social-icon > a {
     text-decoration: none;
+}
+.social-link {
+    display: flex;
+    display: -webkit-flex;
+    flex: 0 0 auto;
+    
+    justify-content: center;
+    align-content: center;
+    align-items: center;
 }

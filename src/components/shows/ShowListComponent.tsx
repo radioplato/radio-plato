@@ -1,10 +1,12 @@
 import React, { Component } from 'react';
 
+import { isMobileOnly } from 'react-device-detect';
+
 import ShowCardComponent from './ShowCardComponent/ShowCardComponent';
 
 import { Seo } from '../shared/wrappers/seo/Seo'
+import { BASIC_SEO_IMG } from '../shared/constants';
 import { ShowDto, ShowCard } from './interfaces';
-import { BACKEND_URL, BASIC_SEO_IMG } from '../shared/constants';
 
 import './ShowListComponent.css';
 
@@ -27,15 +29,16 @@ export class ShowListComponent extends Component {
                 url: showDto.ShowCover.url
             },
             slug: showDto.Slug,
-            title: showDto.Title
+            title: showDto.Title,
+            weight: showDto.Weight
         };
     }
 
     fetchShows () {
-        fetch(`${ BACKEND_URL }/shows`)
+        fetch(`${ process.env.REACT_APP_BACKEND_URL }/shows`)
             .then(response => response.json())
             .then(data => data.map((datum: ShowDto) => this.parseShowCard(datum)))
-            .then(showCards => this.setState({ showCards }));
+            .then(shows => this.setState({ showCards: shows.sort((a: ShowCard, b: ShowCard) => a.weight - b.weight) }));
     }
 
     renderShowCards (showCards: ShowCard[]) {
@@ -52,7 +55,7 @@ export class ShowListComponent extends Component {
         } = this.state;
 
         return (
-            <div className='show-list'>
+            <div className={ `show-list ${ isMobileOnly ? 'mobile' : 'desktop' }` }>
                  <Seo meta={{
                         title: SHOW_LIST_SEO_TITLE,
                         description: SHOW_LIST_SEO_DESCRIPTION,

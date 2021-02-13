@@ -1,10 +1,11 @@
-import React from 'react'
+import React, { Component } from 'react'
 
 import {
     Switch,
     Route,
-    withRouter,
 } from 'react-router-dom';
+
+import { BrowserView, isMobileOnly } from 'react-device-detect';
 
 import MenuButton from '../menu/menu-button/MenuButton'
 import PlayerComponent from '../shared/Player/PlayerComponent/PlayerComponent'
@@ -13,20 +14,22 @@ import { PlayerTypes } from '../shared/enums';
 
 import './Main.css'
 
-
-
-function Main() {
-    return (
-        <main>
-            <MenuButton />
-            <Switch>
-                <Route exact path='/' render={
-                    props => <PlayerComponent { ...props } playerType={ PlayerTypes.Main }/>
-                }/>
-            </Switch>
-            <Content />
-        </main>
-    );
+class Main extends Component {
+    render() {
+        return (
+            <main className={ isMobileOnly ? 'mobile' : 'desktop' }>
+                <BrowserView>
+                    <MenuButton />
+                </BrowserView>
+                <Switch>
+                    <Route exact path='/' render={
+                        props => <PlayerComponent { ...props } playerType={ PlayerTypes.Main }/>
+                    }/>
+                </Switch>
+                <Content />
+            </main>
+        );
+    }
 }
   
-export default withRouter(Main);
+export default Main;

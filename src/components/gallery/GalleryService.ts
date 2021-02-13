@@ -2,7 +2,6 @@ import { Subject } from 'rxjs';
 
 import { IndexGallery, IndexGalleryDto } from './interfaces';
 import { CoverDto, SimpleImage } from '../shared/interfaces';
-import { BACKEND_URL } from '../shared/constants';
 
 
 const GALLERY_REQUEST_INTERVAL = 300000;
@@ -14,7 +13,6 @@ class GalleryService {
     constructor () {
         this.gallerySubject = new Subject();
 
-        this.fetchIndexGallery();
         setInterval(this.fetchIndexGallery.bind(this), GALLERY_REQUEST_INTERVAL);
     }
 
@@ -32,7 +30,7 @@ class GalleryService {
     }
 
     async fetchIndexGallery () {
-        await fetch(`${ BACKEND_URL }/index-gallery`)
+        await fetch(`${ process.env.REACT_APP_BACKEND_URL }/index-gallery`)
             .then(response => response.json())
             .then(data => this.parseIndexGallery(data))
             .then(indexGallery => this.updateIndexGallery(indexGallery));
@@ -46,7 +44,7 @@ class GalleryService {
             photoExhibitionLink: dto.PhotoExhibitionLink,
             photoExhibitionMedia: dto.PhotoExhibitionMedia.map(imageDto => this.mapImageDto(imageDto)),
             photoExhibitionTitle: dto.PhotoExhibitionTitle,
-            regularGallery: dto.RegularGallery.map(imageDto => this.mapImageDto(imageDto)),
+            regularGallery: dto.RegularGallery.map(imageDto => this.mapImageDto(imageDto)).sort(() => Math.random() - 0.5),
             video: dto.Video,
             videoEmbedCode: dto.VideoEmbedCode,
         }

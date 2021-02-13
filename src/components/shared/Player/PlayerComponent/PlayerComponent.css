@@ -1,18 +1,30 @@
 .main-player {
-    width: 400px;
-    min-width: 400px;
-    height: calc(100vh - 181px);
-
     padding: 40px;
 
     display: flex;
+    display: -webkit-flex;
+    flex: 0 0 auto;
+    
     flex-direction: column;
     flex-wrap: nowrap;
     justify-content: flex-start;
     align-content: stretch;
     align-items: flex-start;
+}
 
+.main-player.desktop {
+    width: 400px;
+    min-width: 400px;
+    height: calc(100vh - 181px);
     border-right: 1px white solid;
+    overflow: hidden;
+}
+
+.main-player.mobile {
+    width: 100%;
+    height: auto;
+    min-height: calc(100vh - 101px);
+    box-sizing: border-box;
 }
 
 .header-player {
@@ -21,6 +33,9 @@
     margin-right: 80px;
 
     display: flex;
+    display: -webkit-flex;
+    flex: 0 0 auto;
+    
     flex-direction: row;
     flex-wrap: nowrap;
     justify-content: flex-end;
@@ -32,6 +47,9 @@
     width: 100%;
 
     display: flex;
+    display: -webkit-flex;
+    flex: 0 0 auto;
+    
     flex-direction: row;
     flex-wrap: nowrap;
     justify-content: space-around;
@@ -39,7 +57,30 @@
     align-items: center;
 }
 
+.onair-line {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 100%;
+}
+
 .onair {
+    flex: 0 1 auto;
+    -webkit-user-select: none;
+    margin-top: 40px;
+
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 90%;
+    text-transform: uppercase;
+    color: #ffffff;
+    cursor: default;
+}
+
+.stream-links-container {
+    display: flex;
+    flex-direction: row;
+    flex: 0 1 auto;
     margin-top: 40px;
 
     font-weight: 500;
@@ -49,9 +90,16 @@
     color: #ffffff;
 }
 
+.stream-links-container p {
+    margin: 0 8px;
+    -webkit-user-select: none;
+    cursor: default;
+}
+
 .track-title {
     color: #ffffff;
-    font-weight: 500;
+    font-weight: 300;
+    overflow: hidden;
 }
 
 .main-player .track-title {
@@ -59,16 +107,37 @@
 }
 
 .header-player .track-title {
+    position: relative;
     font-size: 18px;
-    width: 400px;
+    width: 300px;
     margin-right: 40px;
+    cursor: pointer;
+}
+
+.header-player .track-title .overlay {
+    z-index: 100;
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    background: linear-gradient(to right, #000000 0%, transparent 10%, transparent 90%, #000000 100%);
 }
 
 .header-player .track-title p {
     white-space: nowrap;
     overflow: hidden;
-    text-overflow: ellipsis;
-}
+    text-overflow: hidden;
+    white-space: nowrap;
+    animation: floatText 15s infinite linear;
+    transform: translate(100%);
+  }
+  .header-player p:hover {
+    animation-play-state: paused;
+  }
+    @keyframes floatText {
+        to {
+            transform: translateX(-100%);
+        }
+    }
 
 .main-player .play-button {
     width: 100px;
@@ -79,4 +148,24 @@
     width: 44px;
     height: 44px;
     margin-right: 40px;
+}
+
+.main-player .play-button.paused > svg {
+    margin-left: 8px;
+}
+
+.header-player .play-button.paused > svg {
+    margin-left: 2px;
+}
+
+.main-player .track-title.hidden {
+    opacity: 0;
+    overflow: hidden;
+    transition: opacity 1s ease-in-out;
+}
+
+.main-player .track-title.shown {
+    opacity: 1;
+    overflow: hidden;
+    transition: opacity 1s ease-in-out;
 }

@@ -2,17 +2,27 @@ html, body {
   height: 100vh;
 }
 
+@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@300;500&display=swap');
+
 body {
   margin: 0;
   background: #000000;
-  font-family: 'Poppins', BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
+  font-family: 'Poppins', 'Manrope', BlinkMacSystemFont, 'Helvetica Neue';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   background-color: black;
 
   overflow: hidden;
+}
+
+@media (pointer:none), (pointer:coarse) {
+  html, body {
+    height: auto;
+  }
+
+  body {
+    overflow: visible;
+  }
 }
 
 h1, h2, h3, h5, h6, p, code, hr {
@@ -51,4 +61,14 @@ a {
   text-decoration: none;
   font: inherit;
   color: inherit;
+}
+
+::-moz-selection { 
+  color: black;
+  background: white;
+}
+
+::selection {
+  color: black;
+  background: white;
 }

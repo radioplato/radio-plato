@@ -4,13 +4,12 @@
     background: #ffffff;
 
     display: flex;
+    display: -webkit-flex;
+    flex: 0 0 auto;
+    
     flex-direction: row;
     flex-wrap: nowrap;
     justify-content: center;
     align-content: center;
     align-items: center;
-}
-
-.play-button > .play > svg{
-    margin-left: 3.35px;
 }

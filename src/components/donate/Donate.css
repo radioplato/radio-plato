@@ -2,20 +2,46 @@
 
 .donate {
     display: flex;
+    display: -webkit-flex;
+    flex: 0 0 auto;
+    
     flex-direction: row;
     flex-wrap: nowrap;
     justify-content: flex-start;
     align-content: stretch;
     align-items: flex-start;
 
-    width: 100%;
+    width: calc(100% - 121px);
     height: calc(100vh - 101px);
     padding: 40px;
 
-    overflow: auto;
+    overflow-x: hidden;
+    overflow-y: overlay;
+    box-sizing: border-box;
+}
+
+.donate.mobile {
+    flex-direction: column-reverse;
+    width: 100%;
+    height: auto;
+    box-sizing: border-box;
+    overflow: visible;
 }
 
 .donate::-webkit-scrollbar {
+    width: 2px;
+}
+
+.donate::-webkit-scrollbar-track {
+    background-color: #00000000;
+    border: 0;
+}
+
+.donate::-webkit-scrollbar-thumb {
+    background-color: #ffffff13;
+}
+
+.donate::-webkit-scrollbar-button {
     display: none;
 }
 
@@ -23,8 +49,16 @@
     width: 50%;
 }
 
+.donate.mobile .information,
+.donate.mobile .image {
+    width: 100%;
+}
+
 .donate .information {
     display: flex;
+    display: -webkit-flex;
+    flex: 0 0 auto;
+    
     flex-direction: column;
     flex-wrap: nowrap;
     justify-content: flex-start;
@@ -35,6 +69,10 @@
     margin-bottom: 101px;
 }
 
+.donate.mobile .information {
+    margin: 0;
+}
+
 .donate .information h1 {
     font-style: normal;
     font-weight: 500;
@@ -43,8 +81,15 @@
     color: #ffffff;
 }
 
+.donate.mobile .information h1 {
+    margin-top: 20px;
+}
+
 .donate .image {
     display: flex;
+    display: -webkit-flex;
+    flex: 0 0 auto;
+    
     flex-direction: row;
     flex-wrap: nowrap;
     justify-content: center;
@@ -53,14 +98,22 @@
 }
 
 .donate .image img {
-    width: 100%;
-    max-width: 640px;
+    width: 80%;
     height: auto;
+}
+
+.donate.mobile .image img {
+    width: 100%;
 }
 
 .donate .text-content {
     margin-top: 40px;
     color: #ffffff;
+}
+
+.donate.mobile .text-content {
+    width: 100%;
+    margin-top: 10px;
 }
 
 .donate .text-content p, ul, ol, li {
@@ -70,6 +123,14 @@
     line-height: 180%;
 
     margin: 10px 0;
+}
+
+.donate.mobile .text-content ul {
+    padding-left: 20px;
+}
+
+.donate.mobile .text-content li {
+    font-size: 12px;
 }
 
 .donate .text-content a {

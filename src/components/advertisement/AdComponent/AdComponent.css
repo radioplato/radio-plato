@@ -1,5 +1,8 @@
 .da-container {
     display: flex;
+    display: -webkit-flex;
+    flex: 0 0 auto;
+    
     flex-direction: row;
     flex-wrap: nowrap;
     justify-content: flex-start;
@@ -16,6 +19,9 @@
 
 .da-image {
     display: flex;
+    display: -webkit-flex;
+    flex: 0 0 auto;
+    
     flex-direction: row;
     flex-wrap: nowrap;
     justify-content: center;
@@ -33,6 +39,9 @@
 
 .da-text {
     display: flex;
+    display: -webkit-flex;
+    flex: 0 0 auto;
+    
     flex-direction: column;
     flex-wrap: nowrap;
     justify-content: center;
