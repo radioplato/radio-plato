@@ -84,7 +84,7 @@ export class PlayerComponent extends PureComponent<PlayerProps> {
                 <div className='onair-line'>
                     <p className='onair'>{ ONAIR }</p>
                     <div className='stream-links-container'>
-                        <a href={ M3U } target="blank">M3U </a>
+                        <a href={ M3U } target="blank">M3U</a>
                         <p>/</p>
                         <a href={ PLS } target="blank">PLS</a>
                     </div>
