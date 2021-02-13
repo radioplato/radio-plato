@@ -15,6 +15,8 @@ import './PlayerComponent.css';
 
 
 const ONAIR = 'onair';
+const M3U = 'https://azura.radioplato.by/public/1/playlist.m3u'
+const PLS = 'https://azura.radioplato.by/public/1/playlist.pls'
 
 const copyToClipboard = (text: string) => {
     const dummy = document.createElement('textarea');
@@ -79,7 +81,14 @@ export class PlayerComponent extends PureComponent<PlayerProps> {
                     <PlayButton playerType={ this.props.playerType }/>
                     <VolumeControls />
                 </div>
-                <p className='onair'>{ ONAIR }</p>
+                <div className='onair-line'>
+                    <p className='onair'>{ ONAIR }</p>
+                    <div className='stream-links-container'>
+                        <a href={ M3U } target="blank">M3U </a>
+                        <p>/</p>
+                        <a href={ PLS } target="blank">PLS</a>
+                    </div>
+                </div>
                 <p className='track-title'>{ trackName }</p>
             </>
         );

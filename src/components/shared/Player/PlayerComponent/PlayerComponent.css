@@ -57,7 +57,15 @@
     align-items: center;
 }
 
+.onair-line {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 100%;
+}
+
 .onair {
+    flex: 0 1 auto;
     -webkit-user-select: none;
     margin-top: 40px;
 
@@ -66,6 +74,25 @@
     line-height: 90%;
     text-transform: uppercase;
     color: #ffffff;
+    cursor: default;
+}
+
+.stream-links-container {
+    display: flex;
+    flex-direction: row;
+    flex: 0 1 auto;
+    margin-top: 40px;
+
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 90%;
+    text-transform: uppercase;
+    color: #ffffff;
+}
+
+.stream-links-container p {
+    margin: 0 8px;
+    -webkit-user-select: none;
     cursor: default;
 }
 
