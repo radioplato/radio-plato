@@ -10,11 +10,9 @@ const CURRENT_SHOW_REFRESH_INTERVAL = 60000;
 
 enum PeriodicityTypes {
     SingleTime = 'SingleTime',
-    Daily = 'Daily',
     Weekly = 'Weekly',
     BiWeekly = 'BiWeekly',
     EveryThirdWeek = 'Every3rdWeek',
-    Monthly = 'Monthly'
 }
 
 const indexByDayName = new Map([
@@ -143,12 +141,10 @@ class ScheduleService {
         }
 
         const showStartDate = moment(show.startDate);
-        const dateOfDay = moment().add(moment().isoWeekday() - day + 1, 'days');
+        const dateOfDay = moment().subtract(moment().isoWeekday(), 'days').add(day + 1, 'days');
         const weeksPassed = +(moment().week() - showStartDate.week());
 
         switch (show.periodicity) {
-            case PeriodicityTypes.Daily: 
-                return show.weekdays.includes(day);
             case PeriodicityTypes.Weekly:
                 return show.weekdays.includes(day);
             case PeriodicityTypes.BiWeekly:
