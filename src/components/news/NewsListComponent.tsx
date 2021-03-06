@@ -18,7 +18,7 @@ import './NewsListComponent.css';
 
 
 const NEWS_LIMIT = 12;
-const VISIBILITY_LIMIT = 800;
+const VISIBILITY_LIMIT_PERCENTAGE = 75;
 const NEWS = 'NEWS';
 const NEWS_LIST_SEO_TITLE = 'News'
 const NEWS_LIST_SEO_DESCRIPTION = 'The best place to read about electronic music, both local and global.'
@@ -169,8 +169,10 @@ export class NewsListComponent extends Component<NewsListComponentProperties> {
 
     handleScroll = (event: any) => {
         const { loading, end } = this.state;
+        const container = event.target as Element;
+        const percentsScrolled = (container.scrollTop + window.innerHeight) / container.scrollHeight * 100;
 
-        if (event.target.scrollHeight - event.target.scrollTop < VISIBILITY_LIMIT) {
+        if (percentsScrolled > VISIBILITY_LIMIT_PERCENTAGE) {
             !loading && !end && this.fetchNews();
         }
     }
