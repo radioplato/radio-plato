@@ -2,7 +2,7 @@
     display: flex;
     display: -webkit-flex;
     flex: 0 0 auto;
-    
+
     flex-direction: row;
     flex-wrap: nowrap;
     justify-content: center;
@@ -22,8 +22,8 @@
 }
 
 .show-image {
-    height: 400px;
-    width: auto;
+    width: 100%;
+    height: auto;
 }
 
 .exhibition-carousel {
