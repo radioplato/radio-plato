@@ -20,8 +20,9 @@ import './NewsListComponent.css';
 const NEWS_LIMIT = 12;
 const VISIBILITY_LIMIT_PERCENTAGE = 75;
 const NEWS = 'NEWS';
-const NEWS_LIST_SEO_TITLE = 'News'
-const NEWS_LIST_SEO_DESCRIPTION = 'The best place to read about electronic music, both local and global.'
+const NEWS_LIST_SEO_TITLE = 'News';
+const NEWS_LIST_SEO_DESCRIPTION = 'The best place to read about electronic music, both local and global.';
+const LOAD_MORE_TEXT = 'LOAD MORE';
 
 interface NewsListComponentProperties {
     type: string;
@@ -71,7 +72,7 @@ export class NewsListComponent extends Component<NewsListComponentProperties> {
         }
     }
 
-    fetchNews () {
+    fetchNews = () => {
         const { page } = this.state;
         const { category } = this.props;
         const start = page * NEWS_LIMIT;
@@ -112,6 +113,7 @@ export class NewsListComponent extends Component<NewsListComponentProperties> {
     }
 
     renderFullNewsList (newsCards: NewsCard[], advertisement: Advertisement | null) {
+        const { loading, end } = this.state;
         const adNewsCard = this.advertisementToNewsCard(advertisement);
 
         return newsCards.length ? (
@@ -141,6 +143,11 @@ export class NewsListComponent extends Component<NewsListComponentProperties> {
                         )) }
                     </div>
                 </div>
+                { isMobileOnly && !loading && !end && (
+                    <div onClick={ this.fetchNews } className="load-more-button">
+                        <p>{ LOAD_MORE_TEXT }</p>
+                    </div>
+                )}
             </div>
         ) : null;
     }
