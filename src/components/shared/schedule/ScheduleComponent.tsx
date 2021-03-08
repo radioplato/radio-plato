@@ -63,7 +63,7 @@ class ScheduleComponent extends Component {
             <ScheduleShowline
                 showline={ showline }
                 selectedDay={ this.state.selectedDay }
-                key={ `${ showline.title }-${ showline.startDate }-${ showline.endDate }` }
+                key={ `${ this.state.selectedDay }-${ showline.title }-${ showline.startDate }-${ showline.startTime }` }
             />
         );
     }
