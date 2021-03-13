@@ -10,6 +10,7 @@ interface MetaTagsInformation {
     thumbnail?: string;
     url?: string;
     description?: string;
+    type?: string;
 }
 
 interface SeoProperties {
@@ -25,6 +26,7 @@ function Seo ({ meta }: SeoProperties) {
         <meta property='og:title' content={ meta?.title } />
         <meta property='og:image' content={ meta?.thumbnail } />
         <meta property='og:description' content={ description } />
+        { meta?.type && (<meta property='og:type' content={ meta.type } />) }
         <meta name='description' content={ description } />
     </Helmet>
   )

@@ -122,7 +122,8 @@ export class NewsComponent extends Component<NewsComponentProperties> {
                 <Seo meta={{
                         title: news.title,
                         description: news.excerpt,
-                        thumbnail: imageSrc
+                        thumbnail: imageSrc,
+                        type: 'article',
                     }}
                 />
                 <div className='news-description' style={ imageStyle }>
