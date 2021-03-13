@@ -25,6 +25,7 @@
     height: auto;
     min-height: calc(100vh - 101px);
     box-sizing: border-box;
+    overflow: hidden;
 }
 
 .header-player {
@@ -66,6 +67,7 @@
 
 .onair {
     flex: 0 1 auto;
+    user-select: none;
     -webkit-user-select: none;
     margin-top: 40px;
 
@@ -93,6 +95,7 @@
 .stream-links-container p {
     margin: 0 8px;
     -webkit-user-select: none;
+    user-select: none;
     cursor: default;
 }
 
@@ -168,4 +171,8 @@
     opacity: 1;
     overflow: hidden;
     transition: opacity 1s ease-in-out;
+}
+
+.main-player .track-title.mobile {
+    font-size: 40px;
 }
