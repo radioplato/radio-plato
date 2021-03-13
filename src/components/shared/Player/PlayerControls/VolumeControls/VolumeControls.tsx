@@ -5,12 +5,15 @@ import { Icon } from '@iconify/react';
 import bxsVolumeFull from '@iconify/icons-bx/bxs-volume-full';
 import bxsVolumeMute from '@iconify/icons-bx/bxs-volume-mute';
 
+import { isMobileOnly } from 'react-device-detect';
+
 import { playerService } from '../../PlayerService';
 
 import './VolumeControls.css';
 
 const FullVolumeIcon = <Icon icon={ bxsVolumeFull } width={ 16 } height={ 16 } color='#ffffff'/>;
 const MuteVolumeIcon = <Icon icon={ bxsVolumeMute } width={ 16 } height={ 16 } color='#ffffff'/>;
+const device = isMobileOnly ? 'mobile' : 'desktop';
 
 function VolumeControls() {
     const [ muted, setVolumeMode ] = useState(playerService.muted);
@@ -35,15 +38,15 @@ function VolumeControls() {
     return (
         <div className='volume-controls'>
             <button 
-                className='volume-mode-button'
+                className={ `volume-mode-button ${ device }` }
                 aria-label='Toggle volume button'
                 onClick={ toggleVolumeMode }
             >
                 { muted ? MuteVolumeIcon : FullVolumeIcon }
             </button>
             <ReactSlider
-                className='horizontal-slider'
-                thumbClassName='thumb'
+                className={ `horizontal-slider ${ device }` }
+                thumbClassName={ `thumb ${ device }` }
                 trackClassName='track'
                 defaultValue={ sliderDefaultValue() }
                 onChange={ value => changeVolume(value)}

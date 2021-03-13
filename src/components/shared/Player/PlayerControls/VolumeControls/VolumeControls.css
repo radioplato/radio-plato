@@ -18,10 +18,18 @@
     background-color: #ffffff00;
 }
 
+.volume-mode-button.mobile {
+    margin-left: 20px;
+}
+
 .horizontal-slider {
     width: 120px;
     background: #ffffff11;
     height: 4px;
+}
+
+.horizontal-slider.mobile {
+    width: 100px;
 }
 
 .horizontal-slider > .track-1 {
@@ -29,6 +37,7 @@
 }
 
 .thumb {
+    left: -20px;
     background: #ffffff;
     width: 8px;
     height: 8px;
@@ -38,6 +47,10 @@
     cursor: grab;
     border: #ffffff solid 1px;
     top: -4px;
+}
+
+.thumb.mobile {
+    left: -20px;
 }
 
 .track {

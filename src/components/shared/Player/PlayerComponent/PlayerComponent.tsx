@@ -28,6 +28,7 @@ const copyToClipboard = (text: string) => {
     document.body.removeChild(dummy);
 };
 
+const device = isMobileOnly ? 'mobile' : 'desktop';
 export class PlayerComponent extends PureComponent<PlayerProps> {
     state = {
         trackName: ''
@@ -89,8 +90,9 @@ export class PlayerComponent extends PureComponent<PlayerProps> {
                         <a href={ PLS } target="blank">PLS</a>
                     </div>
                 </div>
-                <p className='track-title'>{ trackName }</p>
+                <p className= { `track-title ${ device }` }>{ trackName }</p>
             </>
+           
         );
     }
 
