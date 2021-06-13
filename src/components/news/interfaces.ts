@@ -1,6 +1,7 @@
-import { StrapiObjectDto, CoverDto, SimpleImage } from '../shared/interfaces';
+import { StrapiObjectDto, CoverDto, SimpleImage, StrapiLocalization, Locale } from "../shared/interfaces";
 
 export interface NewsDto extends StrapiObjectDto {
+    localizations: StrapiLocalization[];
     Category: string;
     Content: string;
     Excerpt: string;
@@ -10,6 +11,7 @@ export interface NewsDto extends StrapiObjectDto {
     Title: string;
     WordsBy: string;
     publish_at: string;
+    locale: Locale;
 }
 
 export interface NewsCard {
@@ -26,4 +28,5 @@ export interface News extends NewsCard {
     content: string;
     photosBy?: string;
     wordsBy: string;
+    locale: Locale;
 }

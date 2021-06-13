@@ -14,7 +14,14 @@ import { NewsDto, News } from '../interfaces';
 import './NewsComponent.css';
 import { isMobileOnly } from 'react-device-detect';
 import { Link } from 'react-router-dom';
+import { Locale, LocaleString } from '../../shared/interfaces';
 
+
+const localeStringByLocale = new Map([
+    [ Locale.English, LocaleString.English ],
+    [ Locale.Belorussian, LocaleString.Belorussian ],
+    [ Locale.Russian, LocaleString.Russian ],
+]);
 
 interface NewsComponentProperties {
     slug: string;
@@ -23,7 +30,9 @@ interface NewsComponentProperties {
 interface NewsComponentState {
     news: News | null,
     advertisement: Advertisement | null,
-    articles: News[]
+    articles: News[],
+    locales: Locale[],
+    currentLocale: Locale
 }
 
 const DATE_FORMAT = 'DD.MM.YYYY';
@@ -32,11 +41,23 @@ export class NewsComponent extends Component<NewsComponentProperties> {
     state: NewsComponentState = {
         news: null,
         advertisement: null,
-        articles: []
+        articles: [],
+        locales: [ Locale.English ],
+        currentLocale: Locale.English
     };
     subscription: Subscription | null = null;
 
-    parseNews(newsDto: NewsDto): News | null {
+    parseNews(newsDto: NewsDto, isCurrent = false): News | null {
+        if (isCurrent) {
+            const currentLocale = newsDto.locale;
+            const locales = Array.from(new Set([
+                currentLocale,
+                ...newsDto.localizations.map(localization => localization.locale),
+            ])).sort();
+
+            this.setState({ locales, currentLocale });
+        }
+
         return newsDto ? {
             title: newsDto.Title,
             content: newsDto.Content,
@@ -50,16 +71,18 @@ export class NewsComponent extends Component<NewsComponentProperties> {
                 alternativeText: newsDto.PostCover.alternativeText,
                 caption: newsDto.PostCover.caption,
                 url: newsDto.PostCover.url
-            }
+            },
+            locale: newsDto.locale
         } : null
     }
 
     fetchCurrentArticle () {
         const { slug } = this.props;
+        const { currentLocale } = this.state;
 
-        return fetch(`${ process.env.REACT_APP_BACKEND_URL }/posts?Slug=${ slug }`)
+        return fetch(`${ process.env.REACT_APP_BACKEND_URL }/posts?Slug=${ slug }&_locale=${ currentLocale }`)
             .then(response => response.json())
-            .then((data: NewsDto[]) => this.parseNews(data[0]))
+            .then((data: NewsDto[]) => this.parseNews(data[0], true))
             .then(news => this.setState({ news }));
     }
 
@@ -103,8 +126,12 @@ export class NewsComponent extends Component<NewsComponentProperties> {
         );
     }
 
+    changeLocale (currentLocale: Locale) {
+        this.setState({ currentLocale });
+    }
+
     render () {
-        const { news, advertisement } = this.state;
+        const { news, advertisement, locales, currentLocale } = this.state;
         const imageSrc = news ? news.newsCover.url : '';
         const imageStyle = {
             backgroundPosition: 'center',
@@ -133,6 +160,15 @@ export class NewsComponent extends Component<NewsComponentProperties> {
                         <p className='news-meta'>
                             { `${ date } ${ wordsBy } ${ photosBy }` }
                         </p>
+                        { locales.length > 1 && (
+                            <div className='language-toggle-container'>
+                                { locales.map(locale => (
+                                    <div className={ `language-toggle-button ${ locale === currentLocale && 'active' }` } key={ locale } onClick={ () => this.changeLocale(locale) }>
+                                        { localeStringByLocale.get(locale) }
+                                    </div>  
+                                ))}
+                            </div>
+                        )}
                     </div>
                 </div>
                 <div className='news-content-container'>
