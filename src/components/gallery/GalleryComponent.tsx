@@ -44,7 +44,13 @@ class GalleryComponent extends Component {
 
         if (gallery?.video) {
             return (
-                <ReactPlayer url={ gallery.videoEmbedCode } />
+                <ReactPlayer
+                    url={ gallery.videoEmbedCode }
+                    controls={ true }
+                    playing={ true }
+                    volume={ 1 }
+                    muted={ true }
+                />
             );
         }
 
