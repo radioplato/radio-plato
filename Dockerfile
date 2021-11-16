@@ -36,7 +36,7 @@ USER pptruser
 
 RUN npm run build
 
-USER radioplato
+USER root
 
 COPY . /app
 

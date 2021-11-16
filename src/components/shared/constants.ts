@@ -5,6 +5,7 @@ export const BASIC_SEO_IMG = 'https://res.cloudinary.com/radio-plato/image/uploa
 
 export const HEADER_SOCIAL_LINKS: SocialLinks = {
     mixcloud: 'https://www.mixcloud.com/radioplato/',
+    bandcamp: 'https://radioplato.bandcamp.com/',
     facebook: 'https://www.facebook.com/radioplato.by/',
     vk: 'https://vk.com/radioplato',
     email: 'mailto:hey@radioplato.by',

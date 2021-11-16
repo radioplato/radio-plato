@@ -13,6 +13,7 @@ import telegramIcon from '@iconify/icons-cib/telegram';
 import soundcloudIcon from '@iconify/icons-cib/soundcloud';
 import googlepodcastsIcon from '@iconify/icons-cib/google-podcasts';
 import patreonIcon from '@iconify/icons-cib/patreon';
+import bandcampIcon from '@iconify/icons-cib/bandcamp';
 
 import { SocialLinks, Socials } from '../interfaces';
 
@@ -31,6 +32,7 @@ const SOCIAL_ICONS = new Map<string, object>([
     [ Socials.Soundcloud, soundcloudIcon ],
     [ Socials.GooglePodcasts, googlepodcastsIcon ],
     [ Socials.Patreon, patreonIcon ],
+    [ Socials.Bandcamp, bandcampIcon ],
 ]);
 
 interface SocialLinksProperties {
