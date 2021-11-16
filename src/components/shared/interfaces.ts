@@ -13,6 +13,7 @@ export enum Socials {
     Patreon = "patreon",
     Soundcloud = "soundcloud",
     Bandcamp = "bandcamp",
+    Youtube = "youtube",
 }
 
 export enum Locale {
