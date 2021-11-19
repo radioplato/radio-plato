@@ -49,6 +49,7 @@ export class ShowComponent extends Component<ShowComponentProperties> {
                 googlepodcasts: showDto.ShowLink.googlepodcasts,
                 soundcloud: showDto.ShowLink.soundcloud,
                 patreon: showDto.ShowLink.patreon, 
+                youtube: showDto.ShowLink.youtube,
             },
             mixcloudPlaylist: showDto.MixcloudPlaylist,
         } : null

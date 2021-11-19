@@ -13,6 +13,7 @@ interface ShowLinkDto extends StrapiObjectDto {
     googlepodcasts?: string;
     patreon?: string;
     soundcloud?: string;
+    youtube?: string;
 }
 
 export interface ShowDto extends StrapiObjectDto {
