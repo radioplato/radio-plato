@@ -31,6 +31,6 @@ jobs:
         uses: docker/build-push-action@v2
         with:
           push: true
-          tags: radioplato/radio-plato-frontend/app:latest
+          tags: radioplato/radio-plato-frontend:latest
           secrets: |
             GIT_AUTH_TOKEN=${{ secrets.GIT_AUTH_TOKEN }}
