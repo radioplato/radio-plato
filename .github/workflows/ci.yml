@@ -29,3 +29,5 @@ jobs:
         with:
           push: true
           tags: radioplato/radio-plato-frontend/app:latest
+          secrets: |
+            GIT_AUTH_TOKEN=${{ secrets.GIT_AUTH_TOKEN }}
