@@ -1,4 +1,4 @@
-name: CI-canister
+name: CI-treescale
 
 on:
   push:
@@ -19,18 +19,18 @@ jobs:
         name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v1
       -
-        name: Login to Canister
+        name: Login to TreeScale
         uses: docker/login-action@v1 
         with:
-          registry: cloud.canister.io:5000
-          username: ${{ secrets.CANISTER_USERNAME }}
-          password: ${{ secrets.CANISTER_TOKEN }}
+          registry: repo.treescale.com
+          username: ${{ secrets.TREESCALE_USERNAME }}
+          password: ${{ secrets.TREESCALE_TOKEN }}
       -
         name: Build and push
         id: docker_build
         uses: docker/build-push-action@v2
         with:
           push: true
-          tags: cloud.canister.io:5000/radioplato/radio-plato-frontend:latest
+          tags: repo.treescale.com/radioplato/radio-plato-frontend:latest
           secrets: |
             GIT_AUTH_TOKEN=${{ secrets.GIT_AUTH_TOKEN }}
