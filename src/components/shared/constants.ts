@@ -10,7 +10,8 @@ export const HEADER_SOCIAL_LINKS: SocialLinks = {
     email: 'mailto:hey@radioplato.by',
     instagram: 'https://www.instagram.com/radio_plato/',
     telegram: 'https://t.me/radioplato',
-    googlePlay: 'https://play.google.com/store/apps/details?id=com.radioplato'
+    googlePlay: 'https://play.google.com/store/apps/details?id=com.radioplato',
+    bandcamp: 'https://radioplato.bandcamp.com/',
 };
 
 export const ANDROID_APP = 'ANDROID APP';

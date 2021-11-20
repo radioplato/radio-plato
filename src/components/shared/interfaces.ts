@@ -11,7 +11,9 @@ export enum Socials {
     GooglePlay = 'googlePlay',
     GooglePodcasts = 'googlepodcasts',
     Patreon = 'patreon',
-    Soundcloud = 'soundcloud'
+    Soundcloud = 'soundcloud',
+    Bandcamp = "bandcamp",
+    Youtube = "youtube",
 }
 
 export type SocialLinks = {
