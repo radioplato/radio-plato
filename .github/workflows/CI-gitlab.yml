@@ -1,4 +1,4 @@
-name: CI-treescale
+name: ci-gitlab
 
 on:
   push:
@@ -19,18 +19,18 @@ jobs:
         name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v1
       -
-        name: Login to TreeScale
+        name: Login to GitLab Repository
         uses: docker/login-action@v1 
         with:
-          registry: repo.treescale.com
-          username: ${{ secrets.TREESCALE_USERNAME }}
-          password: ${{ secrets.TREESCALE_TOKEN }}
+          registry: registry.gitlab.com
+          username: ${{ secrets.GITLAB_USERNAME }}
+          password: ${{ secrets.GITLAB_TOKEN }}
       -
         name: Build and push
         id: docker_build
         uses: docker/build-push-action@v2
         with:
           push: true
-          tags: repo.treescale.com/radioplato/radio-plato-frontend:latest
-          secrets: |
+          tags: registry.gitlab.com/radioplato/radioplato/radio-plato-frontend:latest
+          secrets: 
             GIT_AUTH_TOKEN=${{ secrets.GIT_AUTH_TOKEN }}
