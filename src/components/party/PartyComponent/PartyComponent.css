@@ -1,0 +1,20 @@
+.video-container {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: center;
+    align-content: center;
+    align-items: center;
+
+    width: calc(100% - 120px);
+    height: calc(100vh - 100px);
+    overflow: hidden;
+}
+
+.video-container video {
+    position: relative;
+    left: 0;
+    top: 0;
+    min-width: 100%;
+    min-height: 100%;
+}
