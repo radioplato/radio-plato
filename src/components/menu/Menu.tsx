@@ -11,6 +11,7 @@ const PAGES = [
     'News',
     'Shows',
     'Schedule',
+    'Studio',
     'About'
 ];
 
