@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 import { isMobileOnly } from 'react-device-detect';
 import ReactMarkdown from 'react-markdown';
 
-import { StudioHeaderDto, StudioHeader } from './interfaces';
+import { StudioHeaderDto, StudioHeader, PortfolioDto, Project } from './interfaces';
 import { Seo } from '../shared/wrappers/seo/Seo'
 
 import './Studio.css';
@@ -13,11 +13,13 @@ const STUDIO_SEO_DESCRIPTION = 'Plato Sound'
 
 interface StudioComponentState {
     studio: StudioHeader | null
+    projects: Project[] | null
 }
 
 export class StudioComponent extends Component {
     state: StudioComponentState = {
-        studio: null
+        studio: null,
+        projects: [],
     }
 
     parseStudio(studioDto: StudioHeaderDto): StudioHeader | null {
@@ -32,6 +34,19 @@ export class StudioComponent extends Component {
         } : null
     }
 
+    parseProjects(portfolioDto: PortfolioDto[]): Project[] | null {
+        return portfolioDto ? portfolioDto.map(project => {
+            return {
+                title: project.Title,
+                description: project.Description,
+                image: project.Image,
+                tag: [],
+                audio: project.Audio,
+                video: project.Video,
+            }
+        }) : null;
+    }
+
     fetchStudio () {
         fetch(`${ process.env.REACT_APP_BACKEND_URL }/portfolio-header`)
             .then(response => response.json())
@@ -39,9 +54,17 @@ export class StudioComponent extends Component {
             .then(studio => this.setState({ studio }));
     }
 
+    fetchPortfolio () {
+        fetch(`${ process.env.REACT_APP_BACKEND_URL }/portfolios`)
+            .then(response => response.json())
+            .then((data: PortfolioDto[]) => this.parseProjects(data))
+            .then(projects => this.setState({ projects }));
+    }
+
 
     componentDidMount () {
         this.fetchStudio();
+        this.fetchPortfolio();
     }
 
     render () {
@@ -53,9 +76,7 @@ export class StudioComponent extends Component {
             backgroundAttachment: 'fixed',
             backgroundSize: 'cover',
             backgroundImage: `url(${ imageSrc })`
-        }
-
-        console.log(studio);
+        };
 
         return studio ? (
             <article className={ `studio ${ isMobileOnly ? 'mobile' : 'desktop' }` }>
@@ -76,6 +97,14 @@ export class StudioComponent extends Component {
                                 escapeHtml={ false }
                             />
                         </div>
+                    </div>
+                </div>
+                <div className='portfolio-container'>
+                    <div className='filter-container'>
+
+                    </div>
+                    <div className='portfolio-list'>
+
                     </div>
                 </div>
             </article>
