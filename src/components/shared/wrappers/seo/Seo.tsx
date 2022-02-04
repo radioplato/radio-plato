@@ -28,6 +28,8 @@ function Seo ({ meta }: SeoProperties) {
         <meta property='og:description' content={ description } />
         { meta?.type && (<meta property='og:type' content={ meta.type } />) }
         <meta name='description' content={ description } />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:image" content={ meta?.thumbnail } />
     </Helmet>
   )
 }
