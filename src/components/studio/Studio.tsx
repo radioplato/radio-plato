@@ -3,23 +3,29 @@ import React, { Component } from 'react';
 import { isMobileOnly } from 'react-device-detect';
 import ReactMarkdown from 'react-markdown';
 
-import { StudioHeaderDto, StudioHeader, PortfolioDto, Project } from './interfaces';
+import { StudioHeaderDto, StudioHeader, PortfolioDto, Project, PortfolioTagDto } from './interfaces';
 import { Seo } from '../shared/wrappers/seo/Seo'
 
 import './Studio.css';
+import { FilterItem, ProjectTag } from './enums';
+import { projectTagToFilterItem } from './constants';
 
 const STUDIO_SEO_TITLE = 'Studio';
 const STUDIO_SEO_DESCRIPTION = 'Plato Sound'
 
 interface StudioComponentState {
-    studio: StudioHeader | null
-    projects: Project[] | null
+    studio: StudioHeader | null;
+    projects: Project[] | null;
+    filterItems: FilterItem[] | null;
+    currentFilter: FilterItem | null;
 }
 
 export class StudioComponent extends Component {
     state: StudioComponentState = {
         studio: null,
         projects: [],
+        filterItems: [],
+        currentFilter: FilterItem.All,
     }
 
     parseStudio(studioDto: StudioHeaderDto): StudioHeader | null {
@@ -34,13 +40,17 @@ export class StudioComponent extends Component {
         } : null
     }
 
+    parseTags(tag: PortfolioTagDto): ProjectTag[] {
+        return Object.entries(tag).filter(entry => entry[1] === true).map(entry => entry[0]) as ProjectTag[];
+    }
+
     parseProjects(portfolioDto: PortfolioDto[]): Project[] | null {
         return portfolioDto ? portfolioDto.map(project => {
             return {
                 title: project.Title,
                 description: project.Description,
                 image: project.Image,
-                tag: [],
+                tags: this.parseTags(project.Tag),
                 audio: project.Audio,
                 video: project.Video,
             }
@@ -58,17 +68,45 @@ export class StudioComponent extends Component {
         fetch(`${ process.env.REACT_APP_BACKEND_URL }/portfolios`)
             .then(response => response.json())
             .then((data: PortfolioDto[]) => this.parseProjects(data))
-            .then(projects => this.setState({ projects }));
+            .then(projects => {
+                const filterItems = Array
+                    .from(new Set(projects?.map(project => project.tags).flat().map(tag => projectTagToFilterItem.get(tag!))))
+                    .concat([ FilterItem.All ])
+                    .sort((a: FilterItem | undefined, b: FilterItem | undefined) => a!.localeCompare(b!));
+
+                this.setState({
+                    projects,
+                    filterItems,
+                });
+            });
     }
 
+    setFilter (filter: FilterItem): void {
+        this.setState({ currentFilter: filter });
+    }
 
     componentDidMount () {
         this.fetchStudio();
         this.fetchPortfolio();
     }
 
+    renderFilterButtons (filterItems: FilterItem[] | null): JSX.Element[] | null {
+        return filterItems && filterItems.map((item, index) => {
+            return (
+                <>
+                    <div className='filter-button' onClick={ () => this.setFilter(item) }>{ item }</div>
+                    <div className={`filter-separator ${ index === filterItems.length - 1 ? 'hidden' : 'visible' }`}>/</div>
+                </>
+            );
+        })
+    }
+
     render () {
-        const { studio } = this.state;
+        const {
+            studio,
+            projects,
+            filterItems,
+        } = this.state;
         const imageSrc = studio ? studio.studioImage.url : '';
         const imageStyle = {
             backgroundPosition: 'center',
@@ -101,7 +139,7 @@ export class StudioComponent extends Component {
                 </div>
                 <div className='portfolio-container'>
                     <div className='filter-container'>
-
+                        { this.renderFilterButtons(filterItems) }
                     </div>
                     <div className='portfolio-list'>
 
