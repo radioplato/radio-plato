@@ -146,7 +146,8 @@
     align-items: center;
 
     width: 100%;
-    padding: 30px 100px 100px 100px;
+    padding: 100px;
+    box-sizing: border-box;
 }
 
 .filter-container {
@@ -182,4 +183,21 @@
     display: none;
 }
 
+.portfolio-list {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-content: flex-start;
+    align-items: flex-start;
 
+    margin-top: 100px;
+}
+
+.portfolio-list .left {
+    margin-right: 40px;
+}
+
+.portfolio-list .right {
+    margin-left: 40px;
+}

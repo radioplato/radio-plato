@@ -1,0 +1,44 @@
+.project-card-container {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+    align-content: center;
+    align-items: center;
+
+    width: 650px;
+    height: 550px;
+    color: #ffffff;
+}
+
+.media-container {
+    width: 100%;
+    height: 430px;
+
+    overflow: hidden;
+}
+
+.media-image {
+    position: relative;
+    top: 0;
+    left: 0;
+
+    z-index: 2;
+
+    width: 100%;
+    height: 430px;
+
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.media-video {
+    width: 100%;
+    height: 430px;
+
+    top: 0;
+    left: 0;
+
+    z-index: 1;
+}

@@ -9,6 +9,7 @@ import { Seo } from '../shared/wrappers/seo/Seo'
 import './Studio.css';
 import { FilterItem, ProjectTag } from './enums';
 import { projectTagToFilterItem } from './constants';
+import ProjectCardComponent from './project-card/ProjectCardComponent';
 
 const STUDIO_SEO_TITLE = 'Studio';
 const STUDIO_SEO_DESCRIPTION = 'Plato Sound'
@@ -91,14 +92,20 @@ export class StudioComponent extends Component {
     }
 
     renderFilterButtons (filterItems: FilterItem[] | null): JSX.Element[] | null {
-        return filterItems && filterItems.map((item, index) => {
-            return (
-                <>
-                    <div className='filter-button' onClick={ () => this.setFilter(item) }>{ item }</div>
-                    <div className={`filter-separator ${ index === filterItems.length - 1 ? 'hidden' : 'visible' }`}>/</div>
-                </>
-            );
-        })
+        return filterItems && filterItems.map((item, index) => (
+            <>
+                <div className='filter-button' onClick={ () => this.setFilter(item) }>{ item }</div>
+                <div className={`filter-separator ${ index === filterItems.length - 1 ? 'hidden' : 'visible' }`}>/</div>
+            </>
+        ))
+    }
+
+    renderProjectCards (projects: Project[] | null): JSX.Element[] | null {
+        return projects && projects.map((project, index) => (
+            <div className={ index % 2 === 0 ? 'left' : 'right' }>
+                <ProjectCardComponent project={ project }></ProjectCardComponent>
+            </div>
+        ));
     }
 
     render () {
@@ -142,7 +149,7 @@ export class StudioComponent extends Component {
                         { this.renderFilterButtons(filterItems) }
                     </div>
                     <div className='portfolio-list'>
-
+                        { this.renderProjectCards(projects) }
                     </div>
                 </div>
             </article>
