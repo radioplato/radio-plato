@@ -26,6 +26,22 @@ function ProjectCardComponent ({ project, isPlaying, onTagClick, onCardClick }: 
         onCardClick(project.id);
     }
 
+    const renderMedia = () => {
+        const url = project.video.url || project.audio.url;
+        
+        return (
+            <ReactPlayer
+                ref={ playerRef }
+                url={ url }
+                controls={ true }
+                playing={ true }
+                loop={ true }
+                volume={ 1 }
+                muted={ true }
+            />
+        );
+    }
+
     return (
         <div className='project-card-container'>
             <div className='media-container' onClick={ () => handleCardClick() }>
@@ -37,15 +53,7 @@ function ProjectCardComponent ({ project, isPlaying, onTagClick, onCardClick }: 
                         display: !isPlaying ? 'block' : 'none'
                     }}
                 ></div>
-                <ReactPlayer
-                    ref={ playerRef }
-                    url={ project.video.url }
-                    controls={ true }
-                    playing={ true }
-                    loop={ true }
-                    volume={ 1 }
-                    muted={ true }
-                />
+                <div>{ renderMedia() }</div>
             </div>
             <div className='information-container'>
                 <h2 className='project-title'>{ project.title }</h2>
