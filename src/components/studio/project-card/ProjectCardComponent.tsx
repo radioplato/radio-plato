@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import React, { RefObject } from 'react';
+import ReactPlayer from 'react-player';
 import { projectTagToFilterItem } from '../constants';
 import { ProjectTag } from '../enums';
 
@@ -8,33 +9,42 @@ import './ProjectCardComponent.css';
 
 interface ProjectCardParameters {
     project: Project;
+    isPlaying: boolean;
     onTagClick: (tag: ProjectTag) => void;
+    onCardClick: (id: string) => void;
 }
 
-function ProjectCardComponent ({ project, onTagClick }: ProjectCardParameters) {
-    const [visibility, toggleVisibility] = useState(true);
+function ProjectCardComponent ({ project, isPlaying, onTagClick, onCardClick }: ProjectCardParameters) {
+    const playerRef: RefObject<ReactPlayer> = React.createRef()
 
     const handleTagClick = (tag: ProjectTag) => {
         onTagClick(tag);
     }
 
+    const handleCardClick = () => {
+        playerRef.current?.seekTo(0);
+        onCardClick(project.id);
+    }
+
     return (
         <div className='project-card-container'>
-            <div className='media-container' onClick={ () => toggleVisibility(!visibility) }>
+            <div className='media-container' onClick={ () => handleCardClick() }>
                 <div
                     className='media-image'
                     title={ project.title }
                     style={{
                         backgroundImage: `url(${ project.image.url })`,
-                        display: visibility ? 'block' : 'none'
+                        display: !isPlaying ? 'block' : 'none'
                     }}
                 ></div>
-                <video
-                    className='media-video'
-                    src={ project.video.url }
-                    autoPlay
-                    loop
-                    muted
+                <ReactPlayer
+                    ref={ playerRef }
+                    url={ project.video.url }
+                    controls={ true }
+                    playing={ true }
+                    loop={ true }
+                    volume={ 1 }
+                    muted={ true }
                 />
             </div>
             <div className='information-container'>

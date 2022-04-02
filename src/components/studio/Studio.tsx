@@ -18,6 +18,7 @@ interface StudioComponentState {
     studio: StudioHeader | null;
     projects: Project[] | null;
     displayedProjects: Project[] | null;
+    activeProject: Project | null;
     filterItems: FilterItem[] | null;
     currentFilter: FilterItem | null;
 }
@@ -27,6 +28,7 @@ export class StudioComponent extends Component {
         studio: null,
         projects: [],
         displayedProjects: [],
+        activeProject: null,
         filterItems: [],
         currentFilter: FilterItem.All,
     }
@@ -86,6 +88,11 @@ export class StudioComponent extends Component {
             });
     }
 
+    componentDidMount () {
+        this.fetchStudio();
+        this.fetchPortfolio();
+    }
+
     setFilter (filter: FilterItem): void {
         const tag = filterItemToProjectTag.get(filter);
 
@@ -101,10 +108,12 @@ export class StudioComponent extends Component {
         filter && this.setFilter(filter);
     }
 
-    componentDidMount () {
-        this.fetchStudio();
-        this.fetchPortfolio();
+    handleCardClick (id: string): void {
+        this.setState({
+            activeProject: this.state.activeProject?.id === id ? null : this.state.projects?.find(project => project.id === id)
+        });
     }
+
 
     renderFilterButtons (filterItems: FilterItem[] | null): JSX.Element[] | null {
         return filterItems && filterItems.map((item, index) => (
@@ -118,7 +127,12 @@ export class StudioComponent extends Component {
     renderProjectCards (projects: Project[] | null): JSX.Element[] | null {
         return projects && projects.map((project, index) => (
             <div className={ index % 2 === 0 ? 'left' : 'right' } key={ project.id }>
-                <ProjectCardComponent project={ project } onTagClick={ (tag) => this.handleTagClick(tag) }></ProjectCardComponent>
+                <ProjectCardComponent
+                    project={ project }
+                    isPlaying={ project.id === this.state.activeProject?.id }
+                    onTagClick={ (tag) => this.handleTagClick(tag) }
+                    onCardClick={ (id) => this.handleCardClick(id) }
+                ></ProjectCardComponent>
             </div>
         ));
     }
