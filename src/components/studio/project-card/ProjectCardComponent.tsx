@@ -28,7 +28,7 @@ function ProjectCardComponent ({ project, isPlaying, onTagClick, onCardClick }: 
 
     const renderMedia = () => {
         const url = project.video.url || project.audio.url;
-        
+
         return (
             <ReactPlayer
                 ref={ playerRef }
@@ -46,11 +46,10 @@ function ProjectCardComponent ({ project, isPlaying, onTagClick, onCardClick }: 
         <div className='project-card-container'>
             <div className='media-container' onClick={ () => handleCardClick() }>
                 <div
-                    className='media-image'
+                    className={ `media-image ${ isPlaying ? 'hidden' : 'visible' }` }
                     title={ project.title }
                     style={{
                         backgroundImage: `url(${ project.image.url })`,
-                        display: !isPlaying ? 'block' : 'none'
                     }}
                 ></div>
                 <div>{ renderMedia() }</div>

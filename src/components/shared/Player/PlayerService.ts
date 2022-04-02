@@ -64,6 +64,15 @@ class PlayerService {
         return this.playerState.muted;
     }
 
+    set fading(isFading: boolean) {
+        this.playerState.fading = isFading;
+        this.playerStateSubject.next(this.playerState);
+    }
+
+    get fading(): boolean {
+        return this.playerState.fading;
+    }
+
     get trackName() {
         return this.track;
     }
@@ -84,6 +93,10 @@ class PlayerService {
     }
 
     fadeOut() {
+        if (!this.playing) {
+            return;
+        }
+
         const currentVolume = this.volume;
         const volumeDecrease = currentVolume / rampTicks;
 
@@ -96,11 +109,15 @@ class PlayerService {
             }, tickPeriod);
         } else {
             this.volume = 0;
-            this.playerState.fading = false;
+            this.fading = false;
         }
     }
 
     fadeIn() {
+        if (!this.playing) {
+            return;
+        }
+
         const currentVolume = this.volume;
         const volumeIncrease = currentVolume / rampTicks;
 
@@ -111,7 +128,7 @@ class PlayerService {
             }, tickPeriod);
         } else {
             this.volume = 1;
-            this.playerState.fading = false;
+            this.fading = false;
         }
     }
 }
