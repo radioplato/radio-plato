@@ -166,11 +166,28 @@
     color: #ffffff;
 }
 
+.filter {
+    display: flex;
+    display: -webkit-flex;
+    flex: 0 0 auto;
+
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    align-content: center;
+    align-items: flex-start;
+}
+
 .filter-button {
     cursor: pointer;
+    user-select: none;
 }
 
 .filter-button:hover {
+    text-decoration: underline;
+}
+
+.filter-button.active {
     text-decoration: underline;
 }
 

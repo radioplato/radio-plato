@@ -62,4 +62,5 @@ export interface Project {
     tags: ProjectTag[];
     title: string;
     video: PortfolioMedia;
+    id: string;
 }

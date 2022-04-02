@@ -8,7 +8,7 @@ import { Seo } from '../shared/wrappers/seo/Seo'
 
 import './Studio.css';
 import { FilterItem, ProjectTag } from './enums';
-import { projectTagToFilterItem } from './constants';
+import { projectTagToFilterItem, filterItemToProjectTag } from './constants';
 import ProjectCardComponent from './project-card/ProjectCardComponent';
 
 const STUDIO_SEO_TITLE = 'Studio';
@@ -17,6 +17,7 @@ const STUDIO_SEO_DESCRIPTION = 'Plato Sound'
 interface StudioComponentState {
     studio: StudioHeader | null;
     projects: Project[] | null;
+    displayedProjects: Project[] | null;
     filterItems: FilterItem[] | null;
     currentFilter: FilterItem | null;
 }
@@ -25,6 +26,7 @@ export class StudioComponent extends Component {
     state: StudioComponentState = {
         studio: null,
         projects: [],
+        displayedProjects: [],
         filterItems: [],
         currentFilter: FilterItem.All,
     }
@@ -54,6 +56,7 @@ export class StudioComponent extends Component {
                 tags: this.parseTags(project.Tag),
                 audio: project.Audio,
                 video: project.Video,
+                id: project.id
             }
         }) : null;
     }
@@ -76,14 +79,26 @@ export class StudioComponent extends Component {
                     .sort((a: FilterItem | undefined, b: FilterItem | undefined) => a!.localeCompare(b!));
 
                 this.setState({
-                    projects,
                     filterItems,
+                    projects,
+                    displayedProjects: projects,
                 });
             });
     }
 
     setFilter (filter: FilterItem): void {
-        this.setState({ currentFilter: filter });
+        const tag = filterItemToProjectTag.get(filter);
+
+        this.setState({
+            currentFilter: filter,
+            displayedProjects: tag ? this.state.projects?.filter(project => project.tags.includes(tag)) : this.state.projects,
+        });
+    }
+
+    handleTagClick (tag: ProjectTag): void {
+        const filter = projectTagToFilterItem.get(tag);
+
+        filter && this.setFilter(filter);
     }
 
     componentDidMount () {
@@ -93,17 +108,17 @@ export class StudioComponent extends Component {
 
     renderFilterButtons (filterItems: FilterItem[] | null): JSX.Element[] | null {
         return filterItems && filterItems.map((item, index) => (
-            <>
-                <div className='filter-button' onClick={ () => this.setFilter(item) }>{ item }</div>
+            <div className='filter' key={ `filter-${item.toLowerCase()}` }>
+                <div className={`filter-button ${ this.state.currentFilter === item && 'active' }`} onClick={ () => this.setFilter(item) }>{ item }</div>
                 <div className={`filter-separator ${ index === filterItems.length - 1 ? 'hidden' : 'visible' }`}>/</div>
-            </>
+            </div>
         ))
     }
 
     renderProjectCards (projects: Project[] | null): JSX.Element[] | null {
         return projects && projects.map((project, index) => (
-            <div className={ index % 2 === 0 ? 'left' : 'right' }>
-                <ProjectCardComponent project={ project }></ProjectCardComponent>
+            <div className={ index % 2 === 0 ? 'left' : 'right' } key={ project.id }>
+                <ProjectCardComponent project={ project } onTagClick={ (tag) => this.handleTagClick(tag) }></ProjectCardComponent>
             </div>
         ));
     }
@@ -111,7 +126,7 @@ export class StudioComponent extends Component {
     render () {
         const {
             studio,
-            projects,
+            displayedProjects,
             filterItems,
         } = this.state;
         const imageSrc = studio ? studio.studioImage.url : '';
@@ -149,7 +164,7 @@ export class StudioComponent extends Component {
                         { this.renderFilterButtons(filterItems) }
                     </div>
                     <div className='portfolio-list'>
-                        { this.renderProjectCards(projects) }
+                        { this.renderProjectCards(displayedProjects) }
                     </div>
                 </div>
             </article>
