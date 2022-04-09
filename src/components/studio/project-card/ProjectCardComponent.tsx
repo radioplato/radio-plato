@@ -27,12 +27,10 @@ function ProjectCardComponent ({ project, isPlaying, onTagClick, onCardClick }: 
     }
 
     const renderMedia = () => {
-        const url = project.video.url || project.audio.url;
-
         return (
             <ReactPlayer
                 ref={ playerRef }
-                url={ url }
+                url={ project.video.url }
                 controls={ true }
                 playing={ true }
                 loop={ true }

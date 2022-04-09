@@ -47,7 +47,6 @@ export interface PortfolioTagDto {
 }
 
 export interface PortfolioDto extends StrapiObjectDto {
-    Audio: PortfolioMedia;
     Description: string;
     Image: CoverDto;
     Tag: PortfolioTagDto;
@@ -56,7 +55,6 @@ export interface PortfolioDto extends StrapiObjectDto {
 }
 
 export interface Project {
-    audio: PortfolioMedia;
     description: string;
     image: SimpleImage;
     tags: ProjectTag[];

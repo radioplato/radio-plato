@@ -56,7 +56,6 @@ export class StudioComponent extends Component {
                 description: project.Description,
                 image: project.Image,
                 tags: this.parseTags(project.Tag),
-                audio: project.Audio,
                 video: project.Video,
                 id: project.id
             }
