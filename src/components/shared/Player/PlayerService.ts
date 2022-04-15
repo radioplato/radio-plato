@@ -8,8 +8,9 @@ enum StorageKey {
 }
 
 const parseVolume = (value: string | null): number => (value !== null ? parseFloat(value) : 1);
-const tickPeriod = 50;
-const rampTicks = 10;
+
+const tickPeriod = 3;
+const rampTicks = 100;
 
 class PlayerService {
     private playerState: PlayerState;
@@ -17,6 +18,8 @@ class PlayerService {
     private playerStateSubject: Subject<PlayerState>;
     private trackNameSubject: Subject<string>;
     private connection = new WebSocket(process.env.REACT_APP_DATA_URL as string);
+
+    private fadingTimer: ReturnType<typeof setInterval>;
 
     private onMessage(event: MessageEvent) {
         const data = JSON.parse(event.data);
@@ -29,6 +32,8 @@ class PlayerService {
 
         this.playerStateSubject = new Subject();
         this.trackNameSubject = new Subject();
+
+        this.fadingTimer = setInterval(() => {}, 0);
 
         this.volume = parseVolume(localStorage.getItem(StorageKey.Volume));
 
@@ -93,43 +98,51 @@ class PlayerService {
     }
 
     fadeOut() {
-        if (!this.playing) {
+        if (!this.playing || !this.muted) {
             return;
         }
 
         const currentVolume = this.volume;
         const volumeDecrease = currentVolume / rampTicks;
 
-        this.playerState.fading = false;
+        clearInterval(this.fadingTimer);
 
-        if (currentVolume > 0) {
-            setTimeout(() => {
-                this.volume = currentVolume - volumeDecrease;
-                this.fadeOut();
-            }, tickPeriod);
-        } else {
-            this.volume = 0;
-            this.fading = false;
-        }
+        this.fading = true;
+
+        this.fadingTimer = setInterval(() => {
+            if (this.volume - volumeDecrease > 0) {
+                this.volume = this.volume - volumeDecrease;
+            } else {
+                this.volume = 0;
+                this.fading = false;
+
+                clearInterval(this.fadingTimer);
+            }
+        }, tickPeriod);
     }
 
     fadeIn() {
-        if (!this.playing) {
+        if (!this.playing || !this.muted) {
             return;
         }
 
         const currentVolume = this.volume;
         const volumeIncrease = currentVolume / rampTicks;
 
-        if (currentVolume < 1) {
-            setTimeout(() => {
-                this.volume = currentVolume + volumeIncrease;
-                this.fadeOut();
-            }, tickPeriod);
-        } else {
-            this.volume = 1;
-            this.fading = false;
-        }
+        clearInterval(this.fadingTimer);
+
+        this.fading = true;
+
+        this.fadingTimer = setInterval(() => {
+            if (this.volume + volumeIncrease < 1) {
+                this.volume = this.volume + volumeIncrease;
+            } else {
+                this.volume = 1;
+                this.fading = false;
+
+                clearInterval(this.fadingTimer);
+            }
+        }, tickPeriod);
     }
 }
 

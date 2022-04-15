@@ -6,8 +6,8 @@
     align-content: center;
     align-items: center;
 
-    width: 650px;
-    height: 550px;
+    width: 570px;
+    height: 440px;
 
     margin-bottom: 80px;
 
@@ -17,7 +17,7 @@
 
 .media-container {
     width: 100%;
-    height: 430px;
+    height: 320px;
 
     margin-bottom: 20px;
 
@@ -32,7 +32,7 @@
     z-index: 2;
 
     width: 100%;
-    height: 430px;
+    height: 320px;
 
     background-size: cover;
     background-position: center;
@@ -47,19 +47,14 @@
 }
 
 .media-image.visible {
-    height: 430px;
+    height: 320px;
     opacity: 1;
     transition: height 0ms 0ms, opacity 600ms 0ms;
 }
 
 .media-video {
     width: 100%;
-    height: 430px;
-
-    top: 0;
-    left: 0;
-
-    z-index: 1;
+    height: 100%;
 }
 
 .information-container {
@@ -75,7 +70,7 @@
 }
 
 .project-title {
-    margin-bottom: 20px;
+    margin-bottom: 10px;
     font-size: 36px;
     font-weight: normal;
     color: #ffffff;

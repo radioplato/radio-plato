@@ -128,7 +128,7 @@ export class StudioComponent extends Component {
             <div className={ index % 2 === 0 ? 'left' : 'right' } key={ project.id }>
                 <ProjectCardComponent
                     project={ project }
-                    isPlaying={ project.id === this.state.activeProject?.id }
+                    shouldPlay={ project.id === this.state.activeProject?.id }
                     onTagClick={ (tag) => this.handleTagClick(tag) }
                     onCardClick={ (id) => this.handleCardClick(id) }
                 ></ProjectCardComponent>
