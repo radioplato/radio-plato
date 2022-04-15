@@ -41,6 +41,26 @@
     transition: height 0ms 400ms, opacity 400ms 0ms;
 }
 
+.media-image:hover .mask {
+    display: flex;
+}
+
+.media-image .mask {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    justify-content: center;
+    align-content: center;
+    align-items: center;
+
+    width: 100%;
+    height: 100%;
+
+    background-color: #00000044;
+
+    display: none;
+}
+
 .media-image.hidden {
     height: 0;
     opacity: 0;

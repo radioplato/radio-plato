@@ -98,6 +98,7 @@ export class StudioComponent extends Component {
         this.setState({
             currentFilter: filter,
             displayedProjects: tag ? this.state.projects?.filter(project => project.tags.includes(tag)) : this.state.projects,
+            activeProject: null,
         });
     }
 

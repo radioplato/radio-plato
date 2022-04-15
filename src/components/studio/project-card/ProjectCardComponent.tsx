@@ -1,6 +1,9 @@
 import React, { RefObject } from 'react';
 import ReactPlayer from 'react-player';
 
+import Icon from '@iconify/react';
+import playIcon from '@iconify/icons-el/play';
+
 import { playerService } from '../../shared/Player/PlayerService';
 import { projectTagToFilterItem } from '../constants';
 import { ProjectTag } from '../enums';
@@ -67,7 +70,11 @@ function ProjectCardComponent ({ project, shouldPlay, onTagClick, onCardClick }:
                         backgroundImage: `url(${ project.image.url })`,
                     }}
                     onClick={ () => handleCardClick() }
-                ></div>
+                >
+                    <div className='mask'>
+                        { !shouldPlay && <Icon icon={ playIcon } width={ 64 } height={ 64 }/> }
+                    </div>
+                </div>
                 <div className='media-video'>{ renderMedia() }</div>
             </div>
             <div className='information-container'>
