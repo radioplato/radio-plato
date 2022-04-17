@@ -95,6 +95,10 @@
     height: 100%;
 }
 
+.media-video video::-webkit-media-controls-timeline {
+    display: block;
+}
+
 .information-container {
     display: flex;
     flex-direction: column;
