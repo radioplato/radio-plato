@@ -11,8 +11,8 @@ import { FilterItem, ProjectTag } from './enums';
 import { projectTagToFilterItem, filterItemToProjectTag } from './constants';
 import ProjectCardComponent from './project-card/ProjectCardComponent';
 
-const STUDIO_SEO_TITLE = 'Studio';
-const STUDIO_SEO_DESCRIPTION = 'Plato Sound'
+const STUDIO_SEO_TITLE = 'Radio Plato Studio';
+const STUDIO_SEO_DESCRIPTION = 'Plato is a team of professional sound designers, audio engineers, managers and music producers.';
 
 interface StudioComponentState {
     studio: StudioHeader | null;
