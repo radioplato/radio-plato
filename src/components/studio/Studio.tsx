@@ -176,6 +176,7 @@ export class StudioComponent extends Component {
                 <div className='portfolio-container'>
                     <div className='filter-container'>
                         { this.renderFilterButtons(filterItems) }
+
                     </div>
                     <div className='portfolio-list'>
                         { this.renderProjectCards(displayedProjects) }

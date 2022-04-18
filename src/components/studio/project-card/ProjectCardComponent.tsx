@@ -78,16 +78,15 @@ function ProjectCardComponent ({ project, shouldPlay, onTagClick, onCardClick }:
                 <div className='media-video'>{ renderMedia() }</div>
             </div>
             <div className='information-container'>
-                <h2 className='project-title'>{ project.title }</h2>
-                <p className='project-description'>{ project.description }</p>
                 <div className='project-tags'>{
                     project.tags.length && project.tags.map((tag, index) => (
                         <div className="tag" key={ `${project.id}-${tag.toLowerCase()}` }>
                             <div className='tag-name' onClick={ () => handleTagClick(tag) }>{ projectTagToFilterItem.get(tag) }</div>
-                            <div className={`tag-separator ${ index === project.tags.length - 1 ? 'hidden' : 'visible' }`}>/</div>
                         </div>
                     ))
                 }</div>
+                <h2 className='project-title'>{ project.title }</h2>
+                <p className='project-description'>{ project.description }</p>
             </div>
         </div>
     );
