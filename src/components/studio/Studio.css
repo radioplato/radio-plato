@@ -287,12 +287,14 @@
 .loader-container.visible {
     opacity: 1;
     pointer-events: all;
+    touch-action: auto;
 }
 
 .loader-container.hidden {
     opacity: 0;
-    transition: opacity 0.5s;
+    transition: opacity 0.2s;
     pointer-events: none;
+    touch-action: none;
 }
 
 .loader-container svg {
