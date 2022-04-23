@@ -2,7 +2,7 @@ import { StrapiObjectDto, SimpleImage, CoverDto } from "../shared/interfaces";
 import { ProjectTag } from "./enums";
 
 export interface StudioHeaderDto extends StrapiObjectDto {
-    Decription: string;
+    Description: string;
     Image: CoverDto;
     Slug?: string;
     Title: string;

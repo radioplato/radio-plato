@@ -259,3 +259,43 @@
 .mobile .right {
     margin: 0;
 }
+
+.loader-container {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-content: center;
+    align-items: center;
+
+    position: absolute;
+
+    left: 121px;
+    top: 101px;
+
+    background-color: #000000;
+
+    width: calc(100vw - 121px);
+    height: calc(100vh - 101px);
+}
+
+.mobile .loader-container {
+    left: 0;
+    width: 100vw;
+}
+
+.loader-container.visible {
+    opacity: 1;
+    pointer-events: all;
+}
+
+.loader-container.hidden {
+    opacity: 0;
+    transition: opacity 0.5s;
+    pointer-events: none;
+}
+
+.loader-container svg {
+    width: 200px;
+    height: 200px;
+}

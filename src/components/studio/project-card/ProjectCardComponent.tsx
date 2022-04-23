@@ -71,9 +71,13 @@ function ProjectCardComponent ({ project, shouldPlay, onTagClick, onCardClick }:
                     }}
                     onClick={ () => handleCardClick() }
                 >
-                    <div className='mask'>
-                        { !shouldPlay && <Icon icon={ playIcon } width={ 64 } height={ 64 }/> }
-                    </div>
+                    {
+                        !shouldPlay && (
+                            <div className='circle'>
+                                <Icon icon={ playIcon } width={ 24 } height={ 24 }/>
+                            </div>
+                        )
+                    }
                 </div>
                 <div className='media-video'>{ renderMedia() }</div>
             </div>
