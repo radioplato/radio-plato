@@ -133,7 +133,8 @@
 }
 
 .mobile .project-title {
-    line-height: 43px;
+    line-height: 33px;
+    font-size: 30px;
 }
 
 .project-tags {
@@ -180,6 +181,7 @@
     line-height: 27px;
     padding: 0px 10px;
     margin-right: 15px;
+    margin-bottom: -1px;
 }
 
 .tag-name:hover {

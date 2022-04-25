@@ -6,6 +6,8 @@ import ReactMarkdown from "react-markdown";
 import { fromEvent, Subject } from "rxjs";
 import { debounceTime, first, mapTo, takeUntil } from "rxjs/operators";
 
+import SocialLinksComponent from '../shared/SocialLinksComponent/SocialLinksComponent';
+import { HEADER_SOCIAL_LINKS } from '../shared/constants';
 import { Seo } from "../shared/wrappers/seo/Seo";
 import ProjectCardComponent from "./project-card/ProjectCardComponent";
 
@@ -227,7 +229,10 @@ export class StudioComponent extends Component {
                         </div>
                         <div className="right">
                             <div className="description">
-                                <ReactMarkdown source={studio?.description} escapeHtml={false} />
+                                     <ReactMarkdown source={studio?.description} escapeHtml={false} />
+                                <div className="social-links">
+                                      <SocialLinksComponent socialLinks={ HEADER_SOCIAL_LINKS }></SocialLinksComponent>
+                                </div>
                             </div>
                         </div>
                     </div>

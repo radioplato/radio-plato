@@ -6,7 +6,6 @@ import spotifyIcon from '@iconify/icons-cib/spotify';
 import itunesIcon from '@iconify/icons-ps/itunes';
 import castboxIcon from '@iconify/icons-simple-icons/castbox';
 import facebookIcon from '@iconify/icons-cib/facebook';
-import vkIcon from '@iconify/icons-cib/vk';
 import mailRu from '@iconify/icons-cib/mail-ru';
 import instagramIcon from '@iconify/icons-cib/instagram';
 import telegramIcon from '@iconify/icons-cib/telegram';
@@ -26,7 +25,6 @@ const SOCIAL_ICONS = new Map<string, object>([
     [ Socials.Itunes, itunesIcon ],
     [ Socials.Castbox, castboxIcon ],
     [ Socials.Facebook, facebookIcon ],
-    [ Socials.Vk, vkIcon ],
     [ Socials.Email, mailRu ],
     [ Socials.Instagram, instagramIcon ],
     [ Socials.Telegram, telegramIcon ],
