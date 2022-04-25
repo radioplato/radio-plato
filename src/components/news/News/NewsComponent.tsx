@@ -48,7 +48,7 @@ export class NewsComponent extends Component<NewsComponentProperties> {
     subscription: Subscription | null = null;
 
     parseNews(newsDto: NewsDto, isCurrent = false): News | null {
-        if (isCurrent) {
+        if (newsDto && isCurrent) {
             const currentLocale = newsDto.locale;
             const locales = Array.from(new Set([
                 currentLocale,
@@ -72,15 +72,17 @@ export class NewsComponent extends Component<NewsComponentProperties> {
                 caption: newsDto.PostCover.caption,
                 url: newsDto.PostCover.url
             },
-            locale: newsDto.locale
+            locale: newsDto.locale,
+            localizations: newsDto.localizations
         } : null
     }
 
-    fetchCurrentArticle () {
+    fetchCurrentArticle (locale: Locale = Locale.English) {
         const { slug } = this.props;
-        const { currentLocale } = this.state;
+        const localeString = localeStringByLocale.get(locale)?.toLowerCase();
+        const localePostfix = locale === Locale.English ? '' : `-${ localeString }`;
 
-        return fetch(`${ process.env.REACT_APP_BACKEND_URL }/posts?Slug=${ slug }&_locale=${ currentLocale }`)
+        return fetch(`${ process.env.REACT_APP_BACKEND_URL }/posts?Slug=${ slug }${ localePostfix }&_locale=${ locale }`)
             .then(response => response.json())
             .then((data: NewsDto[]) => this.parseNews(data[0], true))
             .then(news => this.setState({ news }));
@@ -128,6 +130,7 @@ export class NewsComponent extends Component<NewsComponentProperties> {
 
     changeLocale (currentLocale: Locale) {
         this.setState({ currentLocale });
+        this.fetchCurrentArticle(currentLocale)
     }
 
     render () {

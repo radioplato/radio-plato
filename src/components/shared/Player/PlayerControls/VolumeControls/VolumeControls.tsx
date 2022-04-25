@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
 import ReactSlider from 'react-slider';
 import { Icon } from '@iconify/react';
@@ -10,6 +10,7 @@ import { isMobileOnly } from 'react-device-detect';
 import { playerService } from '../../PlayerService';
 
 import './VolumeControls.css';
+import { PlayerState } from '../../interfaces';
 
 const FullVolumeIcon = <Icon icon={ bxsVolumeFull } width={ 16 } height={ 16 } color='#ffffff'/>;
 const MuteVolumeIcon = <Icon icon={ bxsVolumeMute } width={ 16 } height={ 16 } color='#ffffff'/>;
@@ -17,6 +18,18 @@ const device = isMobileOnly ? 'mobile' : 'desktop';
 
 function VolumeControls() {
     const [ muted, setVolumeMode ] = useState(playerService.muted);
+    const [ volume, setVolume ] = useState(Math.trunc(playerService.volume * 100));
+
+    useEffect(() => {
+        setVolume(sliderDefaultValue());
+
+        const subscription = playerService.subscribeOnPlayerStateChanges((data: PlayerState) => {
+            setVolume(Math.trunc(data.volume * 100));
+            setVolumeMode(data.muted);
+        });
+
+        return () => subscription?.unsubscribe();
+    }, []);
     
     const toggleVolumeMode = () => {
         playerService.muted = !playerService.muted;
@@ -24,9 +37,9 @@ function VolumeControls() {
     }
 
     const changeVolume = (value: any) => {
+        playerService.volume = value / 100;
         playerService.muted = false;
         setVolumeMode(playerService.muted);
-        playerService.volume = value / 100;
     }
 
     const sliderDefaultValue = () => {
@@ -51,6 +64,7 @@ function VolumeControls() {
                 defaultValue={ sliderDefaultValue() }
                 onChange={ value => changeVolume(value)}
                 ariaLabel='Volume slider'
+                value={ volume }
             />
         </div>
     );

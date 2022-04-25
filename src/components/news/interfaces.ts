@@ -29,4 +29,5 @@ export interface News extends NewsCard {
     photosBy?: string;
     wordsBy: string;
     locale: Locale;
+    localizations: StrapiLocalization[];
 }
