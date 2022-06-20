@@ -14,7 +14,7 @@ import { PlayerTypes } from '../../enums';
 import './PlayerComponent.css';
 
 
-const ONAIR = 'onair';
+const ONAIR = 'onair:';
 const M3U = 'https://azura.radioplato.by/public/1/playlist.m3u'
 const PLS = 'https://azura.radioplato.by/public/1/playlist.pls'
 
