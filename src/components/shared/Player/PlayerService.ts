@@ -1,7 +1,7 @@
 import { Subject } from "rxjs";
 
 import { PlayerState } from "./interfaces";
-import { DEFAULT_PLAYER_STATE } from "./constants";
+import { DEFAULT_PLAYER_STATE, DATA_REQUEST_INTERVAL } from "./constants";
 
 enum StorageKey {
     Volume = "volume",
@@ -17,15 +17,8 @@ class PlayerService {
     private track = "";
     private playerStateSubject: Subject<PlayerState>;
     private trackNameSubject: Subject<string>;
-    private connection = new WebSocket(process.env.REACT_APP_DATA_URL as string);
 
     private fadingTimer: ReturnType<typeof setInterval>;
-
-    private onMessage(event: MessageEvent) {
-        const data = JSON.parse(event.data);
-
-        this.updateTrackName(data.now_playing.song.text);
-    }
 
     constructor(state: PlayerState) {
         this.playerState = state;
@@ -37,7 +30,8 @@ class PlayerService {
 
         this.volume = parseVolume(localStorage.getItem(StorageKey.Volume));
 
-        this.connection.onmessage = (event) => this.onMessage(event);
+        this.updateTrackName();
+        setInterval(this.updateTrackName.bind(this), DATA_REQUEST_INTERVAL);
     }
 
     set playing(isPlaying: boolean) {
@@ -90,9 +84,20 @@ class PlayerService {
         return this.trackNameSubject.subscribe((data) => onNext(data));
     }
 
-    async updateTrackName(name: string = "") {
-        if (name !== this.track) {
-            this.track = name;
+    async updateTrackName () {
+        const url = process.env.REACT_APP_DATA_URL_RESERVE as string;
+        const response = await fetch(url);
+        const data = await response.json();
+        const title = process.env.REACT_APP_ENV !== 'staging' ?
+            data?.now_playing?.song?.title :
+            data.icestats.source[0].title;
+        const artist = process.env.REACT_APP_ENV !== 'staging' ?
+            data?.now_playing?.song?.artist :
+            data.icestats.source[0].artist;
+        const trackName = `${artist ?? 'Unknown Artist'} — ${title ?? 'ID'}`
+
+        if (trackName !== this.track) {
+            this.track = trackName;
             this.trackNameSubject.next(this.track);
         }
     }
