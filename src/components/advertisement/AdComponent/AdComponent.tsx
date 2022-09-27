@@ -1,6 +1,8 @@
 
 import React from 'react';
 
+import { isMobileOnly } from 'react-device-detect';
+
 import { Advertisement } from '../interfaces';
 
 import './AdComponent.css';
@@ -11,7 +13,7 @@ interface AdComponentProperties {
 
 function AdComponent ({ advertisement }: AdComponentProperties) {
     return (
-        <a className='da-container' href={ advertisement?.link } rel='noopener noreferrer' target='_blank'>
+        <a className={`da-container ${ isMobileOnly ? 'mobile' : 'desktop' }`} href={ advertisement?.link } rel='noopener noreferrer' target='_blank'>
             <div className='da-image'>
                 <img src={ advertisement?.image.url } alt={ advertisement?.image.alternativeText }/>
             </div>

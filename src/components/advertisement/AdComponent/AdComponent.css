@@ -66,3 +66,23 @@
 
     margin-top: 10px;
 }
+
+.da-container.mobile {
+    flex-direction: column;
+    width: 100%;
+    box-sizing: border-box;
+    padding: 40px;
+    margin-bottom: 16px;
+}
+
+.da-container.mobile .da-image {
+    width: 100%;
+    height: auto;
+    margin: 0;
+    margin-bottom: 20px;
+}
+
+.da-container.mobile .da-image img {
+    width: 100%;
+    height: auto;
+}
