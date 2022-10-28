@@ -30,6 +30,7 @@ function Seo ({ meta }: SeoProperties) {
         <meta name='description' content={ description } />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:image" content={ meta?.thumbnail } />
+        <link rel="apple-app-site-association file" href="apple-app-site-association" />
     </Helmet>
   )
 }
