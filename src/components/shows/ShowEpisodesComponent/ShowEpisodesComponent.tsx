@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 
 import { isMobileOnly } from 'react-device-detect';
 
+import Soundcloud from 'soundcloud.ts'
+
 import { ShowEpisode } from '../interfaces';
 
 import './ShowEpisodesComponent.css';
@@ -34,13 +36,19 @@ export class ShowEpisodesComponent extends Component<ShowEpisodesProperties> {
         return playlistDto.data.map((datum: any) => this.parseShowEpisode(datum));
     }
 
-    fetchPlaylist () {
-        const { mixcloudPlaylist } = this.props;
+    async fetchPlaylist () {
+        // const { mixcloudPlaylist } = this.props;
         
-        fetch(`${ mixcloudPlaylist }`)
-            .then(response => response.json())
-            .then(playlist => this.parseShowEpisodes(playlist)?.reverse().slice(0, 9))
-            .then(showEpisodes => this.setState({ showEpisodes }));
+        // fetch(`${ mixcloudPlaylist }`)
+        //     .then(response => response.json())
+        //     .then(playlist => this.parseShowEpisodes(playlist)?.reverse().slice(0, 9))
+        //     .then(showEpisodes => this.setState({ showEpisodes }));
+
+        const soundcloud = new Soundcloud('M1st288RpSGenY314AaaHwddXSnfh1Xw', '2-290059-4862302-1EsXsdzUX6QGXFkg');
+
+        const playlist = await soundcloud.playlists.getAlt("randoomkru/sets/showcase")
+
+        console.log(playlist);
     }
 
     renderShowEpisode (episode: ShowEpisode) {
@@ -71,8 +79,8 @@ export class ShowEpisodesComponent extends Component<ShowEpisodesProperties> {
         ) : null;
     }
 
-    componentDidMount () {
-        this.fetchPlaylist();
+    async componentDidMount () {
+        await this.fetchPlaylist();
     }
 
     render () {
