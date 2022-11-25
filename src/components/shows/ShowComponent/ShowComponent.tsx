@@ -51,7 +51,8 @@ export class ShowComponent extends Component<ShowComponentProperties> {
                 patreon: showDto.ShowLink.patreon, 
                 youtube: showDto.ShowLink.youtube,
             },
-            mixcloudPlaylist: showDto.MixcloudPlaylist,
+            mixcloudPlaylist: showDto.MixcloudPlaylist ?? null,
+            soundcloudPlaylist: showDto.SoundcloudPlaylist ?? null,
         } : null
     }
 
@@ -123,7 +124,7 @@ export class ShowComponent extends Component<ShowComponentProperties> {
                         <img src={ imageSrc } loading='lazy' alt={ show.showCover.alternativeText }/>
                     </div>
                 </div>
-                {  navigator.userAgent !== "ReactSnap" && <ShowEpisodesComponent mixcloudPlaylist={ show.mixcloudPlaylist }/> }
+                {  navigator.userAgent !== "ReactSnap" && <ShowEpisodesComponent mixcloudPlaylist={ show.mixcloudPlaylist } soundcloudPlaylist={ show.soundcloudPlaylist }/> }
                 <div className="title-container">
                     <h2 className="more-shows-title">MORE SHOWS</h2>
                 </div>
