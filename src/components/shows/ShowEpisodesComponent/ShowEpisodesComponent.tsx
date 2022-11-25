@@ -2,13 +2,16 @@ import React, { Component } from 'react';
 
 import { isMobileOnly } from 'react-device-detect';
 
+import Soundcloud, { SoundcloudTrackV2 } from 'soundcloud.ts'
+
 import { ShowEpisode } from '../interfaces';
 
 import './ShowEpisodesComponent.css';
 
 
 interface ShowEpisodesProperties {
-    mixcloudPlaylist: string;
+    mixcloudPlaylist: string | null;
+    soundcloudPlaylist: string | null;
 }
 
 export class ShowEpisodesComponent extends Component<ShowEpisodesProperties> {
@@ -16,7 +19,7 @@ export class ShowEpisodesComponent extends Component<ShowEpisodesProperties> {
         showEpisodes: []
     }
 
-    parseShowEpisode (datum: any): ShowEpisode {
+    parseMixcloudShowEpisode (datum: any): ShowEpisode {
         return {
             title: datum.name,
             image: datum.pictures['1024wx1024h'],
@@ -26,21 +29,47 @@ export class ShowEpisodesComponent extends Component<ShowEpisodesProperties> {
         }
     }
 
-    parseShowEpisodes (playlistDto: any): ShowEpisode[] | null {
+    parseSoundcloudShowEpisode (datum: SoundcloudTrackV2): ShowEpisode {
+        return {
+            title: datum.title,
+            image: datum.artwork_url,
+            url: datum.permalink_url,
+            date: datum.created_at,
+            slug: datum.permalink
+        }
+    }
+
+    parseMixcloudShowEpisodes (playlistDto: any): ShowEpisode[] | null {
         if (!playlistDto || !playlistDto.data || !playlistDto.data.length) {
             return null;
         }
         
-        return playlistDto.data.map((datum: any) => this.parseShowEpisode(datum));
+        return playlistDto.data.map((datum: any) => this.parseMixcloudShowEpisode(datum));
     }
 
-    fetchPlaylist () {
-        const { mixcloudPlaylist } = this.props;
+    parseSoundcloudShowEpisodes (playlistDto: any): ShowEpisode[] | null {
+        if (!playlistDto || !playlistDto.tracks || !playlistDto.tracks.length) {
+            return null;
+        }
         
-        fetch(`${ mixcloudPlaylist }`)
-            .then(response => response.json())
-            .then(playlist => this.parseShowEpisodes(playlist)?.reverse().slice(0, 9))
-            .then(showEpisodes => this.setState({ showEpisodes }));
+        return playlistDto.tracks.map((datum: any) => this.parseSoundcloudShowEpisode(datum));
+    }
+
+    async fetchPlaylist () {
+        const { mixcloudPlaylist, soundcloudPlaylist } = this.props;
+
+        if (soundcloudPlaylist) {
+            const soundcloud = new Soundcloud('M1st288RpSGenY314AaaHwddXSnfh1Xw', '2-290059-4862302-1EsXsdzUX6QGXFkg');
+            const playlist = await soundcloud.playlists.getV2("randoomkru/sets/showcase")
+            const showEpisodes = this.parseSoundcloudShowEpisodes(playlist)?.reverse().slice(0, 9)
+
+            this.setState({ showEpisodes })
+        } else {
+            fetch(`${ mixcloudPlaylist }`)
+                .then(response => response.json())
+                .then(playlist => this.parseMixcloudShowEpisodes(playlist)?.reverse().slice(0, 9))
+                .then(showEpisodes => this.setState({ showEpisodes }));
+        }
     }
 
     renderShowEpisode (episode: ShowEpisode) {
@@ -71,8 +100,8 @@ export class ShowEpisodesComponent extends Component<ShowEpisodesProperties> {
         ) : null;
     }
 
-    componentDidMount () {
-        this.fetchPlaylist();
+    async componentDidMount () {
+        await this.fetchPlaylist();
     }
 
     render () {
