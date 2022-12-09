@@ -37,7 +37,8 @@ class PlayerService {
 
         this.volume = parseVolume(localStorage.getItem(StorageKey.Volume));
 
-        this.connection.onmessage = (event) => this.onMessage(event);
+        // this.connection.onmessage = (event) => this.onMessage(event);
+        this.updateTrackName('Easterndaze On Air: Community Radio Special')
     }
 
     set playing(isPlaying: boolean) {
