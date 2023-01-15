@@ -37,7 +37,7 @@ class PlayerService {
 
         this.volume = parseVolume(localStorage.getItem(StorageKey.Volume));
 
-        this.connection.onmessage = (event) => this.onMessage(event);
+        this.updateTrackName();
     }
 
     set playing(isPlaying: boolean) {
@@ -91,10 +91,8 @@ class PlayerService {
     }
 
     async updateTrackName(name: string = "") {
-        if (name !== this.track) {
-            this.track = name;
-            this.trackNameSubject.next(this.track);
-        }
+        this.track = "THF Radio feat. Radio Plato #02: Fazee";
+        this.trackNameSubject.next(this.track);
     }
 
     fadeOut() {
