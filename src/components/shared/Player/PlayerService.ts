@@ -90,6 +90,11 @@ class PlayerService {
         return this.trackNameSubject.subscribe((data) => onNext(data));
     }
 
+/*         async updateTrackName(name: string = "") {
+        this.track = "СЮДА СВОЙ ХАРДКОД ХАРДКОР ТАЙТЛ";
+        this.trackNameSubject.next(this.track);
+    } */
+
     async updateTrackName(name: string = "") {
         if (name !== this.track) {
             this.track = name;
