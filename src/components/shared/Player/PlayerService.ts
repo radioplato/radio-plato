@@ -90,14 +90,11 @@ class PlayerService {
         return this.trackNameSubject.subscribe((data) => onNext(data));
     }
 
-/*         async updateTrackName(name: string = "") {
-        this.track = "СЮДА СВОЙ ХАРДКОД ХАРДКОР ТАЙТЛ";
-        this.trackNameSubject.next(this.track);
-    } */
-
     async updateTrackName(name: string = "") {
-        this.track = "THF Radio feat. Radio Plato #02: Fazee";
-        this.trackNameSubject.next(this.track);
+        if (name !== this.track) {
+            this.track = name;
+            this.trackNameSubject.next(this.track);
+        }
     }
 
     fadeOut() {
