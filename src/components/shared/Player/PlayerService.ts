@@ -37,7 +37,7 @@ class PlayerService {
 
         this.volume = parseVolume(localStorage.getItem(StorageKey.Volume));
 
-        this.updateTrackName();
+        this.connection.onmessage = (event) => this.onMessage(event);
     }
 
     set playing(isPlaying: boolean) {
