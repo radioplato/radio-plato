@@ -79,7 +79,7 @@ function ProjectCardComponent ({ project, shouldPlay, onTagClick, onCardClick }:
                         )
                     }
                 </div>
-                <div className='media-video'>{ renderMedia() }</div>
+                { shouldPlay && <div className='media-video'>{ renderMedia() }</div> }
             </div>
             <div className='information-container'>
                 <div className='project-tags'>{
