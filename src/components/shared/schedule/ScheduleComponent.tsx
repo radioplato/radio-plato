@@ -129,6 +129,7 @@ class ScheduleComponent extends Component {
                 <div className='schedule-headline-container'>        
                     <div className='schedule-title'>
                         <p>{ SCHEDULE }</p>
+                        <p className='utc'>UTC+3</p>
                     </div>
                     {
                         isMobileOnly

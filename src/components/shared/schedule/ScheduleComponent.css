@@ -38,7 +38,16 @@
     flex: 0 0 auto;
     
     flex-direction: row;
+    align-content: flex-end;
     margin: 40px;
+}
+
+.schedule-title .utc {
+    margin-left: 40px;
+
+    font-size: 14px;
+    font-weight: normal;
+    color: #b3b3b3;
 }
 
 .schedule-container.mobile .schedule-title {
