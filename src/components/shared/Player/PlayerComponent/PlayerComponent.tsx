@@ -28,7 +28,6 @@ const copyToClipboard = (text: string) => {
     document.body.removeChild(dummy);
 };
 
-const device = isMobileOnly ? 'mobile' : 'desktop';
 export class PlayerComponent extends PureComponent<PlayerProps> {
     state = {
         trackName: '',

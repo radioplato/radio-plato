@@ -16,3 +16,4 @@ export const HEADER_SOCIAL_LINKS: SocialLinks = {
 export const DONATE_LINK = 'https://www.patreon.com/radioplato';
 
 export const ANDROID_APP = 'ANDROID APP';
+export const DONATE = 'Donate';

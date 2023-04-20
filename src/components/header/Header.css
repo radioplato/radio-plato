@@ -20,7 +20,7 @@ header {
 }
 
 .header-container.mobile {
-    justify-content: flex-start;
+    justify-content: space-between;
 }
 
 .social-container {
@@ -94,6 +94,10 @@ header {
     color: #ffffff;
 }
 
+.header-container.mobile .donate-link {
+    padding: 4px;
+}
+
 .android-link {
     -webkit-user-select: none;
     color: white;
@@ -141,4 +145,8 @@ header {
 .heart-icon {
     margin-left: 0px;
     margin-right: 8px;
+}
+
+.header-container.mobile .heart-icon {
+    margin: 0;
 }

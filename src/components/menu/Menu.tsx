@@ -7,7 +7,7 @@ import { isMobileOnly } from 'react-device-detect';
 import Icon from '@iconify/react';
 import cardsHeart from '@iconify/icons-mdi/cards-heart';
 
-import { DONATE_LINK } from '../shared/constants';
+import { DONATE, DONATE_LINK } from '../shared/constants';
 
 import './Menu.css'
 
@@ -56,7 +56,7 @@ function Menu({ menuRef, wrapperRef, toggleMenu }: MenuParameters) {
                                 aria-label={ `A Radio Plato Patreon link` }
                                 rel='noopener noreferrer'
                             >
-                                Donate
+                                { DONATE }
                                 <Icon className='heart-icon' icon={ cardsHeart } width='32' height='32'/>
                             </a>
                         </li>
