@@ -161,7 +161,7 @@
     animation: floatText 20s infinite linear;
   }
 
-.track-title:hover p {
+.header-player .track-title:hover p {
     animation-play-state: paused;
 }
 
