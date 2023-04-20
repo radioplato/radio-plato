@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 
 import { isMobileOnly } from 'react-device-detect';
 
+import { DONATE_LINK } from '../shared/constants';
 import './Menu.css'
 
 
@@ -12,7 +13,7 @@ const PAGES = [
     'Shows',
     'Schedule',
     'Studio',
-    'About'
+    'About',
 ];
 
 interface MenuParameters {
@@ -42,6 +43,9 @@ function Menu({ menuRef, wrapperRef, toggleMenu }: MenuParameters) {
                 <div className='menu-items-container'>
                     <ul className='menu-items'>
                         { PAGES.map(title => buildMenuItem(title)) }
+                        <li className='menu-item' key='donate'>
+                            <a target='_blank' href={ DONATE_LINK }>Donate</a>
+                        </li>
                     </ul>
                 </div>
             </nav>

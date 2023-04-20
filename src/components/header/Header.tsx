@@ -14,7 +14,7 @@ import Icon from '@iconify/react';
 import MenuButton from '../menu/menu-button/MenuButton';
 import SocialLinksComponent from '../shared/SocialLinksComponent/SocialLinksComponent';
 import PlayerComponent from '../shared/Player/PlayerComponent/PlayerComponent';
-import { ANDROID_APP, HEADER_SOCIAL_LINKS } from '../shared/constants';
+import { ANDROID_APP, DONATE_LINK, HEADER_SOCIAL_LINKS } from '../shared/constants';
 import { PlayerTypes } from '../shared/enums';
 
 import './Header.css'
@@ -22,7 +22,6 @@ import './Header.css'
 
 const RADIO_PLATO = '';
 const DONATE = 'Donate';
-const DONATE_LINK = 'https://www.patreon.com/radioplato';
 
 export class Header extends Component {
     render() {

@@ -13,4 +13,6 @@ export const HEADER_SOCIAL_LINKS: SocialLinks = {
     googlePlay: 'https://play.google.com/store/apps/details?id=com.radioplato'
 };
 
+export const DONATE_LINK = 'https://www.patreon.com/radioplato';
+
 export const ANDROID_APP = 'ANDROID APP';
