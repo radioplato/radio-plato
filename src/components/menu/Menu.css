@@ -99,17 +99,17 @@ nav.mobile .menu-items-container {
 }
 
 .menu-item {
-    margin: 60px 0;
+    margin: 40px 0;
 
     font-style: normal;
     font-weight: 300;
-    font-size: 56px;
+    font-size: 48px;
     line-height: 52px;
 }
 
 nav.mobile .menu-item {
-    margin: 40px 0;
-    font-size: 40px;
+    margin: 32px 0;
+    font-size: 32px;
 }
 
 nav.mobile > .menu-button-aside {

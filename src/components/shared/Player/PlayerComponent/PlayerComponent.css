@@ -9,7 +9,7 @@
     flex-wrap: nowrap;
     justify-content: flex-start;
     align-content: stretch;
-    align-items: flex-start;
+    align-items: center;
 }
 
 .main-player.desktop {
@@ -79,31 +79,15 @@
 }
 
 .track-art {
-    width: 100%;
+    width: 256px;
     aspect-ratio: 1 / 1;
-}
-
-.dark-overlay {
-    width: 100%;
-    height: 100%;
-    background-color: #000000cc;
-
-    display: flex;
-    display: -webkit-flex;
-    flex: 0 0 auto;
-    
-    flex-direction: row;
-    flex-wrap: nowrap;
-    justify-content: center;
-    align-content: center;
-    align-items: center;
 }
 
 .onair-line {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    width: 100%;
+    width: 256px;
 }
 
 .onair {
