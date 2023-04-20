@@ -44,7 +44,13 @@ function Menu({ menuRef, wrapperRef, toggleMenu }: MenuParameters) {
                     <ul className='menu-items'>
                         { PAGES.map(title => buildMenuItem(title)) }
                         <li className='menu-item' key='donate'>
-                            <a target='_blank' href={ DONATE_LINK }>Donate</a>
+                            <a
+                                target='_blank'
+                                href={ DONATE_LINK }
+                                title={ `A Radio Plato Patreon link` }
+                                aria-label={ `A Radio Plato Patreon link` }
+                                rel='noopener noreferrer'
+                            >Donate</a>
                         </li>
                     </ul>
                 </div>
