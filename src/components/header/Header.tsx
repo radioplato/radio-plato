@@ -8,6 +8,7 @@ import {
 
 import { BrowserView, isMobileOnly } from 'react-device-detect';
 import googlePlay from '@iconify/icons-cib/google-play';
+import cardsHeart from '@iconify/icons-mdi/cards-heart';
 import Icon from '@iconify/react';
 
 import MenuButton from '../menu/menu-button/MenuButton';
@@ -59,10 +60,11 @@ export class Header extends Component {
                             <a className='donate-link'
                                 target='_blank'
                                 href={ DONATE_LINK }
-                                title={ `A link Radio Plato Patreon` }
-                                aria-label={ `A link Radio Plato Patreon` }
+                                title={ `A Radio Plato Patreon link` }
+                                aria-label={ `A Radio Plato Patreon link` }
                                 rel='noopener noreferrer'
-                            >
+                            >   
+                                <Icon className='heart-icon' icon={ cardsHeart } width='18' height='18'/>
                                 { DONATE }
                             </a>
                         </div>
