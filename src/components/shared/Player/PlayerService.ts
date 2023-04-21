@@ -88,6 +88,10 @@ class PlayerService {
         return this.trackInformation.name;
     }
 
+    get trackArt() {
+        return this.trackInformation.art;
+    }
+
     subscribeOnPlayerStateChanges(onNext: Function) {
         return this.playerStateSubject.subscribe((data) => onNext(data));
     }
@@ -98,7 +102,9 @@ class PlayerService {
 
     async updateTrackInformation(information: TrackInformation) {
         if (information && information.name !== this.trackName) {
-            this.trackInformation = information;
+            this.trackInformation = {
+                ...information
+            };
             this.trackInformationSubject.next(this.trackInformation);
         }
     }

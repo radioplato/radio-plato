@@ -42,7 +42,8 @@ export class PlayerComponent extends PureComponent<PlayerProps> {
     componentDidMount () {
         this.subscribeOnPlayerStateChange();
         this.setState({
-            trackName: playerService.trackName
+            trackName: playerService.trackName,
+            trackArt: playerService.trackArt
         });
     }
 
