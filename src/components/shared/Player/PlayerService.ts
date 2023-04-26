@@ -27,10 +27,12 @@ class PlayerService {
     private onMessage(event: MessageEvent) {
         const data = JSON.parse(event.data);
 
-        this.updateTrackInformation({
-            name: data.now_playing.song.text,
-            art: data.now_playing.song.art
-        });
+        if (data && data.pub) {
+            this.updateTrackInformation({
+                name: data.pub.data.np.now_playing.song.text,
+                art: data.pub.data.np.now_playing.song.art
+            });
+        }
     }
 
     constructor(state: PlayerState) {
@@ -42,6 +44,14 @@ class PlayerService {
         this.fadingTimer = setInterval(() => {}, 0);
 
         this.volume = parseVolume(localStorage.getItem(StorageKey.Volume));
+
+        this.connection.onopen = () => {
+            this.connection.send(JSON.stringify({
+                'subs': {
+                    'station:radioplato': {}
+                }
+            }))
+        }
 
         this.connection.onmessage = (event) => this.onMessage(event);
     }
