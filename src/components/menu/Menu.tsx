@@ -8,17 +8,11 @@ import Icon from '@iconify/react';
 import cardsHeart from '@iconify/icons-mdi/cards-heart';
 
 import { DONATE, DONATE_LINK } from '../shared/constants';
+import { MENU_BUTTONS, SOCIAL_BUTTONS } from './constants';
+import { MenuButton, SocialButton } from './interfaces';
 
-import './Menu.css'
+import './Menu.scss'
 
-
-const PAGES = [
-    'News',
-    'Shows',
-    'Schedule',
-    'Studio',
-    'About',
-];
 
 interface MenuParameters {
     menuRef: React.RefObject<HTMLDivElement>;
@@ -27,28 +21,42 @@ interface MenuParameters {
 }
 
 function Menu({ menuRef, wrapperRef, toggleMenu }: MenuParameters) {
-    const buildMenuItem = (title: string) => {
-        const route = `/${ title.toLowerCase() }`;
-
+    const renderMenuItem = (button: MenuButton) => {
         return (
-            <li className='menu-item' key={ title }>
-                <Link to={ route } onClick={ toggleMenu }>{ title }</Link>
+            <li className={ `menu-item ${button.className}` } key={ button.className }>
+                <Link to={ button.route } onClick={ toggleMenu }>{ button.label }</Link>
             </li>
+        );
+    }
+
+    const renderSocialButton = (button: SocialButton) => {
+        return (
+            <a
+                key={ button.key}
+                target='_blank'
+                href={ button.link }
+                title={ button.key.toUpperCase() }
+                aria-label={ button.key.toUpperCase() }
+                rel='noopener noreferrer'
+                className={ `menu-social-button ${button.key}` }
+                style={{  
+                    backgroundImage: 'url(socials/' + button.key + ')',
+                }}
+            ></a>
         );
     }
 
     return (
         <>
-            <div className={`wrapper ${ isMobileOnly ? 'mobile' : 'desktop' }`} ref={ wrapperRef } onClick={ toggleMenu } />
-            <nav ref={ menuRef } className={ isMobileOnly ? 'mobile' : 'desktop' }>
+            <div className={`wrapper ${ isMobileOnly ? 'mobile' : 'desktop' }`} ref={ wrapperRef } onClick={ toggleMenu }></div>
+            <nav ref={ menuRef } className={ `menu ${isMobileOnly ? 'mobile' : 'desktop'}` }>
                 <div className='menu-button-aside white' onClick={ toggleMenu }>
                     <p className='label close-button'>CLOSE</p>
                 </div>
                 <div className='menu-items-container'>
                     <ul className='menu-items'>
-                        { PAGES.map(title => buildMenuItem(title)) }
-                        <div className='menu-separator'></div>
-                        <li className='menu-item' key='donate'>
+                        { MENU_BUTTONS.map(button => renderMenuItem(button)) }
+                        <li className='menu-item donate-button' key='donate'>
                             <a
                                 target='_blank'
                                 href={ DONATE_LINK }
@@ -61,6 +69,9 @@ function Menu({ menuRef, wrapperRef, toggleMenu }: MenuParameters) {
                             </a>
                         </li>
                     </ul>
+                    <div className='menu-social-buttons'>
+                        { SOCIAL_BUTTONS.map(button => renderSocialButton(button)) }
+                    </div>
                 </div>
             </nav>
         </>     

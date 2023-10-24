@@ -78,6 +78,7 @@
     "@iconify/react": "^1.1.4",
     "cross-env": "^7.0.2",
     "gh-pages": "^2.2.0",
-    "react-snap": "^1.23.0"
+    "react-snap": "^1.23.0",
+    "sass": "^1.69.4"
   }
 }
