@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { isMobileOnly } from 'react-device-detect';
 
 import { Seo } from '../shared/wrappers/seo/Seo'
-import GalleryComponent from '../gallery/GalleryComponent';
 import NewsListComponent from '../news/NewsListComponent';
 import { ScheduleComponent } from '../shared/schedule/ScheduleComponent';
 import { BASIC_SEO_IMG } from '../shared/constants';
@@ -24,7 +23,6 @@ export class StartPageComponent extends Component {
                             thumbnail: BASIC_SEO_IMG
                         }}
                     />
-                { isMobileOnly ? null : <GalleryComponent /> }
                 <NewsListComponent type={ NewsListTypes.Simple }/>
                 <ScheduleComponent />
             </div>

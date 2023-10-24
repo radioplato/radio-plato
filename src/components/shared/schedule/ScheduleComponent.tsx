@@ -128,7 +128,7 @@ class ScheduleComponent extends Component {
             <div className={ `schedule-container ${ isMobileOnly ? 'mobile' : 'desktop' }` }>
                 <div className='schedule-headline-container'>        
                     <div className='schedule-title'>
-                        <p>{ SCHEDULE }</p>
+                        <p>{ SCHEDULE }<sup className='utc'>UTC+3</sup></p>
                     </div>
                     {
                         isMobileOnly

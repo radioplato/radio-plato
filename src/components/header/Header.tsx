@@ -8,22 +8,35 @@ import {
 
 import { BrowserView, isMobileOnly } from 'react-device-detect';
 import googlePlay from '@iconify/icons-cib/google-play';
+import cardsHeart from '@iconify/icons-mdi/cards-heart';
 import Icon from '@iconify/react';
 
 import MenuButton from '../menu/menu-button/MenuButton';
 import SocialLinksComponent from '../shared/SocialLinksComponent/SocialLinksComponent';
 import PlayerComponent from '../shared/Player/PlayerComponent/PlayerComponent';
-import { ANDROID_APP, HEADER_SOCIAL_LINKS } from '../shared/constants';
+import { ANDROID_APP, DONATE, DONATE_LINK, HEADER_SOCIAL_LINKS } from '../shared/constants';
 import { PlayerTypes } from '../shared/enums';
 
 import './Header.css'
 
 
 const RADIO_PLATO = '';
-const DONATE = 'Donate';
-const DONATE_LINK = 'https://www.patreon.com/radioplato';
 
 export class Header extends Component {
+    renderMobileDonateButton() {
+        return (
+            <a className='donate-link'
+                target='_blank'
+                href={ DONATE_LINK }
+                title={ `A Radio Plato Patreon link` }
+                aria-label={ `A Radio Plato Patreon link` }
+                rel='noopener noreferrer'
+            >   
+                <Icon className='heart-icon' icon={ cardsHeart } width='24' height='24'/>
+            </a>
+        );
+    }
+
     render() {
         return (
             <header className={ `header-container ${ isMobileOnly ? 'mobile' : 'desktop' }` }>
@@ -59,16 +72,17 @@ export class Header extends Component {
                             <a className='donate-link'
                                 target='_blank'
                                 href={ DONATE_LINK }
-                                title={ `A link Radio Plato Patreon` }
-                                aria-label={ `A link Radio Plato Patreon` }
+                                title={ `A Radio Plato Patreon link` }
+                                aria-label={ `A Radio Plato Patreon link` }
                                 rel='noopener noreferrer'
-                            >
+                            >   
+                                <Icon className='heart-icon' icon={ cardsHeart } width='18' height='18'/>
                                 { DONATE }
                             </a>
                         </div>
-    
                     </div>
                 </BrowserView>
+                { isMobileOnly && this.renderMobileDonateButton() }
             </header>
         );
     }

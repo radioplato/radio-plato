@@ -1,6 +1,6 @@
 import { Subject } from "rxjs";
 
-import { PlayerState } from "./interfaces";
+import { PlayerState, TrackInformation } from "./interfaces";
 import { DEFAULT_PLAYER_STATE } from "./constants";
 
 enum StorageKey {
@@ -14,9 +14,12 @@ const rampTicks = 100;
 
 class PlayerService {
     private playerState: PlayerState;
-    private track = "";
+    private trackInformation: TrackInformation = {
+        name: '',
+        art: ''
+    };
     private playerStateSubject: Subject<PlayerState>;
-    private trackNameSubject: Subject<string>;
+    private trackInformationSubject: Subject<TrackInformation>;
     private connection = new WebSocket(process.env.REACT_APP_DATA_URL as string);
 
     private fadingTimer: ReturnType<typeof setInterval>;
@@ -24,21 +27,33 @@ class PlayerService {
     private onMessage(event: MessageEvent) {
         const data = JSON.parse(event.data);
 
-        this.updateTrackName(data.now_playing.song.text);
+        if (data && data.pub) {
+            this.updateTrackInformation({
+                name: data.pub.data.np.now_playing.song.text,
+                art: data.pub.data.np.now_playing.song.art
+            });
+        }
     }
 
     constructor(state: PlayerState) {
         this.playerState = state;
 
         this.playerStateSubject = new Subject();
-        this.trackNameSubject = new Subject();
+        this.trackInformationSubject = new Subject();
 
         this.fadingTimer = setInterval(() => {}, 0);
 
         this.volume = parseVolume(localStorage.getItem(StorageKey.Volume));
 
-        // this.connection.onmessage = (event) => this.onMessage(event);
-        this.updateTrackName('Easterndaze On Air: Community Radio Special')
+        this.connection.onopen = () => {
+            this.connection.send(JSON.stringify({
+                'subs': {
+                    'station:radioplato': {}
+                }
+            }))
+        }
+
+        this.connection.onmessage = (event) => this.onMessage(event);
     }
 
     set playing(isPlaying: boolean) {
@@ -80,21 +95,27 @@ class PlayerService {
     }
 
     get trackName() {
-        return this.track;
+        return this.trackInformation.name;
+    }
+
+    get trackArt() {
+        return this.trackInformation.art;
     }
 
     subscribeOnPlayerStateChanges(onNext: Function) {
         return this.playerStateSubject.subscribe((data) => onNext(data));
     }
 
-    subscribeOnTrackNameChanges(onNext: Function) {
-        return this.trackNameSubject.subscribe((data) => onNext(data));
+    subscribeOnTrackInformationChanges(onNext: Function) {
+        return this.trackInformationSubject.subscribe((data) => onNext(data));
     }
 
-    async updateTrackName(name: string = "") {
-        if (name !== this.track) {
-            this.track = name;
-            this.trackNameSubject.next(this.track);
+    async updateTrackInformation(information: TrackInformation) {
+        if (information && information.name !== this.trackName) {
+            this.trackInformation = {
+                ...information
+            };
+            this.trackInformationSubject.next(this.trackInformation);
         }
     }
 

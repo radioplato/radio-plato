@@ -99,17 +99,17 @@ nav.mobile .menu-items-container {
 }
 
 .menu-item {
-    margin: 60px 0;
+    margin: 40px 0;
 
     font-style: normal;
     font-weight: 300;
-    font-size: 64px;
-    line-height: 120%;
+    font-size: 48px;
+    line-height: 52px;
 }
 
 nav.mobile .menu-item {
-    margin: 40px 0;
-    font-size: 40px;
+    margin: 32px 0;
+    font-size: 32px;
 }
 
 nav.mobile > .menu-button-aside {
@@ -126,7 +126,7 @@ nav.mobile > .menu-button-aside {
     content: '';
     position: absolute;
     width: 1%;
-    height: 3px;
+    height: 2px;
     bottom: 5px;
     left: 0;
     background-color: #000;
@@ -137,4 +137,15 @@ nav.mobile > .menu-button-aside {
 .menu-item a:hover:before {
     visibility: visible;
     width: 100%;
+}
+
+.menu-item .heart-icon {
+    margin-left: 16px;
+    margin-right: 0;
+}
+
+.menu-separator {
+    height: 2px;
+    width: 235px;
+    background-color: #000000;
 }

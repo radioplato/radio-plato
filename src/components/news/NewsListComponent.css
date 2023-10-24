@@ -156,7 +156,6 @@
     width: 100%;
 
     box-sizing: border-box;
-    border-top: 1px solid white;
     border-bottom: 1px solid white;
     padding: 40px;
 }
@@ -178,6 +177,14 @@
 
 .news-list-title a:hover p {
     text-decoration: underline;
+}
+
+.simple-news.mobile .news-list-title {
+    border-top: 1px solid white;
+}
+
+.simple-news.mobile .news-list-title p {
+    font-size: 32px;
 }
 
 .load-more-button {

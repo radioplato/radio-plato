@@ -20,7 +20,7 @@ header {
 }
 
 .header-container.mobile {
-    justify-content: flex-start;
+    justify-content: space-between;
 }
 
 .social-container {
@@ -67,36 +67,35 @@ header {
 }
 
 .donate-link {
+    user-select: none;
     -webkit-user-select: none;
     position: relative;
     margin-right: 40px;
-    color: #ffffff;
+    color: #000000;
     font-style: normal;
     font-weight: 400;
     font-size: 16px;
+    background-color: #ffffff;
+    padding: 6px 12px;
+
+    display: flex;
+    display: -webkit-flex;
+    flex: 0 0 auto;
+    
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+    align-content: stretch;
+    align-items: center;
 }
 
 .donate-link:hover {
-    color: black;
-    transition: all 0.2s ease-in-out 0s;
+    background-color: #f1465a;
+    color: #ffffff;
 }
 
-.donate-link:before {
-    content: '';
-    position: absolute;
-    width: 110%;
-    height: 1px;
-    bottom: 0;
-    left: -3px;
-    background-color: white;
-    visibility: hidden;
-    transition: all 0.2s ease-in-out 0s;
-    z-index: -1;
-}
-
-.donate-link:hover::before {
-    height: 100%;
-    visibility: visible;
+.header-container.mobile .donate-link {
+    padding: 4px;
 }
 
 .android-link {
@@ -141,4 +140,13 @@ header {
     width: 1.1em;  
     margin-left: 0px;
     margin-right: 12px;
+}
+
+.heart-icon {
+    margin-left: 0px;
+    margin-right: 8px;
+}
+
+.header-container.mobile .heart-icon {
+    margin: 0;
 }

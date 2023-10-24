@@ -7,6 +7,11 @@ export interface PlayerState {
     volume: number;
 }
 
+export interface TrackInformation {
+    name: string;
+    art: string;
+}
+
 export interface PlayerProps {
     playerType: PlayerTypes;
 }

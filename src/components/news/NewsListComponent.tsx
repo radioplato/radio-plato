@@ -99,7 +99,7 @@ export class NewsListComponent extends Component<NewsListComponentProperties> {
 
     renderSimpleNewsList (newsCards: NewsCard[]) {
         return newsCards.length ? (
-            <div className='simple-news'>
+            <div className={ `simple-news ${ isMobileOnly ? 'mobile' : 'desktop' }` }>
                 <div className='news-list-title'>
                     <Link to='/news'>
                         <p>{ NEWS }</p>
