@@ -1,10 +1,10 @@
 .menu {
     position: absolute;
     top: 101px;
-    left: -602px;
+    left: -482px;
     z-index: 100;
 
-    width: 602px;
+    width: 482px;
     height: calc(100vh - 101px);
 
     background: #ffffff;
@@ -44,8 +44,11 @@
     .menu-items-container {
         height: 100%;
         width: 360px;
+        box-sizing: border-box;
     
-        margin: 56px 48px;
+        padding: 56px 48px;
+
+        background: #ffffff;
     
         display: flex;
         display: -webkit-flex;
@@ -103,7 +106,7 @@
         }
     }
 
-    &.menu-open, &.mobile.menu-open {
+    &.menu-open {
         left: 0; 
     }
 

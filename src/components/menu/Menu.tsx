@@ -39,9 +39,6 @@ function Menu({ menuRef, wrapperRef, toggleMenu }: MenuParameters) {
                 aria-label={ button.key.toUpperCase() }
                 rel='noopener noreferrer'
                 className={ `menu-social-button ${button.key}` }
-                style={{  
-                    backgroundImage: 'url(socials/' + button.key + ')',
-                }}
             ></a>
         );
     }
