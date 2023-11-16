@@ -21,14 +21,14 @@ const PLAYER_CONFIG = {
     }
 };
 
-interface ProjectCardParameters {
+interface ProjectCardProperties {
     project: Project;
     shouldPlay: boolean;
     onTagClick: (tag: ProjectTag) => void;
     onCardClick: (id: string) => void;
 }
 
-function ProjectCardComponent ({ project, shouldPlay, onTagClick, onCardClick }: ProjectCardParameters) {   
+function ProjectCardComponent ({ project, shouldPlay, onTagClick, onCardClick }: ProjectCardProperties) {   
     const playerRef: RefObject<ReactPlayer> = React.createRef();
 
     const handleTagClick = (tag: ProjectTag) => {

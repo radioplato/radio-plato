@@ -1,3 +1,5 @@
+import { ICON_KEY } from "../../shared/icons/icons";
+
 export interface MenuButton {
     label: string;
     route: string;
@@ -5,6 +7,7 @@ export interface MenuButton {
 }
 
 export interface SocialButton {
-    key: string;
+    name: string;
+    icon: ICON_KEY;
     link: string;
 }

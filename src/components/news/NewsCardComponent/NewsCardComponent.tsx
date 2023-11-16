@@ -9,21 +9,21 @@ import { AD_CATEGORY } from '../constants';
 import './NewsCardComponent.css';
 
 
-interface LinkElementParameters {
+interface LinkElementProperties {
     children: React.ReactNode;
     newsCard: NewsCard;
 }
 
-interface TagElementParameters {
+interface TagElementProperties {
     category: string;
 }
 
-interface NewsCardParameters {
+interface NewsCardProperties {
     newsCard: NewsCard;
     type?: string;
 }
 
-function LinkElement({ newsCard, children }: LinkElementParameters) {
+function LinkElement({ newsCard, children }: LinkElementProperties) {
     const slug = newsCard.slug;
     const route = `/news/${ newsCard.category.toLowerCase() }/${ slug }`;
 
@@ -32,14 +32,14 @@ function LinkElement({ newsCard, children }: LinkElementParameters) {
         <a href={ newsCard.link } title={ newsCard.title } rel='noopener noreferrer' target='_blank'>{ children }</a>;
 }
 
-function TagElement({ category }: TagElementParameters) {
+function TagElement({ category }: TagElementProperties) {
     const link = `/news/${ category.toLowerCase() }`;
     const tag = `∙ ${ category } ∙`;
 
     return category !== AD_CATEGORY ? <Link to={ link } title={ category } className='news-card-tag'>{ tag }</Link> : <p className='news-card-tag'>{ tag }</p>
 }
 
-function NewsCardComponent({ newsCard, type }: NewsCardParameters) {
+function NewsCardComponent({ newsCard, type }: NewsCardProperties) {
     const {
         excerpt,
         newsCover,

@@ -11,7 +11,7 @@ import googlePlay from '@iconify/icons-cib/google-play';
 import cardsHeart from '@iconify/icons-mdi/cards-heart';
 import Icon from '@iconify/react';
 
-import MenuButton from '../menu/menu-button/MenuButton';
+import MenuButton from '../menu/components/menu-button/MenuButton';
 import SocialLinksComponent from '../shared/SocialLinksComponent/SocialLinksComponent';
 import PlayerComponent from '../shared/Player/PlayerComponent/PlayerComponent';
 import { ANDROID_APP, DONATE, DONATE_LINK, HEADER_SOCIAL_LINKS } from '../shared/constants';

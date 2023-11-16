@@ -5,12 +5,10 @@ import { isMobileOnly } from 'react-device-detect';
 import { Icon } from '@iconify/react';
 import menuIcon from '@iconify/icons-gridicons/menu';
 
-import Menu from '../Menu';
+import Menu from '../menu/Menu';
 
-import './MenuButton.css'
+import './MenuButton.scss'
 
-
-const MENU = 'menu';
 
 function MenuButton() {
     const [ isOpened, changeMenuStatus ] = useState(true);
@@ -30,7 +28,7 @@ function MenuButton() {
     const renderAsideButton = () => {
         return (
             <div className='menu-button-aside black' onClick={ toggleMenu }>
-                <p className='label open-button'>{ MENU }</p>
+                <p className='open-button-label'>Menu</p>
             </div>
         );
     }

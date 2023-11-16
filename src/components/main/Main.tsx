@@ -7,7 +7,7 @@ import {
 
 import { BrowserView, isMobileOnly } from 'react-device-detect';
 
-import MenuButton from '../menu/menu-button/MenuButton'
+import MenuButton from '../menu/components/menu-button/MenuButton'
 import PlayerComponent from '../shared/Player/PlayerComponent/PlayerComponent'
 import Content from '../content/Content'
 import { PlayerTypes } from '../shared/enums';

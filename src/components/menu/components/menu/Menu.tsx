@@ -4,23 +4,22 @@ import { Link } from 'react-router-dom';
 
 import { isMobileOnly } from 'react-device-detect';
 
-import Icon from '@iconify/react';
-import cardsHeart from '@iconify/icons-mdi/cards-heart';
+import Icon from '../../../shared/icons/component/IconComponent';
 
-import { DONATE, DONATE_LINK } from '../shared/constants';
-import { MENU_BUTTONS, SOCIAL_BUTTONS } from './constants';
-import { MenuButton, SocialButton } from './interfaces';
+import { DONATE, DONATE_LINK } from '../../../shared/constants';
+import { MENU_BUTTONS, SOCIAL_BUTTONS } from '../../constants';
+import { MenuButton, SocialButton } from '../../interfaces';
 
 import './Menu.scss'
 
 
-interface MenuParameters {
+interface MenuProperties {
     menuRef: React.RefObject<HTMLDivElement>;
     wrapperRef: React.RefObject<HTMLDivElement>;
     toggleMenu: () => void;
 }
 
-function Menu({ menuRef, wrapperRef, toggleMenu }: MenuParameters) {
+function Menu({ menuRef, wrapperRef, toggleMenu }: MenuProperties) {
     const renderMenuItem = (button: MenuButton) => {
         return (
             <li className={ `menu-item ${button.className}` } key={ button.className }>
@@ -32,14 +31,22 @@ function Menu({ menuRef, wrapperRef, toggleMenu }: MenuParameters) {
     const renderSocialButton = (button: SocialButton) => {
         return (
             <a
-                key={ button.key}
+                key={ button.name}
                 target='_blank'
                 href={ button.link }
-                title={ button.key.toUpperCase() }
-                aria-label={ button.key.toUpperCase() }
+                title={ `${button.name} link` }
+                aria-label={ `${button.name} link` }
                 rel='noopener noreferrer'
-                className={ `menu-social-button ${button.key}` }
-            ></a>
+                className={ `menu-social-button ${ button.name }` }
+            >
+                <Icon
+                    icon={ button.icon }
+                    style={{
+                        width: '32px',
+                        height: '32px'
+                    }}
+                ></Icon>
+            </a>
         );
     }
 
@@ -48,7 +55,7 @@ function Menu({ menuRef, wrapperRef, toggleMenu }: MenuParameters) {
             <div className={`wrapper ${ isMobileOnly ? 'mobile' : 'desktop' }`} ref={ wrapperRef } onClick={ toggleMenu }></div>
             <nav ref={ menuRef } className={ `menu ${isMobileOnly ? 'mobile' : 'desktop'}` }>
                 <div className='menu-button-aside white' onClick={ toggleMenu }>
-                    <p className='label close-button'>CLOSE</p>
+                    <p className='close-button-label'>Close</p>
                 </div>
                 <div className='menu-items-container'>
                     <ul className='menu-items'>
@@ -57,12 +64,11 @@ function Menu({ menuRef, wrapperRef, toggleMenu }: MenuParameters) {
                             <a
                                 target='_blank'
                                 href={ DONATE_LINK }
-                                title={ `A Radio Plato Patreon link` }
-                                aria-label={ `A Radio Plato Patreon link` }
+                                title={ `radio plato patreon link` }
+                                aria-label={ `radio plato patreon link` }
                                 rel='noopener noreferrer'
                             >
                                 { DONATE }
-                                <Icon className='heart-icon' icon={ cardsHeart } width='32' height='32'/>
                             </a>
                         </li>
                     </ul>

@@ -1,3 +1,4 @@
+import { ICON_KEY } from "../../shared/icons/icons";
 import { MenuButton, SocialButton } from "../interfaces";
 
 export const MENU_BUTTONS: MenuButton[] = [
@@ -30,35 +31,43 @@ export const MENU_BUTTONS: MenuButton[] = [
 
 export const SOCIAL_BUTTONS: SocialButton[] = [
     {
-        key: 'soundcloud',
+        name: 'soundcloud',
+        icon: ICON_KEY.SOUNDCLOUD,
         link: 'https://soundcloud.com/radioplato',
     },
     {
-        key: 'bandcamp',
+        name: 'bandcamp',
+        icon: ICON_KEY.BANDCAMP,
         link: 'https://radioplato.bandcamp.com',
     },
     {
-        key: 'spotify',
+        name: 'spotify',
+        icon: ICON_KEY.SPOTIFY,
         link: 'https://open.spotify.com/user/llh1ub9gwdw5cpczlzz8mu27b',
     },
     {
-        key: 'youtube',
+        name: 'youtube',
+        icon: ICON_KEY.YOUTUBE,
         link: 'https://www.youtube.com/@radioplato',
     },
     {
-        key: 'email',
+        name: 'email',
+        icon: ICON_KEY.EMAIL,
         link: 'mailto:hey@radioplato.by',
     },
     {
-        key: 'instagram',
+        name: 'instagram',
+        icon: ICON_KEY.INSTAGRAM,
         link: 'https://www.instagram.com/radio_plato',
     },
     {
-        key: 'telegram',
+        name: 'telegram',
+        icon: ICON_KEY.TELEGRAM,
         link: 'https://t.me/radioplato',
     },
     {
-        key: 'facebook',
+        name: 'facebook',
+        icon: ICON_KEY.FACEBOOK,
         link: 'https://www.facebook.com/radioplato.by',
     },
 ];

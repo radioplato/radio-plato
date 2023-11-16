@@ -7,11 +7,11 @@ import { ShowCard } from '../interfaces';
 
 import './ShowCardComponent.css';
 
-interface ShowCardParameters {
+interface ShowCardProperties {
     showCard: ShowCard
 }
 
-function ShowCardComponent({ showCard }: ShowCardParameters) {
+function ShowCardComponent({ showCard }: ShowCardProperties) {
     const {
         excerpt,
         showCover,

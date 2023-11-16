@@ -12,7 +12,6 @@ import ShowComponent from '../shows/ShowComponent/ShowComponent';
 import NewsComponent from '../news/News/NewsComponent';
 import AboutComponent from '../about/About';
 import { SchedulePageComponent } from '../shared/schedule/ScheduleComponent';
-import DonateComponent from '../donate/Donate'
 import StudioComponent from '../studio/Studio';
 import { NotFoundComponent } from '../not-found/NotFoundComponent';
 import iOSppComponent from '../ios-privacy-policy/ios-privacy-policy';
@@ -28,7 +27,6 @@ enum ROUTES {
     SHOWS = '/shows',
     NEWS = '/news',
     ABOUT = '/about',
-    DONATE = '/donate',
     STUDIO = '/studio',
     IOSpp = '/radio-plato-i-os-app-privacy-policy',
     IOStc = '/radio-plato-i-os-app-terms-of-use'
@@ -47,7 +45,6 @@ function Content() {
             <Route exact path={ ROUTES.ABOUT } component={ AboutComponent } />
             <Route exact path={ ROUTES.IOSpp } component={ iOSppComponent } />
             <Route exact path={ ROUTES.IOStc } component={ iOStcComponent } />
-            <Route exact path={ ROUTES.DONATE } component={ DonateComponent } />
             <Route exact path={ ROUTES.STUDIO } component={ StudioComponent } />
             <Route component={ NotFoundComponent } />
         </Switch>
