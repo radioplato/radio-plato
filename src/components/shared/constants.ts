@@ -9,8 +9,9 @@ export const HEADER_SOCIAL_LINKS: SocialLinks = {
     facebook: 'https://www.facebook.com/radioplato.by/',
     mixcloud: 'https://www.mixcloud.com/radioplato/',
     bandcamp: 'https://radioplato.bandcamp.com/',
+    soundcloud: 'https://soundcloud.com/radioplato',
     telegram: 'https://t.me/radioplato',
-    googlePlay: 'https://play.google.com/store/apps/details?id=com.radioplato'
+    googlePlay: 'https://play.google.com/store/apps/details?id=com.radioplato',
 };
 
 export const DONATE_LINK = 'https://www.patreon.com/radioplato';
