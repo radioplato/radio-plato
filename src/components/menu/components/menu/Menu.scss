@@ -15,40 +15,87 @@
     display: flex;
     display: -webkit-flex;
     flex: 0 0 auto;
-    
+
     flex-direction: row;
     flex-wrap: nowrap;
     justify-content: flex-start;
     align-content: stretch;
-    
+
     transition: 0.5s;
 
-    .close-button-label {
-        @include interFont(16px, 500);
-        color: $black;
-        text-transform: uppercase;
-        transform: rotate(-90deg);
-        user-select: none;
-    }
+    .aside-button-close {
+        display: flex;
+        display: -webkit-flex;
+        flex: 0 0 auto;
 
-    .menu-button-aside.white:hover .close-button:before {
-        visibility: visible;
-        width: 100%;
+        flex-direction: row;
+        flex-wrap: nowrap;
+        justify-content: center;
+        align-content: stretch;
+        align-items: center;
+
+        width: 120px;
+        min-width: 120px;
+        height: calc(100vh - 101px);
+
+        background: $white;
+        border-right: 2px solid $black;
+
+        cursor: pointer;
+
+        .close-button {
+            display: flex;
+            flex-direction: row;
+            transform: rotate(-90deg);
+
+            .close-button-icon {
+                color: $black;
+                margin-right: 8px;
+            }
+
+            .close-button-label {
+                @include interFont(16px, 600, 20px);
+                color: $black;
+                letter-spacing: 1.25px;
+                text-transform: uppercase;
+                user-select: none;
+            }
+        }
+
+        &:hover {   
+            .close-button-label {
+                text-decoration: underline;
+                text-underline-offset: 3px;
+            }
+        }
+    
+        &:active {
+            .close-button-icon,
+            .close-button-label {
+                color: $grey-500;
+            }
+    
+            .close-button-label {
+                text-decoration: underline;
+                text-underline-offset: 3px;
+                text-decoration-color: $grey-500;
+            }
+        }
     }
 
     .menu-items-container {
         height: 100%;
         width: 360px;
         box-sizing: border-box;
-    
+
         padding: 48px;
 
         background: $white;
-    
+
         display: flex;
         display: -webkit-flex;
         flex: 0 0 auto;
-        
+
         flex-direction: column;
         flex-wrap: nowrap;
         justify-content: flex-start;
@@ -56,18 +103,33 @@
         align-items: flex-start;
 
         .menu-items {
-            list-style: none;
+            width: 100%;
             padding: 0;
             margin: 0;
 
             .menu-item {
+                width: 100%;
                 margin-bottom: 40px;
-            
+
                 @include interFont(36px, 400);
                 text-transform: uppercase;
 
+                cursor: pointer;
+
                 &.donate-button {
                     margin-top: 8px;
+                }
+
+                &:hover {
+                    text-decoration: underline;
+                    text-underline-offset: 4px;
+                }
+
+                &:active {
+                    color: $grey-500;
+                    text-decoration: underline;
+                    text-underline-offset: 4px;
+                    text-decoration-color: $grey-500;
                 }
             }
         }
@@ -76,7 +138,7 @@
             display: flex;
             display: -webkit-flex;
             flex: 0 0 auto;
-            
+
             flex-direction: row;
             flex-wrap: wrap;
             justify-content: flex-start;
@@ -84,26 +146,38 @@
             align-items: flex-start;
 
             margin-bottom: 24px;
-        
+
             .menu-social-button {
                 display: flex;
                 display: -webkit-flex;
                 flex: 0 0 auto;
-        
+
                 justify-content: center;
                 align-content: center;
                 align-items: center;
-        
+
                 width: 40px;
                 height: 40px;
-        
+
                 margin: 0 24px 24px 0;
+
+                &:active {
+                    color: $grey-500;
+                }
+            }
+        }
+
+        .google-play-button {
+            color: $black;
+
+            &:active {
+                color: $grey-500;
             }
         }
     }
 
     &.menu-open {
-        left: 0; 
+        left: 0;
     }
 
     &.mobile {
@@ -112,7 +186,7 @@
         top: 0;
         left: -100vw;
 
-        & > .menu-button-aside {
+        &>.menu-button-aside {
             width: 25%;
             min-width: 25%;
             height: 100%;

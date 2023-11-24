@@ -1,0 +1,84 @@
+@import 'styles/colors.scss';
+@import 'styles/fonts.scss';
+
+.button-background {
+    position: absolute;
+    border-radius: 2px;
+
+    &:not(.ghost) {
+        background-color: $yellow-400;
+    }
+
+    .button {
+        position: relative;
+        border-radius: 2px;
+    
+        text-transform: uppercase;
+        user-select: none;
+        cursor: pointer;
+
+        .label {
+            letter-spacing: 1.25px;
+        }
+    
+        &.large {
+            @include interFont(16px, 500, 20px);
+        }
+
+        &.medium {
+            @include interFont(16px, 500, 20px);
+        }
+
+        &.small {
+            @include interFont(14px, 500, 20px);
+        }
+
+        &.filled {
+            color: $white;
+            background-color: $grey-200;
+
+            &:hover {
+                color: $black;
+                background-color: $yellow-1000;
+                transform: translate(-4px, -4px);
+            }
+
+            &:active {
+                transform: translate(0, 0);
+                background-color: $yellow-600;
+            }
+        }
+
+        &.outline {
+            color: $white;
+            border: 1.4px solid $grey-700;
+            background-color: $black;
+
+            &:hover {
+                color: $yellow-1000;
+                background-color: $yellow-200;
+                border-color: $yellow-1000;
+                transform: translate(-4px, -4px);
+            }
+
+            &:active {
+                transform: translate(0, 0);
+                background-color: $yellow-400;
+            }
+        }
+
+        &.ghost {
+            color: $white;
+
+            &:hover {
+                color: $yellow-1000;
+                text-decoration: underline;
+            }
+
+            &:active {
+                background-color: $yellow-600;
+            }
+        }
+    }
+}
+

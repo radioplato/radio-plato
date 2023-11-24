@@ -23,9 +23,11 @@ interface MenuProperties {
 function Menu({ menuRef, wrapperRef, toggleMenu }: MenuProperties) {
     const renderMenuItem = (button: MenuButton) => {
         return (
-            <li className={`menu-item ${button.className}`} key={button.className}>
-                <Link to={button.route} onClick={toggleMenu}>{button.label}</Link>
-            </li>
+            <div className={`menu-item ${button.className}`} key={button.className}>
+                <Link to={button.route} onClick={toggleMenu}>
+                    {button.label}
+                </Link>
+            </div>
         );
     }
 
@@ -55,13 +57,23 @@ function Menu({ menuRef, wrapperRef, toggleMenu }: MenuProperties) {
         <>
             <div className={`wrapper ${isMobileOnly ? 'mobile' : 'desktop'}`} ref={wrapperRef} onClick={toggleMenu}></div>
             <nav ref={menuRef} className={`menu ${isMobileOnly ? 'mobile' : 'desktop'}`}>
-                <div className='menu-button-aside white' onClick={toggleMenu}>
-                    <p className='close-button-label'>Close</p>
+                <div className='aside-button-close' onClick={toggleMenu}>
+                    <span className='close-button'>
+                        <Icon
+                            className='close-button-icon'
+                            icon={ICON_KEY.DISMISS_REGULAR}
+                            style={{
+                                width: '20px',
+                                height: '20px'
+                            }}
+                        ></Icon>
+                        <p className='close-button-label'>Close</p>
+                    </span>
                 </div>
                 <div className='menu-items-container'>
-                    <ul className='menu-items'>
+                    <div className='menu-items'>
                         {MENU_BUTTONS.map(button => renderMenuItem(button))}
-                        <li className='menu-item donate-button' key='donate'>
+                        <div className='menu-item donate-button' key='donate'>
                             <a
                                 target='_blank'
                                 href={DONATE_LINK}
@@ -71,8 +83,8 @@ function Menu({ menuRef, wrapperRef, toggleMenu }: MenuProperties) {
                             >
                                 {DONATE}
                             </a>
-                        </li>
-                    </ul>
+                        </div>
+                    </div>
                     <div className='menu-social-buttons'>
                         {SOCIAL_BUTTONS.map(button => renderSocialButton(button))}
                     </div>
@@ -82,6 +94,7 @@ function Menu({ menuRef, wrapperRef, toggleMenu }: MenuProperties) {
                         title={`google play link`}
                         aria-label={`google play link`}
                         rel='noopener noreferrer'
+                        className='google-play-button'
                     >
                         <Icon
                             icon={ICON_KEY.GOOGLE_PLAY}
