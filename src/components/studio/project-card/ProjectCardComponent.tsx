@@ -4,7 +4,7 @@ import ReactPlayer from 'react-player';
 import Icon from '@iconify/react';
 import playIcon from '@iconify/icons-el/play';
 
-import { playerService } from '../../shared/Player/PlayerService';
+import { playerService } from '../../shared/player/services/PlayerService';
 import { projectTagToFilterItem } from '../constants';
 import { ProjectTag } from '../enums';
 

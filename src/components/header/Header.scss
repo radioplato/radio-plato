@@ -1,0 +1,52 @@
+
+header {
+    height: 100px;
+    width: 100%;
+
+    text-transform: uppercase;
+
+    &.header-container {
+        display: flex;
+        display: -webkit-flex;
+        flex: 0 0 auto;
+        
+        flex-direction: row;
+        flex-wrap: nowrap;
+        align-content: stretch;
+        justify-content: space-between;
+        align-items: center;
+        border-bottom: 1px white solid;
+
+        &.mobile {
+            justify-content: space-between;
+        }
+
+        .logo-container {
+            display: flex;
+            display: -webkit-flex;
+            flex: 0 0 auto;
+            
+            flex-direction: row;
+            flex-wrap: nowrap;
+            align-content: center;
+            justify-content: center;
+            align-items: center;
+
+            width: 120px;
+        }
+
+        .donate-button-container {
+            display: flex;
+            display: -webkit-flex;
+            flex: 0 0 auto;
+            
+            flex-direction: row;
+            flex-wrap: nowrap;
+            justify-content: flex-start;
+            align-content: center;
+            align-items: center;
+
+            width: 228px;
+        }
+    }
+}

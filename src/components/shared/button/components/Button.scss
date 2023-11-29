@@ -2,14 +2,26 @@
 @import 'styles/fonts.scss';
 
 .button-background {
-    position: absolute;
+    position: relative;
     border-radius: 2px;
+
+    cursor: pointer;
 
     &:not(.ghost) {
         background-color: $yellow-400;
     }
 
     .button {
+        display: flex;
+        display: -webkit-flex;
+        flex: 0 0 auto;
+        
+        flex-direction: row;    
+        flex-wrap: nowrap;
+        align-content: center;
+        justify-content: flex-start;
+        align-items: center;
+
         position: relative;
         border-radius: 2px;
     
@@ -20,64 +32,101 @@
         .label {
             letter-spacing: 1.25px;
         }
+
+        .button-icon {
+            display: flex;
+            display: -webkit-flex;
+            flex: 0 0 auto;
+            
+            flex-direction: row;    
+            flex-wrap: nowrap;
+            align-content: center;
+            justify-content: center;
+            align-items: center;
+        }
     
         &.large {
+            height: 48px;
+            padding: 0 16px;
+
             @include interFont(16px, 500, 20px);
+
+            &.icon-only {
+                padding: 0 12px;
+            }
         }
 
         &.medium {
+            height: 40px;
+            padding: 0 14px;
+
             @include interFont(16px, 500, 20px);
+
+            &.icon-only {
+                padding: 0 10px;
+            }
         }
 
         &.small {
+            height: 32px;
+            padding: 0 12px;
+
             @include interFont(14px, 500, 20px);
+
+            &.icon-only {
+                padding: 0 8px;
+            }
         }
 
         &.filled {
             color: $white;
             background-color: $grey-200;
-
-            &:hover {
-                color: $black;
-                background-color: $yellow-1000;
-                transform: translate(-4px, -4px);
-            }
-
-            &:active {
-                transform: translate(0, 0);
-                background-color: $yellow-600;
-            }
         }
 
         &.outline {
             color: $white;
             border: 1.4px solid $grey-700;
             background-color: $black;
-
-            &:hover {
-                color: $yellow-1000;
-                background-color: $yellow-200;
-                border-color: $yellow-1000;
-                transform: translate(-4px, -4px);
-            }
-
-            &:active {
-                transform: translate(0, 0);
-                background-color: $yellow-400;
-            }
         }
 
         &.ghost {
             color: $white;
+        }
+    }
 
-            &:hover {
-                color: $yellow-1000;
-                text-decoration: underline;
-            }
+    &:hover {
+        .filled {
+            color: $black;
+            background-color: $yellow-1000;
+            transform: translate(-4px, -4px);
+        }
 
-            &:active {
-                background-color: $yellow-600;
-            }
+        .outline {
+            color: $yellow-1000;
+            background-color: $yellow-200;
+            border-color: $yellow-1000;
+            transform: translate(-4px, -4px);
+        }
+
+        .ghost {
+            color: $yellow-1000;
+            text-decoration: underline;
+        }
+    }
+
+    &:active {
+        .filled {
+            transform: translate(0, 0);
+            background-color: $yellow-600;
+        }
+
+        .outline {
+            transform: translate(0, 0);
+            background-color: $yellow-400;
+        }
+
+        .ghost {
+            background-color: $yellow-600;
         }
     }
 }

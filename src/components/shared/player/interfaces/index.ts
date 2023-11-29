@@ -1,5 +1,3 @@
-import { PlayerTypes } from "../enums";
-
 export interface PlayerState {
     playing: boolean;
     fading: boolean;
@@ -10,8 +8,4 @@ export interface PlayerState {
 export interface TrackInformation {
     name: string;
     art: string;
-}
-
-export interface PlayerProps {
-    playerType: PlayerTypes;
 }

@@ -2,13 +2,13 @@ import React, { Component } from 'react';
 import ReactPlayer from 'react-player';
 import { Subscription } from 'rxjs';
 
-import { playerService } from './PlayerService';
-import { PlayerState } from './interfaces';
-import { DEFAULT_PLAYER_STATE } from './constants';
+import { playerService } from '../../services/PlayerService';
+import { PlayerState } from '../../interfaces';
+import { DEFAULT_PLAYER_STATE } from '../../constants';
 
-import './Player.css';
+import './ShadowPlayer.css';
 
-export class Player extends Component {
+export class ShadowPlayer extends Component {
     state = DEFAULT_PLAYER_STATE;
     subscription: Subscription | null = null;
     
@@ -57,4 +57,4 @@ export class Player extends Component {
     }
 }
 
-export default Player;
+export default ShadowPlayer;

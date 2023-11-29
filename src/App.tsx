@@ -8,7 +8,7 @@ import { HelmetProvider } from 'react-helmet-async';
 
 import Header from './components/header/Header';
 import Main from './components/main/Main';
-import Player from './components/shared/Player/Player';
+import ShadowPlayer from './components/shared/player/components/shadow-player/ShadowPlayer';
 
 import './App.css';
 
@@ -17,7 +17,7 @@ const Components = (
     <>
         <Header />
         <Main />
-        <Player />
+        <ShadowPlayer />
     </>
 );
 

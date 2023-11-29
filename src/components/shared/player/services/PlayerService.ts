@@ -1,7 +1,6 @@
 import { Subject } from "rxjs";
-
-import { PlayerState, TrackInformation } from "./interfaces";
-import { DEFAULT_PLAYER_STATE } from "./constants";
+import { DEFAULT_PLAYER_STATE } from "../constants";
+import { PlayerState, TrackInformation } from "../interfaces";
 
 enum StorageKey {
     Volume = "volume",
