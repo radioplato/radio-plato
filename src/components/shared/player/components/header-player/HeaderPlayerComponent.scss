@@ -30,59 +30,7 @@
         margin-left: 24px;
     }
 
-    .track-information-container {
-        display: flex;
-        display: -webkit-flex;
-        flex: 0 0 auto;
-        
-        flex-direction: column;
-        flex-wrap: nowrap;
-        justify-content: flex-start;
-        align-content: center;
-        align-items: flex-start;
-
-        height: 52px;
-        margin-left: 24px;
-
-        .on-air {
-            display: flex;
-            display: -webkit-flex;
-            flex: 0 0 auto;
-            
-            flex-direction: row;    
-            flex-wrap: nowrap;
-            align-content: center;
-            justify-content: flex-start;
-            align-items: center;
-
-            height: 24px;
-            margin-bottom: 4px;
-
-            .red-dot {
-                width: 4px;
-                height: 4px;
-
-                margin-right: 8px;
-
-                border-radius: 2px;
-                background-color: $red-600;
-            }
-
-            .title {
-                @include interFont(12px, 700, 20px);
-                color: $white;
-                letter-spacing: 0.4px;
-                text-transform: uppercase;
-                user-select: none;
-            }
-        }
-
-        .track-name {
-            @include interFont(14px, 400, 24px);
-            color: $white;
-            letter-spacing: 0.25px;
-            text-transform: uppercase;
-            user-select: none;
-        }
+    .volume-controls {
+        margin-left: 20px;
     }
 }

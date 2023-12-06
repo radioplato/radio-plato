@@ -1,5 +1,5 @@
 import { Subject } from "rxjs";
-import { DEFAULT_PLAYER_STATE } from "../constants";
+import { DEFAULT_PLAYER_STATE, PLAYER_CONNECTING } from "../constants";
 import { PlayerState, TrackInformation } from "../interfaces";
 
 enum StorageKey {
@@ -14,7 +14,7 @@ const rampTicks = 100;
 class PlayerService {
     private playerState: PlayerState;
     private trackInformation: TrackInformation = {
-        name: '',
+        name: PLAYER_CONNECTING,
         art: ''
     };
     private playerStateSubject: Subject<PlayerState>;

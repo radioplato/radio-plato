@@ -1,3 +1,5 @@
+@import 'styles/colors.scss';
+@import 'styles/fonts.scss';
 
 header {
     height: 100px;
@@ -15,7 +17,7 @@ header {
         align-content: stretch;
         justify-content: space-between;
         align-items: center;
-        border-bottom: 1px white solid;
+        border-bottom: 2px $grey-200 solid;
 
         &.mobile {
             justify-content: space-between;

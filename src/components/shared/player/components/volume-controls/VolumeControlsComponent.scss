@@ -1,0 +1,73 @@
+@import 'styles/colors.scss';
+@import 'styles/fonts.scss';
+
+.volume-controls-container {
+    display: flex;
+    display: -webkit-flex;
+    flex: 0 0 auto;
+    
+    flex-direction: row;    
+    flex-wrap: nowrap;
+    align-content: center;
+    justify-content: flex-start;
+    align-items: center;
+
+    .horizontal-slider {
+        width: 120px;
+        height: 4px;
+
+        margin-left: 4px;
+
+        border-radius: 2px;
+        background: $grey-200;
+
+        & > .track-1 {
+            visibility: hidden;
+        }
+
+        .thumb {
+            width: 12px;
+            height: 12px;
+
+            top: -5px;
+
+            border: 1px solid $white;
+            border-radius: 50%;
+            background-color: $white;
+
+            text-align: center;
+            outline: none;
+            cursor: grab;
+
+            &:hover {
+                width: 16px;
+                height: 16px;
+
+                top: -7px;
+
+                transform: translateX(-2px);
+
+                background-color: $yellow-1000;
+                border-color: $yellow-1000;
+            }
+
+            &:active {
+                width: 16px;
+                height: 16px;
+
+                top: -7px;
+
+                transform: translateX(-2px);
+
+                background-color: $yellow-600;
+                border-color: $yellow-600;
+            }
+        }
+
+        .track {
+            height: 4px;
+            border-radius: 2px;
+            background-color: $grey-700;
+        }
+    }
+}

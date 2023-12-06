@@ -1,0 +1,161 @@
+@import 'styles/colors.scss';
+@import 'styles/fonts.scss';
+
+@keyframes marquee {
+    0% {
+        transform: translateX(0)
+    }
+
+    100% {
+        transform: translateX(-100%)
+    }
+}
+
+@keyframes swap {
+
+    0%,
+    50% {
+        left: 0%;
+    }
+
+    50.01%,
+    100% {
+        left: 100%;
+    }
+}
+
+@keyframes pulse {
+
+    0%,
+    100% {
+        background-color: $red-1000;
+    }
+
+    20%,
+    40% {
+        background-color: $red-600;
+    }
+}
+
+.track-information-container {
+    display: flex;
+    display: -webkit-flex;
+    flex: 0 0 auto;
+
+    flex-direction: column;
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+    align-content: center;
+    align-items: flex-start;
+
+    height: 52px;
+    margin-left: 24px;
+
+    &.header {
+        width: 370px;
+    }
+
+    .on-air {
+        display: flex;
+        display: -webkit-flex;
+        flex: 0 0 auto;
+
+        flex-direction: row;
+        flex-wrap: nowrap;
+        align-content: center;
+        justify-content: flex-start;
+        align-items: center;
+
+        height: 24px;
+        margin-bottom: 4px;
+
+        .red-dot {
+            width: 4px;
+            height: 4px;
+
+            margin-right: 8px;
+
+            border-radius: 2px;
+            background-color: $red-600;
+            animation: pulse 4s linear infinite;
+        }
+
+        .title {
+            @include interFont(12px, 700, 20px);
+            color: $white;
+            letter-spacing: 0.4px;
+            text-transform: uppercase;
+            user-select: none;
+        }
+    }
+
+    .track-name-container {
+        width: 100%;
+        height: 24px;
+
+        &.hidden {
+            opacity: 0;
+            transition: opacity 1s ease-in-out;
+        }
+        
+        &.shown {
+            opacity: 1;
+            transition: opacity 1s ease-in-out;
+        }
+
+        .ticker-wrapper {
+            width: 100%;
+            height: 100%;
+            position: relative;
+            overflow: hidden;
+            white-space: nowrap;
+
+            .ticker {
+                display: inline-block;
+                animation: marquee 60s ease-in-out infinite;
+
+                .first-set {
+                    position: relative;
+                    left: 0%;
+                    animation: swap 60s ease-in-out infinite;
+                }
+
+                .item {
+                    margin: 0 32px 0 12px;
+                    display: inline-block;
+
+                    @include interFont(14px, 400, 24px);
+                    color: $white;
+                    letter-spacing: 0.25px;
+                    text-transform: uppercase;
+                    user-select: none;
+                }
+            }
+
+            .ticker-overlay {
+                width: 100%;
+                height: 100%;
+
+                position: absolute;
+
+                left: 0;
+                top: 0;
+
+                background: linear-gradient(to right, $black 0%, $transparent 5%, $transparent 95%, $black 100%);
+            }
+        }
+
+        .static-name {
+            margin-left: 12px;
+
+            @include interFont(14px, 400, 24px);
+            color: $white;
+            letter-spacing: 0.25px;
+            text-transform: uppercase;
+            user-select: none;
+
+            white-space: nowrap;
+            overflow: hidden;
+        }
+    }
+}

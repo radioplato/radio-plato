@@ -7,10 +7,14 @@ import { isMobileOnly } from 'react-device-detect';
 import { playerService } from '../../services/PlayerService';
 import { TrackInformation } from '../../interfaces';
 
-import './HeaderPlayerComponent.scss';
-import { BUTTON_SIZE, BUTTON_TYPE, Button, ICON_POSITION } from '../../../button/components/Button';
-import { DONATE_LINK } from '../../../constants';
+import VolumeControls from '../volume-controls/VolumeControlsComponent';
+import TrackTitle from '../track-info/TrackTitleComponent';
+
+import { BUTTON_SIZE, BUTTON_TYPE, Button } from '../../../button/components/Button';
 import { ICON_KEY } from '../../../icons/icons';
+
+import './HeaderPlayerComponent.scss';
+
 
 const ONAIR = 'onair!';
 const M3U = 'https://azura.radioplato.by/public/1/playlist.m3u'
@@ -28,16 +32,18 @@ const copyToClipboard = (text: string) => {
 
 export class HeaderPlayerComponent extends PureComponent {
     state = {
+        isPlaying: false,
         trackName: '',
-        trackArt: ''
+        trackArt: '',
     };
     subscription: Subscription | null = null;
 
     componentDidMount () {
         this.subscribeOnPlayerStateChange();
         this.setState({
+            isPlaying: playerService.playing,
             trackName: playerService.trackName,
-            trackArt: playerService.trackArt
+            trackArt: playerService.trackArt,
         });
     }
 
@@ -74,16 +80,27 @@ export class HeaderPlayerComponent extends PureComponent {
 
     handleTrackTitleClick () {
         const trackName = this.state.trackName;
+
         copyToClipboard(trackName);
+
         this.setState({ trackName: 'Copied!' });
+
         setTimeout(() => this.setState({ trackName }), 1000)
     }
 
+    togglePlayingMode () {
+        playerService.playing = !playerService.playing;
+
+        this.setState({
+            isPlaying: playerService.playing,
+        });
+    }
 
     render () {
         const {
+            isPlaying,
             trackName,
-            trackArt
+            trackArt,
         } = this.state;
 
         // TODO: extract 'onair', 'playlists', 'volume-controls' components
@@ -100,23 +117,14 @@ export class HeaderPlayerComponent extends PureComponent {
                     }}
                 ></div>
                 <Button
+                    className='play-button'
                     type={BUTTON_TYPE.OUTLINE}
                     size={BUTTON_SIZE.LARGE}
-                    icon={ICON_KEY.PLAY_FILLED}
-                    className='play-button'
-                ></Button>
-                <div className='track-information-container'>
-                    <div className='on-air'>
-                        <span className='red-dot'></span>
-                        <span className='title'>On Air</span>
-                    </div>
-                    <div className='track-name'>{trackName}</div>
-                </div>
-                <Button
-                    type={BUTTON_TYPE.GHOST}
-                    size={BUTTON_SIZE.LARGE}
-                    icon={ICON_KEY.SPEAKER_MAXIMUM_REGULAR}
-                ></Button>
+                    icon={ isPlaying ? ICON_KEY.PAUSE_FILLED : ICON_KEY.PLAY_FILLED}
+                    onClick={ () => this.togglePlayingMode() }
+                />
+                <TrackTitle className='header' isTicker={true}/>
+                <VolumeControls className='volume-controls' />
             </div>
         );
     }

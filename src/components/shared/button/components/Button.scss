@@ -126,7 +126,8 @@
         }
 
         .ghost {
-            background-color: $yellow-600;
+            color: $yellow-600;
+            text-decoration: underline;
         }
     }
 }
