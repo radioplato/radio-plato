@@ -9,17 +9,14 @@
     flex-direction: row;    
     flex-wrap: nowrap;
     align-content: center;
-    justify-content: flex-start;
+    justify-content: center;
     align-items: center;
 
-    width: 1092px;
     max-width: 1092px;
 
     .track-art {
         width: 52px;
         height: 52px;
-
-        margin-left: 92px;
 
         background-size: cover;
         background-position: center;
@@ -31,6 +28,14 @@
     }
 
     .volume-controls {
+        margin-left: 20px;
+    }
+
+    .stream-links {
+        margin-left: 36px;
+    }
+
+    .fullscreen-button {
         margin-left: 20px;
     }
 }

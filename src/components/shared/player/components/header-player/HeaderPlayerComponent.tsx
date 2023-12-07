@@ -14,6 +14,7 @@ import { BUTTON_SIZE, BUTTON_TYPE, Button } from '../../../button/components/But
 import { ICON_KEY } from '../../../icons/icons';
 
 import './HeaderPlayerComponent.scss';
+import StreamLinks from '../playlists/StreamLinksComponent';
 
 
 const ONAIR = 'onair!';
@@ -38,7 +39,7 @@ export class HeaderPlayerComponent extends PureComponent {
     };
     subscription: Subscription | null = null;
 
-    componentDidMount () {
+    componentDidMount() {
         this.subscribeOnPlayerStateChange();
         this.setState({
             isPlaying: playerService.playing,
@@ -47,11 +48,11 @@ export class HeaderPlayerComponent extends PureComponent {
         });
     }
 
-    componentWillUnmount () {
+    componentWillUnmount() {
         this.subscription?.unsubscribe();
     }
 
-    onTrackChange (information: TrackInformation) {
+    onTrackChange(information: TrackInformation) {
         if (isMobileOnly) {
             this.setState({
                 trackName: information.name,
@@ -62,7 +63,7 @@ export class HeaderPlayerComponent extends PureComponent {
 
             tracktitle?.classList.remove('shown')
             tracktitle?.classList.add('hidden');
-    
+
             setTimeout(() => {
                 tracktitle?.classList.add('shown');
                 this.setState({
@@ -71,14 +72,14 @@ export class HeaderPlayerComponent extends PureComponent {
                 });
             }, 1000)
             setTimeout(() => tracktitle?.classList.remove('hidden'), 2000);
-        } 
+        }
     }
 
-    subscribeOnPlayerStateChange () {
+    subscribeOnPlayerStateChange() {
         this.subscription = playerService.subscribeOnTrackInformationChanges((information: TrackInformation) => this.onTrackChange(information));
     }
 
-    handleTrackTitleClick () {
+    handleTrackTitleClick() {
         const trackName = this.state.trackName;
 
         copyToClipboard(trackName);
@@ -88,7 +89,7 @@ export class HeaderPlayerComponent extends PureComponent {
         setTimeout(() => this.setState({ trackName }), 1000)
     }
 
-    togglePlayingMode () {
+    togglePlayingMode() {
         playerService.playing = !playerService.playing;
 
         this.setState({
@@ -96,7 +97,7 @@ export class HeaderPlayerComponent extends PureComponent {
         });
     }
 
-    render () {
+    render() {
         const {
             isPlaying,
             trackName,
@@ -113,18 +114,25 @@ export class HeaderPlayerComponent extends PureComponent {
                 <div
                     className='track-art'
                     style={{
-                        backgroundImage: `url(${ trackArt })`,
+                        backgroundImage: `url(${trackArt})`,
                     }}
                 ></div>
                 <Button
                     className='play-button'
                     type={BUTTON_TYPE.OUTLINE}
                     size={BUTTON_SIZE.LARGE}
-                    icon={ isPlaying ? ICON_KEY.PAUSE_FILLED : ICON_KEY.PLAY_FILLED}
-                    onClick={ () => this.togglePlayingMode() }
+                    icon={isPlaying ? ICON_KEY.PAUSE_FILLED : ICON_KEY.PLAY_FILLED}
+                    onClick={() => this.togglePlayingMode()}
                 />
-                <TrackTitle className='header' isTicker={true}/>
+                <TrackTitle className='header' isTicker={true} />
                 <VolumeControls className='volume-controls' />
+                <StreamLinks className='stream-links' />
+                <Button
+                    className='fullscreen-button'
+                    type={BUTTON_TYPE.GHOST}
+                    size={BUTTON_SIZE.LARGE}
+                    icon={ICON_KEY.MAXIMIZE_REGULAR}
+                />
             </div>
         );
     }

@@ -12,15 +12,14 @@
 }
 
 @keyframes swap {
-
     0%,
     50% {
-        left: 0%;
+        left: 1px;
     }
 
     50.01%,
     100% {
-        left: 100%;
+        left: calc(100% + 1px);
     }
 }
 
@@ -112,12 +111,12 @@
 
             .ticker {
                 display: inline-block;
-                animation: marquee 60s ease-in-out infinite;
+                animation: marquee 80s ease-in-out infinite;
 
                 .first-set {
                     position: relative;
-                    left: 0%;
-                    animation: swap 60s ease-in-out infinite;
+                    left: 1px;
+                    animation: swap 80s ease-in-out infinite;
                 }
 
                 .item {

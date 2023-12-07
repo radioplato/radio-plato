@@ -111,6 +111,7 @@
         .ghost {
             color: $yellow-1000;
             text-decoration: underline;
+            text-underline-offset: 3px;
         }
     }
 
@@ -128,6 +129,7 @@
         .ghost {
             color: $yellow-600;
             text-decoration: underline;
+            text-underline-offset: 3px;
         }
     }
 }

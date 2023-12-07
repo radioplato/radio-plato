@@ -61,8 +61,12 @@ function TrackTitle({
                         <span className='item'>{trackName}</span>
                         <span className='item'>{trackName}</span>
                         <span className='item'>{trackName}</span>
+                        <span className='item'>{trackName}</span>
+                        <span className='item'>{trackName}</span>
                     </span>
                     <span className='second-set'>
+                        <span className='item'>{trackName}</span>
+                        <span className='item'>{trackName}</span>
                         <span className='item'>{trackName}</span>
                         <span className='item'>{trackName}</span>
                         <span className='item'>{trackName}</span>
