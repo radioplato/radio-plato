@@ -20,9 +20,11 @@ import iOStcComponent from '../ios-terms-and-conditions/ios-terms-and-conditions
 import { NewsListTypes } from '../shared/enums';
 
 import './Content.css';
+import PlayerPageComponent from '../../pages/page-player/PlayerPageComponent';
 
 
 enum ROUTES {
+    PLAYER = '/PLAYER',
     SCHEDULE = '/schedule',
     SHOWS = '/shows',
     NEWS = '/news',
@@ -36,6 +38,7 @@ function Content() {
     return (
         <Switch>
             <Route exact path='/' component={ StartPageComponent } />
+            <Route exact path={ ROUTES.PLAYER} component={ PlayerPageComponent } />
             <Route exact path={ ROUTES.SCHEDULE } component={ SchedulePageComponent } />
             <Route exact path={ ROUTES.SHOWS } component={ ShowListComponent } />
             <Route exact path={ `${ ROUTES.SHOWS }/:slug` } component={(routerProps: any) => <ShowComponent slug={ routerProps.match.params.slug } />} />

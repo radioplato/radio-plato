@@ -1,7 +1,6 @@
-import React, { PureComponent } from 'react';
+import React, { useEffect, useState } from 'react';
 
-import { Subscription } from 'rxjs';
-
+import { useHistory } from 'react-router-dom';
 import { isMobileOnly } from 'react-device-detect';
 
 import { playerService } from '../../services/PlayerService';
@@ -9,108 +8,51 @@ import { TrackInformation } from '../../interfaces';
 
 import VolumeControls from '../volume-controls/VolumeControlsComponent';
 import TrackTitle from '../track-info/TrackTitleComponent';
+import StreamLinks from '../playlists/StreamLinksComponent';
 
 import { BUTTON_SIZE, BUTTON_TYPE, Button } from '../../../button/components/Button';
 import { ICON_KEY } from '../../../icons/icons';
 
 import './HeaderPlayerComponent.scss';
-import StreamLinks from '../playlists/StreamLinksComponent';
 
+function HeaderPlayerComponent() {
+    const history = useHistory();
+    const [ playing, setPlaying ] = useState(playerService.playing);
+    const [ trackArt, setTrackArt ] = useState(playerService.trackArt);
 
-const ONAIR = 'onair!';
-const M3U = 'https://azura.radioplato.by/public/1/playlist.m3u'
-const PLS = 'https://azura.radioplato.by/public/1/playlist.pls'
-
-const copyToClipboard = (text: string) => {
-    const dummy = document.createElement('textarea');
-
-    document.body.appendChild(dummy);
-    dummy.value = text;
-    dummy.select();
-    document.execCommand('copy');
-    document.body.removeChild(dummy);
-};
-
-export class HeaderPlayerComponent extends PureComponent {
-    state = {
-        isPlaying: false,
-        trackName: '',
-        trackArt: '',
-    };
-    subscription: Subscription | null = null;
-
-    componentDidMount() {
-        this.subscribeOnPlayerStateChange();
-        this.setState({
-            isPlaying: playerService.playing,
-            trackName: playerService.trackName,
-            trackArt: playerService.trackArt,
+    useEffect(() => {
+        const subscription = playerService.subscribeOnTrackInformationChanges((information: TrackInformation) => {
+            if (isMobileOnly) {
+                setTrackArt(information.art);
+            } else {
+                const tracktitle = document.querySelector('p.track-title');
+    
+                tracktitle?.classList.remove('shown')
+                tracktitle?.classList.add('hidden');
+    
+                setTimeout(() => {
+                    tracktitle?.classList.add('shown');
+                    setTrackArt(information.art);
+                }, 1000)
+                setTimeout(() => tracktitle?.classList.remove('hidden'), 2000);
+            }
         });
-    }
 
-    componentWillUnmount() {
-        this.subscription?.unsubscribe();
-    }
+        return () => subscription?.unsubscribe();
+    }, []);
 
-    onTrackChange(information: TrackInformation) {
-        if (isMobileOnly) {
-            this.setState({
-                trackName: information.name,
-                trackArt: information.art
-            });
-        } else {
-            const tracktitle = document.querySelector('p.track-title');
-
-            tracktitle?.classList.remove('shown')
-            tracktitle?.classList.add('hidden');
-
-            setTimeout(() => {
-                tracktitle?.classList.add('shown');
-                this.setState({
-                    trackName: information.name,
-                    trackArt: information.art
-                });
-            }, 1000)
-            setTimeout(() => tracktitle?.classList.remove('hidden'), 2000);
-        }
-    }
-
-    subscribeOnPlayerStateChange() {
-        this.subscription = playerService.subscribeOnTrackInformationChanges((information: TrackInformation) => this.onTrackChange(information));
-    }
-
-    handleTrackTitleClick() {
-        const trackName = this.state.trackName;
-
-        copyToClipboard(trackName);
-
-        this.setState({ trackName: 'Copied!' });
-
-        setTimeout(() => this.setState({ trackName }), 1000)
-    }
-
-    togglePlayingMode() {
+    const togglePlayingMode = () => {
         playerService.playing = !playerService.playing;
 
-        this.setState({
-            isPlaying: playerService.playing,
-        });
+        setPlaying(playerService.playing);
     }
 
-    render() {
-        const {
-            isPlaying,
-            trackName,
-            trackArt,
-        } = this.state;
+    const navigateToPlayerPage = () => {
+        history.push('/player');
+    }
 
-        // TODO: extract 'onair', 'playlists', 'volume-controls' components
-        // think about extracting 'track-name'
-        // finish the header's player
-        // work on the fullscreen player
-
-        return (
-            <div className='header-player'>
+    return (
+        <div className='header-player'>
                 <div
                     className='track-art'
                     style={{
@@ -121,8 +63,8 @@ export class HeaderPlayerComponent extends PureComponent {
                     className='play-button'
                     type={BUTTON_TYPE.OUTLINE}
                     size={BUTTON_SIZE.LARGE}
-                    icon={isPlaying ? ICON_KEY.PAUSE_FILLED : ICON_KEY.PLAY_FILLED}
-                    onClick={() => this.togglePlayingMode()}
+                    icon={playing ? ICON_KEY.PAUSE_FILLED : ICON_KEY.PLAY_FILLED}
+                    onClick={togglePlayingMode}
                 />
                 <TrackTitle className='header' isTicker={true} />
                 <VolumeControls className='volume-controls' />
@@ -132,10 +74,10 @@ export class HeaderPlayerComponent extends PureComponent {
                     type={BUTTON_TYPE.GHOST}
                     size={BUTTON_SIZE.LARGE}
                     icon={ICON_KEY.MAXIMIZE_REGULAR}
+                    onClick={navigateToPlayerPage}
                 />
             </div>
-        );
-    }
+    );
 }
 
 export default HeaderPlayerComponent;
