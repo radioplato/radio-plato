@@ -6,9 +6,10 @@ import { isMobileOnly } from 'react-device-detect';
 
 import moment from 'moment';
 
-import ScheduleShowline from './ScheduleShowline'
-
 import { scheduleService } from './ScheduleService';
+
+import ScheduleLine from './components/schedule-line/ScheduleLineComponent'
+import { BUTTON_SIZE, BUTTON_TYPE, Button } from '../button/components/Button';
 
 import { ScheduleShow } from './interfaces';
 import { IndexesOfDay } from './enums';
@@ -16,7 +17,8 @@ import { IndexesOfDay } from './enums';
 import { withSeo } from '../wrappers/seo/Seo'
 import { withScroll } from '../wrappers/scrollable/Scrollable';
 import { BASIC_SEO_IMG } from '../../shared/constants';
-import './ScheduleComponent.css'
+
+import './ScheduleComponent.scss'
 
 
 const DAYS_OF_WEEK = [
@@ -60,7 +62,7 @@ class ScheduleComponent extends Component {
 
     scheduleShowlineBuilder = (showline: ScheduleShow) => {
         return (
-            <ScheduleShowline
+            <ScheduleLine
                 showline={ showline }
                 selectedDay={ this.state.selectedDay }
                 key={ `${ this.state.selectedDay }-${ showline.title }-${ showline.startDate }-${ showline.startTime }` }
@@ -87,7 +89,7 @@ class ScheduleComponent extends Component {
         const { selectedDay } = this.state;
 
         return (
-            <select value={ selectedDay } onChange={ this.handleDropdownChoise }> 
+            <select className='schedule-day-dropdown' value={ selectedDay } onChange={ this.handleDropdownChoise }> 
                 { DAYS_OF_WEEK.map((day, index) => (
                     <option key={ `${ day.toLowerCase() }-${ index }` }
                             value={ index }
@@ -103,12 +105,14 @@ class ScheduleComponent extends Component {
         const { selectedDay } = this.state;
 
         return DAYS_OF_WEEK.map((day, index) => (
-            <button className={ `schedule-day-button ${ selectedDay === index ? 'active' : ''}` }
-                    onClick={ () => this.selectDay(index) }
-                    key={ `${ day.toLowerCase() }-${ index }` }
-            >
-                { day }
-            </button>
+            <Button
+                key={ `${ day.toLowerCase() }-${ index }` }
+                className={ `schedule-day-button ${ selectedDay === index ? 'selected' : ''}` }
+                type={BUTTON_TYPE.GHOST}
+                size={BUTTON_SIZE.SMALL}
+                label={ day }
+                onClick={ () => this.selectDay(index) }
+            ></Button>
         ))
     }
 
@@ -128,7 +132,7 @@ class ScheduleComponent extends Component {
             <div className={ `schedule-container ${ isMobileOnly ? 'mobile' : 'desktop' }` }>
                 <div className='schedule-headline-container'>        
                     <div className='schedule-title'>
-                        <p>{ SCHEDULE }<sup className='utc'>UTC+3</sup></p>
+                        <p>{ SCHEDULE }</p>
                     </div>
                     {
                         isMobileOnly
@@ -138,9 +142,7 @@ class ScheduleComponent extends Component {
                             : (<div className='schedule-day'>
                                 { this.renderButtons() }
                             </div>)
-                    }
-                    
-                    
+                    }      
                 </div>
                 <div>
                     { this.renderDailySchedule() }

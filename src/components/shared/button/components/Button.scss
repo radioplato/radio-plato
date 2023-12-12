@@ -29,7 +29,7 @@
         user-select: none;
         cursor: pointer;
 
-        .label {
+        .button-label {
             letter-spacing: 1.25px;
         }
 
@@ -111,6 +111,10 @@
             color: $black;
             background-color: $yellow-1000;
             transform: translate(-4px, -4px);
+
+            .button-label {
+                color: $black;
+            }
         }
 
         .outline {
@@ -118,12 +122,18 @@
             background-color: $yellow-200;
             border-color: $yellow-1000;
             transform: translate(-4px, -4px);
+
+            .button-label {
+                color: $yellow-1000;
+            }
         }
 
         .ghost {
-            color: $yellow-1000;
-            text-decoration: underline;
-            text-underline-offset: 3px;
+            .button-label {
+                color: $yellow-1000;
+                text-decoration: underline;
+                text-underline-offset: 3px;
+            }
         }
     }
 
@@ -139,9 +149,11 @@
         }
 
         .ghost {
-            color: $yellow-600;
-            text-decoration: underline;
-            text-underline-offset: 3px;
+            .button-label {
+                color: $yellow-600;
+                text-decoration: underline;
+                text-underline-offset: 3px;
+            }
         }
     }
 }
