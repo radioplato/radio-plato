@@ -1,0 +1,30 @@
+main.mobile > .scrollable-container {
+    width: 100%;
+}
+
+.scrollable-container {
+    width: calc(100% - 122px);
+    height: calc(100vh - 102px);
+    
+    overflow-x: hidden;
+    overflow-y: overlay;
+    box-sizing: border-box;
+
+    &::-webkit-scrollbar {
+        width: 2px;
+    }
+    
+    &::-webkit-scrollbar-track {
+        background-color: #00000000;
+        border: 0;
+    }
+    
+    &::-webkit-scrollbar-thumb {
+        background-color: #ffffff13;
+    }
+    
+    &::-webkit-scrollbar-button {
+        display: none;
+    }
+}
+

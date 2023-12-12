@@ -1,6 +1,6 @@
 import React from 'react';
 
-import './Scrollable.css';
+import './Scrollable.scss';
 
 
 function withScroll (children: React.ReactNode) {
