@@ -75,3 +75,63 @@ export interface SimpleImage {
     caption?: string;
     url?: string;
 }
+
+// New version of Strapi
+
+export interface StrapiObject {
+    createdAt: string;
+    publishedAt: string;
+    updatedAt: string;
+  }
+  
+  export interface StrapiMeta {
+    pagination: StrapiPagination;
+  }
+  
+  export interface StrapiPagination {
+    page: number;
+    pageCount: number;
+    pageSize: number;
+    total: number;
+  }
+  
+  export interface StrapiImageObject {
+    ext: string;
+    hash: string;
+    height: number;
+    mime: string;
+    name: string;
+    path?: string;
+    size: number;
+    url: string;
+    width: number;
+  }
+  
+  export interface StrapiImageAttributes extends StrapiObject, StrapiImageObject {
+    alternativeText: string;
+    caption: string;
+    formats: {
+      thumbnail?: StrapiImageObject;
+    };
+    previewUrl?: string;
+    provider: string;
+    provider_metadata?: string;
+  }
+  
+  export interface StrapiCategoryAttributes {
+    createdAt: string;
+    slug: string;
+    title: string;
+    updatedAt: string;
+  }
+  
+  export interface StrapiResponse<T> {
+    id: number;
+    attributes: T;
+  }
+  
+  export interface StrapiList<T> {
+    data: T;
+    meta?: StrapiMeta;
+  }
+  

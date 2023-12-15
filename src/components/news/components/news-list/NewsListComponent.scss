@@ -124,7 +124,7 @@
         display: -webkit-flex;
         flex: 0 0 auto;
 
-        flex-direction: row;
+        flex-direction: column;
         flex-wrap: nowrap;
         align-content: stretch;
         justify-content: center;
@@ -148,6 +148,23 @@
 
             box-sizing: border-box;
             padding: 0 16px;
+        }
+
+        .load-more-container {
+            display: flex;
+            display: -webkit-flex;
+            flex: 0 0 auto;
+
+            flex-direction: row;
+            flex-wrap: wrap;
+            justify-content: flex-end;
+            align-content: center;
+            align-items: flex-start;
+
+            width: 100%;
+            max-width: 1160px;
+
+            margin-bottom: 56px;
         }
     }
 }
