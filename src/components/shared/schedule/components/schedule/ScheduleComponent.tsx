@@ -89,13 +89,15 @@ class ScheduleComponent extends Component {
 
         return (
             <select className='schedule-day-dropdown' value={selectedDay} onChange={this.handleDropdownChoise}>
-                {DAYS_OF_WEEK.map((day, index) => (
-                    <option key={`${day.toLowerCase()}-${index}`}
-                        value={index}
-                    >
-                        {day}
-                    </option>
-                ))}
+                {
+                    DAYS_OF_WEEK.map((day, index) => (
+                        <option key={`${day.toLowerCase()}-${index}`}
+                            value={index}
+                        >
+                            {day}
+                        </option>
+                    ))
+                }
             </select>
         )
     }
@@ -139,7 +141,7 @@ class ScheduleComponent extends Component {
                                 ? (<div>
                                     {this.renderDropdown()}
                                 </div>)
-                                : (<div className='schedule-day'>
+                                : (<div className='schedule-days'>
                                     {this.renderButtons()}
                                 </div>)
                         }

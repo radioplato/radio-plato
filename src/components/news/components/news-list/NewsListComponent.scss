@@ -53,6 +53,53 @@
             letter-spacing: 0.5px;
             text-transform: uppercase;
         }
+
+        .news-categories-container  {
+            display: flex;
+            display: -webkit-flex;
+            flex: 0 0 auto;
+
+            flex-direction: row;
+            flex-wrap: nowrap;
+            justify-content: flex-start;
+            align-content: center;
+            align-items: flex-start;
+
+            float: right;
+            font-size: 14px;
+
+            .category-button {
+                margin-left: 8px;
+
+                .button-label {
+                    color: $grey-800;
+                }
+
+                &.selected {
+                    .button-label {
+                        color: $white;
+                        text-decoration: underline;
+                        text-underline-offset: 3px;
+                    }
+                }
+
+                &:hover {
+                    .button-label {
+                        color: $yellow-1000;
+                        text-decoration: underline;
+                        text-underline-offset: 3px;
+                    }
+                }
+
+                &:active {
+                    .button-label {
+                        color: $yellow-600;
+                        text-decoration: underline;
+                        text-underline-offset: 3px;
+                    }
+                }
+            }
+        }
     }
 
     .highlight-news-card-container {

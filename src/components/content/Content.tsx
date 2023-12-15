@@ -23,7 +23,7 @@ import './Content.css';
 
 
 enum ROUTES {
-    PLAYER = '/PLAYER',
+    PLAYER = '/player',
     SCHEDULE = '/schedule',
     SHOWS = '/shows',
     NEWS = '/news',

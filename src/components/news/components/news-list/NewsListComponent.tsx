@@ -1,5 +1,5 @@
 import React, { HTMLAttributes, useEffect, useState } from 'react';
-import { useHistory } from 'react-router-dom';
+import { useHistory, useLocation } from 'react-router-dom';
 
 import moment from 'moment';
 
@@ -14,6 +14,16 @@ import './NewsListComponent.scss';
 
 const NEWS_LIMIT = 12;
 
+const NEWS_CATEGORIES = [
+    'newsroom',
+    'fresh',
+    'release',
+    'events',
+    'featured',
+    'whishlist',
+    'knowledge'
+];
+
 interface NewsListComponentProperties extends HTMLAttributes<HTMLElement> {
     isStartPage: boolean;
     category?: string;
@@ -25,6 +35,7 @@ export function NewsListComponent({
     ...rest
 }: NewsListComponentProperties) {
     const history = useHistory();
+    const location = useLocation();
 
     const [newsCards, setNewsCards] = useState<NewsCard[]>([]);
     const [highlightCard, setHighlightCard] = useState<NewsCard | null>(null);
@@ -34,7 +45,7 @@ export function NewsListComponent({
     const [isEnd, setEnd] = useState(false);
 
     const fetchNews = () => {
-        const start = page * NEWS_LIMIT;
+        const start = 0;
         const filter = category ? `Category=${category[0].toUpperCase() + category.slice(1)}&` : '';
 
         setLoading(true);
@@ -46,10 +57,8 @@ export function NewsListComponent({
     }
 
     useEffect(() => {
-        if (!isLoading) {
-            fetchNews();
-        }
-    }, []);
+        fetchNews();
+    }, [location, category]);
 
     const parseNewsCard = (newsDto: NewsDto): NewsCard => {
         return {
@@ -70,9 +79,8 @@ export function NewsListComponent({
         return moment(second.publishDate).diff(moment(first.publishDate));
     }
 
-    const handleResponse = (moreCards: NewsCard[]) => {
-        if (moreCards && moreCards.length) {
-            const cards = [...newsCards, ...moreCards].sort(sortCardsByDate);
+    const handleResponse = (cards: NewsCard[]) => {
+        if (cards) {
             const highlight = cards.length ? cards[0] : null;
             const other = isStartPage ? cards.slice(1, cards.length) : cards;
 
@@ -80,14 +88,15 @@ export function NewsListComponent({
             setHighlightCard(highlight)
             setOtherCards(other);
             setLoading(false);
-            setPage(page + 1);
-        } else {
-            setEnd(true);
         }
     }
 
     const navigateToNewsPage = () => {
         history.push('/news');
+    }
+
+    const navigateToCategoryPage = (newsCategory: string) => {
+        history.push(`/news/${newsCategory}`);
     }
 
     return (
@@ -112,8 +121,19 @@ export function NewsListComponent({
                                 <div className='news-list-title'>News</div>
                             )
                     }
-                    <div className='news-tags-container'>
-
+                    <div className='news-categories-container'>
+                        {
+                            NEWS_CATEGORIES.map((newsCategory, index) => (
+                                <Button
+                                    key={`${newsCategory}-${index}`}
+                                    className={`category-button ${newsCategory === category ? 'selected' : ''}`}
+                                    type={BUTTON_TYPE.GHOST}
+                                    size={BUTTON_SIZE.SMALL}
+                                    label={newsCategory}
+                                    onClick={() => navigateToCategoryPage(newsCategory)}
+                                ></Button>
+                            ))
+                        }
                     </div>
                 </div>
             </div>
