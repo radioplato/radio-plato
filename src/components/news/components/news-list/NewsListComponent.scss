@@ -1,0 +1,106 @@
+@import 'styles/colors.scss';
+@import 'styles/fonts.scss';
+
+.news-list-container {
+    display: flex;
+    display: -webkit-flex;
+    flex: 0 0 auto;
+
+    flex-direction: column;
+    flex: 2 1 100%;
+
+    width: 100%;
+    height: auto;
+
+    box-sizing: border-box;
+
+    border-bottom: 2px solid $grey-200;
+
+    .news-list-headline-container {
+        display: flex;
+        display: -webkit-flex;
+        flex: 0 0 auto;
+
+        flex-direction: row;
+        flex-wrap: nowrap;
+        align-content: stretch;
+        justify-content: center;
+        align-items: center;
+
+        width: 100%;
+
+        .news-list-headline {
+            display: flex;
+            display: -webkit-flex;
+            flex: 0 0 auto;
+
+            flex-direction: row;
+            flex-wrap: nowrap;
+            align-content: stretch;
+            justify-content: space-between;
+            align-items: center;
+
+            width: 100%;
+            max-width: 1160px;
+
+            box-sizing: border-box;
+            padding: 56px 16px;
+        }
+
+        .news-list-title {
+            @include interFont(36px, 400, 36px);
+            color: $white;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+        }
+    }
+
+    .highlight-news-card-container {
+        display: flex;
+        display: -webkit-flex;
+        flex: 0 0 auto;
+
+        flex-direction: row;
+        flex-wrap: nowrap;
+        align-content: stretch;
+        justify-content: center;
+        align-items: center;
+
+        width: 100%;
+        
+        margin-bottom: 56px;
+        padding: 0 16px;
+    }
+
+    .news-cards-container {
+        display: flex;
+        display: -webkit-flex;
+        flex: 0 0 auto;
+
+        flex-direction: row;
+        flex-wrap: nowrap;
+        align-content: stretch;
+        justify-content: center;
+        align-items: center;
+
+        width: 100%;
+
+        .news-cards {
+            display: flex;
+            display: -webkit-flex;
+            flex: 0 0 auto;
+
+            flex-direction: row;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-content: center;
+            align-items: flex-start;
+
+            width: 100%;
+            max-width: 1160px;
+
+            box-sizing: border-box;
+            padding: 0 16px;
+        }
+    }
+}

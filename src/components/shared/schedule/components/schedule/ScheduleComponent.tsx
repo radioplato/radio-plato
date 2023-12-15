@@ -6,17 +6,17 @@ import { isMobileOnly } from 'react-device-detect';
 
 import moment from 'moment';
 
-import { scheduleService } from './ScheduleService';
+import { scheduleService } from '../../ScheduleService';
 
-import ScheduleLine from './components/schedule-line/ScheduleLineComponent'
-import { BUTTON_SIZE, BUTTON_TYPE, Button } from '../button/components/Button';
+import ScheduleLine from '../schedule-line/ScheduleLineComponent'
+import { BUTTON_SIZE, BUTTON_TYPE, Button } from '../../../button/components/Button';
 
-import { ScheduleShow } from './interfaces';
-import { IndexesOfDay } from './enums';
+import { ScheduleShow } from '../../interfaces';
+import { IndexesOfDay } from '../../enums';
 
-import { withSeo } from '../wrappers/seo/Seo'
-import { withScroll } from '../wrappers/scrollable/Scrollable';
-import { BASIC_SEO_IMG } from '../../shared/constants';
+import { withSeo } from '../../../wrappers/seo/Seo'
+import { withScroll } from '../../../wrappers/scrollable/Scrollable';
+import { BASIC_SEO_IMG } from '../../../constants';
 
 import './ScheduleComponent.scss'
 
@@ -31,7 +31,6 @@ const DAYS_OF_WEEK = [
     'SUN'
 ];
 
-const SCHEDULE = 'SCHEDULE';
 const SCHEDULE_SEO_TITLE = 'Schedule'
 const SCHEDULE_SEO_DESCRIPTION = 'We broadcast 24/7, here is what you will hear.'
 
@@ -43,18 +42,18 @@ class ScheduleComponent extends Component {
         selectedDay: moment().isoWeekday() - 1
     };
 
-    componentDidMount () {
+    componentDidMount() {
         this.subscribeOnScheduleChanges();
         this.subscribeOnCurrentShowChanges();
     }
 
-    subscribeOnScheduleChanges () {
+    subscribeOnScheduleChanges() {
         this.scheduleSubscription = scheduleService.subscribeOnScheduleChanges(
             (schedule: ScheduleShow[][]) => this.setState({ schedule })
         );
     }
 
-    subscribeOnCurrentShowChanges () {
+    subscribeOnCurrentShowChanges() {
         this.currentShowSubscription = scheduleService.subscribeOnCurrentShowChanges(
             () => this.setState(this.state)
         );
@@ -63,9 +62,9 @@ class ScheduleComponent extends Component {
     scheduleShowlineBuilder = (showline: ScheduleShow) => {
         return (
             <ScheduleLine
-                showline={ showline }
-                selectedDay={ this.state.selectedDay }
-                key={ `${ this.state.selectedDay }-${ showline.title }-${ showline.startDate }-${ showline.startTime }` }
+                showline={showline}
+                selectedDay={this.state.selectedDay}
+                key={`${this.state.selectedDay}-${showline.title}-${showline.startDate}-${showline.startTime}`}
             />
         );
     }
@@ -80,7 +79,7 @@ class ScheduleComponent extends Component {
         this.selectDay(event.currentTarget.value)
     }
 
-    componentWillUnmount () {
+    componentWillUnmount() {
         this.scheduleSubscription?.unsubscribe();
         this.currentShowSubscription?.unsubscribe();
     }
@@ -89,14 +88,14 @@ class ScheduleComponent extends Component {
         const { selectedDay } = this.state;
 
         return (
-            <select className='schedule-day-dropdown' value={ selectedDay } onChange={ this.handleDropdownChoise }> 
-                { DAYS_OF_WEEK.map((day, index) => (
-                    <option key={ `${ day.toLowerCase() }-${ index }` }
-                            value={ index }
+            <select className='schedule-day-dropdown' value={selectedDay} onChange={this.handleDropdownChoise}>
+                {DAYS_OF_WEEK.map((day, index) => (
+                    <option key={`${day.toLowerCase()}-${index}`}
+                        value={index}
                     >
-                        { day }
+                        {day}
                     </option>
-                )) }
+                ))}
             </select>
         )
     }
@@ -106,12 +105,12 @@ class ScheduleComponent extends Component {
 
         return DAYS_OF_WEEK.map((day, index) => (
             <Button
-                key={ `${ day.toLowerCase() }-${ index }` }
-                className={ `schedule-day-button ${ selectedDay === index ? 'selected' : ''}` }
+                key={`${day.toLowerCase()}-${index}`}
+                className={`schedule-day-button ${selectedDay === index ? 'selected' : ''}`}
                 type={BUTTON_TYPE.GHOST}
                 size={BUTTON_SIZE.SMALL}
-                label={ day }
-                onClick={ () => this.selectDay(index) }
+                label={day}
+                onClick={() => this.selectDay(index)}
             ></Button>
         ))
     }
@@ -127,25 +126,27 @@ class ScheduleComponent extends Component {
             [];
     }
 
-    render () {
+    render() {
         return (
-            <div className={ `schedule-container ${ isMobileOnly ? 'mobile' : 'desktop' }` }>
-                <div className='schedule-headline-container'>        
-                    <div className='schedule-title'>
-                        <p>{ SCHEDULE }</p>
+            <div className={`schedule-container ${isMobileOnly ? 'mobile' : 'desktop'}`}>
+                <div className='schedule-headline-container'>
+                    <div className='schedule-headline'>
+                        <div className='schedule-title'>
+                            <p>Schedule</p>
+                        </div>
+                        {
+                            isMobileOnly
+                                ? (<div>
+                                    {this.renderDropdown()}
+                                </div>)
+                                : (<div className='schedule-day'>
+                                    {this.renderButtons()}
+                                </div>)
+                        }
                     </div>
-                    {
-                        isMobileOnly
-                            ? (<div>
-                                { this.renderDropdown() }
-                            </div>)
-                            : (<div className='schedule-day'>
-                                { this.renderButtons() }
-                            </div>)
-                    }      
                 </div>
                 <div>
-                    { this.renderDailySchedule() }
+                    {this.renderDailySchedule()}
                 </div>
             </div>
         )
@@ -157,5 +158,5 @@ const SchedulePageComponent = () => withSeo({
     description: SCHEDULE_SEO_DESCRIPTION,
     thumbnail: BASIC_SEO_IMG
 }, withScroll(<ScheduleComponent />));
-  
+
 export { ScheduleComponent, SchedulePageComponent };

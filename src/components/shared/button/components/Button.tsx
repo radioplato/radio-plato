@@ -15,6 +15,7 @@ export enum ICON_POSITION {
 export enum BUTTON_SIZE {
     SMALL = 'small',
     MEDIUM = 'medium',
+    BIG = 'big',
     LARGE = 'large',
     HUGE = 'huge',
 };
@@ -53,10 +54,10 @@ export const Button = ({
                 icon && iconPosition === ICON_POSITION.LEFT &&
                 (<Icon
                     icon={icon}
-                    rotate={iconRotate}
                     className='button-icon left'
                     style={{
                         marginRight: label ? '8px' : 0,
+                        transform: iconRotate ? `rotate(${iconRotate}deg)` : undefined,
                     }}
                 ></Icon>)
             }
@@ -65,10 +66,10 @@ export const Button = ({
                 icon && iconPosition === ICON_POSITION.RIGHT &&
                 (<Icon
                     icon={icon}
-                    rotate={iconRotate}
                     className='button-icon right'
                     style={{
                         marginLeft: label ? '8px' : 0,
+                        transform: iconRotate ? `rotate(${iconRotate}deg)` : undefined,
                     }}
                 ></Icon>)
             }

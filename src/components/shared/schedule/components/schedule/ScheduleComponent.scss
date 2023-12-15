@@ -22,68 +22,84 @@
         flex-direction: row;
         flex-wrap: nowrap;
         align-content: stretch;
-        justify-content: space-between;
+        justify-content: center;
         align-items: center;
 
         border-bottom: 2px solid $grey-200;
 
-        padding: 56px 96px;
-
-        .schedule-title {
+        .schedule-headline {
             display: flex;
             display: -webkit-flex;
             flex: 0 0 auto;
             
             flex-direction: row;
-            align-content: flex-end;
-
-            @include interFont(36px, 400, 36px);
-            letter-spacing: 0.5px;
-        }
-
-        .schedule-day {
-            display: flex;
-            display: -webkit-flex;
-            flex: 0 0 auto;
-
-            flex-direction: row;
             flex-wrap: nowrap;
-            justify-content: flex-start;
-            align-content: center;
-            align-items: flex-start;
+            align-content: stretch;
+            justify-content: space-between;
+            align-items: center;
 
-            float: right;
-            font-size: 14px;
-            margin-right: 20px;
+            width: 100%;
+            max-width: 1160px;
 
-            .schedule-day-button {
-                margin-left: 8px;
+            box-sizing: border-box;
+            padding: 56px 16px;
 
-                .button-label {
-                    color: $grey-800;
-                }
-
-                &.selected {
+            .schedule-title {
+                display: flex;
+                display: -webkit-flex;
+                flex: 0 0 auto;
+                
+                flex-direction: row;
+                align-content: flex-end;
+    
+                @include interFont(36px, 400, 36px);
+                letter-spacing: 0.5px;
+                text-transform: uppercase;
+            }
+    
+            .schedule-day {
+                display: flex;
+                display: -webkit-flex;
+                flex: 0 0 auto;
+    
+                flex-direction: row;
+                flex-wrap: nowrap;
+                justify-content: flex-start;
+                align-content: center;
+                align-items: flex-start;
+    
+                float: right;
+                font-size: 14px;
+    
+                .schedule-day-button {
+                    margin-left: 8px;
+    
                     .button-label {
-                        color: $white;
-                        text-decoration: underline;
-                        text-underline-offset: 3px;
+                        color: $grey-800;
                     }
-                }
-
-                &:hover {
-                    .button-label {
-                        color: $yellow-1000;
-                        text-decoration: underline;
-                        text-underline-offset: 3px;
+    
+                    &.selected {
+                        .button-label {
+                            color: $white;
+                            text-decoration: underline;
+                            text-underline-offset: 3px;
+                        }
                     }
-                }
-
-                &:active {
-                    .button-label {
-                        color: $yellow-600;
-                        text-decoration: underline;
-                        text-underline-offset: 3px;
+    
+                    &:hover {
+                        .button-label {
+                            color: $yellow-1000;
+                            text-decoration: underline;
+                            text-underline-offset: 3px;
+                        }
+                    }
+    
+                    &:active {
+                        .button-label {
+                            color: $yellow-600;
+                            text-decoration: underline;
+                            text-underline-offset: 3px;
+                        }
                     }
                 }
             }

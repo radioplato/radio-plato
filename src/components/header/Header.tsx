@@ -1,4 +1,4 @@
-import React, { Component, createElement } from 'react'
+import React, { createElement } from 'react'
 
 import { Route, Switch, useHistory } from 'react-router-dom';
 

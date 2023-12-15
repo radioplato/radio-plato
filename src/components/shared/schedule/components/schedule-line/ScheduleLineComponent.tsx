@@ -38,17 +38,19 @@ function showlineWrapper(showline: ScheduleShow, selectedDay: number) {
 
     const content = (
         <div className='schedule-line-container'>
-            <div className='visual-container'>
-                { isNow && renderOnAir() }
-                <div className='image'></div>
-            </div>
-            <div className='information-container'>
-                <div className='time'>
-                    <span className='interval'>{interval}</span>
-                    <span className='utc'>UTC+3</span>
+            <div className='schedule-line'>
+                <div className='visual-container'>
+                    { isNow && renderOnAir() }
+                    <div className='image'></div>
                 </div>
-                <div className='title'>{title ? title : ''}</div>
-                <div className='description'>{description ? description : ''}</div>
+                <div className='information-container'>
+                    <div className='time'>
+                        <span className='interval'>{interval}</span>
+                        <span className='utc'>UTC+3</span>
+                    </div>
+                    <div className='title'>{title ? title : ''}</div>
+                    <div className='description'>{description ? description : ''}</div>
+                </div>
             </div>
         </div>
     );

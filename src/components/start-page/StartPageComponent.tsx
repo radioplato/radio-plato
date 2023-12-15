@@ -2,11 +2,9 @@ import React, { Component } from 'react';
 import { isMobileOnly } from 'react-device-detect';
 
 import { Seo } from '../shared/wrappers/seo/Seo'
-import NewsListComponent from '../news/NewsListComponent';
-import { ScheduleComponent } from '../shared/schedule/ScheduleComponent';
+import NewsListComponent from '../news/components/news-list/NewsListComponent';
+import { ScheduleComponent } from '../shared/schedule/components/schedule/ScheduleComponent';
 import { BASIC_SEO_IMG } from '../shared/constants';
-
-import { NewsListTypes } from '../shared/enums';
 
 import './StartPageComponent.css';
 
@@ -23,7 +21,7 @@ export class StartPageComponent extends Component {
                             thumbnail: BASIC_SEO_IMG
                         }}
                     />
-                <NewsListComponent type={ NewsListTypes.Simple }/>
+                <NewsListComponent isStartPage={ true }/>
                 <ScheduleComponent />
             </div>
         );

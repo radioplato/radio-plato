@@ -10,6 +10,8 @@ main.mobile > .scrollable-container {
     overflow-y: overlay;
     box-sizing: border-box;
 
+    scrollbar-gutter: stable;
+
     &::-webkit-scrollbar {
         width: 2px;
     }

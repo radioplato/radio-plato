@@ -75,7 +75,7 @@ function PlayerPageComponent() {
                     <Button
                         className='fullscreen-button'
                         type={BUTTON_TYPE.GHOST}
-                        size={BUTTON_SIZE.LARGE}
+                        size={BUTTON_SIZE.BIG}
                         icon={ICON_KEY.MINIMIZE_REGULAR}
                         onClick={navigateBack}
                     />

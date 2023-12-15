@@ -1,4 +1,4 @@
-import { StrapiObjectDto, CoverDto, SimpleImage, StrapiLocalization, Locale } from "../shared/interfaces";
+import { StrapiObjectDto, CoverDto, SimpleImage, StrapiLocalization, Locale } from "../../shared/interfaces";
 
 export interface NewsDto extends StrapiObjectDto {
     localizations: StrapiLocalization[];

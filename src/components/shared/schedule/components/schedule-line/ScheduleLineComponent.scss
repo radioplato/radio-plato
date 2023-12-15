@@ -8,16 +8,32 @@
 
     flex-direction: row;
     flex-wrap: nowrap;
-    justify-content: flex-start;
+    justify-content: center;
     align-content: center;
-    align-items: flex-start;
+    align-items: center;
 
     width: 100%;
     height: fit-content;
 
-    padding: 24px 0 24px 96px;
-
     border-bottom: 2px solid $grey-200;
+
+    .schedule-line {
+        display: flex;
+        display: -webkit-flex;
+        flex: 0 0 auto;
+
+        flex-direction: row;
+        flex-wrap: nowrap;
+        justify-content: flex-start;
+        align-content: center;
+        align-items: flex-start;
+
+        width: 100%;
+        max-width: 1160px;
+
+        box-sizing: border-box;
+        padding: 16px 24px;
+    }
 
     .visual-container {
         display: flex;

@@ -4,17 +4,19 @@ import moment from 'moment';
 
 import ReactMarkdown from 'react-markdown'
 
-import AdComponent from '../../advertisement/AdComponent/AdComponent';
-import adService from '../../advertisement/AdService';
+import AdComponent from '../../../advertisement/AdComponent/AdComponent';
+import adService from '../../../advertisement/AdService';
 
-import { Seo } from '../../shared/wrappers/seo/Seo'
-import { Advertisement } from '../../advertisement/interfaces';
-import { NewsDto, News } from '../interfaces';
+import { Seo } from '../../../shared/wrappers/seo/Seo'
+import { Advertisement } from '../../../advertisement/interfaces';
+import { NewsDto, News } from '../../interfaces';
 
-import './NewsComponent.css';
 import { isMobileOnly } from 'react-device-detect';
 import { Link } from 'react-router-dom';
-import { Locale, LocaleString } from '../../shared/interfaces';
+import { Locale, LocaleString } from '../../../shared/interfaces';
+import { DATE_FORMAT } from '../../constants';
+
+import './NewsArticleComponent.scss';
 
 
 const localeStringByLocale = new Map([
@@ -23,11 +25,11 @@ const localeStringByLocale = new Map([
     [ Locale.Russian, LocaleString.Russian ],
 ]);
 
-interface NewsComponentProperties {
+interface NewsArticleComponentProperties {
     slug: string;
 }
 
-interface NewsComponentState {
+interface NewsArticleComponentState {
     news: News | null,
     advertisement: Advertisement | null,
     articles: News[],
@@ -35,10 +37,8 @@ interface NewsComponentState {
     currentLocale: Locale
 }
 
-const DATE_FORMAT = 'DD.MM.YYYY';
-
-export class NewsComponent extends Component<NewsComponentProperties> {
-    state: NewsComponentState = {
+export class NewsArticleComponent extends Component<NewsArticleComponentProperties> {
+    state: NewsArticleComponentState = {
         news: null,
         advertisement: null,
         articles: [],
@@ -107,7 +107,7 @@ export class NewsComponent extends Component<NewsComponentProperties> {
         await this.fetchLastArticles();
     }
 
-    componentDidUpdate (previousProps: NewsComponentProperties) {
+    componentDidUpdate (previousProps: NewsArticleComponentProperties) {
         if (this.props.slug !== previousProps.slug) {
             this.setState({
                 news: null,
@@ -206,4 +206,4 @@ export class NewsComponent extends Component<NewsComponentProperties> {
     }
 }
   
-export default NewsComponent;
+export default NewsArticleComponent;
