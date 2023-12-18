@@ -13,9 +13,9 @@ import './VolumeControlsComponent.scss'
 function VolumeControls({
     className
 }: HTMLAttributes<HTMLElement>) {
-    const [ muted, setVolumeMode ] = useState(playerService.muted);
-    const [ volume, setVolume ] = useState(Math.trunc(playerService.volume * 100));
-    const [ volumeIconKey, setVolumeIconKey ] = useState(ICON_KEY.SPEAKER_MAXIMUM_REGULAR);
+    const [muted, setVolumeMode] = useState(playerService.muted);
+    const [volume, setVolume] = useState(Math.trunc(playerService.volume * 100));
+    const [volumeIconKey, setVolumeIconKey] = useState(ICON_KEY.SPEAKER_MAXIMUM_REGULAR);
 
     useEffect(() => {
         setVolume(sliderDefaultValue());
@@ -41,7 +41,7 @@ function VolumeControls({
 
         return () => subscription?.unsubscribe();
     }, []);
-    
+
     const toggleVolumeMode = () => {
         playerService.muted = !playerService.muted;
         setVolumeMode(playerService.muted);
@@ -56,7 +56,7 @@ function VolumeControls({
 
     const sliderDefaultValue = () => {
         const value = playerService.volume * 100;
-        
+
         return Math.trunc(value);
     }
 
@@ -67,16 +67,17 @@ function VolumeControls({
                 type={BUTTON_TYPE.GHOST}
                 size={BUTTON_SIZE.BIG}
                 icon={volumeIconKey}
-                onClick={ toggleVolumeMode }
+                title={muted ? 'unmute' : 'mute'}
+                onClick={toggleVolumeMode}
             />
             <ReactSlider
                 className='horizontal-slider'
                 thumbClassName='thumb'
                 trackClassName='track'
-                defaultValue={ sliderDefaultValue() }
-                onChange={ value => changeVolume(value)}
+                defaultValue={sliderDefaultValue()}
+                onChange={value => changeVolume(value)}
                 ariaLabel='volume slider'
-                value={ volume }
+                value={volume}
             />
         </div>
     );

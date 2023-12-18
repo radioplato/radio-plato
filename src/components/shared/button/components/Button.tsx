@@ -6,6 +6,7 @@ import Icon from '../../icons/component/IconComponent';
 import { ICON_KEY } from '../../icons/icons';
 
 import './Button.scss';
+import { title } from 'process';
 
 export enum ICON_POSITION {
     LEFT = 'left',
@@ -35,6 +36,7 @@ interface ButtonProperties extends HTMLAttributes<HTMLElement> {
     label?: string;
     href?: string;
     className?: string;
+    title?: string;
 };
 
 export const Button = ({
@@ -77,7 +79,11 @@ export const Button = ({
     );
 
     return (
-        <div className={`button-background ${type} ${className}`}>
+        <div
+            className={`button-background ${type} ${className}`}
+            title={title}
+            aria-label={title}
+        >
             {
                 href
                     ? (<a

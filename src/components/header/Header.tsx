@@ -54,6 +54,7 @@ export function Header() {
                     iconPosition={ICON_POSITION.LEFT}
                     label='donate'
                     href={DONATE_LINK}
+                    title='donate link'
                 ></Button>
             </div>
         </header>

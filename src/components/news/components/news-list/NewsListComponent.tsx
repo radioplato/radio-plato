@@ -185,6 +185,7 @@ export function NewsListComponent({
                     iconPosition={ICON_POSITION.RIGHT}
                     iconRotate={iconRotate}
                     label={label}
+                    title='see more news'
                     onClick={handleLoadMoreButtonClick}
                 />
             </div>
@@ -206,6 +207,7 @@ export function NewsListComponent({
                                     iconPosition={ICON_POSITION.RIGHT}
                                     iconRotate={90}
                                     label='News'
+                                    title='news page'
                                     onClick={navigateToNewsPage}
                                 />
                             )
@@ -222,6 +224,7 @@ export function NewsListComponent({
                                     type={BUTTON_TYPE.GHOST}
                                     size={BUTTON_SIZE.SMALL}
                                     label={newsCategory}
+                                    title={`'${newsCategory}' category page`}
                                     onClick={() => navigateToCategoryPage(newsCategory)}
                                 ></Button>
                             ))

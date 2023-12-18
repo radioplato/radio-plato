@@ -66,6 +66,7 @@ function PlayerPageComponent() {
                         type={BUTTON_TYPE.OUTLINE}
                         size={BUTTON_SIZE.HUGE}
                         icon={playing ? ICON_KEY.PAUSE_FILLED : ICON_KEY.PLAY_FILLED}
+                        title={playing ? 'pause' : 'play'}
                         onClick={togglePlayingMode}
                     />
                     <VolumeControls className='volume-controls' />
@@ -77,6 +78,7 @@ function PlayerPageComponent() {
                         type={BUTTON_TYPE.GHOST}
                         size={BUTTON_SIZE.BIG}
                         icon={ICON_KEY.MINIMIZE_REGULAR}
+                        title='close fullscreen player'
                         onClick={navigateBack}
                     />
                 </div>

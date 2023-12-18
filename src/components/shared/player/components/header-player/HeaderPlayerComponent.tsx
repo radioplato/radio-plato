@@ -64,6 +64,7 @@ function HeaderPlayerComponent() {
                     type={BUTTON_TYPE.OUTLINE}
                     size={BUTTON_SIZE.BIG}
                     icon={playing ? ICON_KEY.PAUSE_FILLED : ICON_KEY.PLAY_FILLED}
+                    title={playing ? `pause` : 'play'}
                     onClick={togglePlayingMode}
                 />
                 <TrackTitle className='header' isTicker={true} />
@@ -74,6 +75,7 @@ function HeaderPlayerComponent() {
                     type={BUTTON_TYPE.GHOST}
                     size={BUTTON_SIZE.BIG}
                     icon={ICON_KEY.MAXIMIZE_REGULAR}
+                    title='go to player page'
                     onClick={navigateToPlayerPage}
                 />
             </div>

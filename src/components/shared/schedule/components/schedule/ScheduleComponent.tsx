@@ -22,13 +22,13 @@ import './ScheduleComponent.scss'
 
 
 const DAYS_OF_WEEK = [
-    'MON',
-    'TUE',
-    'WED',
-    'THU',
-    'FRI',
-    'SAT',
-    'SUN'
+    'mon',
+    'tue',
+    'wed',
+    'thu',
+    'fri',
+    'sat',
+    'sun'
 ];
 
 const SCHEDULE_SEO_TITLE = 'Schedule'
@@ -107,11 +107,12 @@ class ScheduleComponent extends Component {
 
         return DAYS_OF_WEEK.map((day, index) => (
             <Button
-                key={`${day.toLowerCase()}-${index}`}
+                key={`${day}-${index}`}
                 className={`schedule-day-button ${selectedDay === index ? 'selected' : ''}`}
                 type={BUTTON_TYPE.GHOST}
                 size={BUTTON_SIZE.SMALL}
                 label={day}
+                title={day}
                 onClick={() => this.selectDay(index)}
             ></Button>
         ))

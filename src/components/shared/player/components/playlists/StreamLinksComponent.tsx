@@ -16,6 +16,7 @@ function StreamLinks({
                 type={BUTTON_TYPE.GHOST}
                 size={BUTTON_SIZE.SMALL}
                 label='m3u'
+                title={`'.m3u' playlist file`}
                 href={M3U}
             ></Button>
             <div className='link-separator'></div>
@@ -23,6 +24,7 @@ function StreamLinks({
                 type={BUTTON_TYPE.GHOST}
                 size={BUTTON_SIZE.SMALL}
                 label='pls'
+                title={`'.pls' playlist file`}
                 href={PLS}
             ></Button>
         </div>

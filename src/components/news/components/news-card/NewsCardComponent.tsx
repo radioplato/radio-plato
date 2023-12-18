@@ -45,6 +45,7 @@ function NewsCardComponent({ newsCard, size }: NewsCardProperties) {
                         type={BUTTON_TYPE.GHOST}
                         size={BUTTON_SIZE.SMALL}
                         label={newsCard.category}
+                        title={`more news from the '${newsCard.category}' category`}
                         onClick={() => navigateToCategory(newsCard.category)}
                     />
                 </div>
