@@ -33,7 +33,7 @@ function NewsCardComponent({ newsCard, size }: NewsCardProperties) {
                 style={{
                     backgroundImage: `url(${newsCard.newsCover.url})`,
                 }}
-                to={`news/${newsCard.category}/${newsCard.slug}`}
+                to={`/news/${newsCard.category}/${newsCard.slug}`}
                 title={newsCard.title}
             />
             <div className='news-information'>
@@ -49,7 +49,7 @@ function NewsCardComponent({ newsCard, size }: NewsCardProperties) {
                         onClick={() => navigateToCategory(newsCard.category)}
                     />
                 </div>
-                <Link to={`news/${newsCard.category}/${newsCard.slug}`}>
+                <Link to={`/news/${newsCard.category}/${newsCard.slug}`}>
                     <div className='news-content-information'>
                         <div className='news-title'>{newsCard.title}</div>
                         <div className='news-excerpt'>{newsCard.excerpt}</div>

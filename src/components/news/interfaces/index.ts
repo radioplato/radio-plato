@@ -25,6 +25,7 @@ export interface NewsCard {
     excerpt: string;
     category: string;
     newsCover: SimpleImage;
+    content?: string;
     slug?: string;
     link?: string;
     title: string;
@@ -45,10 +46,8 @@ export interface NewsDto extends StrapiObjectDto {
     locale: Locale;
 }
 
-export interface News extends NewsCard {
+export interface NewsArticle extends NewsCard {
     content: string;
     photosBy?: string;
     wordsBy: string;
-    locale: Locale;
-    localizations: StrapiLocalization[];
 }

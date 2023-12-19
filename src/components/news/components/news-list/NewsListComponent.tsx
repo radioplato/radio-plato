@@ -40,7 +40,6 @@ export function NewsListComponent({
     const [newsCards, setNewsCards] = useState<NewsCard[]>([]);
     const [highlightCard, setHighlightCard] = useState<NewsCard | null>(null);
     const [otherCards, setOtherCards] = useState<NewsCard[]>([]);
-    const [page, setPage] = useState(0);
     const [isLoading, setLoading] = useState(false);
     const [isEnd, setEnd] = useState(false);
 
@@ -124,10 +123,6 @@ export function NewsListComponent({
             title: post.attributes.Title,
             publishDate: post.attributes.publishedAt
         };
-    }
-
-    const sortCardsByDate = (first: NewsCard, second: NewsCard) => {
-        return moment(second.publishDate).diff(moment(first.publishDate));
     }
 
     const navigateToNewsPage = () => {

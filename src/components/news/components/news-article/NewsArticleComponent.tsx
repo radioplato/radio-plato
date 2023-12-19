@@ -1,209 +1,180 @@
-import React, { Component } from 'react';
-import { Subscription } from 'rxjs';
-import moment from 'moment';
+import React, { useEffect, useState } from 'react';
+import { isMobileOnly } from 'react-device-detect';
+import { useHistory, useLocation } from 'react-router-dom';
 
 import ReactMarkdown from 'react-markdown'
-
-import AdComponent from '../../../advertisement/AdComponent/AdComponent';
-import adService from '../../../advertisement/AdService';
+import moment from 'moment';
+import qs from 'qs';
 
 import { Seo } from '../../../shared/wrappers/seo/Seo'
-import { Advertisement } from '../../../advertisement/interfaces';
-import { NewsDto, News } from '../../interfaces';
+import { Button, BUTTON_TYPE, BUTTON_SIZE, ICON_POSITION } from '../../../shared/button/components/Button';
 
-import { isMobileOnly } from 'react-device-detect';
-import { Link } from 'react-router-dom';
-import { Locale, LocaleString } from '../../../shared/interfaces';
+import { NewsCard, NewsPost, NewsArticle } from '../../interfaces';
+import { NEWS_CARD_SIZE } from '../../enums';
+
+import NewsCardComponent from '../news-card/NewsCardComponent';
+import { ICON_KEY } from '../../../shared/icons/icons';
 import { DATE_FORMAT } from '../../constants';
 
 import './NewsArticleComponent.scss';
-
-
-const localeStringByLocale = new Map([
-    [ Locale.English, LocaleString.English ],
-    [ Locale.Belorussian, LocaleString.Belorussian ],
-    [ Locale.Russian, LocaleString.Russian ],
-]);
 
 interface NewsArticleComponentProperties {
     slug: string;
 }
 
-interface NewsArticleComponentState {
-    news: News | null,
-    advertisement: Advertisement | null,
-    articles: News[],
-    locales: Locale[],
-    currentLocale: Locale
-}
+export function NewsArticleComponent({
+    slug
+}: NewsArticleComponentProperties) {
+    const history = useHistory();
+    const location = useLocation();
 
-export class NewsArticleComponent extends Component<NewsArticleComponentProperties> {
-    state: NewsArticleComponentState = {
-        news: null,
-        advertisement: null,
-        articles: [],
-        locales: [ Locale.English ],
-        currentLocale: Locale.English
-    };
-    subscription: Subscription | null = null;
+    const [newsArticle, setNewsArticle] = useState<NewsCard | null>(null);
+    const [relatedNewsCards, setRelatedNewsCards] = useState<NewsCard[]>([]);
 
-    parseNews(newsDto: NewsDto, isCurrent = false): News | null {
-        if (newsDto && isCurrent) {
-            const currentLocale = newsDto.locale;
-            const locales = Array.from(new Set([
-                currentLocale,
-                ...newsDto.localizations.map(localization => localization.locale),
-            ])).sort();
-
-            this.setState({ locales, currentLocale });
-        }
-
-        return newsDto ? {
-            title: newsDto.Title,
-            content: newsDto.Content,
-            category: newsDto.Category,
-            wordsBy: newsDto.WordsBy,
-            photosBy: newsDto.PhotosBy,
-            excerpt:  newsDto.Excerpt,
-            slug: newsDto.Slug,
-            publishDate: newsDto.publish_at,
+    const parseNews = (article: NewsPost): NewsArticle => {
+        return {
+            title: article.attributes.Title,
+            content: article.attributes.Content,
+            category: article.attributes.Category.toLowerCase(),
+            wordsBy: article.attributes.WordsBy,
+            photosBy: article.attributes.PhotosBy,
+            excerpt: article.attributes.Excerpt,
+            slug: article.attributes.Slug,
+            publishDate: article.attributes.publishedAt,
             newsCover: {
-                alternativeText: newsDto.PostCover.alternativeText,
-                caption: newsDto.PostCover.caption,
-                url: newsDto.PostCover.url
+                alternativeText: article.attributes.PostCover.data.attributes.alternativeText,
+                caption: article.attributes.PostCover.data.attributes.caption,
+                url: article.attributes.PostCover.data.attributes.url
             },
-            locale: newsDto.locale,
-            localizations: newsDto.localizations
-        } : null
+        };
     }
 
-    fetchCurrentArticle (locale: Locale = Locale.English) {
-        const { slug } = this.props;
-        const localeString = localeStringByLocale.get(locale)?.toLowerCase();
-        const localePostfix = locale === Locale.English ? '' : `-${ localeString }`;
+    const fetchCurrentArticle = () => {
+        const query = qs.stringify({
+            populate: '*',
+            filters: slug ? {
+                Slug: {
+                    $eqi: slug,
+                },
+            } : undefined,
+        });
 
-        return fetch(`${ process.env.REACT_APP_BACKEND_URL }/posts?Slug=${ slug }${ localePostfix }&_locale=${ locale }`)
+        setNewsArticle(null);
+
+        return fetch(`${process.env.REACT_APP_BACKEND_URL_V2}/posts?${query}`)
             .then(response => response.json())
-            .then((data: NewsDto[]) => this.parseNews(data[0], true))
-            .then(news => this.setState({ news }));
+            .then(data => data.data[0] ? parseNews(data.data[0]) : null)
+            .then(article => setNewsArticle(article));
     }
 
-    fetchLastArticles () {
-        const category = this.state.news?.category;
-        const filter = category ? `Category=${ category[0].toUpperCase() + category.slice(1) }&` : '';
+    const fetchLastArticles = () => {
+        const category = newsArticle?.category;
+        const query = qs.stringify({
+            populate: '*',
+            pagination: {
+                start: 0,
+                limit: 9,
+            },
+            filters: category ? {
+                Category: {
+                    $eqi: category,
+                },
+            } : undefined,
+            sort: ['publishedAt:desc'],
+        });
 
-        return fetch(`${ process.env.REACT_APP_BACKEND_URL }/posts?${ filter }_sort=publish_at:DESC&_start=0&_limit=10`)
+        return fetch(`${process.env.REACT_APP_BACKEND_URL_V2}/posts?${query}`)
             .then(response => response.json())
-            .then((data: NewsDto[]) => data.map(datum => this.parseNews(datum)))
-            .then(articles => this.setState({ articles }));
-    }
-    
-    async componentDidMount () {
-        await this.fetchCurrentArticle();
-
-        this.subscribeOnGalleryChange();
-        adService.fetchAdvertisements();
-
-        await this.fetchLastArticles();
+            .then(data => data.data.map((datum: NewsPost) => parseNews(datum)))
+            .then(cards => setRelatedNewsCards(cards));
     }
 
-    componentDidUpdate (previousProps: NewsArticleComponentProperties) {
-        if (this.props.slug !== previousProps.slug) {
-            this.setState({
-                news: null,
-                advertisement: null,
-                articles: []
-            });
-            this.componentDidMount();
-        }
+    useEffect(() => {
+        fetchCurrentArticle();
+    }, [location]);
+
+    useEffect(() => {
+        fetchLastArticles();
+    }, [newsArticle]);
+
+    const navigateToCategoryPage = (newsCategory: string) => {
+        history.push(`/news/${newsCategory}`);
     }
 
-    componentWillUnmount () {
-        this.subscription?.unsubscribe();
+    const navigateToNewsPage = () => {
+        history.push('/news');
     }
 
-    subscribeOnGalleryChange () {
-        this.subscription = adService.subscribeOnNewsPostAdUpdate(
-            (advertisement: Advertisement) => this.setState({ advertisement })
-        );
-    }
-
-    changeLocale (currentLocale: Locale) {
-        this.setState({ currentLocale });
-        this.fetchCurrentArticle(currentLocale)
-    }
-
-    render () {
-        const { news, advertisement, locales, currentLocale } = this.state;
-        const imageSrc = news ? news.newsCover.url : '';
-        const imageStyle = {
-            backgroundPosition: 'center',
-            backgroundRepeat: 'no-repeat',
-            backgroundAttachment: 'fixed',
-            backgroundSize: 'cover',
-            backgroundImage: `url(${ imageSrc })`
-        }
-        const date = moment(news?.publishDate).format(DATE_FORMAT);
-        const wordsBy = news?.wordsBy ? `| Author: ${ news.wordsBy }` : '';
-        const photosBy = news?.photosBy ? `| Photo by: ${ news.photosBy }` : '';
-
-        return news ? (
-            <article className={ `news ${ isMobileOnly ? 'mobile' : 'desktop' }` }>
-                <Seo meta={{
-                        title: news.title,
-                        description: news.excerpt,
-                        thumbnail: imageSrc,
-                        type: 'article',
-                    }}
-                />
-                <div className='news-description' style={ imageStyle }>
-                    <div className='news-information'>
-                        <h1 className='news-title'>{ news.title }</h1>
-                        <p className='news-excerpt'>{ news.excerpt }</p>
-                        <p className='news-meta'>
-                            { `${ date } ${ wordsBy } ${ photosBy }` }
-                        </p>
-                        { locales.length > 1 && (
-                            <div className='language-toggle-container'>
-                                { locales.map(locale => (
-                                    <div className={ `language-toggle-button ${ locale === currentLocale && 'active' }` } key={ locale } onClick={ () => this.changeLocale(locale) }>
-                                        { localeStringByLocale.get(locale) }
-                                    </div>  
-                                ))}
-                            </div>
-                        )}
-                    </div>
-                </div>
-                <div className='news-content-container'>
-                    <div className='news-content'>
-                        <ReactMarkdown
-                            source={ news.content }
-                            escapeHtml={ false }
-                            renderers={{ link: props => <a href={ props.href } target="_blank" rel="noopener noreferrer">{ props.children }</a> }}
+    return newsArticle ? (
+        <article className={`news ${isMobileOnly ? 'mobile' : 'desktop'}`}>
+            <Seo meta={{
+                title: newsArticle.title,
+                description: newsArticle.excerpt,
+                thumbnail: newsArticle.newsCover.url ?? '',
+                type: 'article',
+            }}
+            />
+            <div className='news-description' style={{
+                backgroundImage: `url(${newsArticle.newsCover.url})`
+            }}>
+                <div className='news-information'>
+                    <h1 className='news-title'>{newsArticle.title}</h1>
+                    <p className='news-excerpt'>{newsArticle.excerpt}</p>
+                    <div className='news-service-information'>
+                        <div className='news-date'>{moment(newsArticle.publishDate).format(DATE_FORMAT)}</div>
+                        <div className='separator'></div>
+                        <Button
+                            className='category-button'
+                            type={BUTTON_TYPE.GHOST}
+                            size={BUTTON_SIZE.SMALL}
+                            label={newsArticle.category}
+                            title={`more news from the '${newsArticle.category}' category`}
+                            onClick={() => navigateToCategoryPage(newsArticle.category)}
                         />
                     </div>
                 </div>
-                { advertisement ? (<AdComponent advertisement={ advertisement } />) : null }
-                <h2 className="more-news-title">MORE NEWS</h2>
-                <div className="more-news">
+            </div>
+            <div className='news-content-container'>
+                <div className='news-content'>
+                    <ReactMarkdown
+                        source={newsArticle.content}
+                        escapeHtml={false}
+                        renderers={{ link: props => <a href={props.href} target="_blank" rel="noopener noreferrer">{props.children}</a> }}
+                    />
+                </div>
+            </div>
+            <div className='more-news-headline-container'>
+                <div className='more-news-headline'>
+                    <div className='more-news-title'>More like this</div>
+                </div>
+            </div>
+            <div className='more-news-cards-container'>
+                <div className='more-news-cards'>
                     {
-                        this.state.articles.filter(article => article.slug !== this.state.news?.slug)
+                        relatedNewsCards.length && relatedNewsCards.filter(card => card && card.slug !== newsArticle?.slug)
                             .sort(() => 0.5 - Math.random())
                             .slice(0, 3)
-                            .map(article => (
-                                <Link to={ `../../../news/${ article.category.toLowerCase() }/${ article.slug }` } title={ article.title } key={ article.slug }>
-                                    <div className={ `card ${ isMobileOnly ? 'mobile' : 'desktop' }` }>
-                                        <img src={ article.newsCover.url } loading='lazy' alt={ article.newsCover.alternativeText }/>
-                                        <h2>{ article.title }</h2>
-                                        <p>{ article.excerpt }</p>
-                                    </div>    
-                                </Link>
+                            .map(relatedCard => (
+                                <NewsCardComponent key={relatedCard.slug} newsCard={relatedCard} size={NEWS_CARD_SIZE.SMALL} />
                             ))
                     }
                 </div>
-            </article>
-        ) : null;
-    }
+                <div className='load-more-container'>
+                    <Button
+                        className='news-list-title-button'
+                        type={BUTTON_TYPE.GHOST}
+                        size={BUTTON_SIZE.SMALL}
+                        icon={ICON_KEY.ARROW_REGULAR}
+                        iconPosition={ICON_POSITION.RIGHT}
+                        iconRotate={90}
+                        label='Even more news'
+                        title='even more news'
+                        onClick={navigateToNewsPage}
+                    />
+                </div>
+            </div>
+        </article>
+    ) : null;
 }
-  
+
 export default NewsArticleComponent;
