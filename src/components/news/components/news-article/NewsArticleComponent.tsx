@@ -40,7 +40,7 @@ export function NewsArticleComponent({
             photosBy: article.attributes.PhotosBy,
             excerpt: article.attributes.Excerpt,
             slug: article.attributes.Slug,
-            publishDate: article.attributes.publishedAt,
+            publishDate: article.attributes.PublishAt,
             newsCover: {
                 alternativeText: article.attributes.PostCover.data.attributes.alternativeText,
                 caption: article.attributes.PostCover.data.attributes.caption,
@@ -161,7 +161,6 @@ export function NewsArticleComponent({
                 </div>
                 <div className='load-more-container'>
                     <Button
-                        className='news-list-title-button'
                         type={BUTTON_TYPE.GHOST}
                         size={BUTTON_SIZE.SMALL}
                         icon={ICON_KEY.ARROW_REGULAR}

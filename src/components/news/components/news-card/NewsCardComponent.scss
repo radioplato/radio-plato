@@ -155,7 +155,7 @@
 
                 width: 100%;
 
-                margin-bottom: 48px;
+                margin-bottom: 40px;
 
                 .news-date {
                     @include interFont(14px, 400, 24px);
@@ -180,7 +180,7 @@
 
             .news-content-information {
                 .news-title {
-                    margin-bottom: 48px;
+                    margin-bottom: 40px;
     
                     @include openSansFont(48px, 700, 56px);
                     color: $white;

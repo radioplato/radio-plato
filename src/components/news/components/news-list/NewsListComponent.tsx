@@ -121,7 +121,7 @@ export function NewsListComponent({
             },
             slug: post.attributes.Slug,
             title: post.attributes.Title,
-            publishDate: post.attributes.publishedAt
+            publishDate: post.attributes.PublishAt
         };
     }
 
@@ -237,7 +237,7 @@ export function NewsListComponent({
             <div className='news-cards-container'>
                 <div className='news-cards'>
                     {
-                        otherCards.slice().map((newsCard: NewsCard) => (
+                        otherCards.map((newsCard: NewsCard) => (
                             <NewsCardComponent key={newsCard.slug} newsCard={newsCard} size={NEWS_CARD_SIZE.SMALL} />
                         ))
                     }

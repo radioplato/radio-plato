@@ -48,10 +48,24 @@
         }
 
         .news-list-title {
-            @include interFont(36px, 400, 36px);
+            @include interFont(36px, 400, 48px);
             color: $white;
             letter-spacing: 0.5px;
             text-transform: uppercase;
+        }
+
+        .news-list-title-button {
+            display: flex;
+            display: -webkit-flex;
+            flex: 0 0 auto;
+
+            flex-direction: row;
+            flex-wrap: nowrap;
+            align-content: center;
+            justify-content: center;
+            align-items: center;
+
+            height: 48px;
         }
 
         .news-categories-container  {
