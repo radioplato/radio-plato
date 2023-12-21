@@ -2,12 +2,11 @@ import React, { Component } from 'react';
 
 import { isMobileOnly } from 'react-device-detect';
 
-import SocialLinksComponent from '../../shared/SocialLinksComponent/SocialLinksComponent';
-import ShowEpisodesComponent from '../ShowEpisodesComponent/ShowEpisodesComponent';
-import ShowCardComponent from '../ShowCardComponent/ShowCardComponent';
+import SocialLinksComponent from '../../../shared/social-links/components/SocialLinksComponent/SocialLinksComponent';
+import ShowCardComponent from '../../components/show-card/ShowCardComponent';
 
-import { Seo } from '../../shared/wrappers/seo/Seo'
-import { ShowDto, Show, ShowCard } from '../interfaces';
+import { Seo } from '../../../shared/wrappers/seo/Seo'
+import { ShowDto, Show, ShowCard } from '../../models';
 
 import './ShowComponent.css';
 
@@ -123,7 +122,6 @@ export class ShowComponent extends Component<ShowComponentProperties> {
                         <img src={ imageSrc } loading='lazy' alt={ show.showCover.alternativeText }/>
                     </div>
                 </div>
-                {  navigator.userAgent !== "ReactSnap" && <ShowEpisodesComponent mixcloudPlaylist={ show.mixcloudPlaylist }/> }
                 <div className="title-container">
                     <h2 className="more-shows-title">MORE SHOWS</h2>
                 </div>

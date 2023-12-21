@@ -12,7 +12,7 @@
     box-sizing: border-box;
 
     width: calc(100% - 121px);
-    height: calc(100vh - 101px);
+    height: calc(100vh - 102px);
     padding: 40px;
 
     overflow-x: hidden;

@@ -4,7 +4,7 @@ import * as qs from 'qs';
 
 import NewsCardComponent from '../news-card/NewsCardComponent';
 
-import { NewsCard, NewsPost } from '../../interfaces';
+import { NewsCard, NewsPost } from '../../models';
 import { NEWS_CARD_SIZE } from '../../enums';
 
 import './NewsCarouselComponent.scss';

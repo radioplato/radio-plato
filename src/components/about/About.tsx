@@ -4,11 +4,11 @@ import { isMobileOnly } from 'react-device-detect';
 import googlePlay from '@iconify/icons-cib/google-play';
 import Icon from '@iconify/react';
 
-import SocialLinksComponent from '../shared/SocialLinksComponent/SocialLinksComponent';
+import SocialLinksComponent from '../shared/social-links/components/SocialLinksComponent/SocialLinksComponent';
 import { Seo } from '../shared/wrappers/seo/Seo'
 
 import { AboutDto, About } from '../about/interfaces';
-import { ANDROID_APP, HEADER_SOCIAL_LINKS } from '../shared/constants';
+import { HEADER_SOCIAL_LINKS } from '../shared/social-links/constants';
 
 import './About.css';
 
@@ -74,7 +74,7 @@ export class AboutComponent extends Component {
                                     rel='noopener noreferrer'
                                 >
                                     <Icon className='google-play-icon' icon={ googlePlay }/>
-                                    { ANDROID_APP }
+                                    { 'ANDROID APP' }
                                 </a>
                             </div>
                         )

@@ -1,36 +1,14 @@
-export enum Socials {
-    Castbox = "castbox",
-    Itunes = "itunes",
-    Mixcloud = "mixcloud",
-    Spotify = "spotify",
-    Facebook = "facebook",
-    Vk = "vk",
-    Email = "email",
-    Instagram = "instagram",
-    Telegram = "telegram",
-    GooglePlay = "googlePlay",
-    GooglePodcasts = "googlepodcasts",
-    Patreon = "patreon",
-    Soundcloud = "soundcloud",
-    Bandcamp = "bandcamp",
-    Youtube = "youtube",
-}
-
 export enum Locale {
-    English = "en",
-    Belorussian = "be-BY",
-    Russian = "ru-RU",
+    English = 'en',
+    Belorussian = 'be-BY',
+    Russian = 'ru-RU',
 }
 
 export enum LocaleString {
-    English = "EN",
-    Belorussian = "BY",
-    Russian = "RU",
+    English = 'EN',
+    Belorussian = 'BY',
+    Russian = 'RU',
 }
-
-export type SocialLinks = {
-    [key in Socials]?: string;
-};
 
 export interface StrapiObjectDto {
     createdAt: string;

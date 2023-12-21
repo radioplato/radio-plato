@@ -9,10 +9,10 @@ import qs from 'qs';
 import { Seo } from '../../../shared/wrappers/seo/Seo'
 import { Button, BUTTON_TYPE, BUTTON_SIZE, ICON_POSITION } from '../../../shared/button/components/Button';
 
-import { NewsCard, NewsPost, NewsArticle } from '../../interfaces';
+import { NewsCard, NewsPost, NewsArticle } from '../../models';
 import { NEWS_CARD_SIZE } from '../../enums';
 
-import NewsCardComponent from '../news-card/NewsCardComponent';
+import NewsCardComponent from '../../components/news-card/NewsCardComponent';
 import { ICON_KEY } from '../../../shared/icons/icons';
 import { DATE_FORMAT } from '../../constants';
 

@@ -6,17 +6,17 @@ import {
 } from 'react-router-dom';
 
 import StartPageComponent from '../start-page/StartPageComponent';
-import ShowListComponent from '../shows/ShowListComponent';
-import ShowComponent from '../shows/ShowComponent/ShowComponent';
-import NewsArticleComponent from '../news/components/news-article/NewsArticleComponent';
+import ShowListComponent from '../shows/pages/show-list-page/ShowListComponent';
+import ShowComponent from '../shows/pages/show-page/ShowComponent';
+import NewsArticleComponent from '../news/pages/news-article-page/NewsArticleComponent';
 import AboutComponent from '../about/About';
 import { SchedulePageComponent } from '../shared/schedule/components/schedule/ScheduleComponent';
 import StudioComponent from '../studio/Studio';
 import { NotFoundComponent } from '../not-found/NotFoundComponent';
 import iOSppComponent from '../ios-privacy-policy/ios-privacy-policy';
 import iOStcComponent from '../ios-terms-and-conditions/ios-terms-and-conditions';
-import PlayerPageComponent from '../../pages/player-page/PlayerPageComponent';
-import { NewsPageComponent } from '../../pages/news-list-page/NewsPageComponent';
+import PlayerPageComponent from '../shared/player/pages/player-page/PlayerPageComponent';
+import { NewsPageComponent } from '../news/pages/news-list-page/NewsPageComponent';
 
 
 import './Content.css';

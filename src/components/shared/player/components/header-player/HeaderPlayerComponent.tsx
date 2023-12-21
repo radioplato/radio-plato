@@ -4,7 +4,7 @@ import { useHistory } from 'react-router-dom';
 import { isMobileOnly } from 'react-device-detect';
 
 import { playerService } from '../../services/PlayerService';
-import { TrackInformation } from '../../interfaces';
+import { TrackInformation } from '../../models';
 
 import VolumeControls from '../volume-controls/VolumeControlsComponent';
 import TrackTitle from '../track-info/TrackTitleComponent';

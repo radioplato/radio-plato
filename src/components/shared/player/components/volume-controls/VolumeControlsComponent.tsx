@@ -6,7 +6,7 @@ import { playerService } from '../../services/PlayerService';
 
 import { Button, BUTTON_TYPE, BUTTON_SIZE } from '../../../button/components/Button';
 import { ICON_KEY } from '../../../icons/icons';
-import { PlayerState } from '../../interfaces';
+import { PlayerState } from '../../models';
 
 import './VolumeControlsComponent.scss'
 

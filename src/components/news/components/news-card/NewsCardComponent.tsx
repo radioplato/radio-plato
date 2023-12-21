@@ -5,7 +5,7 @@ import moment from 'moment';
 
 import { isMobileOnly } from 'react-device-detect';
 
-import { NewsCard } from '../../interfaces';
+import { NewsCard } from '../../models';
 import { NEWS_CARD_SIZE } from '../../enums';
 
 import { BUTTON_SIZE, BUTTON_TYPE, Button } from '../../../shared/button/components/Button';

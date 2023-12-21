@@ -15,9 +15,10 @@ import patreonIcon from '@iconify/icons-cib/patreon';
 import bandcampIcon from '@iconify/icons-cib/bandcamp';
 import youtubeIcon from '@iconify/icons-cib/youtube';
 
-import { SocialLinks, Socials } from '../interfaces';
+import { Socials } from '../../enums';
+import { SocialLinks } from '../../models';
 
-import './SocialLinksComponent.css'
+import './SocialLinksComponent.scss'
 
 const SOCIAL_ICONS = new Map<string, object>([
     [ Socials.Mixcloud, mixcloudIcon ],

@@ -1,5 +1,6 @@
 
-import { SocialLinks, StrapiObjectDto, CoverDto, SimpleImage } from '../shared/interfaces';
+import { StrapiObjectDto, CoverDto, SimpleImage } from '../../shared/interfaces';
+import { SocialLinks } from '../../shared/social-links/models';
 
 interface ShowLinkDto extends StrapiObjectDto {
     castbox?: string;

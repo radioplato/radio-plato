@@ -3,7 +3,7 @@ import ReactPlayer from 'react-player';
 import { Subscription } from 'rxjs';
 
 import { playerService } from '../../services/PlayerService';
-import { PlayerState } from '../../interfaces';
+import { PlayerState } from '../../models';
 import { DEFAULT_PLAYER_STATE } from '../../constants';
 
 import './ShadowPlayer.css';

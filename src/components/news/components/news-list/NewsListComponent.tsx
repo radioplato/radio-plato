@@ -1,13 +1,11 @@
 import React, { HTMLAttributes, useEffect, useState } from 'react';
 import { useHistory, useLocation } from 'react-router-dom';
 
-import moment from 'moment';
-
 import * as qs from 'qs';
 
 import NewsCardComponent from '../news-card/NewsCardComponent';
 
-import { NewsCard, NewsPost } from '../../interfaces';
+import { NewsCard, NewsPost } from '../../models';
 import { NEWS_CARD_SIZE } from '../../enums';
 import { BUTTON_SIZE, BUTTON_TYPE, Button, ICON_POSITION } from '../../../shared/button/components/Button';
 import { ICON_KEY } from '../../../shared/icons/icons';

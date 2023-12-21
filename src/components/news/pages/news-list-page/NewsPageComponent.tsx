@@ -1,11 +1,11 @@
 import React from 'react';
 
-import { withSeo } from '../../components/shared/wrappers/seo/Seo';
-import { withScroll } from '../../components/shared/wrappers/scrollable/Scrollable';
+import { withSeo } from '../../../shared/wrappers/seo/Seo';
+import { withScroll } from '../../../shared/wrappers/scrollable/Scrollable';
 
-import NewsListComponent from '../../components/news/components/news-list/NewsListComponent';
-import NewsCarouselComponent from '../../components/news/components/news-carousel/NewsCarouselComponent';
-import { BASIC_SEO_IMG } from '../../components/shared/constants';
+import NewsListComponent from '../../components/news-list/NewsListComponent';
+import NewsCarouselComponent from '../../components/news-carousel/NewsCarouselComponent';
+import { BASIC_SEO_IMG } from '../../../shared/constants';
 
 import './NewsPageComponent.scss';
 

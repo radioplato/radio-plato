@@ -4,15 +4,15 @@ import { useHistory } from 'react-router-dom';
 
 import { isMobileOnly } from 'react-device-detect';
 
-import { playerService } from '../../components/shared/player/services/PlayerService';
-import { TrackInformation } from '../../components/shared/player/interfaces';
+import { playerService } from '../../services/PlayerService';
+import { TrackInformation } from '../../models';
 
-import VolumeControls from '../../components/shared/player/components/volume-controls/VolumeControlsComponent';
-import TrackTitle from '../../components/shared/player/components/track-info/TrackTitleComponent';
-import StreamLinks from '../../components/shared/player/components/playlists/StreamLinksComponent';
+import VolumeControls from '../../components/volume-controls/VolumeControlsComponent';
+import TrackTitle from '../../components/track-info/TrackTitleComponent';
+import StreamLinks from '../../components/playlists/StreamLinksComponent';
 
-import { BUTTON_SIZE, BUTTON_TYPE, Button } from '../../components/shared/button/components/Button';
-import { ICON_KEY } from '../../components/shared/icons/icons';
+import { BUTTON_SIZE, BUTTON_TYPE, Button } from '../../../button/components/Button';
+import { ICON_KEY } from '../../../icons/icons';
 
 import './PlayerPageComponent.scss';
 

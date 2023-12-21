@@ -2,11 +2,11 @@ import React, { Component } from 'react';
 
 import { isMobileOnly } from 'react-device-detect';
 
-import ShowCardComponent from './ShowCardComponent/ShowCardComponent';
+import ShowCardComponent from '../../components/show-card/ShowCardComponent';
 
-import { Seo } from '../shared/wrappers/seo/Seo'
-import { BASIC_SEO_IMG } from '../shared/constants';
-import { ShowDto, ShowCard } from './interfaces';
+import { Seo } from '../../../shared/wrappers/seo/Seo'
+import { BASIC_SEO_IMG } from '../../../shared/constants';
+import { ShowDto, ShowCard } from '../../models';
 
 import './ShowListComponent.css';
 

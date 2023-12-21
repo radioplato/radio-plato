@@ -3,7 +3,7 @@ import React, { HTMLAttributes, useEffect, useState } from 'react'
 import { playerService } from '../../services/PlayerService';
 
 import { PLAYER_CONNECTING, PLAYER_COPIED } from '../../constants';
-import { TrackInformation } from '../../interfaces';
+import { TrackInformation } from '../../models';
 
 import './TrackTitleComponent.scss'
 

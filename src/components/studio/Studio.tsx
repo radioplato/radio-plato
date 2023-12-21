@@ -1,26 +1,26 @@
-import React, { Component, RefObject } from "react";
+import React, { Component, RefObject } from 'react';
 
-import { isMobileOnly } from "react-device-detect";
-import ReactMarkdown from "react-markdown";
+import { isMobileOnly } from 'react-device-detect';
+import ReactMarkdown from 'react-markdown';
 
-import { fromEvent, Subject } from "rxjs";
-import { debounceTime, first, mapTo, takeUntil } from "rxjs/operators";
+import { fromEvent, Subject } from 'rxjs';
+import { debounceTime, first, mapTo, takeUntil } from 'rxjs/operators';
 
-import SocialLinksComponent from '../shared/SocialLinksComponent/SocialLinksComponent';
-import { HEADER_SOCIAL_LINKS } from '../shared/constants';
-import { Seo } from "../shared/wrappers/seo/Seo";
-import ProjectCardComponent from "./project-card/ProjectCardComponent";
+import SocialLinksComponent from '../shared/social-links/components/SocialLinksComponent/SocialLinksComponent';
+import ProjectCardComponent from './project-card/ProjectCardComponent';
+import { Seo } from '../shared/wrappers/seo/Seo';
 
-import { FilterItem, ProjectTag } from "./enums";
-import { StudioHeaderDto, StudioHeader, PortfolioDto, Project, PortfolioTagDto } from "./interfaces";
-import { projectTagToFilterItem, filterItemToProjectTag } from "./constants";
+import { FilterItem, ProjectTag } from './enums';
+import { StudioHeaderDto, StudioHeader, PortfolioDto, Project, PortfolioTagDto } from './interfaces';
+import { projectTagToFilterItem, filterItemToProjectTag } from './constants';
+import { HEADER_SOCIAL_LINKS } from '../shared/social-links/constants';
 
-import Loader from "../../components/shared/loader/Loader";
+import Loader from '../../components/shared/loader/Loader';
 
-import "./Studio.css";
+import './Studio.css';
 
-const STUDIO_SEO_TITLE = "Radio Plato Studio";
-const STUDIO_SEO_DESCRIPTION = "Plato is a team of professional sound designers, audio engineers, managers and music producers.";
+const STUDIO_SEO_TITLE = 'Radio Plato Studio';
+const STUDIO_SEO_DESCRIPTION = 'Plato is a team of professional sound designers, audio engineers, managers and music producers.';
 
 interface StudioComponentState {
     studio: StudioHeader | null;
@@ -162,14 +162,14 @@ export class StudioComponent extends Component {
         return (
             filterItems &&
             filterItems.map((item, index) => (
-                <div className="filter" key={`filter-${item.toLowerCase()}`}>
+                <div className='filter' key={`filter-${item.toLowerCase()}`}>
                     <div
-                        className={`filter-button ${this.state.currentFilter === item && "active"}`}
+                        className={`filter-button ${this.state.currentFilter === item && 'active'}`}
                         onClick={() => this.setFilter(item)}
                     >
                         {item}
                     </div>
-                    <div className={`filter-separator ${index === filterItems.length - 1 ? "hidden" : "visible"}`}>/</div>
+                    <div className={`filter-separator ${index === filterItems.length - 1 ? 'hidden' : 'visible'}`}>/</div>
                 </div>
             ))
         );
@@ -179,7 +179,7 @@ export class StudioComponent extends Component {
         return (
             projects &&
             projects.map((project, index) => (
-                <div className={index % 2 === 0 ? "left" : "right"} key={project.id}>
+                <div className={index % 2 === 0 ? 'left' : 'right'} key={project.id}>
                     <ProjectCardComponent
                         project={project}
                         shouldPlay={project.id === this.state.activeProject?.id}
@@ -192,27 +192,27 @@ export class StudioComponent extends Component {
     }
 
     scrollToTop(): Promise<boolean> {
-        this.potfolioContainerRef.current?.scrollIntoView({ behavior: "smooth" });
+        this.potfolioContainerRef.current?.scrollIntoView({ behavior: 'smooth' });
 
-        return fromEvent(document.getElementsByClassName("studio"), "scroll")
+        return fromEvent(document.getElementsByClassName('studio'), 'scroll')
             .pipe(debounceTime(100), first(), mapTo(true), takeUntil(this.destroySubject))
             .toPromise();
     }
 
     render() {
         const { studio, displayedProjects, filterItems, isLoading } = this.state;
-        const imageSrc = studio ? studio.studioImage.url : "";
+        const imageSrc = studio ? studio.studioImage.url : '';
         const imageStyle = {
-            backgroundPosition: "center",
-            backgroundRepeat: "no-repeat",
-            backgroundAttachment: "fixed",
-            backgroundSize: "cover",
+            backgroundPosition: 'center',
+            backgroundRepeat: 'no-repeat',
+            backgroundAttachment: 'fixed',
+            backgroundSize: 'cover',
             backgroundImage: `url(${imageSrc})`,
         };
 
         return (
             <>
-                <article className={`studio ${isMobileOnly ? "mobile" : "desktop"}`}>
+                <article className={`studio ${isMobileOnly ? 'mobile' : 'desktop'}`}>
                     <Seo
                         meta={{
                             title: STUDIO_SEO_TITLE,
@@ -220,25 +220,25 @@ export class StudioComponent extends Component {
                             thumbnail: imageSrc,
                         }}
                     />
-                    <div className={`loader-container ${isLoading ? "visible" : "hidden"}`}>
+                    <div className={`loader-container ${isLoading ? 'visible' : 'hidden'}`}>
                         <Loader />
                     </div>
-                    <div className="image" style={imageStyle}>
-                        <div className="left">
+                    <div className='image' style={imageStyle}>
+                        <div className='left'>
                             <h1>{studio?.title}</h1>
                         </div>
-                        <div className="right">
-                            <div className="description">
+                        <div className='right'>
+                            <div className='description'>
                                      <ReactMarkdown source={studio?.description} escapeHtml={false} />
-                                <div className="social-links">
+                                <div className='social-links'>
                                       <SocialLinksComponent socialLinks={ HEADER_SOCIAL_LINKS }></SocialLinksComponent>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <div className="portfolio-container" ref={this.potfolioContainerRef}>
-                        <div className="filter-container">{this.renderFilterButtons(filterItems)}</div>
-                        <div className="portfolio-list">{this.renderProjectCards(displayedProjects)}</div>
+                    <div className='portfolio-container' ref={this.potfolioContainerRef}>
+                        <div className='filter-container'>{this.renderFilterButtons(filterItems)}</div>
+                        <div className='portfolio-list'>{this.renderProjectCards(displayedProjects)}</div>
                     </div>
                 </article>
             </>

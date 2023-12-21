@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 
 import { isMobileOnly } from 'react-device-detect';
 
-import { ShowCard } from '../interfaces';
+import { ShowCard } from '../../models';
 
 import './ShowCardComponent.css';
 
