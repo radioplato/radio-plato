@@ -49,18 +49,21 @@ header {
             }
         }
 
-        .donate-button-container {
+        .player-container {
             display: flex;
             display: -webkit-flex;
             flex: 0 0 auto;
             
             flex-direction: row;
             flex-wrap: nowrap;
-            justify-content: flex-start;
             align-content: center;
+            justify-content: space-between;
             align-items: center;
 
-            width: 168px;
+            width: 1160px;
+
+            padding: 0 16px;
+            box-sizing: border-box;
         }
     }
 }
