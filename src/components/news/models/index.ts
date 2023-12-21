@@ -1,5 +1,4 @@
 import { CoverDto, Locale, SimpleImage, StrapiImageAttributes, StrapiList, StrapiLocalization, StrapiObject, StrapiObjectDto, StrapiResponse } from '../../shared/interfaces';
-import { LOCALE } from '../enums';
 
 export interface NewsPostAttributes extends StrapiObject {
     Category: string;
@@ -17,9 +16,9 @@ export type NewsImageData = {
     data: StrapiResponse<StrapiImageAttributes>;
 };
 
-export type NewsPost = StrapiResponse<NewsPostAttributes>;
+export type NewsEntry = StrapiResponse<NewsPostAttributes>;
 
-export type NewsList = StrapiList<NewsPost[]>;
+export type NewsList = StrapiList<NewsEntry[]>;
 
 export interface NewsCard {
     excerpt: string;
@@ -31,20 +30,6 @@ export interface NewsCard {
     title: string;
     publishDate: string;
 };
-
-export interface NewsDto extends StrapiObjectDto {
-    localizations: StrapiLocalization[];
-    Category: string;
-    Content: string;
-    Excerpt: string;
-    PhotosBy?: string;
-    PostCover: CoverDto;
-    Slug: string;
-    Title: string;
-    WordsBy: string;
-    publish_at: string;
-    locale: Locale;
-}
 
 export interface NewsArticle extends NewsCard {
     content: string;

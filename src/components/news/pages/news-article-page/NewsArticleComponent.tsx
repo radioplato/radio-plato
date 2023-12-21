@@ -9,7 +9,7 @@ import qs from 'qs';
 import { Seo } from '../../../shared/wrappers/seo/Seo'
 import { Button, BUTTON_TYPE, BUTTON_SIZE, ICON_POSITION } from '../../../shared/button/components/Button';
 
-import { NewsCard, NewsPost, NewsArticle } from '../../models';
+import { NewsCard, NewsEntry, NewsArticle } from '../../models';
 import { NEWS_CARD_SIZE } from '../../enums';
 
 import NewsCardComponent from '../../components/news-card/NewsCardComponent';
@@ -31,20 +31,20 @@ export function NewsArticleComponent({
     const [newsArticle, setNewsArticle] = useState<NewsCard | null>(null);
     const [relatedNewsCards, setRelatedNewsCards] = useState<NewsCard[]>([]);
 
-    const parseNews = (article: NewsPost): NewsArticle => {
+    const parseNews = (entry: NewsEntry): NewsArticle => {
         return {
-            title: article.attributes.Title,
-            content: article.attributes.Content,
-            category: article.attributes.Category.toLowerCase(),
-            wordsBy: article.attributes.WordsBy,
-            photosBy: article.attributes.PhotosBy,
-            excerpt: article.attributes.Excerpt,
-            slug: article.attributes.Slug,
-            publishDate: article.attributes.PublishAt,
+            title: entry.attributes.Title,
+            content: entry.attributes.Content,
+            category: entry.attributes.Category.toLowerCase(),
+            wordsBy: entry.attributes.WordsBy,
+            photosBy: entry.attributes.PhotosBy,
+            excerpt: entry.attributes.Excerpt,
+            slug: entry.attributes.Slug,
+            publishDate: entry.attributes.PublishAt,
             newsCover: {
-                alternativeText: article.attributes.PostCover.data.attributes.alternativeText,
-                caption: article.attributes.PostCover.data.attributes.caption,
-                url: article.attributes.PostCover.data.attributes.url
+                alternativeText: entry.attributes.PostCover.data.attributes.alternativeText,
+                caption: entry.attributes.PostCover.data.attributes.caption,
+                url: entry.attributes.PostCover.data.attributes.url
             },
         };
     }
@@ -85,7 +85,7 @@ export function NewsArticleComponent({
 
         return fetch(`${process.env.REACT_APP_BACKEND_URL_V2}/posts?${query}`)
             .then(response => response.json())
-            .then(data => data.data.map((datum: NewsPost) => parseNews(datum)))
+            .then(data => data.data.map((entry: NewsEntry) => parseNews(entry)))
             .then(cards => setRelatedNewsCards(cards));
     }
 

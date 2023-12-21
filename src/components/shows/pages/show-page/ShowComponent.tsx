@@ -8,7 +8,7 @@ import ShowCardComponent from '../../components/show-card/ShowCardComponent';
 import { Seo } from '../../../shared/wrappers/seo/Seo'
 import { ShowDto, Show, ShowCard } from '../../models';
 
-import './ShowComponent.css';
+import './ShowComponent.scss';
 
 
 interface ShowComponentProperties {
@@ -64,7 +64,8 @@ export class ShowComponent extends Component<ShowComponentProperties> {
             },
             slug: showDto.Slug,
             title: showDto.Title,
-            weight: showDto.Weight
+            author: '',
+            isArchived: false
         };
     }
 

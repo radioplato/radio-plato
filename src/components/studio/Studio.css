@@ -11,7 +11,7 @@
     align-content: stretch;
     align-items: flex-start;
 
-    width: calc(100% - 121px);
+    width: calc(100% - 122px);
     height: calc(100vh - 102px);
 
     overflow-x: hidden;
@@ -294,7 +294,7 @@
 
     background-color: #000000;
 
-    width: calc(100vw - 121px);
+    width: calc(100vw - 122px);
     height: calc(100vh - 102px);
 }
 

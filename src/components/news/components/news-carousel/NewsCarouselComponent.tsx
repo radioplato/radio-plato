@@ -4,7 +4,7 @@ import * as qs from 'qs';
 
 import NewsCardComponent from '../news-card/NewsCardComponent';
 
-import { NewsCard, NewsPost } from '../../models';
+import { NewsCard, NewsEntry } from '../../models';
 import { NEWS_CARD_SIZE } from '../../enums';
 
 import './NewsCarouselComponent.scss';
@@ -34,7 +34,7 @@ export function NewsCarouselComponent() {
 
         fetch(`${process.env.REACT_APP_BACKEND_URL_V2}/posts?${query}`)
             .then(response => response.json())
-            .then(data => data.data.map((datum: NewsPost) => parseNewsCard(datum)))
+            .then(data => data.data.map((entry: NewsEntry) => parseNewsCard(entry)))
             .then(newsCards => handleLoadResponse(newsCards));
     }
 
@@ -51,18 +51,18 @@ export function NewsCarouselComponent() {
         loadNews();
     }, []);
 
-    const parseNewsCard = (post: NewsPost): NewsCard => {
+    const parseNewsCard = (entry: NewsEntry): NewsCard => {
         return {
-            excerpt: post.attributes.Excerpt,
-            category: post.attributes.Category?.toLowerCase(),
+            excerpt: entry.attributes.Excerpt,
+            category: entry.attributes.Category?.toLowerCase(),
             newsCover: {
-                alternativeText: post.attributes.PostCover.data.attributes.alternativeText,
-                caption: post.attributes.PostCover.data.attributes.caption,
-                url: post.attributes.PostCover.data.attributes.url
+                alternativeText: entry.attributes.PostCover.data.attributes.alternativeText,
+                caption: entry.attributes.PostCover.data.attributes.caption,
+                url: entry.attributes.PostCover.data.attributes.url
             },
-            slug: post.attributes.Slug,
-            title: post.attributes.Title,
-            publishDate: post.attributes.PublishAt
+            slug: entry.attributes.Slug,
+            title: entry.attributes.Title,
+            publishDate: entry.attributes.PublishAt
         };
     }
 

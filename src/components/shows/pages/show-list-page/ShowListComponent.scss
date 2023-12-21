@@ -1,0 +1,175 @@
+@import 'styles/colors.scss';
+@import 'styles/fonts.scss';
+
+.show-list {
+    display: flex;
+    display: -webkit-flex;
+    flex: 0 0 auto;
+    
+    flex-direction: column;
+    flex: 2 1 100%;
+
+    width: calc(100% - 122px);
+    height: calc(100vh - 102px);
+
+    overflow-x: hidden;
+    overflow-y: overlay;
+    box-sizing: border-box;
+
+    &::-webkit-scrollbar {
+        width: 2px;
+    }
+    
+    &::-webkit-scrollbar-track {
+        background-color: #00000000;
+        border: 0;
+    }
+    
+    &::-webkit-scrollbar-thumb {
+        background-color: #ffffff13;
+    }
+    
+    &::-webkit-scrollbar-button {
+        display: none;
+    }
+
+    .shows-list-headline-container {
+        display: flex;
+        display: -webkit-flex;
+        flex: 0 0 auto;
+
+        flex-direction: row;
+        flex-wrap: nowrap;
+        align-content: stretch;
+        justify-content: center;
+        align-items: center;
+
+        width: 100%;
+
+        .shows-list-headline {
+            display: flex;
+            display: -webkit-flex;
+            flex: 0 0 auto;
+
+            flex-direction: row;
+            flex-wrap: nowrap;
+            align-content: stretch;
+            justify-content: space-between;
+            align-items: center;
+
+            width: 100%;
+            max-width: 1160px;
+
+            box-sizing: border-box;
+            padding: 56px 16px;
+        }
+
+        .shows-list-title {
+            @include interFont(36px, 400, 48px);
+            color: $white;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+        }
+
+        .shows-list-title-button {
+            display: flex;
+            display: -webkit-flex;
+            flex: 0 0 auto;
+
+            flex-direction: row;
+            flex-wrap: nowrap;
+            align-content: center;
+            justify-content: center;
+            align-items: center;
+
+            height: 48px;
+        }
+
+        .shows-categories-container  {
+            display: flex;
+            display: -webkit-flex;
+            flex: 0 0 auto;
+
+            flex-direction: row;
+            flex-wrap: nowrap;
+            justify-content: flex-start;
+            align-content: center;
+            align-items: flex-start;
+
+            float: right;
+            font-size: 14px;
+
+            .filter-button {
+                margin-left: 8px;
+
+                .button-label {
+                    color: $grey-800;
+                }
+
+                &.selected {
+                    .button-label {
+                        color: $white;
+                        text-decoration: underline;
+                        text-underline-offset: 3px;
+                    }
+                }
+
+                &:hover {
+                    .button-label {
+                        color: $yellow-1000;
+                        text-decoration: underline;
+                        text-underline-offset: 3px;
+                    }
+                }
+
+                &:active {
+                    .button-label {
+                        color: $yellow-600;
+                        text-decoration: underline;
+                        text-underline-offset: 3px;
+                    }
+                }
+            }
+        }
+    }
+
+    .show-cards-container {
+        display: flex;
+        display: -webkit-flex;
+        flex: 0 0 auto;
+
+        flex-direction: column;
+        flex-wrap: nowrap;
+        align-content: stretch;
+        justify-content: center;
+        align-items: center;
+
+        width: 100%;
+
+        .show-cards {
+            display: flex;
+            display: -webkit-flex;
+            flex: 0 0 auto;
+
+            flex-direction: row;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-content: center;
+            align-items: flex-start;
+
+            width: 100%;
+            max-width: 1160px;
+
+            box-sizing: border-box;
+            padding: 0 16px;
+        }
+    }
+
+    &.mobile {
+        width: 100%;
+        height: auto;
+        box-sizing: border-box;
+        overflow: visible;
+    }
+}
+

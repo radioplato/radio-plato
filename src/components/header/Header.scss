@@ -37,6 +37,16 @@ header {
             width: 120px;
 
             cursor: pointer;
+
+            color: $white;
+
+            &:hover {
+                color: $yellow-1000;
+            }
+
+            &:active {
+                color: $yellow-600;
+            }
         }
 
         .donate-button-container {

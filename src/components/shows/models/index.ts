@@ -1,6 +1,25 @@
 
-import { StrapiObjectDto, CoverDto, SimpleImage } from '../../shared/interfaces';
+import { CoverDto, SimpleImage, StrapiImageAttributes, StrapiList, StrapiObject, StrapiObjectDto, StrapiResponse } from '../../shared/interfaces';
 import { SocialLinks } from '../../shared/social-links/models';
+
+export interface ShowAttributes extends StrapiObject {
+    Archived: boolean;
+    Author: string;
+    ShowCover: ShowImageData;
+    Content: string;
+    Excerpt: string;
+    PublishAt: string;
+    Slug: string;
+    Title: string;
+}
+
+export type ShowImageData = {
+    data: StrapiResponse<StrapiImageAttributes>;
+};
+
+export type ShowEntry = StrapiResponse<ShowAttributes>;
+
+export type NewsList = StrapiList<ShowEntry[]>;
 
 interface ShowLinkDto extends StrapiObjectDto {
     castbox?: string;
@@ -24,16 +43,16 @@ export interface ShowDto extends StrapiObjectDto {
     ShowLink: ShowLinkDto;
     Slug: string;
     Title: string;
-    Weight: number;
     MixcloudPlaylist: string;
 }
 
 export interface ShowCard {
+    isArchived: boolean;
+    author: string;
     excerpt: string;
     showCover: SimpleImage;
     slug: string;
     title: string;
-    weight: number;
 }
 
 export interface Show {

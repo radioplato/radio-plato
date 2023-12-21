@@ -19,7 +19,7 @@ export function Header() {
 
     return (
         <header className={`header-container ${isMobileOnly ? 'mobile' : 'desktop'}`}>
-            <div className='logo-container' onClick={() => history.push('/')}>
+            <div className='logo-container' title='back to main page' onClick={() => history.push('/')}>
                 <div
                     className='logo'
                     aria-label='radio plato logo'
