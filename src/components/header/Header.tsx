@@ -35,12 +35,8 @@ export function Header() {
             </div>
             <Switch>
                 <Route exact path='/player' render={
-                    props => (<></>)
-                } />
-                <Route path='/' render={
                     props => (
-                        <div className='player-container'>
-                            <HeaderPlayerComponent></HeaderPlayerComponent>
+                        <div className='donate-button-container'>
                             <Button
                                 type={BUTTON_TYPE.OUTLINE}
                                 size={BUTTON_SIZE.MEDIUM}
@@ -53,11 +49,26 @@ export function Header() {
                         </div>
                     )
                 } />
+                <Route path='/' render={
+                    props => (
+                        <>
+                            <div className='player-container'>
+                                <HeaderPlayerComponent></HeaderPlayerComponent>
+                                <Button
+                                    type={BUTTON_TYPE.OUTLINE}
+                                    size={BUTTON_SIZE.MEDIUM}
+                                    icon={ICON_KEY.HEART_REGULAR}
+                                    iconPosition={ICON_POSITION.LEFT}
+                                    label='donate'
+                                    href={DONATE_LINK}
+                                    title='donate link'
+                                ></Button>
+                            </div>
+                            <div className='fake-container'></div>
+                        </>
+                    )
+                } />
             </Switch>
-
-            <div className='fake-container'>
-
-            </div>
         </header>
     );
 }

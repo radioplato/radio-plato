@@ -65,5 +65,19 @@ header {
             padding: 0 16px;
             box-sizing: border-box;
         }
+
+        .donate-button-container {
+            display: flex;
+            display: -webkit-flex;
+            flex: 0 0 auto;
+            
+            flex-direction: row;
+            flex-wrap: nowrap;
+            justify-content: flex-start;
+            align-content: center;
+            align-items: center;
+
+            width: 168px;
+        }
     }
 }
