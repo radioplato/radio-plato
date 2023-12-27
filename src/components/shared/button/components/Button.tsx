@@ -19,6 +19,7 @@ export enum BUTTON_SIZE {
     BIG = 'big',
     LARGE = 'large',
     HUGE = 'huge',
+    ENORMOUS  = 'enormous',
 };
 
 export enum BUTTON_TYPE {

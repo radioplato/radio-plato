@@ -104,7 +104,7 @@ export function ShowListComponent() {
             <div className='shows-list-headline-container'>
                 <div className='shows-list-headline'>
                     <div className='shows-list-title'>Shows</div>
-                    <div className='shows-categories-container'>
+                    <div className='show-categories-container'>
                         {
                             SHOW_FILTER_VALUES.map((showFilter, index) => (
                                 <Button

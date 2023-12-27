@@ -1,0 +1,132 @@
+@import 'styles/colors.scss';
+@import 'styles/fonts.scss';
+
+.about-container {
+    display: flex;
+    display: -webkit-flex;
+    flex: 0 0 auto;
+    
+    flex-direction: column;
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+    align-content: stretch;
+    align-items: center;
+
+    width: calc(100% - 122px);
+    height: calc(100vh - 102px);
+    padding: 56px 0;
+
+    overflow-x: hidden;
+    overflow-y: overlay;
+    box-sizing: border-box;
+
+    &::-webkit-scrollbar {
+        width: 2px;
+    }
+    
+    &::-webkit-scrollbar-track {
+        background-color: #00000000;
+        border: 0;
+    }
+    
+    &::-webkit-scrollbar-thumb {
+        background-color: #ffffff13;
+    }
+    
+    &::-webkit-scrollbar-button {
+        display: none;
+    }
+
+    .about {
+        display: flex;
+        display: -webkit-flex;
+        flex: 0 0 auto;
+        
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: center;
+        align-content: stretch;
+        align-items: flex-start;
+
+        width: 100%;
+        max-width: 1160px;
+
+        padding: 0 16px;
+        box-sizing: border-box;
+
+        .information,
+        .image {
+            width: 50%;
+        }
+
+        .information {
+            display: flex;
+            display: -webkit-flex;
+            flex: 0 0 auto;
+            
+            flex-direction: column;
+            flex-wrap: nowrap;
+            justify-content: flex-start;
+            align-content: center;
+            align-items: flex-start;
+        
+            margin-bottom: 101px;
+
+            .about-title {
+                width: 100%;
+                margin-bottom: 56px;
+
+                @include interFont(36px, 400, 36px);
+                color: $white;
+                letter-spacing: 0.5px;
+                text-transform: uppercase;
+            }
+
+            .about-text {
+                margin-bottom: 56px;
+
+                @include interFont(22px, 300, 36px);
+                color: $white;
+                letter-spacing: 0.5px;
+            }
+
+            .social-buttons {
+                margin-bottom: 56px;
+            }
+        }
+
+        .image {
+            display: flex;
+            display: -webkit-flex;
+            flex: 0 0 auto;
+            
+            flex-direction: row;
+            flex-wrap: nowrap;
+            justify-content: flex-end;
+            align-content: center;
+            align-items: center;
+
+            img {
+                width: 85%;
+                height: auto;
+            }
+        }
+    }
+
+    &.mobile {
+        flex-direction: column-reverse;
+        width: 100%;
+        height: auto;
+        box-sizing: border-box;
+        overflow: visible;
+
+        .information,
+        .image {
+            width: 100%;
+        }
+
+        .information {
+            margin: 0;
+        }
+    }
+}

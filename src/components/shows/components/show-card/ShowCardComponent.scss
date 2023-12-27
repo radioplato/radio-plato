@@ -62,7 +62,7 @@
 
             .show-excerpt {
                 @include interFont(16px, 400, 24px);
-                color: $white;
+                color: $grey-900;
                 letter-spacing: 0.5px;
             }
         }

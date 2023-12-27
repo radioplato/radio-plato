@@ -65,7 +65,7 @@ function VolumeControls({
             <Button
                 className='volume-mode-button'
                 type={BUTTON_TYPE.GHOST}
-                size={BUTTON_SIZE.BIG}
+                size={BUTTON_SIZE.LARGE}
                 icon={volumeIconKey}
                 title={muted ? 'unmute' : 'mute'}
                 onClick={toggleVolumeMode}

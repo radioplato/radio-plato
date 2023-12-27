@@ -62,7 +62,7 @@ function HeaderPlayerComponent() {
                 <Button
                     className='play-button'
                     type={BUTTON_TYPE.OUTLINE}
-                    size={BUTTON_SIZE.BIG}
+                    size={BUTTON_SIZE.LARGE}
                     icon={playing ? ICON_KEY.PAUSE_FILLED : ICON_KEY.PLAY_FILLED}
                     title={playing ? `pause` : 'play'}
                     onClick={togglePlayingMode}
@@ -73,7 +73,7 @@ function HeaderPlayerComponent() {
                 <Button
                     className='fullscreen-button'
                     type={BUTTON_TYPE.GHOST}
-                    size={BUTTON_SIZE.BIG}
+                    size={BUTTON_SIZE.LARGE}
                     icon={ICON_KEY.MAXIMIZE_REGULAR}
                     title='go to player page'
                     onClick={navigateToPlayerPage}

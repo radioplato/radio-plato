@@ -1,5 +1,5 @@
-import { ICON_KEY } from "../../shared/icons/icons";
-import { MenuButton, SocialButton } from "../interfaces";
+import { ICON_KEY } from '../../shared/icons/icons';
+import { MenuButton } from '../models';
 
 export const MENU_BUTTONS: MenuButton[] = [
     {
@@ -18,57 +18,8 @@ export const MENU_BUTTONS: MenuButton[] = [
         className: 'schedule-button'
     },
     {
-        label: 'Studio',
-        route: '/studio',
-        className: 'studio-button'
-    },
-    {
         label: 'About',
         route: '/about',
         className: 'about-button'
     },
 ];
-
-export const SOCIAL_BUTTONS: SocialButton[] = [
-    {
-        name: 'soundcloud',
-        icon: ICON_KEY.SOUNDCLOUD,
-        link: 'https://soundcloud.com/radioplato',
-    },
-    {
-        name: 'bandcamp',
-        icon: ICON_KEY.BANDCAMP,
-        link: 'https://radioplato.bandcamp.com',
-    },
-    {
-        name: 'spotify',
-        icon: ICON_KEY.SPOTIFY,
-        link: 'https://open.spotify.com/user/llh1ub9gwdw5cpczlzz8mu27b',
-    },
-    {
-        name: 'youtube',
-        icon: ICON_KEY.YOUTUBE,
-        link: 'https://www.youtube.com/@radioplato',
-    },
-    {
-        name: 'email',
-        icon: ICON_KEY.EMAIL,
-        link: 'mailto:hey@radioplato.by',
-    },
-    {
-        name: 'instagram',
-        icon: ICON_KEY.INSTAGRAM,
-        link: 'https://www.instagram.com/radio_plato',
-    },
-    {
-        name: 'telegram',
-        icon: ICON_KEY.TELEGRAM,
-        link: 'https://t.me/radioplato',
-    },
-    {
-        name: 'facebook',
-        icon: ICON_KEY.FACEBOOK,
-        link: 'https://www.facebook.com/radioplato.by',
-    },
-];
-

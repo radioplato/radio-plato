@@ -92,7 +92,7 @@ export function NewsCarouselComponent() {
                                 <Button
                                     className='news-navigation-button'
                                     type={BUTTON_TYPE.GHOST}
-                                    size={BUTTON_SIZE.BIG}
+                                    size={BUTTON_SIZE.LARGE}
                                     icon={ICON_KEY.CHEVRON_REGULAR}
                                     iconPosition={ICON_POSITION.RIGHT}
                                     iconRotate={-90}
@@ -103,7 +103,7 @@ export function NewsCarouselComponent() {
                                 <Button
                                     className='news-navigation-button'
                                     type={BUTTON_TYPE.GHOST}
-                                    size={BUTTON_SIZE.BIG}
+                                    size={BUTTON_SIZE.LARGE}
                                     icon={ICON_KEY.CHEVRON_REGULAR}
                                     iconPosition={ICON_POSITION.RIGHT}
                                     iconRotate={90}

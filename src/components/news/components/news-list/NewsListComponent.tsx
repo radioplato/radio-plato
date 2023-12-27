@@ -195,7 +195,7 @@ export function NewsListComponent({
                                 <Button
                                     className='news-list-title-button'
                                     type={BUTTON_TYPE.GHOST}
-                                    size={BUTTON_SIZE.LARGE}
+                                    size={BUTTON_SIZE.HUGE}
                                     icon={ICON_KEY.ARROW_REGULAR}
                                     iconPosition={ICON_POSITION.RIGHT}
                                     iconRotate={90}

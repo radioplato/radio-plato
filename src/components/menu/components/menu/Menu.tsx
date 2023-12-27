@@ -5,11 +5,13 @@ import { Link } from 'react-router-dom';
 import { isMobileOnly } from 'react-device-detect';
 
 import Icon from '../../../shared/icons/component/IconComponent';
+import SocialButtonsComponent from '../../../shared/social-links/components/social-buttons/SocialButtonsComponent';
 
+import { PLATO_SOCIAL_BUTTONS } from '../../../shared/social-links/constants';
 import { DONATE, DONATE_LINK } from '../../../shared/constants';
-import { MENU_BUTTONS, SOCIAL_BUTTONS } from '../../constants';
+import { MENU_BUTTONS } from '../../constants';
 import { ICON_KEY } from '../../../shared/icons/icons';
-import { MenuButton, SocialButton } from '../../interfaces';
+import { MenuButton } from '../../models';
 
 import './Menu.scss'
 
@@ -28,28 +30,6 @@ function Menu({ menuRef, wrapperRef, toggleMenu }: MenuProperties) {
                     {button.label}
                 </Link>
             </div>
-        );
-    }
-
-    const renderSocialButton = (button: SocialButton) => {
-        return (
-            <a
-                key={button.name}
-                target='_blank'
-                href={button.link}
-                title={`${button.name} link`}
-                aria-label={`${button.name} link`}
-                rel='noopener noreferrer'
-                className={`menu-social-button ${button.name}`}
-            >
-                <Icon
-                    icon={button.icon}
-                    style={{
-                        width: '32px',
-                        height: '32px'
-                    }}
-                ></Icon>
-            </a>
         );
     }
 
@@ -86,7 +66,7 @@ function Menu({ menuRef, wrapperRef, toggleMenu }: MenuProperties) {
                         </div>
                     </div>
                     <div className='menu-social-buttons'>
-                        {SOCIAL_BUTTONS.map(button => renderSocialButton(button))}
+                        <SocialButtonsComponent socialLinks={ PLATO_SOCIAL_BUTTONS }></SocialButtonsComponent>
                     </div>
                     <a
                         target='_blank'

@@ -45,7 +45,7 @@
             align-items: center;
         }
 
-        &.huge {
+        &.enormous {
             height: 96px;
             padding: 0 24px;
             
@@ -55,7 +55,7 @@
             }
         }
 
-        &.large {
+        &.huge {
             height: 72px;
 
             @include interFont(36px, 400, 36px);
@@ -77,8 +77,8 @@
                 height: 36px;
             }
         }
-    
-        &.big {
+
+        &.large {
             height: 48px;
             padding: 0 16px;
 
@@ -90,6 +90,25 @@
             }
 
             &.icon-only {
+                padding: 0 12px;
+            }
+        }
+    
+        &.big {
+            height: 40px;
+            min-width: 40px;
+            padding: 0 14px;
+
+            @include interFont(16px, 500, 20px);
+
+            .button-icon {
+                width: 32px;
+                height: 32px;
+            }
+
+            &.icon-only {
+                justify-content: center;
+
                 padding: 0 12px;
             }
         }

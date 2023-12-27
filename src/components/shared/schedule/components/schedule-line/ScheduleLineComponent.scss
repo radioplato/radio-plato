@@ -133,7 +133,8 @@
         }
 
         .description {
-            @include openSansFont(16px, 400, 24px);
+            @include interFont(16px, 400, 24px);
+            color: $grey-900;
         }
     }
 }

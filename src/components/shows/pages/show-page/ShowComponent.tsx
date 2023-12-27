@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 
 import { isMobileOnly } from 'react-device-detect';
 
-import SocialLinksComponent from '../../../shared/social-links/components/SocialLinksComponent/SocialLinksComponent';
+import SocialButtonsComponent from '../../../shared/social-links/components/social-buttons/SocialButtonsComponent';
 import ShowCardComponent from '../../components/show-card/ShowCardComponent';
 
 import { Seo } from '../../../shared/wrappers/seo/Seo'
@@ -36,20 +36,7 @@ export class ShowComponent extends Component<ShowComponentProperties> {
             },
             title: showDto.Title,
             slug: showDto.Slug,
-            showLinks: {
-                mixcloud: showDto.ShowLink.mixcloud,
-                spotify: showDto.ShowLink.spotify,
-                itunes: showDto.ShowLink.itunes,
-                castbox: showDto.ShowLink.castbox,
-                facebook: showDto.ShowLink.facebook,
-                vk: showDto.ShowLink.vk,
-                instagram: showDto.ShowLink.instagram,
-                telegram: showDto.ShowLink.telegram,
-                googlepodcasts: showDto.ShowLink.googlepodcasts,
-                soundcloud: showDto.ShowLink.soundcloud,
-                patreon: showDto.ShowLink.patreon, 
-                youtube: showDto.ShowLink.youtube,
-            },
+            showLinks: {},
             mixcloudPlaylist: showDto.MixcloudPlaylist,
         } : null
     }
@@ -117,7 +104,6 @@ export class ShowComponent extends Component<ShowComponentProperties> {
                     <div className='information'>
                         <h1>{ show.title }</h1>
                         <p>{ show.description }</p>
-                        <SocialLinksComponent socialLinks={ show.showLinks }/>
                     </div>
                     <div className='show-cover'>
                         <img src={ imageSrc } loading='lazy' alt={ show.showCover.alternativeText }/>

@@ -6,14 +6,14 @@ import ReactMarkdown from 'react-markdown';
 import { fromEvent, Subject } from 'rxjs';
 import { debounceTime, first, mapTo, takeUntil } from 'rxjs/operators';
 
-import SocialLinksComponent from '../shared/social-links/components/SocialLinksComponent/SocialLinksComponent';
+import SocialButtonsComponent from '../shared/social-links/components/social-buttons/SocialButtonsComponent';
 import ProjectCardComponent from './project-card/ProjectCardComponent';
 import { Seo } from '../shared/wrappers/seo/Seo';
 
 import { FilterItem, ProjectTag } from './enums';
 import { StudioHeaderDto, StudioHeader, PortfolioDto, Project, PortfolioTagDto } from './interfaces';
 import { projectTagToFilterItem, filterItemToProjectTag } from './constants';
-import { HEADER_SOCIAL_LINKS } from '../shared/social-links/constants';
+import { PLATO_SOCIAL_BUTTONS } from '../shared/social-links/constants';
 
 import Loader from '../../components/shared/loader/Loader';
 
@@ -231,7 +231,7 @@ export class StudioComponent extends Component {
                             <div className='description'>
                                      <ReactMarkdown source={studio?.description} escapeHtml={false} />
                                 <div className='social-links'>
-                                      <SocialLinksComponent socialLinks={ HEADER_SOCIAL_LINKS }></SocialLinksComponent>
+                                      <SocialButtonsComponent socialLinks={ PLATO_SOCIAL_BUTTONS }></SocialButtonsComponent>
                                 </div>
                             </div>
                         </div>

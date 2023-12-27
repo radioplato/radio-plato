@@ -1,5 +1,7 @@
-import { Socials } from '../enums';
+import { ICON_KEY } from '../../icons/icons';
 
-export type SocialLinks = {
-    [key in Socials]?: string;
-};
+export interface SocialButton {
+    name: string;
+    icon: ICON_KEY;
+    link: string;
+}

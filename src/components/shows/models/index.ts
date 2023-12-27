@@ -1,6 +1,5 @@
 
 import { CoverDto, SimpleImage, StrapiImageAttributes, StrapiList, StrapiObject, StrapiObjectDto, StrapiResponse } from '../../shared/interfaces';
-import { SocialLinks } from '../../shared/social-links/models';
 
 export interface ShowAttributes extends StrapiObject {
     Archived: boolean;
@@ -54,6 +53,10 @@ export interface ShowCard {
     slug: string;
     title: string;
 }
+
+export type SocialLinks = {
+    [key: string]: string | undefined;
+};
 
 export interface Show {
     description: string;

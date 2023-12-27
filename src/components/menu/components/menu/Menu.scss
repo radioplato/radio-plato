@@ -147,22 +147,19 @@
 
             margin-bottom: 24px;
 
-            .menu-social-button {
-                display: flex;
-                display: -webkit-flex;
-                flex: 0 0 auto;
+            .social-button .button {
+                
+                margin-bottom: 24px;
+                padding: 0 24px 0 0;
 
-                justify-content: center;
-                align-content: center;
-                align-items: center;
+                color: $black;
 
-                width: 40px;
-                height: 40px;
-
-                margin: 0 24px 24px 0;
+                &:hover {
+                    color: $grey-200;
+                }
 
                 &:active {
-                    color: $grey-500;
+                    color: $grey-100;
                 }
             }
         }
