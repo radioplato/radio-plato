@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, useEffect, useState } from 'react';
 
 import { isMobileOnly } from 'react-device-detect';
 
@@ -6,123 +6,142 @@ import SocialButtonsComponent from '../../../shared/social-links/components/soci
 import ShowCardComponent from '../../components/show-card/ShowCardComponent';
 
 import { Seo } from '../../../shared/wrappers/seo/Seo'
-import { ShowDto, Show, ShowCard } from '../../models';
+import { Show, ShowCard, ShowEntry } from '../../models';
 
 import './ShowComponent.scss';
+import { useHistory, useLocation } from 'react-router-dom';
+import qs from 'qs';
+import { ICON_KEY } from '../../../shared/icons/icons';
 
 
 interface ShowComponentProperties {
     slug: string;
 }
 
-interface ShowComponentState {
-    show: Show | null;
-    showCards: ShowCard[];
-}
+export function ShowComponent({
+    slug
+}: ShowComponentProperties) {
+    const location = useLocation();
 
-export class ShowComponent extends Component<ShowComponentProperties> {
-    state: ShowComponentState = {
-        show: null,
-        showCards: []
-    }
-
-    parseShow(showDto: ShowDto): Show | null {
-        return showDto ? {
-            description: showDto.Description,
-            showCover: {
-                alternativeText: showDto.ShowCover.alternativeText,
-                caption: showDto.ShowCover.caption,
-                url: showDto.ShowCover.url
-            },
-            title: showDto.Title,
-            slug: showDto.Slug,
-            showLinks: {},
-            mixcloudPlaylist: showDto.MixcloudPlaylist,
-        } : null
-    }
-
-    parseShowCard (showDto: ShowDto): ShowCard {
+    const [show, setShow] = useState<Show | null>(null);
+    const [moreShows, setMoreShows] = useState<ShowCard[]>([]);
+    
+    const parseShow = (entry: ShowEntry): Show => {
         return {
-            excerpt: showDto.Excerpt,
+            description: entry.attributes.Description,
             showCover: {
-                alternativeText: showDto.ShowCover.alternativeText,
-                caption: showDto.ShowCover.caption,
-                url: showDto.ShowCover.url
+                alternativeText: entry.attributes.ShowCover.data.attributes.alternativeText,
+                caption: entry.attributes.ShowCover.data.attributes.caption,
+                url: entry.attributes.ShowCover.data.attributes.url
             },
-            slug: showDto.Slug,
-            title: showDto.Title,
-            author: '',
-            isArchived: false
+            title: entry.attributes.Title,
+            slug: entry.attributes.Slug,
+            socialButtons: Object.entries(entry.attributes.Links).map(([key, value]) => ({
+                name: key.toLowerCase(),
+                icon: key.toLowerCase() as ICON_KEY,
+                link: value ? value : ''
+            })).filter((button) => button.link && button.name !== 'id'),
         };
     }
 
-    fetchShow () {
-        const { slug } = this.props;
+    const parseShowCard = (entry: ShowEntry): ShowCard => {
+        return {
+            author: entry.attributes.Author,
+            isArchived: entry.attributes.Archived,
+            excerpt: entry.attributes.Excerpt,
+            showCover: {
+                alternativeText: entry.attributes.ShowCover.data.attributes.alternativeText,
+                caption: entry.attributes.ShowCover.data.attributes.caption,
+                url: entry.attributes.ShowCover.data.attributes.url
+            },
+            slug: entry.attributes.Slug,
+            title: entry.attributes.Title
+        };
+    }
 
-        return fetch(`${ process.env.REACT_APP_BACKEND_URL }/shows?Slug=${ slug }`)
+    const loadCurrentShow = () => {
+        const query = qs.stringify({
+            populate: '*',
+            filters: slug ? {
+                Slug: {
+                    $eqi: slug,
+                },
+            } : undefined,
+        });
+
+        setShow(null);
+
+        return fetch(`${process.env.REACT_APP_BACKEND_URL_V2}/shows?${query}`)
             .then(response => response.json())
-            .then((data: ShowDto[]) => this.parseShow(data[0]))
-            .then(show => this.setState({ show }));
+            .then(data => data.data[0] ? parseShow(data.data[0]) : null)
+            .then(article => setShow(article));
     }
 
-    fetchShows () {
-        return fetch(`${ process.env.REACT_APP_BACKEND_URL }/shows`)
+    const loadMoreShows = () => {
+        const query = qs.stringify({
+            populate: '*',
+            pagination: {
+                limit: 999
+            }
+        });
+
+        fetch(`${ process.env.REACT_APP_BACKEND_URL_V2 }/shows?${query}`)
             .then(response => response.json())
-            .then((data: ShowDto[]) => data.map(datum => this.parseShowCard(datum)))
-            .then(showCards => this.setState({ showCards }));
-    }
-    
-
-    async componentDidMount () {
-        await this.fetchShow();
-        await this.fetchShows();
+            .then(data => data.data.map((entry: ShowEntry) => parseShowCard(entry)))
+            .then(shows => setMoreShows(shows));
     }
 
-    componentDidUpdate (previousProps: ShowComponentProperties) {
-        if (this.props.slug !== previousProps.slug) {
-            this.setState({
-                show: null,
-                showCards: []
-            });
-            this.componentDidMount();
-        }
-    }
+    useEffect(() => {
+        loadCurrentShow();
+    }, [location]);
 
-    render () {
-        const { show, showCards } = this.state;
-        const imageSrc = show ? show.showCover.url : '';
+    useEffect(() => {
+        loadMoreShows();
+    }, [show]);
 
-        return show ? (
-            <article className={ `show ${ isMobileOnly ? 'mobile' : 'desktop' }` }>
-                <Seo meta={{
-                        title: show.title,
-                        description: show.description,
-                        thumbnail: imageSrc
-                    }}
-                />
-                <div className='show-description'>
-                    <div className='information'>
-                        <h1>{ show.title }</h1>
-                        <p>{ show.description }</p>
+    return show ? (
+        <article className={`show-container ${isMobileOnly ? 'mobile' : 'desktop'}`}>
+            <Seo meta={{
+                title: show.title,
+                description: show.description,
+                thumbnail: show ? show.showCover.url : ''
+            }}
+            />
+            <div className='show'>
+                <div className='information'>
+                    <h1 className='show-title'>{show.title}</h1>
+                    {
+                        show.socialButtons.length ? (
+                            <div className='social-buttons'>
+                                <SocialButtonsComponent socialLinks={show.socialButtons}></SocialButtonsComponent>
+                            </div>
+                        ) : null
+                    }
+                    <p className='show-description'>{show.description}</p>
+                </div>
+                <div className='image'>
+                    <img src={show.showCover.url} loading='lazy' alt={show.showCover.alternativeText} />
+                </div>
+            </div>
+            <div className='more-shows-section'>
+                <div className='more-shows-headline-container'>
+                    <div className='more-shows-headline'>
+                        <div className='more-shows-title'>More shows</div>
                     </div>
-                    <div className='show-cover'>
-                        <img src={ imageSrc } loading='lazy' alt={ show.showCover.alternativeText }/>
+                </div>
+                <div className='more-shows-container'>
+                    <div className="more-shows">
+                        {
+                            moreShows.filter(card => card.slug !== show?.slug)
+                                .sort(() => 0.5 - Math.random())
+                                .slice(0, 3)
+                                .map(showCard => (<ShowCardComponent key={showCard.slug} showCard={showCard}></ShowCardComponent>))
+                        }
                     </div>
                 </div>
-                <div className="title-container">
-                    <h2 className="more-shows-title">MORE SHOWS</h2>
-                </div>
-                <div className="more-shows">
-                {
-                    showCards.filter(showCard => showCard.slug !== this.state.show?.slug)
-                        .sort(() => 0.5 - Math.random())
-                        .slice(0, 3)
-                        .map(showCard => (<ShowCardComponent key={ showCard.slug } showCard={ showCard }></ShowCardComponent>))
-                }
-                </div>
-            </article>
-        ) : null;
-    }
+            </div>
+        </article>
+    ) : null;
 }
-  
+
 export default ShowComponent;

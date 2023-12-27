@@ -64,12 +64,12 @@ import { ReactComponent as GooglePlay } from './assets/google-play.svg';
 type SVGIcon = FunctionComponent<React.SVGProps<SVGSVGElement>>;
 
 export enum ICON_KEY {
-    APPLE_PODCASTS = 'apple-podcasts',
+    APPLE_PODCASTS = 'applepodcasts',
     BANDCAMP = 'bandcamp',
     CASTBOX = 'castbox',
     EMAIL = 'email',
     FACEBOOK = 'facebook',
-    GOOGLE_PODCASTS = 'google-podcasts',
+    GOOGLE_PODCASTS = 'googlepodcasts',
     INSTAGRAM = 'instagram',
     MIXCLOUD = 'mixcloud',
     PATREON = 'patreon',

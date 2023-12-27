@@ -17,6 +17,8 @@
     overflow-x: hidden;
     overflow-y: overlay;
     box-sizing: border-box;
+
+    scrollbar-gutter: stable;
 }
 
 .studio.mobile {

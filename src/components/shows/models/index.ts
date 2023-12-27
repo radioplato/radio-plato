@@ -1,13 +1,15 @@
 
-import { CoverDto, SimpleImage, StrapiImageAttributes, StrapiList, StrapiObject, StrapiObjectDto, StrapiResponse } from '../../shared/interfaces';
+import { SimpleImage, StrapiImageAttributes, StrapiList, StrapiObject, StrapiResponse } from '../../shared/interfaces';
+import { SocialButton } from '../../shared/social-links/models';
 
 export interface ShowAttributes extends StrapiObject {
     Archived: boolean;
     Author: string;
-    ShowCover: ShowImageData;
-    Content: string;
+    Description: string;
     Excerpt: string;
-    PublishAt: string;
+    ShowCover: ShowImageData;
+    Links: ShowLinksData;
+    Content: string;
     Slug: string;
     Title: string;
 }
@@ -20,29 +22,23 @@ export type ShowEntry = StrapiResponse<ShowAttributes>;
 
 export type NewsList = StrapiList<ShowEntry[]>;
 
-interface ShowLinkDto extends StrapiObjectDto {
-    castbox?: string;
-    facebook?: string;
-    instagram?: string;
-    itunes?: string;
-    mixcloud?: string;
-    spotify?: string;
-    telegram?: string;
-    vk?: string;
-    googlepodcasts?: string;
-    patreon?: string;
-    soundcloud?: string;
-    youtube?: string;
-}
+export type SocialLinks = {
+    [key: string]: string | null;
+};
 
-export interface ShowDto extends StrapiObjectDto {
-    Description: string;
-    Excerpt: string;
-    ShowCover: CoverDto;
-    ShowLink: ShowLinkDto;
-    Slug: string;
-    Title: string;
-    MixcloudPlaylist: string;
+export interface ShowLinksData extends SocialLinks {
+    ApplePodcasts: string;
+    Bandcamp: string;
+    Castbox: string;
+    Facebook: string;
+    GooglePodcasts: string;
+    Instagram: string;
+    Mixcloud: string;
+    Patreon: string;
+    Soundcloud: string;
+    Spotify: string;
+    Telegram: string;
+    Youtube: string;
 }
 
 export interface ShowCard {
@@ -54,23 +50,10 @@ export interface ShowCard {
     title: string;
 }
 
-export type SocialLinks = {
-    [key: string]: string | undefined;
-};
-
 export interface Show {
     description: string;
     title: string;
     slug: string;
     showCover: SimpleImage;
-    showLinks: SocialLinks;
-    mixcloudPlaylist: string;
-}
-
-export interface ShowEpisode {
-    title: string;
-    image: string;
-    url: string;
-    date: string;
-    slug: string;
+    socialButtons: SocialButton[];
 }

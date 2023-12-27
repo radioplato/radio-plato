@@ -1,3 +1,6 @@
+@import 'styles/colors.scss';
+@import 'styles/fonts.scss';
+
 main.mobile > .scrollable-container {
     width: 100%;
 }
@@ -17,12 +20,12 @@ main.mobile > .scrollable-container {
     }
     
     &::-webkit-scrollbar-track {
-        background-color: #00000000;
+        background-color: $transparent;
         border: 0;
     }
     
     &::-webkit-scrollbar-thumb {
-        background-color: #ffffff13;
+        background-color: $grey-100;
     }
     
     &::-webkit-scrollbar-button {

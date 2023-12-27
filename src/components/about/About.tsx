@@ -60,7 +60,7 @@ export class AboutComponent extends Component {
                 <div className='about'>
                     <div className='information'>
                         <h1 className='about-title'>{about.title}</h1>
-                        <div className='about-text'>{ about.description }</div>
+                        <div className='about-text'>{about.description}</div>
                         <div className='social-buttons'>
                             <SocialButtonsComponent socialLinks={PLATO_SOCIAL_BUTTONS}></SocialButtonsComponent>
                         </div>

@@ -13,8 +13,6 @@ import AboutComponent from '../about/About';
 import { SchedulePageComponent } from '../shared/schedule/components/schedule/ScheduleComponent';
 import StudioComponent from '../studio/Studio';
 import { NotFoundComponent } from '../not-found/NotFoundComponent';
-import iOSppComponent from '../ios-privacy-policy/ios-privacy-policy';
-import iOStcComponent from '../ios-terms-and-conditions/ios-terms-and-conditions';
 import PlayerPageComponent from '../shared/player/pages/player-page/PlayerPageComponent';
 import { NewsPageComponent } from '../news/pages/news-list-page/NewsPageComponent';
 
@@ -45,8 +43,6 @@ function Content() {
             <Route exact path={ `${ ROUTES.NEWS }/:category` } component={ (routerProps: any) => <NewsPageComponent category={ routerProps.match.params.category } /> } />
             <Route exact path={ `${ ROUTES.NEWS }/:category/:slug` } component={(routerProps: any) => <NewsArticleComponent slug={routerProps.match.params.slug} />} />
             <Route exact path={ ROUTES.ABOUT } component={ AboutComponent } />
-            <Route exact path={ ROUTES.IOSpp } component={ iOSppComponent } />
-            <Route exact path={ ROUTES.IOStc } component={ iOStcComponent } />
             <Route exact path={ ROUTES.STUDIO } component={ StudioComponent } />
             <Route component={ NotFoundComponent } />
         </Switch>

@@ -49,7 +49,7 @@ export function NewsArticleComponent({
         };
     }
 
-    const fetchCurrentArticle = () => {
+    const loadCurrentArticle = () => {
         const query = qs.stringify({
             populate: '*',
             filters: slug ? {
@@ -67,7 +67,7 @@ export function NewsArticleComponent({
             .then(article => setNewsArticle(article));
     }
 
-    const fetchLastArticles = () => {
+    const loadLastArticles = () => {
         const category = newsArticle?.category;
         const query = qs.stringify({
             populate: '*',
@@ -90,11 +90,11 @@ export function NewsArticleComponent({
     }
 
     useEffect(() => {
-        fetchCurrentArticle();
+        loadCurrentArticle();
     }, [location]);
 
     useEffect(() => {
-        fetchLastArticles();
+        loadLastArticles();
     }, [newsArticle]);
 
     const navigateToCategoryPage = (newsCategory: string) => {

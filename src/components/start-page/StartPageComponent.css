@@ -17,6 +17,8 @@
     height: calc(100vh - 102px);
     overflow-x: hidden;
     overflow-y: overlay;
+
+    scrollbar-gutter: stable;
 }
 
 .start-page-container.desktop::-webkit-scrollbar {
