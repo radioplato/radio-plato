@@ -1,4 +1,4 @@
-export enum IndexesOfDay {
+export enum DAY_INDEX {
     Monday = 0,
     Tuesday,
     Wednesday,
@@ -6,4 +6,9 @@ export enum IndexesOfDay {
     Friday,
     Saturday,
     Sunday
+};
+
+export enum AZURA_SCHEDULE_TYPE {
+    PLAYLIST = 'playlist',
+    STREAMER = 'streamer'
 };

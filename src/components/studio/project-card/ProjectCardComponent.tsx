@@ -83,7 +83,7 @@ function ProjectCardComponent ({ project, shouldPlay, onTagClick, onCardClick }:
             </div>
             <div className='information-container'>
                 <div className='project-tags'>{
-                    project.tags.length && project.tags.map((tag, index) => (
+                    project.tags.length && project.tags.map((tag) => (
                         <div className="tag" key={ `${project.id}-${tag.toLowerCase()}` }>
                             <div className='tag-name' onClick={ () => handleTagClick(tag) }>{ projectTagToFilterItem.get(tag) }</div>
                         </div>

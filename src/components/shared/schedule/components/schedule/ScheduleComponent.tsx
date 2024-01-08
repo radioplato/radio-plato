@@ -1,21 +1,15 @@
-import React, { Component } from 'react'
-
-import { Subscription } from 'rxjs';
+import React, { useEffect, useState } from 'react'
 
 import { isMobileOnly } from 'react-device-detect';
 
-import moment from 'moment';
-
-import { scheduleService } from '../../ScheduleService';
+import { scheduleService } from '../../services/ScheduleService';
 
 import ScheduleLine from '../schedule-line/ScheduleLineComponent'
-import { BUTTON_SIZE, BUTTON_TYPE, Button } from '../../../button/components/Button';
-
-import { ScheduleShow } from '../../interfaces';
-import { IndexesOfDay } from '../../enums';
-
-import { withSeo } from '../../../wrappers/seo/Seo'
 import { withScroll } from '../../../wrappers/scrollable/Scrollable';
+import { withSeo } from '../../../wrappers/seo/Seo';
+
+import { BUTTON_SIZE, BUTTON_TYPE, Button } from '../../../button/components/Button';
+import { ScheduleCard } from '../../models/schedule';
 import { BASIC_SEO_IMG } from '../../../constants';
 
 import './ScheduleComponent.scss'
@@ -31,64 +25,29 @@ const DAYS_OF_WEEK = [
     'sun'
 ];
 
-const SCHEDULE_SEO_TITLE = 'Schedule'
-const SCHEDULE_SEO_DESCRIPTION = 'We broadcast 24/7, here is what you will hear.'
+function ScheduleTableComponent() {
+    const [schedule, setSchedule] = useState<ScheduleCard[][]>(scheduleService.schedule);
+    const [selectedDay, setSelectedDay] = useState<number>(0);
 
-class ScheduleComponent extends Component {
-    scheduleSubscription: Subscription | null = null;
-    currentShowSubscription: Subscription | null = null;
-    state = {
-        schedule: scheduleService.schedule,
-        selectedDay: moment().isoWeekday() - 1
-    };
+    useEffect(() => {
+        const subscription = scheduleService.subscribeOnScheduleChanges((schedule: ScheduleCard[][]) => setSchedule(schedule));
 
-    componentDidMount() {
-        this.subscribeOnScheduleChanges();
-        this.subscribeOnCurrentShowChanges();
-    }
+        return () => subscription?.unsubscribe();
+    }, []);
 
-    subscribeOnScheduleChanges() {
-        this.scheduleSubscription = scheduleService.subscribeOnScheduleChanges(
-            (schedule: ScheduleShow[][]) => this.setState({ schedule })
-        );
-    }
-
-    subscribeOnCurrentShowChanges() {
-        this.currentShowSubscription = scheduleService.subscribeOnCurrentShowChanges(
-            () => this.setState(this.state)
-        );
-    }
-
-    scheduleShowlineBuilder = (showline: ScheduleShow) => {
+    const scheduleShowlineBuilder = (scheduleCard: ScheduleCard) => {
         return (
             <ScheduleLine
-                showline={showline}
-                selectedDay={this.state.selectedDay}
-                key={`${this.state.selectedDay}-${showline.title}-${showline.startDate}-${showline.startTime}`}
+                scheduleCard={scheduleCard}
+                selectedDay={selectedDay}
+                key={`${selectedDay}-${scheduleCard.title}-${scheduleCard.startDate}-${scheduleCard.startTime}`}
             />
         );
     }
 
-    selectDay = (day: IndexesOfDay) => {
-        this.setState({
-            selectedDay: day
-        });
-    };
-
-    handleDropdownChoise = (event: any) => {
-        this.selectDay(event.currentTarget.value)
-    }
-
-    componentWillUnmount() {
-        this.scheduleSubscription?.unsubscribe();
-        this.currentShowSubscription?.unsubscribe();
-    }
-
-    renderDropdown = () => {
-        const { selectedDay } = this.state;
-
+    const renderDropdown = () => {
         return (
-            <select className='schedule-day-dropdown' value={selectedDay} onChange={this.handleDropdownChoise}>
+            <select className='schedule-day-dropdown' value={selectedDay} onChange={(event) => setSelectedDay(Number(event.currentTarget.value))}>
                 {
                     DAYS_OF_WEEK.map((day, index) => (
                         <option key={`${day.toLowerCase()}-${index}`}
@@ -102,9 +61,7 @@ class ScheduleComponent extends Component {
         )
     }
 
-    renderButtons = () => {
-        const { selectedDay } = this.state;
-
+    const renderButtons = () => {
         return DAYS_OF_WEEK.map((day, index) => (
             <Button
                 key={`${day}-${index}`}
@@ -113,53 +70,50 @@ class ScheduleComponent extends Component {
                 size={BUTTON_SIZE.SMALL}
                 label={day}
                 title={day}
-                onClick={() => this.selectDay(index)}
+                onClick={() => setSelectedDay(index)}
             ></Button>
         ))
     }
 
-    renderDailySchedule = () => {
-        const {
-            schedule,
-            selectedDay
-        } = this.state;
-
-        return schedule[selectedDay].length ?
-            schedule[selectedDay].map((playlistShow: ScheduleShow) => this.scheduleShowlineBuilder(playlistShow)) :
-            [];
+    const renderDailySchedule = () => {
+        return schedule.length && schedule[selectedDay].length
+            ? schedule[selectedDay].map((playlistShow: ScheduleCard) => scheduleShowlineBuilder(playlistShow))
+            : [];
     }
 
-    render() {
-        return (
-            <div className={`schedule-container ${isMobileOnly ? 'mobile' : 'desktop'}`}>
-                <div className='schedule-headline-container'>
-                    <div className='schedule-headline'>
-                        <div className='schedule-title'>
-                            <p>Schedule</p>
-                        </div>
-                        {
-                            isMobileOnly
-                                ? (<div>
-                                    {this.renderDropdown()}
-                                </div>)
-                                : (<div className='schedule-days'>
-                                    {this.renderButtons()}
-                                </div>)
-                        }
+    return (
+        <div className={`schedule-container ${isMobileOnly ? 'mobile' : 'desktop'}`}>
+            <div className='schedule-headline-container'>
+                <div className='schedule-headline'>
+                    <div className='schedule-title'>
+                        <p>Schedule</p>
                     </div>
-                </div>
-                <div>
-                    {this.renderDailySchedule()}
+                    {
+                        isMobileOnly
+                            ? (
+                                <div>
+                                    {renderDropdown()}
+                                </div>
+                            )
+                            : (
+                                <div className='schedule-days'>
+                                    {renderButtons()}
+                                </div>
+                            )
+                    }
                 </div>
             </div>
-        )
-    }
+            <div>
+                {renderDailySchedule()}
+            </div>
+        </div>
+    );
 }
 
 const SchedulePageComponent = () => withSeo({
-    title: SCHEDULE_SEO_TITLE,
-    description: SCHEDULE_SEO_DESCRIPTION,
+    title: 'Schedule',
+    description: 'We broadcast 24/7, here is what you will hear.',
     thumbnail: BASIC_SEO_IMG
-}, withScroll(<ScheduleComponent />));
+}, withScroll(<ScheduleTableComponent />));
 
-export { ScheduleComponent, SchedulePageComponent };
+export { ScheduleTableComponent, SchedulePageComponent };

@@ -6,12 +6,10 @@ import NewsCardComponent from '../news-card/NewsCardComponent';
 
 import { NewsCard, NewsEntry } from '../../models';
 import { NEWS_CARD_SIZE } from '../../enums';
+import { BUTTON_SIZE, BUTTON_TYPE, Button, ICON_POSITION } from '../../../shared/button/components/Button';
+import { ICON_KEY } from '../../../shared/icons/icons';
 
 import './NewsCarouselComponent.scss';
-import { BUTTON_SIZE, BUTTON_TYPE, Button, ICON_POSITION } from '../../../shared/button/components/Button';
-import icon from '@iconify/react';
-import { type } from 'os';
-import { ICON_KEY } from '../../../shared/icons/icons';
 
 export function NewsCarouselComponent() {
     const [newsCards, setNewsCards] = useState<NewsCard[]>([]);

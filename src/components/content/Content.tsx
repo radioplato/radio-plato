@@ -5,14 +5,14 @@ import {
     Route,
 } from 'react-router-dom';
 
-import StartPageComponent from '../start-page/StartPageComponent';
+import StartPageComponent from '../../pages/start/StartPageComponent';
 import ShowListComponent from '../shows/pages/show-list-page/ShowListComponent';
 import ShowComponent from '../shows/pages/show-page/ShowComponent';
 import NewsArticleComponent from '../news/pages/news-article-page/NewsArticleComponent';
-import AboutComponent from '../about/About';
+import { AboutPageComponent } from '../../pages/about/AboutPageComponent';
 import { SchedulePageComponent } from '../shared/schedule/components/schedule/ScheduleComponent';
 import StudioComponent from '../studio/Studio';
-import { NotFoundComponent } from '../not-found/NotFoundComponent';
+import { NotFoundPageComponent } from '../../pages/not-found/NotFoundPageComponent';
 import PlayerPageComponent from '../shared/player/pages/player-page/PlayerPageComponent';
 import { NewsPageComponent } from '../news/pages/news-list-page/NewsPageComponent';
 
@@ -42,9 +42,9 @@ function Content() {
             <Route exact path={ ROUTES.NEWS } component={ () => <NewsPageComponent/> } />
             <Route exact path={ `${ ROUTES.NEWS }/:category` } component={ (routerProps: any) => <NewsPageComponent category={ routerProps.match.params.category } /> } />
             <Route exact path={ `${ ROUTES.NEWS }/:category/:slug` } component={(routerProps: any) => <NewsArticleComponent slug={routerProps.match.params.slug} />} />
-            <Route exact path={ ROUTES.ABOUT } component={ AboutComponent } />
+            <Route exact path={ ROUTES.ABOUT } component={ AboutPageComponent } />
             <Route exact path={ ROUTES.STUDIO } component={ StudioComponent } />
-            <Route component={ NotFoundComponent } />
+            <Route component={ NotFoundPageComponent } />
         </Switch>
     );
 }

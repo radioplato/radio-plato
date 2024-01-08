@@ -1,9 +1,9 @@
-import { Subject } from "rxjs";
-import { DEFAULT_PLAYER_STATE, PLAYER_CONNECTING } from "../constants";
-import { PlayerState, TrackInformation } from "../models";
+import { Subject } from 'rxjs';
+import { DEFAULT_PLAYER_STATE, PLAYER_CONNECTING } from '../constants';
+import { NowPlayingInformation, PlayerState, TrackInformation } from '../models';
 
 enum StorageKey {
-    Volume = "volume",
+    Volume = 'volume',
 }
 
 const parseVolume = (value: string | null): number => (value !== null ? parseFloat(value) : 1);
@@ -17,8 +17,13 @@ class PlayerService {
         name: PLAYER_CONNECTING,
         art: ''
     };
+    private nowPlayingInformation: NowPlayingInformation = {
+        name: null
+    };
+
     private playerStateSubject: Subject<PlayerState>;
     private trackInformationSubject: Subject<TrackInformation>;
+    private nowPlayingInformationSubject: Subject<NowPlayingInformation>;
     private connection = new WebSocket(process.env.REACT_APP_DATA_URL as string);
 
     private fadingTimer: ReturnType<typeof setInterval>;
@@ -31,6 +36,10 @@ class PlayerService {
                 name: data.pub.data.np.now_playing.song.text,
                 art: data.pub.data.np.now_playing.song.art
             });
+
+            this.updateNowPlayingInformation({
+                name: data.pub.data.np.live.is_live ? data.pub.data.np.live.streamer_name : data.pub.data.np.now_playing.playlist
+            });
         }
     }
 
@@ -39,6 +48,7 @@ class PlayerService {
 
         this.playerStateSubject = new Subject();
         this.trackInformationSubject = new Subject();
+        this.nowPlayingInformationSubject = new Subject();
 
         this.fadingTimer = setInterval(() => {}, 0);
 
@@ -115,6 +125,15 @@ class PlayerService {
                 ...information
             };
             this.trackInformationSubject.next(this.trackInformation);
+        }
+    }
+
+    async updateNowPlayingInformation(information: NowPlayingInformation) {
+        if (information && information.name !== this.trackName) {
+            this.nowPlayingInformation = {
+                ...information
+            };
+            this.nowPlayingInformationSubject.next(this.nowPlayingInformation);
         }
     }
 

@@ -3,27 +3,27 @@ import React from 'react'
 
 import { Link } from 'react-router-dom';
 
-import { ScheduleShow } from '../../interfaces'
+import { ScheduleCard } from '../../models/schedule'
 
 import './ScheduleLineComponent.scss'
 
 
 interface ScheduleLineProperties {
-    showline: ScheduleShow,
+    scheduleCard: ScheduleCard,
     selectedDay: number
 }
 
-const FORMAT = 'HH:mm:ss';
+const FORMAT = 'HH:mm';
 
-function showlineWrapper(showline: ScheduleShow, selectedDay: number) {
+function scheduleCardWrapper(scheduleCard: ScheduleCard, selectedDay: number) {
     const {
         title,
         description,
         link,
         startTime,
         endTime
-    } = showline;
-    const interval = startTime && endTime ? `${startTime.slice(0, 5)} - ${endTime.slice(0, 5)}` : '';
+    } = scheduleCard;
+    const interval = startTime && endTime ? `${startTime} - ${endTime}` : '';
     const href = link ? link : null;
     const isNow = moment().isoWeekday() - 1 === selectedDay && moment(moment().format(FORMAT), FORMAT).isBetween(moment(startTime, FORMAT), moment(endTime, FORMAT));
 
@@ -41,7 +41,12 @@ function showlineWrapper(showline: ScheduleShow, selectedDay: number) {
             <div className='schedule-line'>
                 <div className='visual-container'>
                     { isNow && renderOnAir() }
-                    <div className='image'></div>
+                    <div
+                        className='image'
+                        style={{
+                            backgroundImage: scheduleCard.image ? `url(${scheduleCard.image.url})` : '',
+                        }}
+                    ></div>
                 </div>
                 <div className='information-container'>
                     <div className='time'>
@@ -58,6 +63,6 @@ function showlineWrapper(showline: ScheduleShow, selectedDay: number) {
     return href ? (<Link to={href}>{content}</Link>) : (<div>{content}</div>);
 }
 
-const ScheduleLine = ({ showline, selectedDay }: ScheduleLineProperties) => showlineWrapper(showline, selectedDay);
+const ScheduleLine = ({ scheduleCard, selectedDay }: ScheduleLineProperties) => scheduleCardWrapper(scheduleCard, selectedDay);
 
 export default ScheduleLine 

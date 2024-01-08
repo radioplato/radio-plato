@@ -2,7 +2,7 @@ import React from 'react';
 
 import { Link } from 'react-router-dom';
 
-import './NotFoundComponent.scss';
+import './NotFoundPageComponent.scss';
 
 
 const QUESTIONS = [
@@ -39,7 +39,7 @@ const QUESTIONS = [
     'Why are Randoom Kru so cool?'
 ];
 
-export function NotFoundComponent() {
+export function NotFoundPageComponent() {
     const question = QUESTIONS[Math.floor(Math.random() * QUESTIONS.length)];
 
     return (

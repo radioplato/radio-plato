@@ -50,8 +50,13 @@
                 flex: 0 0 auto;
                 
                 flex-direction: row;
-                align-content: flex-end;
-    
+                flex-wrap: nowrap;
+                justify-content: flex-start;
+                align-content: center;
+                align-items: center;
+
+                height: 48px;
+
                 @include interFont(36px, 400, 36px);
                 letter-spacing: 0.5px;
                 text-transform: uppercase;
