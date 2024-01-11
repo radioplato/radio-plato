@@ -4,6 +4,7 @@ import { isMobileOnly } from 'react-device-detect';
 import { Seo } from '../../components/shared/wrappers/seo/Seo'
 import NewsListComponent from '../../components/news/components/news-list/NewsListComponent';
 import { ScheduleTableComponent } from '../../components/shared/schedule/components/schedule/ScheduleComponent';
+
 import { BASIC_SEO_IMG } from '../../components/shared/constants';
 
 import './StartPageComponent.css';

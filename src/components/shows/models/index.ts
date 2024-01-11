@@ -1,5 +1,6 @@
 
 import { SimpleImage, StrapiImageAttributes, StrapiList, StrapiObject, StrapiResponse } from '../../shared/interfaces';
+import { ScheduleCard, ScheduleInformationList } from '../../shared/schedule/models/schedule';
 import { SocialButton } from '../../shared/social-links/models';
 
 export interface ShowAttributes extends StrapiObject {
@@ -9,6 +10,7 @@ export interface ShowAttributes extends StrapiObject {
     Excerpt: string;
     ShowCover: ShowImageData;
     Links: ShowLinksData;
+    Schedules: ScheduleInformationList;
     Content: string;
     Slug: string;
     Title: string;
@@ -20,7 +22,7 @@ export type ShowImageData = {
 
 export type ShowEntry = StrapiResponse<ShowAttributes>;
 
-export type NewsList = StrapiList<ShowEntry[]>;
+export type ShowList = StrapiList<ShowEntry[]>;
 
 export type SocialLinks = {
     [key: string]: string | null;
@@ -56,4 +58,5 @@ export interface Show {
     slug: string;
     showCover: SimpleImage;
     socialButtons: SocialButton[];
+    schedules: ScheduleCard[];
 }

@@ -119,6 +119,10 @@ class PlayerService {
         return this.trackInformationSubject.subscribe((data) => onNext(data));
     }
 
+    subscribeOnNowPlayingInformationChanges(onNext: Function) {
+        return this.nowPlayingInformationSubject.subscribe((data) => onNext(data));
+    }
+
     async updateTrackInformation(information: TrackInformation) {
         if (information && information.name !== this.trackName) {
             this.trackInformation = {

@@ -1,4 +1,4 @@
-import { ShowEntry } from '../../../shows/models';
+import { ShowEntry, ShowList } from '../../../shows/models';
 import { SimpleImage, StrapiResponse, StrapiImageAttributes, StrapiList } from '../../interfaces';
 import { AZURA_SCHEDULE_TYPE } from '../enums';
 
@@ -15,13 +15,17 @@ export interface AzuraScheduleEntry {
     type: AZURA_SCHEDULE_TYPE;
 }
 
+export interface ScheduleConnectedShow {
+    data: ShowEntry | null;
+}
+
 export interface ScheduleInformationAttributes {
     AzuracastID: string;
     Description: string;
     Episodes?: any[];
     Image: ScheduleInformationImageData;
     Livestream: boolean;
-    Show: ShowEntry;
+    Show: ScheduleConnectedShow;
     Title: string;
     Type: string;
 }
@@ -35,12 +39,15 @@ export type ScheduleInformationEntry = StrapiResponse<ScheduleInformationAttribu
 export type ScheduleInformationList = StrapiList<ScheduleInformationEntry[]>;
 
 export interface ScheduleCard {
+    azuracastID: string;
     title: string;
     description: string;
+    type: string;
+    author?: string | null;
     link: string | null;
-    startDate: string;
-    startTime: string;
-    endDate: string;
-    endTime: string;
+    startDate?: string;
+    startTime?: string;
+    endDate?: string;
+    endTime?: string;
     image?: SimpleImage | null;
 }

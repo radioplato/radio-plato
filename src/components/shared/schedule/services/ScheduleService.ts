@@ -25,7 +25,6 @@ class ScheduleService {
 
     set schedule (schedule: ScheduleCard[][]) {
         this._schedule = schedule;
-        console.log(schedule)
         this.scheduleSubject.next(schedule);
     }
 
@@ -75,10 +74,15 @@ class ScheduleService {
 
                 if (scheduleInformation) {
                     const scheduleCard = {
+                        azuracastID: scheduleInformation.attributes.AzuracastID,
                         title: scheduleInformation.attributes.Title,
                         description: scheduleInformation.attributes.Description,
-                        link: scheduleInformation.attributes.Show.attributes
-                            ? scheduleInformation.attributes.Show.attributes.Slug
+                        link: scheduleInformation.attributes.Show.data
+                            ? scheduleInformation.attributes.Show.data.attributes.Slug
+                            : null,
+                        type: scheduleInformation.attributes.Type,
+                        author: scheduleInformation.attributes.Show.data
+                            ? scheduleInformation.attributes.Show.data.attributes.Author
                             : null,
                         startDate: scheduleEntry.start,
                         startTime: moment(scheduleEntry.start).format('HH:mm'),

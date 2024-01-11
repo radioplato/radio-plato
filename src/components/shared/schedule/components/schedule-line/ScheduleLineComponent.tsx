@@ -10,22 +10,21 @@ import './ScheduleLineComponent.scss'
 
 interface ScheduleLineProperties {
     scheduleCard: ScheduleCard,
-    selectedDay: number
+    isNow?: boolean
 }
 
-const FORMAT = 'HH:mm';
-
-function scheduleCardWrapper(scheduleCard: ScheduleCard, selectedDay: number) {
+function scheduleCardWrapper(scheduleCard: ScheduleCard, isNow = false) {
     const {
         title,
         description,
+        type,
         link,
+        author,
         startTime,
         endTime
     } = scheduleCard;
     const interval = startTime && endTime ? `${startTime} - ${endTime}` : '';
     const href = link ? link : null;
-    const isNow = moment().isoWeekday() - 1 === selectedDay && moment(moment().format(FORMAT), FORMAT).isBetween(moment(startTime, FORMAT), moment(endTime, FORMAT));
 
     const renderOnAir = () => {
         return (
@@ -40,7 +39,7 @@ function scheduleCardWrapper(scheduleCard: ScheduleCard, selectedDay: number) {
         <div className='schedule-line-container'>
             <div className='schedule-line'>
                 <div className='visual-container'>
-                    { isNow && renderOnAir() }
+                    {isNow && renderOnAir()}
                     <div
                         className='image'
                         style={{
@@ -49,11 +48,16 @@ function scheduleCardWrapper(scheduleCard: ScheduleCard, selectedDay: number) {
                     ></div>
                 </div>
                 <div className='information-container'>
-                    <div className='time'>
-                        <span className='interval'>{interval}</span>
-                        <span className='utc'>UTC+3</span>
-                    </div>
+                    {
+                        interval && (
+                            <div className='time'>
+                                <span className='interval'>{interval}</span>
+                                <span className='utc'>UTC+3</span>
+                            </div>
+                        )
+                    }
                     <div className='title'>{title ? title : ''}</div>
+                    <div className='type'>{`${type} ` + `${author ? 'by ' + author : ''}`}</div>
                     <div className='description'>{description ? description : ''}</div>
                 </div>
             </div>
@@ -63,6 +67,6 @@ function scheduleCardWrapper(scheduleCard: ScheduleCard, selectedDay: number) {
     return href ? (<Link to={href}>{content}</Link>) : (<div>{content}</div>);
 }
 
-const ScheduleLine = ({ scheduleCard, selectedDay }: ScheduleLineProperties) => scheduleCardWrapper(scheduleCard, selectedDay);
+const ScheduleLine = ({ scheduleCard, isNow }: ScheduleLineProperties) => scheduleCardWrapper(scheduleCard, isNow);
 
 export default ScheduleLine 

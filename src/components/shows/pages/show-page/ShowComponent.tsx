@@ -12,6 +12,7 @@ import './ShowComponent.scss';
 import { useHistory, useLocation } from 'react-router-dom';
 import qs from 'qs';
 import { ICON_KEY } from '../../../shared/icons/icons';
+import ScheduleLine from '../../../shared/schedule/components/schedule-line/ScheduleLineComponent';
 
 
 interface ShowComponentProperties {
@@ -41,6 +42,22 @@ export function ShowComponent({
                 icon: key.toLowerCase() as ICON_KEY,
                 link: value ? value : ''
             })).filter((button) => button.link && button.name !== 'id'),
+            schedules: entry.attributes.Schedules.data.length
+                ? entry.attributes.Schedules.data.map((scheduleInformation) => {
+                    return {
+                        azuracastID: scheduleInformation.attributes.AzuracastID,
+                        title: scheduleInformation.attributes.Title,
+                        description: scheduleInformation.attributes.Description,
+                        type: scheduleInformation.attributes.Type,
+                        link: null,
+                        image: {
+                            alternativeText: scheduleInformation.attributes.Image.data.attributes.alternativeText,
+                            caption: scheduleInformation.attributes.Image.data.attributes.caption,
+                            url: scheduleInformation.attributes.Image.data.attributes.url
+                        },
+                    }
+                })
+                : [],
         };
     }
 
@@ -61,7 +78,12 @@ export function ShowComponent({
 
     const loadCurrentShow = () => {
         const query = qs.stringify({
-            populate: '*',
+            populate: [
+                'Links',
+                'ShowCover',
+                'Schedules',
+                'Schedules.Image',
+            ],
             filters: slug ? {
                 Slug: {
                     $eqi: slug,
@@ -121,6 +143,23 @@ export function ShowComponent({
                 </div>
                 <div className='image'>
                     <img src={show.showCover.url} loading='lazy' alt={show.showCover.alternativeText} />
+                </div>
+            </div>
+            <div className='from-creator-section'>
+                <div className='from-creator-headline-container'>
+                    <div className='from-creator-headline'>
+                        <div className='from-creator-title'>From creator</div>
+                    </div>
+                </div>
+                <div className='from-creator-container'>
+                    {
+                        show.schedules.map((scheduleCard) => (
+                            <ScheduleLine
+                                scheduleCard={scheduleCard}
+                                key={`${scheduleCard.title}-${scheduleCard.startDate}-${scheduleCard.startTime}`}
+                            />
+                        ))
+                    }
                 </div>
             </div>
             <div className='more-shows-section'>

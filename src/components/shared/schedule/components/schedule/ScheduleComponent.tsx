@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
 
+import moment from 'moment';
 import { isMobileOnly } from 'react-device-detect';
 
 import { scheduleService } from '../../services/ScheduleService';
@@ -13,6 +14,8 @@ import { ScheduleCard } from '../../models/schedule';
 import { BASIC_SEO_IMG } from '../../../constants';
 
 import './ScheduleComponent.scss'
+import { playerService } from '../../../player/services/PlayerService';
+import { NowPlayingInformation } from '../../../player/models';
 
 
 const DAYS_OF_WEEK = [
@@ -27,19 +30,24 @@ const DAYS_OF_WEEK = [
 
 function ScheduleTableComponent() {
     const [schedule, setSchedule] = useState<ScheduleCard[][]>(scheduleService.schedule);
-    const [selectedDay, setSelectedDay] = useState<number>(0);
+    const [selectedDay, setSelectedDay] = useState<number>(moment().isoWeekday() - 1);
+    const [nowPlayingInformation, setNowPlayingInformation] = useState<NowPlayingInformation>();
 
     useEffect(() => {
-        const subscription = scheduleService.subscribeOnScheduleChanges((schedule: ScheduleCard[][]) => setSchedule(schedule));
+        const scheduleChangesSubscription = scheduleService.subscribeOnScheduleChanges((schedule: ScheduleCard[][]) => setSchedule(schedule));
+        const nowPlayingInformationSubscription = playerService.subscribeOnNowPlayingInformationChanges((information: NowPlayingInformation) => setNowPlayingInformation(information));
 
-        return () => subscription?.unsubscribe();
+        return () => {
+            scheduleChangesSubscription?.unsubscribe();
+            nowPlayingInformationSubscription?.unsubscribe();
+        };
     }, []);
 
     const scheduleShowlineBuilder = (scheduleCard: ScheduleCard) => {
         return (
             <ScheduleLine
                 scheduleCard={scheduleCard}
-                selectedDay={selectedDay}
+                isNow={scheduleCard.azuracastID === nowPlayingInformation?.name}
                 key={`${selectedDay}-${scheduleCard.title}-${scheduleCard.startDate}-${scheduleCard.startTime}`}
             />
         );
