@@ -98,14 +98,28 @@
         margin-bottom: 56px;
 
         .news-card-wrapper {
-            width: 1160px;
+            max-width: 1160px;
             height: 420px;
 
             margin-bottom: 16px;
-            padding: 0 16px;
-            box-sizing: border-box;
             
             overflow: visible;
+        }
+    }
+}
+
+@media (max-width: 1279px) {
+    .news-carousel-container {
+        .news-carousel-headline-container {
+            .news-carousel-headline {
+                padding: 32px 16px;
+            }
+        }
+
+        .highlight-carousel-container {
+            .news-card-wrapper {
+                height: 280px;
+            }
         }
     }
 }

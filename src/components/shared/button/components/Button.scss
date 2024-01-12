@@ -7,6 +7,8 @@
 
     cursor: pointer;
 
+    -webkit-tap-highlight-color: $tap-color;
+
     &:not(.ghost) {
         background-color: $yellow-400;
     }
@@ -109,7 +111,7 @@
             &.icon-only {
                 justify-content: center;
 
-                padding: 0 12px;
+                padding: 12px;
             }
         }
 

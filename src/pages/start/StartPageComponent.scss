@@ -1,13 +1,21 @@
 @import 'styles/colors.scss';
 @import 'styles/fonts.scss';
 
-.scrollable-container {
+.start-page-container {
+    display: flex;
+    display: -webkit-flex;
+    flex: 0 0 auto;
+    
+    flex-direction: column;
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+    align-content: center;
+    align-items: flex-start;
+
     width: calc(100% - 122px);
     height: calc(100vh - 102px);
-    
     overflow-x: hidden;
     overflow-y: overlay;
-    box-sizing: border-box;
 
     scrollbar-gutter: stable;
 
@@ -30,9 +38,9 @@
 }
 
 @media (max-width: 1279px) {
-    .scrollable-container {
+    .start-page-container {
         width: 100%;
-        height: calc(100vh - 64px);
+        height: auto;
+        overflow: visible;
     }
 }
-

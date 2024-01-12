@@ -67,18 +67,8 @@
     }
 }
 
-.menu-button-header {
-    height: 100px;
-    width: 100px;
-    z-index: 20;
-
-    display: flex;
-    display: -webkit-flex;
-    flex: 0 0 auto;
-    
-    flex-direction: row;
-    flex-wrap: nowrap;
-    justify-content: center;
-    align-content: center;
-    align-items: center;
+@media (max-width: 1279px) {
+    .aside-button-open {
+        display: none;
+    }
 }

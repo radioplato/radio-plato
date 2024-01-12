@@ -1,7 +1,5 @@
 import React, { useEffect, useState } from 'react';
 
-import { isMobileOnly } from 'react-device-detect';
-
 import qs from 'qs';
 
 import ShowCardComponent from '../../components/show-card/ShowCardComponent';
@@ -94,7 +92,7 @@ export function ShowListComponent() {
     }, [currentFilter])
 
     return (
-        <div className={ `show-list ${ isMobileOnly ? 'mobile' : 'desktop' }` }>
+        <div className='show-list'>
             <Seo meta={{
                     title: SHOW_LIST_SEO_TITLE,
                     description: SHOW_LIST_SEO_DESCRIPTION,

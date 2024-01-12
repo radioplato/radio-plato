@@ -1,26 +1,30 @@
-import React, { useState } from 'react'
-
-import { isMobileOnly } from 'react-device-detect';
+import React, { useState } from 'react';
 
 import Menu from '../menu/Menu';
 import Icon from '../../../shared/icons/component/IconComponent';
 
+import { Button, BUTTON_TYPE, BUTTON_SIZE, ICON_POSITION } from '../../../shared/button/components/Button';
 import { ICON_KEY } from '../../../shared/icons/icons';
 
 import './MenuButton.scss'
 
 
-function MenuButton() {
+interface MenuButtonProperties {
+    isAside?: boolean;
+}
+
+function MenuButton({ isAside }: MenuButtonProperties) {
     const [isOpened, changeMenuStatus] = useState(true);
 
-    const menuRef = React.createRef<HTMLDivElement>()
-    const wrapperRef = React.createRef<HTMLDivElement>()
+    const menuRef = React.createRef<HTMLDivElement>();
+    const wrapperRef = React.createRef<HTMLDivElement>();
 
     const toggleMenu = () => {
         const bodyOverflow = isOpened ? 'hidden' : 'unset';
 
-        wrapperRef.current?.classList.toggle('wrapper-show');
-        menuRef.current?.classList.toggle('menu-open');
+        wrapperRef.current?.classList.toggle('hidden');
+        wrapperRef.current?.classList.toggle('shown');
+        menuRef.current?.classList.toggle('opened');
         document.body.style.overflow = bodyOverflow;
         changeMenuStatus(!isOpened);
     }
@@ -45,23 +49,24 @@ function MenuButton() {
 
     const renderHeaderButton = () => {
         return (
-            <div className='menu-button-header' onClick={toggleMenu}>
-                <Icon
-                    className='menu-button-icon'
-                    icon={ICON_KEY.NAVIGATION_HORIZONTAL_REGULAR}
-                    style={{
-                        width: '20px',
-                        height: '20px'
-                    }}
-                />
-            </div>
+            <Button
+                type={BUTTON_TYPE.GHOST}
+                size={BUTTON_SIZE.BIG}
+                icon={ICON_KEY.NAVIGATION_HORIZONTAL_REGULAR}
+                iconPosition={ICON_POSITION.LEFT}
+                onClick={toggleMenu}
+            ></Button>
         );
     }
 
     return (
         <>
             <Menu menuRef={menuRef} wrapperRef={wrapperRef} toggleMenu={toggleMenu} />
-            {isMobileOnly ? renderHeaderButton() : renderAsideButton()}
+           {
+             isAside
+                ? renderAsideButton()
+                : renderHeaderButton()
+           }
         </>
     );
 }

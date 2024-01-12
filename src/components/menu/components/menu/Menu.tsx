@@ -2,8 +2,6 @@ import React from 'react'
 
 import { Link } from 'react-router-dom';
 
-import { isMobileOnly } from 'react-device-detect';
-
 import Icon from '../../../shared/icons/component/IconComponent';
 import SocialButtonsComponent from '../../../shared/social-links/components/social-buttons/SocialButtonsComponent';
 
@@ -35,8 +33,8 @@ function Menu({ menuRef, wrapperRef, toggleMenu }: MenuProperties) {
 
     return (
         <>
-            <div className={`wrapper ${isMobileOnly ? 'mobile' : 'desktop'}`} ref={wrapperRef} onClick={toggleMenu}></div>
-            <nav ref={menuRef} className={`menu ${isMobileOnly ? 'mobile' : 'desktop'}`}>
+            <div className='overlay hidden' ref={wrapperRef} onClick={toggleMenu}></div>
+            <nav ref={menuRef} className='menu'>
                 <div className='aside-button-close' onClick={toggleMenu}>
                     <span className='close-button'>
                         <Icon

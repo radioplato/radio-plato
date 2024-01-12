@@ -1,19 +1,15 @@
 import React, { Component } from 'react'
 
-import { BrowserView, isMobileOnly } from 'react-device-detect';
-
 import MenuButton from '../menu/components/menu-button/MenuButton'
 import Content from '../content/Content'
 
-import './Main.css'
+import './Main.scss'
 
 class Main extends Component {
     render() {
         return (
-            <main className={ isMobileOnly ? 'mobile' : 'desktop' }>
-                <BrowserView>
-                    <MenuButton />
-                </BrowserView>
+            <main>
+                <MenuButton isAside={true} />
                 <Content />
             </main>
         );

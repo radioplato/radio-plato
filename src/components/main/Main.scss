@@ -8,11 +8,8 @@ main {
     align-content: stretch;
 }
 
-main.mobile {
-    flex-direction: column;
+@media (max-width: 1279px) {
+    .aside-button-open {
+        display: none;
+    }
 }
-
-main.desktop {
-    flex-direction: row;
-}
-

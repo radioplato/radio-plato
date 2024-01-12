@@ -20,6 +20,8 @@
         width: 100%;
         height: 360px;
 
+        margin-bottom: 16px;
+
         background-color: $grey-200;
         background-size: cover;
         background-position: center;
@@ -40,7 +42,6 @@
         width: 100%;
 
         .show-content-information {
-            padding: 16px;
 
             .show-title {
                 margin-bottom: 12px;
@@ -82,5 +83,13 @@
             text-decoration: underline;
             text-underline-offset: 3px;
         }
+    }
+}
+
+@media (max-width: 1279px) {
+    .show-card {
+        width: 320px;
+
+        margin-bottom: 40px;
     }
 }

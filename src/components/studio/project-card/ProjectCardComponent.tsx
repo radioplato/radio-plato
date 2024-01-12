@@ -81,7 +81,7 @@ function ProjectCardComponent ({ project, shouldPlay, onTagClick, onCardClick }:
                 </div>
                 <div className='media-video'>{ renderMedia() }</div>
             </div>
-            <div className='information-container'>
+            <div className='project-information-container'>
                 <div className='project-tags'>{
                     project.tags.length && project.tags.map((tag) => (
                         <div className="tag" key={ `${project.id}-${tag.toLowerCase()}` }>

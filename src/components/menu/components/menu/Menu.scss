@@ -1,9 +1,30 @@
 @import 'styles/colors.scss';
 @import 'styles/fonts.scss';
 
+@keyframes blur-in {
+    from {
+        backdrop-filter: blur(0px);
+    }
+
+    to {
+        backdrop-filter: blur(2px);
+    }
+}
+
+@keyframes blur-out {
+    from {
+        backdrop-filter: blur(2px);
+    }
+
+    to {
+        display: none;
+        backdrop-filter: blur(0);
+    }
+}
+
 .menu {
     position: absolute;
-    top: 101px;
+    top: 102px;
     left: -482px;
     z-index: 100;
 
@@ -62,19 +83,20 @@
             }
         }
 
-        &:hover {   
+        &:hover {
             .close-button-label {
                 text-decoration: underline;
                 text-underline-offset: 3px;
             }
         }
-    
+
         &:active {
+
             .close-button-icon,
             .close-button-label {
                 color: $grey-500;
             }
-    
+
             .close-button-label {
                 text-decoration: underline;
                 text-underline-offset: 3px;
@@ -109,15 +131,21 @@
 
             .menu-item {
                 width: 100%;
-                margin-bottom: 40px;
+                margin-bottom: 36px;
 
-                @include interFont(36px, 400);
+                @include interFont(36px, 400, 36px);
                 text-transform: uppercase;
 
                 cursor: pointer;
 
                 &.donate-button {
                     margin-top: 8px;
+                }
+
+                & > a {
+                    display: block;
+                    height: 36px;
+                    line-height: 36px;
                 }
 
                 &:hover {
@@ -145,12 +173,13 @@
             align-content: center;
             align-items: flex-start;
 
-            margin-bottom: 24px;
+            max-width: 256px;
+
+            margin-bottom: 16px;
 
             .social-button .button {
-                
-                margin-bottom: 24px;
-                padding: 0 24px 0 0;
+                margin: 0 16px 24px 0;
+                padding: 0;
 
                 color: $black;
 
@@ -173,47 +202,81 @@
         }
     }
 
-    &.menu-open {
+    &.opened {
         left: 0;
     }
+}
 
-    &.mobile {
-        height: 100%;
-        width: 100vw;
-        top: 0;
-        left: -100vw;
+.overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: 99;
 
-        &>.menu-button-aside {
-            width: 25%;
-            min-width: 25%;
-            height: 100%;
+    overflow: hidden;
+
+    cursor: pointer;
+
+    &.hidden {
+        animation: blur-out 0.5s forwards;
+    }
+
+    &.shown {
+        display: block;
+        animation: blur-in 0.5s forwards;
+    }
+}
+
+@media (max-width: 1439px) {
+    .menu {
+        width: 360px;
+
+        .aside-button-close {
+            width: 86px;
+            min-width: 86px;
         }
 
         .menu-items-container {
-            margin: 0 0 0 40px;
+            width: 272px;
 
-            .menu-item {
-                margin: 32px 0;
-                font-size: 32px;
+            padding: 32px;
+
+            .menu-items {
+                .menu-item {
+                    margin-bottom: 24px;
+
+                    @include interFont(28px, 400);
+                }
             }
         }
     }
 }
 
-.wrapper {
-    display: none;
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    z-index: 99;
+@media (max-width: 1279px) {
+    .menu {
+        height: 100%;
+        top: 0;
 
-    &.mobile {
-        position: fixed;
+        .aside-button-close {
+            height: 100%;
+        }
     }
 
-    &.wrapper-show {
-        display: block;
+    .wrapper {
+        position: fixed;
+    }
+}
+
+@media (max-width: 767px) {
+    .menu {
+        height: 100%;
+        width: 100vw;
+        left: -100vw;
+
+        .menu-items-container {
+            width: calc(100vw - 88px);
+        }
     }
 }

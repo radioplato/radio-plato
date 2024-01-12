@@ -3,8 +3,6 @@ import { Link, useHistory } from 'react-router-dom';
 
 import moment from 'moment';
 
-import { isMobileOnly } from 'react-device-detect';
-
 import { NewsCard } from '../../models';
 import { NEWS_CARD_SIZE } from '../../enums';
 
@@ -20,14 +18,13 @@ interface NewsCardProperties {
 
 function NewsCardComponent({ newsCard, size }: NewsCardProperties) {
     const history = useHistory();
-    const device = isMobileOnly ? 'mobile' : 'desktop';
 
     const navigateToCategory = (category: string) => {
         history.push(`/news/${category}`)
     }
 
     return (
-        <div className={ `news-card ${ device } ${ size }` }>
+        <div className={ `news-card ${ size }` }>
             <Link
                 className='news-image'
                 style={{

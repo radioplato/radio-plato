@@ -133,7 +133,7 @@ class PlayerService {
     }
 
     async updateNowPlayingInformation(information: NowPlayingInformation) {
-        if (information && information.name !== this.trackName) {
+        if (information && information.name !== this.nowPlayingInformation.name) {
             this.nowPlayingInformation = {
                 ...information
             };
