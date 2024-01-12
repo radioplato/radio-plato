@@ -53,8 +53,7 @@
         width: 100%;
         max-width: 1160px;
 
-        margin-bottom: 56px;
-        padding: 0 16px;
+        padding: 0 16px 56px 16px;
         box-sizing: border-box;
 
         .information {
@@ -102,8 +101,6 @@
 
             .social-buttons {
                 margin-bottom: 56px;
-
-                
 
                 .social-links-container > .social-button {
                     margin-right: 16px;
@@ -291,6 +288,8 @@
         .show {
             justify-content: space-between;
 
+            max-width: 1024px;
+
             .information {
                 width: 480px;
 
@@ -310,14 +309,16 @@
             }
 
             .image {
-                width: 320px;
-                height: 320px;
+                width: 480px;
+                height: 480px;
             }
         }
 
         .from-creator-section {
             .from-creator-headline-container {
                 .from-creator-headline {
+                    max-width: 1024px;
+
                     padding: 32px 16px;
                 }
             }
@@ -326,7 +327,15 @@
         .more-shows-section {
             .more-shows-headline-container {
                 .more-shows-headline {
+                    max-width: 1024px;
+
                     padding: 32px 16px;
+                }
+            }
+
+            .more-shows-container {
+                .more-shows {
+                    max-width: 1024px;
                 }
             }
         }

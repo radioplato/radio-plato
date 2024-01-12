@@ -26,7 +26,7 @@ export function ShowComponent({
 
     const [show, setShow] = useState<Show | null>(null);
     const [moreShows, setMoreShows] = useState<ShowCard[]>([]);
-    
+
     const parseShow = (entry: ShowEntry): Show => {
         return {
             description: entry.attributes.Description,
@@ -55,6 +55,7 @@ export function ShowComponent({
                             caption: scheduleInformation.attributes.Image.data.attributes.caption,
                             url: scheduleInformation.attributes.Image.data.attributes.url
                         },
+                        periodicity: scheduleInformation.attributes.Periodicity,
                     }
                 })
                 : [],
@@ -107,7 +108,7 @@ export function ShowComponent({
             }
         });
 
-        fetch(`${ process.env.REACT_APP_BACKEND_URL_V2 }/shows?${query}`)
+        fetch(`${process.env.REACT_APP_BACKEND_URL_V2}/shows?${query}`)
             .then(response => response.json())
             .then(data => data.data.map((entry: ShowEntry) => parseShowCard(entry)))
             .then(shows => setMoreShows(shows));
@@ -145,23 +146,29 @@ export function ShowComponent({
                     <img src={show.showCover.url} loading='lazy' alt={show.showCover.alternativeText} />
                 </div>
             </div>
-            <div className='from-creator-section'>
-                <div className='from-creator-headline-container'>
-                    <div className='from-creator-headline'>
-                        <div className='from-creator-title'>From creator</div>
-                    </div>
-                </div>
-                <div className='from-creator-container'>
-                    {
-                        show.schedules.map((scheduleCard) => (
-                            <ScheduleLine
-                                scheduleCard={scheduleCard}
-                                key={`${scheduleCard.title}-${scheduleCard.startDate}-${scheduleCard.startTime}`}
-                            />
-                        ))
-                    }
-                </div>
-            </div>
+            {
+                show.schedules.length
+                    ? (
+                        <div className='from-creator-section'>
+                            <div className='from-creator-headline-container'>
+                                <div className='from-creator-headline'>
+                                    <div className='from-creator-title'>From creator</div>
+                                </div>
+                            </div>
+                            <div className='from-creator-container'>
+                                {
+                                    show.schedules.map((scheduleCard) => (
+                                        <ScheduleLine
+                                            scheduleCard={scheduleCard}
+                                            key={`${scheduleCard.title}-${scheduleCard.periodicity}`.toLowerCase()}
+                                        />
+                                    ))
+                                }
+                            </div>
+                        </div>
+                    )
+                    : null
+            }
             <div className='more-shows-section'>
                 <div className='more-shows-headline-container'>
                     <div className='more-shows-headline'>

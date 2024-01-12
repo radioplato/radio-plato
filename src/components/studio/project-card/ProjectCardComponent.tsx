@@ -82,13 +82,17 @@ function ProjectCardComponent ({ project, shouldPlay, onTagClick, onCardClick }:
                 <div className='media-video'>{ renderMedia() }</div>
             </div>
             <div className='project-information-container'>
-                <div className='project-tags'>{
-                    project.tags.length && project.tags.map((tag) => (
-                        <div className="tag" key={ `${project.id}-${tag.toLowerCase()}` }>
-                            <div className='tag-name' onClick={ () => handleTagClick(tag) }>{ projectTagToFilterItem.get(tag) }</div>
-                        </div>
-                    ))
-                }</div>
+                <div className='project-tags'>
+                    {
+                        project.tags.length
+                            ? project.tags.map((tag) => (
+                                <div className="tag" key={ `${project.id}-${tag.toLowerCase()}` }>
+                                    <div className='tag-name' onClick={ () => handleTagClick(tag) }>{ projectTagToFilterItem.get(tag) }</div>
+                                </div>
+                            ))
+                            : null
+                    }
+                </div>
                 <h2 className='project-title'>{ project.title }</h2>
                 <p className='project-description'>{ project.description }</p>
             </div>

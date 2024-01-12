@@ -7,8 +7,6 @@
 
     cursor: pointer;
 
-    -webkit-tap-highlight-color: $tap-color;
-
     &:not(.ghost) {
         background-color: $yellow-400;
     }

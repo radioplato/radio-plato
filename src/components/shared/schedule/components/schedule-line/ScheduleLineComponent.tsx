@@ -21,7 +21,8 @@ function scheduleCardWrapper(scheduleCard: ScheduleCard, isNow = false) {
         link,
         author,
         startTime,
-        endTime
+        endTime,
+        periodicity
     } = scheduleCard;
     const interval = startTime && endTime ? `${startTime} - ${endTime}` : '';
     const href = link ? link : null;
@@ -34,6 +35,8 @@ function scheduleCardWrapper(scheduleCard: ScheduleCard, isNow = false) {
             </div>
         );
     }
+
+    console.log(interval)
 
     const content = (
         <div className='schedule-line-container'>
@@ -49,9 +52,14 @@ function scheduleCardWrapper(scheduleCard: ScheduleCard, isNow = false) {
                 </div>
                 <div className='information-container'>
                     {
-                        interval && (
+                        (interval || periodicity) && (
                             <div className='time'>
-                                <span className='interval'>{interval}</span>
+                                {
+                                    interval && (<span className='interval'>{interval}</span>)
+                                }
+                                {
+                                    periodicity && (<span className='periodicity'>{periodicity}</span>)
+                                }
                                 <span className='utc'>UTC+3</span>
                             </div>
                         )

@@ -172,7 +172,38 @@
     .show-list {
         .shows-list-headline-container {
             .shows-list-headline {
+                align-items: flex-start;
+                flex-direction: column;
+
+                max-width: 1024px;
+
                 padding: 32px 16px;
+
+                .shows-list-title {
+                    margin-bottom: 16px;
+                }
+
+                .shows-list-title-button {
+                    margin-bottom: 16px;
+                }
+
+                .show-categories-container {
+                    flex-wrap: wrap;
+
+                    .filter-button {
+                        margin: 0 16px 0 0;
+
+                        & > .button {
+                            padding: 0;
+                        }
+                    }
+                }
+            }
+        }
+
+        .show-cards-container {
+            .show-cards {
+                max-width: 1024px;
             }
         }
     }

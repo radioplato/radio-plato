@@ -26,6 +26,7 @@ export interface ScheduleInformationAttributes {
     Image: ScheduleInformationImageData;
     Livestream: boolean;
     Show: ScheduleConnectedShow;
+    Periodicity: string | null;
     Title: string;
     Type: string;
 }
@@ -49,5 +50,6 @@ export interface ScheduleCard {
     startTime?: string;
     endDate?: string;
     endTime?: string;
+    periodicity?: string | null;
     image?: SimpleImage | null;
 }

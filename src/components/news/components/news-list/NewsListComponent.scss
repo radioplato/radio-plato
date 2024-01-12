@@ -191,8 +191,14 @@
             .news-list-headline {
                 align-items: flex-start;
                 flex-direction: column;
+
+                max-width: 1024px;
                 
                 padding: 32px 16px;
+
+                .news-list-title {
+                    margin-bottom: 16px;
+                }
 
                 .news-list-title-button {
                     margin-bottom: 16px;
@@ -216,6 +222,18 @@
             box-sizing: border-box;
 
             margin-bottom: 32px;
+        }
+
+        .news-cards-container {
+            .news-cards {
+                max-width: 1024px;
+            }
+
+            .load-more-container {
+                max-width: 1024px;
+
+                margin-bottom: 32px;
+            }
         }
     }
 }

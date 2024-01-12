@@ -120,7 +120,8 @@
 
             margin-bottom: 12px;
 
-            .interval {
+            .interval,
+            .periodicity {
                 @include openSansFont(20px, 700, 24px);
             }
 
@@ -147,6 +148,14 @@
         .description {
             @include interFont(16px, 400, 24px);
             color: $grey-900;
+        }
+    }
+}
+
+@media (max-width: 1279px) {
+    .schedule-line-container {
+        .schedule-line {
+            max-width: 1024px;
         }
     }
 }

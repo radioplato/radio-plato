@@ -14,6 +14,8 @@ body {
     background-color: black;
 
     overflow: hidden;
+
+    -webkit-tap-highlight-color: #ffdd030a;
 }
 
 @media (pointer: none), (pointer: coarse) {

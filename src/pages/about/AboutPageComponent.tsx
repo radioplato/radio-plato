@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 
 import qs from 'qs';
-import { isMobileOnly } from 'react-device-detect';
 
 import { Seo } from '../../components/shared/wrappers/seo/Seo'
 import SocialButtonsComponent from '../../components/shared/social-links/components/social-buttons/SocialButtonsComponent';
@@ -42,7 +41,7 @@ export function AboutPageComponent() {
     }, []);
     
     return about ? (
-        <article className={`about-container ${isMobileOnly ? 'mobile' : 'desktop'}`}>
+        <article className='about-container'>
             <Seo meta={{
                 title: about.title,
                 description: about.description,

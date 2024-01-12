@@ -53,22 +53,6 @@ function ScheduleTableComponent() {
         );
     }
 
-    const renderDropdown = () => {
-        return (
-            <select className='schedule-day-dropdown' value={selectedDay} onChange={(event) => setSelectedDay(Number(event.currentTarget.value))}>
-                {
-                    DAYS_OF_WEEK.map((day, index) => (
-                        <option key={`${day.toLowerCase()}-${index}`}
-                            value={index}
-                        >
-                            {day}
-                        </option>
-                    ))
-                }
-            </select>
-        )
-    }
-
     const renderButtons = () => {
         return DAYS_OF_WEEK.map((day, index) => (
             <Button
@@ -84,31 +68,23 @@ function ScheduleTableComponent() {
     }
 
     const renderDailySchedule = () => {
-        return schedule.length && schedule[selectedDay].length
-            ? schedule[selectedDay].map((playlistShow: ScheduleCard) => scheduleShowlineBuilder(playlistShow))
-            : [];
+        return schedule.length
+            ? schedule[selectedDay].length
+                ? schedule[selectedDay].map((playlistShow: ScheduleCard) => scheduleShowlineBuilder(playlistShow))
+                : []
+            : null;
     }
 
     return (
-        <div className={`schedule-container ${isMobileOnly ? 'mobile' : 'desktop'}`}>
+        <div className='schedule-container'>
             <div className='schedule-headline-container'>
                 <div className='schedule-headline'>
                     <div className='schedule-title'>
                         <p>Schedule</p>
                     </div>
-                    {
-                        isMobileOnly
-                            ? (
-                                <div>
-                                    {renderDropdown()}
-                                </div>
-                            )
-                            : (
-                                <div className='schedule-days'>
-                                    {renderButtons()}
-                                </div>
-                            )
-                    }
+                    <div className='schedule-days'>
+                        {renderButtons()}
+                    </div>
                 </div>
             </div>
             <div>

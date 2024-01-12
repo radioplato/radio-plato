@@ -106,7 +106,7 @@ export function NewsArticleComponent({
     }
 
     return newsArticle ? (
-        <article className={`news ${isMobileOnly ? 'mobile' : 'desktop'}`}>
+        <article className='news'>
             <Seo meta={{
                 title: newsArticle.title,
                 description: newsArticle.excerpt,
@@ -151,12 +151,14 @@ export function NewsArticleComponent({
             <div className='more-news-cards-container'>
                 <div className='more-news-cards'>
                     {
-                        relatedNewsCards.length && relatedNewsCards.filter(card => card && card.slug !== newsArticle?.slug)
+                        relatedNewsCards.length
+                        ? relatedNewsCards.filter(card => card && card.slug !== newsArticle?.slug)
                             .sort(() => 0.5 - Math.random())
                             .slice(0, 3)
                             .map(relatedCard => (
                                 <NewsCardComponent key={relatedCard.slug} newsCard={relatedCard} size={NEWS_CARD_SIZE.SMALL} />
                             ))
+                        : null
                     }
                 </div>
                 <div className='load-more-container'>
