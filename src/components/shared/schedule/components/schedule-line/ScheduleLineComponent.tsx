@@ -36,8 +36,6 @@ function scheduleCardWrapper(scheduleCard: ScheduleCard, isNow = false) {
         );
     }
 
-    console.log(interval)
-
     const content = (
         <div className='schedule-line-container'>
             <div className='schedule-line'>

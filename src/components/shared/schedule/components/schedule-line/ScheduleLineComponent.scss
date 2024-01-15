@@ -132,14 +132,14 @@
         }
 
         .title {
-            margin-bottom: 12px;
+            margin-bottom: 4px;
             @include openSansFont(24px, 700, 32px);
             letter-spacing: 0.5px;
         }
 
         .type {
             margin-bottom: 12px;
-            color: $grey-700;
+            color: $grey-500;
             @include interFont(12px, 400, 20px);
             letter-spacing: 0.4px;
             text-transform: uppercase;
@@ -156,6 +156,28 @@
     .schedule-line-container {
         .schedule-line {
             max-width: 1024px;
+        }
+    }
+}
+
+@media (max-width: 1023px) {
+    .schedule-line-container {
+        .schedule-line {
+            max-width: 768px;
+
+            .information-container {
+                .time {
+                    margin-bottom: 8px;
+                }
+
+                .title {
+                    @include openSansFont(22px, 600, 24px);
+                }
+
+                .type {
+                    margin-bottom: 8px;
+                }
+            }
         }
     }
 }

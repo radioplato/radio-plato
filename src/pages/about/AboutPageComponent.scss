@@ -170,3 +170,51 @@
         }
     }
 }
+
+@media (max-width: 1023px) {
+    .about-container {
+        width: 100%;
+        height: calc(100vh - 64px);
+
+        padding: 24px 0;
+
+        .about {
+            flex-direction: column;
+            justify-content: space-between;
+
+            max-width: 768px;
+
+            .information {
+                width: 100%;
+
+                margin: 0;
+
+                .about-title {
+                    margin-bottom: 24px;
+                }
+
+                .about-text {
+                    margin-bottom: 48px;
+                }
+
+                .social-buttons {
+                    margin-bottom: 48px;
+                }
+
+                .show-description {
+                    margin-bottom: 0;
+                }
+            }
+
+            .image {
+                width: 100%;
+                height: auto;
+
+                img {
+                    width: 100%;
+                }
+            }
+        }
+    }
+}
+

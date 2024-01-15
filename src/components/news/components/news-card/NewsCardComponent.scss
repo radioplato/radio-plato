@@ -269,3 +269,76 @@
         }
     }
 }
+
+@media (max-width: 1023px) {
+    .news-card {
+        &.small {
+            flex-direction: row;
+
+            width: 736px;
+
+            margin-bottom: 32px;
+
+            .news-image {
+                width: 128px;
+                height: 128px;
+
+                margin-bottom: 0;
+                margin-right: 24px;
+            }
+
+            .news-information {
+                width: 584px;
+
+                .news-service-information {
+                    margin-bottom: 6px;
+                }
+
+                .news-content-information {
+                    .news-title {
+                        margin-bottom: 8px;
+                        font-weight: 600;
+                        line-height: 32px;
+                    }
+                }             
+            }
+        }
+
+        &.large {
+            flex-direction: column;
+            justify-content: center;
+
+            width: 768px;
+
+            box-sizing: border-box;
+            
+            .news-image {
+                width: 736px;
+                height: 414px;
+
+                margin-right: 0;
+                margin-bottom: 16px;
+            }
+
+            .news-information {
+                width: 736px;
+
+                .news-service-information {
+                    margin-bottom: 8px;
+                    font-weight: 400;
+                }
+
+                .news-content-information {
+                    .news-title {
+                        margin-bottom: 8px;
+                        @include openSansFont(28px, 600, 36px);
+                    }
+
+                    .news-excerpt {
+                        @include interFont(16px, 400, 24px);
+                    }
+                }
+            }
+        }
+    }
+}

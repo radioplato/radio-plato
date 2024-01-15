@@ -143,3 +143,23 @@
         }
     }
 }
+
+@media (max-width: 1023px) {
+    .schedule-container {
+        .schedule-headline-container {
+            .schedule-headline {
+                flex-direction: column;
+                justify-content: flex-start;
+                align-items: flex-start;
+
+                max-width: 768px;
+
+                padding: 24px 16px;
+
+                .schedule-title {
+                    margin-bottom: 16px;
+                }
+            }
+        }
+    }
+}

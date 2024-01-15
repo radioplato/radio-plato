@@ -91,5 +91,30 @@
         width: 320px;
 
         margin-bottom: 40px;
+
+        .show-image {
+            height: 320px;
+        }
+    }
+}
+
+@media (max-width: 1023px) {
+    .show-card {
+        width: 234px;
+
+        margin-bottom: 40px;
+
+        .show-image {
+            height: 234px;
+        }
+
+        .show-information {
+            .show-content-information {
+                .show-title,
+                .show-author {
+                    margin-bottom: 8px;
+                }
+            }
+        }
     }
 }

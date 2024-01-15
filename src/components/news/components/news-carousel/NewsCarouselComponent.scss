@@ -125,3 +125,23 @@
         }
     }
 }
+
+@media (max-width: 1279px) {
+    .news-carousel-container {
+        .news-carousel-headline-container {
+            .news-carousel-headline {
+                max-width: 768px;
+                
+                padding: 24px 16px;
+            }
+        }
+
+        .highlight-carousel-container {
+            margin-bottom: 24px;
+            
+            .news-card-wrapper {
+                height: 600px;
+            }
+        }
+    }
+}
