@@ -10,7 +10,7 @@ import Header from './components/header/Header';
 import Main from './components/main/Main';
 import ShadowPlayer from './components/shared/player/components/shadow-player/ShadowPlayer';
 
-import './App.css';
+import './App.scss';
 
 
 const Components = (

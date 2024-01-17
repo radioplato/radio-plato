@@ -170,6 +170,8 @@
 
 @media (max-width: 1279px) {
     .show-list {
+        height: calc(100vh - 148px);
+        
         .shows-list-headline-container {
             .shows-list-headline {
                 align-items: flex-start;

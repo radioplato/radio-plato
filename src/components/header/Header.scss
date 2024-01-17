@@ -87,11 +87,19 @@ header.header-container.mobile {
     header.header-container.mobile {
         display: flex;
 
+        position: fixed;
+        left: 0;
+        top: 0;
+        z-index: 99;
+
         height: 64px;
 
         box-sizing: border-box;
-        
         padding: 8px 12px;
+
+        background-color: $black;
+
+        overflow: visible;
 
         .logo-container {
             width: 188px;

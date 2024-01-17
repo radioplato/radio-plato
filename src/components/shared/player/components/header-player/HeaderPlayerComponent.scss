@@ -21,10 +21,15 @@
         background-size: cover;
         background-position: center;
         background-repeat: no-repeat;
+        background-color: $grey-50;
     }
 
     .play-button {
         margin-left: 24px;
+    }
+
+    .track-title-component {
+        width: 370px;
     }
 
     .volume-controls {
