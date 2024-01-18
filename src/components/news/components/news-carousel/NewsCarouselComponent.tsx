@@ -32,7 +32,7 @@ export function NewsCarouselComponent() {
 
         fetch(`${process.env.REACT_APP_BACKEND_URL_V2}/posts?${query}`)
             .then(response => response.json())
-            .then(data => data.data.map((entry: NewsEntry) => parseNewsCard(entry)))
+            .then(data => data.data.map((entry: NewsEntry) => parseNewsCard(entry)).sort(() => .6 - Math.random()).sort( () => .4 - Math.random()))
             .then(newsCards => handleLoadResponse(newsCards));
     }
 
@@ -83,7 +83,9 @@ export function NewsCarouselComponent() {
         <div className='news-carousel-container'>
             <div className='news-carousel-headline-container'>
                 <div className='news-carousel-headline'>
-                    <div className='news-carousel-title'>Highlights</div>
+                    <div className='news-carousel-title'>
+                        <p>Highlights</p>
+                    </div>
                     {
                         !isLoading ? (
                             <div className='news-navigation'>

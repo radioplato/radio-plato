@@ -90,6 +90,7 @@ export function Header() {
                     </div>
                 </div>
                 <Button
+                    className='donate-button'
                     type={BUTTON_TYPE.GHOST}
                     size={BUTTON_SIZE.BIG}
                     icon={ICON_KEY.HEART_REGULAR}

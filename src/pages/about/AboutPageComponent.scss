@@ -100,10 +100,10 @@
             }
 
             .social-buttons {
-                margin-bottom: 56px;
+                margin-bottom: 40px;
 
                 .social-links-container > .social-button {
-                    margin-right: 16px;
+                    margin: 0 16px 16px 0;
 
                     .button {
                         padding: 0;
@@ -151,7 +151,7 @@
                 }
 
                 .social-buttons {
-                    margin-bottom: 48px;
+                    margin-bottom: 32px;
                 }
 
                 .show-description {
@@ -179,7 +179,7 @@
         padding: 24px 0;
 
         .about {
-            flex-direction: column;
+            flex-direction: column-reverse;
             justify-content: space-between;
 
             max-width: 768px;
@@ -197,10 +197,6 @@
                     margin-bottom: 48px;
                 }
 
-                .social-buttons {
-                    margin-bottom: 48px;
-                }
-
                 .show-description {
                     margin-bottom: 0;
                 }
@@ -210,8 +206,32 @@
                 width: 100%;
                 height: auto;
 
+                margin-bottom: 48px;
+
                 img {
                     width: 100%;
+                }
+            }
+        }
+    }
+}
+
+@media (max-width: 767px) {
+    .about-container {
+        width: 100%;
+
+        .about {
+            width: 100%;
+
+            .information {
+                width: 100%;
+
+                .about-title {
+                    @include interFont(28px, 400, 28px);
+                }
+
+                .about-text {
+                    @include interFont(16px, 400, 24px);
                 }
             }
         }

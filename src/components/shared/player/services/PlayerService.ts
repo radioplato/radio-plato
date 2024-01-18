@@ -111,6 +111,10 @@ class PlayerService {
         return this.trackInformation.art;
     }
 
+    get nowPlaying() {
+        return this.nowPlayingInformation;
+    }
+
     subscribeOnPlayerStateChanges(onNext: Function) {
         return this.playerStateSubject.subscribe((data) => onNext(data));
     }

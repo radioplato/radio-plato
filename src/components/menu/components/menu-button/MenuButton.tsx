@@ -50,10 +50,12 @@ function MenuButton({ isAside }: MenuButtonProperties) {
     const renderHeaderButton = () => {
         return (
             <Button
+                className='header-menu-button'
                 type={BUTTON_TYPE.GHOST}
                 size={BUTTON_SIZE.BIG}
                 icon={ICON_KEY.NAVIGATION_HORIZONTAL_REGULAR}
                 iconPosition={ICON_POSITION.LEFT}
+                title='menu button'
                 onClick={toggleMenu}
             ></Button>
         );

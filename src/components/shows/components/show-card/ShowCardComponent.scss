@@ -118,3 +118,35 @@
         }
     }
 }
+
+@media (max-width: 767px) {
+    .show-card {
+        width: 288px;
+
+        .show-image {
+            height: 288px;
+        }
+
+        .show-information {
+            .show-content-information {
+                .show-title {
+                    @include openSansFont(24px, 600, 32px);
+                }
+
+                .show-author {
+                    @include interFont(12px, 400, 20px);
+                }
+            }
+        }
+    }
+}
+
+@media (max-width: 319px) {
+    .show-card {
+        width: 100%;
+
+        .show-image {
+            height: 160px;
+        }
+    }
+}

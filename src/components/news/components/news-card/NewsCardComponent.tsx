@@ -26,13 +26,12 @@ function NewsCardComponent({ newsCard, size }: NewsCardProperties) {
     return (
         <div className={ `news-card ${ size }` }>
             <Link
-                className='news-image'
-                style={{
-                    backgroundImage: `url(${newsCard.newsCover.url})`,
-                }}
+                className='news-image-container'
                 to={`/news/${newsCard.category}/${newsCard.slug}`}
                 title={newsCard.title}
-            />
+            >
+                <img className='news-image' src={newsCard.newsCover.url}/>
+            </Link>
             <div className='news-information'>
                 <div className='news-service-information'>
                     <div className='news-date'>{moment(newsCard.publishDate).format(DATE_FORMAT)}</div>

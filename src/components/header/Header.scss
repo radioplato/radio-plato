@@ -111,3 +111,34 @@ header.header-container.mobile {
         }
     }
 }
+
+@media (max-width: 374px) {
+    header.header-container.mobile {
+        .header-menu-button {
+            .button {
+                .button-icon {
+                    width: 24px;
+                    height: 24px;
+                }
+            }
+        }
+
+        .logo-container {
+            width: 160px;
+            height: 41px;
+
+            .logo {
+                height: 41px;
+            }
+        }
+
+        .donate-button {
+            .button {
+                .button-icon {
+                    width: 24px;
+                    height: 24px;
+                }
+            }
+        }
+    }
+}

@@ -252,3 +252,42 @@
     }
 }
 
+@media (max-width: 767px) {
+    .show-list {
+        .shows-list-headline-container {
+            .shows-list-headline {
+                width: 100%;
+
+                .shows-list-title {
+                    height: 28px;
+
+                    @include interFont(28px, 400, 28px);
+                }
+            }
+        }
+
+        .show-cards-container {
+            .show-cards {
+                width: 624px;
+            }
+        }
+    }
+}
+
+@media (max-width: 623px) {
+    .show-list {
+        .show-cards-container {
+            .show-cards {
+                flex-direction: column;
+                flex-wrap: nowrap;
+                
+                justify-content: flex-start;
+                align-content: stretch;
+                align-items: center;
+                
+                width: 100%;
+            }
+        }
+    }
+}
+

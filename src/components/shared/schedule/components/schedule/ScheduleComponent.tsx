@@ -31,7 +31,7 @@ const DAYS_OF_WEEK = [
 function ScheduleTableComponent() {
     const [schedule, setSchedule] = useState<ScheduleCard[][]>(scheduleService.schedule);
     const [selectedDay, setSelectedDay] = useState<number>(moment().isoWeekday() - 1);
-    const [nowPlayingInformation, setNowPlayingInformation] = useState<NowPlayingInformation>();
+    const [nowPlayingInformation, setNowPlayingInformation] = useState<NowPlayingInformation>(playerService.nowPlaying);
 
     useEffect(() => {
         const scheduleChangesSubscription = scheduleService.subscribeOnScheduleChanges((schedule: ScheduleCard[][]) => setSchedule(schedule));
@@ -44,6 +44,7 @@ function ScheduleTableComponent() {
     }, []);
 
     const scheduleShowlineBuilder = (scheduleCard: ScheduleCard) => {
+        console.log(scheduleCard.azuracastID, nowPlayingInformation?.name)
         return (
             <ScheduleLine
                 scheduleCard={scheduleCard}

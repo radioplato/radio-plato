@@ -163,3 +163,18 @@
         }
     }
 }
+
+@media (max-width: 767px) {
+    .schedule-container {
+        .schedule-headline-container {
+            .schedule-headline {
+                width: 100%;
+
+                .schedule-title {
+                    height: 28px;
+                    @include interFont(28px, 400, 28px);
+                }
+            }
+        }
+    }
+}

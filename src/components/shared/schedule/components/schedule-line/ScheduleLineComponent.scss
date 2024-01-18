@@ -183,3 +183,24 @@
         }
     }
 }
+
+@media (max-width: 767px) {
+    .schedule-line-container {
+        .schedule-line {
+            width: 100%;
+
+            .visual-container {
+                .image {
+                    width: 64px;
+                    height: 64px;
+                }
+            }
+
+            .information-container {
+                width: calc(100% - 88px);
+
+                margin-left: 16px;
+            }
+        }
+    }
+}

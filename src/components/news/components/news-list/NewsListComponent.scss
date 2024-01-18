@@ -296,3 +296,42 @@
         }
     }
 }
+
+@media (max-width: 767px) {
+    .news-list-container {
+        .news-list-headline-container {
+            .news-list-headline {
+                width: 100%;
+
+                .news-list-title-button {
+                    height: 28px;
+
+                    .button {
+                        @include interFont(28px, 400, 28px);
+
+                        .button-icon {
+                            width: 24px;
+                            height: 24px;
+                        }
+                    }
+                }
+
+                .news-list-title {
+                    height: 28px;
+                    
+                    @include interFont(28px, 400, 28px);
+                }
+            }
+        }
+
+        .news-cards-container {
+            .news-cards {
+                width: 100%;
+            }
+
+            .load-more-container {
+                width: 100%;
+            }
+        }
+    }
+}
