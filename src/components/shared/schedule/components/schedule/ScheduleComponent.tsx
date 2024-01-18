@@ -44,7 +44,6 @@ function ScheduleTableComponent() {
     }, []);
 
     const scheduleShowlineBuilder = (scheduleCard: ScheduleCard) => {
-        console.log(scheduleCard.azuracastID, nowPlayingInformation?.name)
         return (
             <ScheduleLine
                 scheduleCard={scheduleCard}

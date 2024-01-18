@@ -53,7 +53,7 @@ export function NewsListComponent({
                     $eqi: category,
                 },
             } : undefined,
-            sort: ['publishedAt:desc'],
+            sort: ['PublishAt:desc'],
         });
 
         setLoading(true);
@@ -88,7 +88,7 @@ export function NewsListComponent({
                     $eqi: category,
                 },
             } : undefined,
-            sort: ['publishedAt:desc'],
+            sort: ['PublishAt:desc'],
         });
 
         fetch(`${process.env.REACT_APP_BACKEND_URL_V2}/posts?${query}`)

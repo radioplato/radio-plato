@@ -37,11 +37,13 @@ export function ShowComponent({
             },
             title: entry.attributes.Title,
             slug: entry.attributes.Slug,
-            socialButtons: Object.entries(entry.attributes.Links).map(([key, value]) => ({
+            socialButtons: entry.attributes.Links
+                ? Object.entries(entry.attributes.Links).map(([key, value]) => ({
                 name: key.toLowerCase(),
                 icon: key.toLowerCase() as ICON_KEY,
                 link: value ? value : ''
-            })).filter((button) => button.link && button.name !== 'id'),
+                })).filter((button) => button.link && button.name !== 'id')
+                : [],
             schedules: entry.attributes.Schedules.data.length
                 ? entry.attributes.Schedules.data.map((scheduleInformation) => {
                     return {

@@ -138,8 +138,10 @@ export function NewsArticleComponent({
                 <div className='news-content'>
                     <ReactMarkdown
                         source={newsArticle.content}
-                        escapeHtml={false}
-                        renderers={{ link: props => <a href={props.href} target="_blank" rel="noopener noreferrer">{props.children}</a> }}
+                        escapeHtml={navigator.userAgent === 'ReactSnap'}
+                        renderers={{
+                            link: props => <a href={props.href} target="_blank" rel="noopener noreferrer">{props.children}</a>
+                        }}
                     />
                 </div>
             </div>
