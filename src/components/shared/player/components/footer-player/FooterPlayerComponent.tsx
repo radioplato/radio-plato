@@ -1,6 +1,5 @@
 import React, { RefObject, useEffect, useState } from 'react';
 
-import { useHistory } from 'react-router-dom';
 import { isMobileOnly } from 'react-device-detect';
 
 import { playerService } from '../../services/PlayerService';
@@ -16,7 +15,6 @@ import VolumeControls from '../volume-controls/VolumeControlsComponent';
 import StreamLinks from '../playlists/StreamLinksComponent';
 
 function FooterPlayerComponent() {
-    const history = useHistory();
     const [playing, setPlaying] = useState(playerService.playing);
     const [trackArt, setTrackArt] = useState(playerService.trackArt);
 

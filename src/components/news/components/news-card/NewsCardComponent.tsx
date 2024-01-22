@@ -30,7 +30,7 @@ function NewsCardComponent({ newsCard, size }: NewsCardProperties) {
                 to={`/news/${newsCard.category}/${newsCard.slug}`}
                 title={newsCard.title}
             >
-                <img className='news-image' src={newsCard.newsCover.url}/>
+                <img className='news-image' alt={newsCard.title.toLowerCase()} src={newsCard.newsCover.url}/>
             </Link>
             <div className='news-information'>
                 <div className='news-service-information'>

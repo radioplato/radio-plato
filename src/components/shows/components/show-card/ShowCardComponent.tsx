@@ -2,8 +2,6 @@ import React from 'react';
 
 import { Link } from 'react-router-dom';
 
-import { isMobileOnly } from 'react-device-detect';
-
 import { ShowCard } from '../../models';
 
 import './ShowCardComponent.scss';
@@ -13,11 +11,9 @@ interface ShowCardProperties {
 }
 
 function ShowCardComponent({ showCard }: ShowCardProperties) {
-    const device = isMobileOnly ? 'mobile' : 'desktop';
-
     return (
         <Link
-            className={`show-card ${device}`}
+            className='show-card'
             to={`/shows/${showCard.slug}`}
         >
             <div

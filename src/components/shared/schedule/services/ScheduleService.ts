@@ -1,12 +1,9 @@
 import { Subject } from 'rxjs'
-import moment from 'moment';
 
-import { ScheduleCard, AzuraScheduleEntry, ScheduleInformationList } from '../models/schedule';
+import moment from 'moment';
 import qs from 'qs';
 
-
-const DATA_REQUEST_INTERVAL = 14400000;
-const CURRENT_SHOW_REFRESH_INTERVAL = 60000;
+import { ScheduleCard, AzuraScheduleEntry, ScheduleInformationList } from '../models/schedule';
 
 class ScheduleService {
     private _schedule: ScheduleCard[][] = [ [], [], [], [], [], [], [] ];

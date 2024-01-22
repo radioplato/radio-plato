@@ -1,0 +1,119 @@
+<svg xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svgjs="http://svgjs.com/svgjs" width="886.57" height="943.02"><svg id="SvgjsSvg1000" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 886.57 943.02">
+  <defs>
+    <style>
+      .cls-1, .cls-2, .cls-3 {
+        font-size: 25.1px;
+      }
+
+      .cls-1, .cls-3 {
+        font-family: IvyEpic-Light, IvyEpic;
+        font-weight: 300;
+      }
+
+      .cls-4 {
+        fill: #fff;
+        font-family: IvyEpic-ExtraLight, IvyEpic;
+        font-weight: 200;
+      }
+
+      .cls-4, .cls-5 {
+        font-size: 25.41px;
+      }
+
+      .cls-5, .cls-2 {
+        fill: #ffe033;
+        font-family: IvyEpic-Medium, IvyEpic;
+        font-weight: 500;
+      }
+
+      .cls-6 {
+        stroke-width: 0px;
+      }
+
+      .cls-6, .cls-3 {
+        fill: #1d1d1d;
+      }
+    </style>
+  </defs>
+  <path class="cls-6" d="M264.03,934.8c-8.75,0-17.7-.75-26.58-2.22-38.36-6.37-71.34-29.77-92.85-65.87-29.92-50.21-35.2-120.03-13.79-182.22,28.64-83.19,72.33-161.87,133.56-240.54,47.59-61.14,104.35-121.01,184.06-194.13,4.17-3.83,8.48-7.81,12.91-11.91,25.69-23.76,54.61-50.5,86.37-74.28-14.8-65.66-67.98-115.61-132.69-115.61-9.72,0-19.59,1.05-29.33,3.12-77.68,16.53-162.97,76.35-232.72,155.88-63.79,72.73-104.53,153.95-106.32,211.96-.27,8.78,1.67,15.38,5.78,19.61,4.7,4.84,11.6,5.86,16.56,5.86,16.2,0,35.26-10.42,47.42-25.94,39.52-50.38,64.56-105.16,83.84-152.11,9.69-24.28,32.93-40.59,57.84-40.59,10.91,0,21.62,3.01,31.84,8.96,3.02,1.76,18.36,11.34,24.88,27.43,10.77,26.58-3.98,58.57-21.38,79.63-.8.97-1.68,2.07-2.67,3.31-9.75,12.17-30.03,37.5-85.62,81.78-35.75,28.47-89.12,58.9-131.72,58.9-17.88,0-32.2-5.3-42.57-15.75-11.59-11.68-17.37-29.12-17.19-51.84.24-29.88,10.68-67.09,30.18-107.61,19.37-40.26,46.81-81.97,79.35-120.64,34.95-41.54,75.38-78.86,116.92-107.95,47.1-32.98,95.45-55.69,143.72-67.51,12.5-3.06,25.08-4.61,37.38-4.61,79.73,0,140.25,64.39,161.68,130.05,17.77-10.05,40.13-20,63.68-28.2,31.65-11.03,60.24-17.21,80.52-17.39.59,0,1.17,0,1.75,0,44.72,0,82.3,15.59,108.68,45.08,27.38,30.61,41.42,76.25,36.64,119.12-9.12,81.77-51.64,134.23-105.46,200.64-40.63,50.14-86.69,106.97-134.69,192.7-29.08,51.96-38.34,98.17-30.48,112.83,1.32,2.47,3.1,4.19,7.48,4.52.9.07,1.76.1,2.65.1,28.41,0,46.89-38.28,59.13-63.61,2.87-5.94,5.34-11.06,7.73-15.32,13.52-24.11,25.18-39.56,37.78-50.11,14.3-11.96,30.47-17.77,49.44-17.77.76,0,1.53,0,2.3.03,20.45.48,39.45,8.43,52.15,21.8,11.81,12.44,17.77,28.87,17.23,47.5-.56,19.54-9.44,35.45-17.28,49.49-5.19,9.3-10.1,18.09-10.16,24.43-.1,9.49,5.16,14.33,21.64,19.88,5.54,1.87,9.07,6.92,8.8,12.57-.4,8.09-7.72,11.52-10.13,12.64-1.76.82-4.57,1.96-6.67,2.45-4.15.96-8.86,1.47-13.62,1.47-9.18,0-22.85-1.87-35.85-10.78-26.35-18.06-35.34-53.21-39.42-80.44-2.66,2.68-5.53,5.52-8.5,8.26-4.82,4.42-10.57,10.54-16.66,17.02-24.2,25.75-57.34,61.01-96.46,61.01-6.75,0-13.46-1.07-19.96-3.17-13.16-4.26-22.83-14-27.97-28.14-15.03-41.44,10.43-116.47,73.64-216.97,1.2-1.9,2.49-3.96,3.88-6.16,36.28-57.49,146.68-232.44,121.15-320.13-5.41-18.58-16.62-31.67-34.28-40.01-7.68-3.63-18.55-5.47-32.3-5.47-36.4,0-82.24,13.01-105.51,21.52,1.87,102.83-15.7,234.27-47.03,351.79-17.41,65.28-38.31,124.06-62.13,174.73-26.52,56.42-56.18,101.55-88.14,134.13-40.87,41.66-85.42,62.79-132.42,62.79ZM553.26,229.76c-60.87,31.81-120.92,81.21-174.66,143.83-53.72,62.6-98.7,135.98-126.65,206.63-14.92,37.74-23.9,73.22-25.96,102.63-1.9,27.08,2,48.59,11.26,62.21,7.74,11.39,18.9,16.92,34.11,16.92,8.61,0,18.38-1.84,29.04-5.47,27.69-9.43,56.27-31.81,84.94-66.51,25.26-30.58,50.08-70.04,73.78-117.3,43.79-87.36,73.19-180.27,81.97-229.63,7.63-42.89,11.71-80.89,12.17-113.3Z"></path>
+  <g>
+    <text class="cls-3" transform="translate(6664.98 2795.2) rotate(47.14)" svgjs:data="{&quot;leading&quot;:&quot;1.3&quot;}"><tspan x="0" y="0" svgjs:data="{&quot;leading&quot;:&quot;1.3&quot;}">R</tspan></text>
+    <text class="cls-3" transform="translate(6675.49 2806.12) rotate(64.66)" svgjs:data="{&quot;leading&quot;:&quot;1.3&quot;}"><tspan x="0" y="0" svgjs:data="{&quot;leading&quot;:&quot;1.3&quot;}">A</tspan></text>
+    <text class="cls-3" transform="translate(6682.72 2820.43) rotate(84.02)" svgjs:data="{&quot;leading&quot;:&quot;1.3&quot;}"><tspan x="0" y="0" svgjs:data="{&quot;leading&quot;:&quot;1.3&quot;}">D</tspan></text>
+    <text class="cls-3" transform="translate(6683.98 2838.79) rotate(97.69)" svgjs:data="{&quot;leading&quot;:&quot;1.3&quot;}"><tspan x="0" y="0" svgjs:data="{&quot;leading&quot;:&quot;1.3&quot;}">I</tspan></text>
+    <text class="cls-3" transform="translate(6684.28 2844.34) rotate(112.08)" svgjs:data="{&quot;leading&quot;:&quot;1.3&quot;}"><tspan x="0" y="0" svgjs:data="{&quot;leading&quot;:&quot;1.3&quot;}">O</tspan></text>
+    <text class="cls-3" transform="translate(6676.01 2862.56) rotate(126.26)" svgjs:data="{&quot;leading&quot;:&quot;1.3&quot;}"><tspan x="0" y="0" svgjs:data="{&quot;leading&quot;:&quot;1.3&quot;}"> </tspan></text>
+    <text class="cls-3" transform="translate(6673.55 2866.88) rotate(137.61)" svgjs:data="{&quot;leading&quot;:&quot;1.3&quot;}"><tspan x="0" y="0" svgjs:data="{&quot;leading&quot;:&quot;1.3&quot;}">P</tspan></text>
+    <text class="cls-3" transform="translate(6662.72 2876.71) rotate(152.7)" svgjs:data="{&quot;leading&quot;:&quot;1.3&quot;}"><tspan x="0" y="0" svgjs:data="{&quot;leading&quot;:&quot;1.3&quot;}">L</tspan></text>
+    <text class="cls-3" transform="translate(6652.24 2882.62) rotate(168.73)" svgjs:data="{&quot;leading&quot;:&quot;1.3&quot;}"><tspan x="0" y="0" svgjs:data="{&quot;leading&quot;:&quot;1.3&quot;}">A</tspan></text>
+    <text class="cls-3" transform="translate(6638.89 2885.58) rotate(-177.11)" svgjs:data="{&quot;leading&quot;:&quot;1.3&quot;}"><tspan x="0" y="0" svgjs:data="{&quot;leading&quot;:&quot;1.3&quot;}">T</tspan></text>
+    <text class="cls-3" transform="translate(6626.56 2885.81) rotate(-159.68)" svgjs:data="{&quot;leading&quot;:&quot;1.3&quot;}"><tspan x="0" y="0" svgjs:data="{&quot;leading&quot;:&quot;1.3&quot;}">O</tspan></text>
+    <text class="cls-2" transform="translate(6608.06 2878.09) rotate(-145.41)" svgjs:data="{&quot;leading&quot;:&quot;1.3&quot;}"><tspan x="0" y="0" svgjs:data="{&quot;leading&quot;:&quot;1.3&quot;}">.</tspan></text>
+    <text class="cls-3" transform="translate(6603.57 2875.77) rotate(-133.55)" svgjs:data="{&quot;leading&quot;:&quot;1.3&quot;}"><tspan x="0" y="0" svgjs:data="{&quot;leading&quot;:&quot;1.3&quot;}">R</tspan></text>
+    <text class="cls-3" transform="translate(6592.95 2865) rotate(-116.07)" svgjs:data="{&quot;leading&quot;:&quot;1.3&quot;}"><tspan x="0" y="0" svgjs:data="{&quot;leading&quot;:&quot;1.3&quot;}">A</tspan></text>
+    <text class="cls-3" transform="translate(6585.54 2850.77) rotate(-96.68)" svgjs:data="{&quot;leading&quot;:&quot;1.3&quot;}"><tspan x="0" y="0" svgjs:data="{&quot;leading&quot;:&quot;1.3&quot;}">D</tspan></text>
+    <text class="cls-3" transform="translate(6584.05 2832.4) rotate(-82.98)" svgjs:data="{&quot;leading&quot;:&quot;1.3&quot;}"><tspan x="0" y="0" svgjs:data="{&quot;leading&quot;:&quot;1.3&quot;}">I</tspan></text>
+    <text class="cls-3" transform="translate(6583.68 2826.9) rotate(-68.64)" svgjs:data="{&quot;leading&quot;:&quot;1.3&quot;}"><tspan x="0" y="0" svgjs:data="{&quot;leading&quot;:&quot;1.3&quot;}">O</tspan></text>
+    <text class="cls-3" transform="translate(6591.73 2808.56) rotate(-54.44)" svgjs:data="{&quot;leading&quot;:&quot;1.3&quot;}"><tspan x="0" y="0" svgjs:data="{&quot;leading&quot;:&quot;1.3&quot;}"> </tspan></text>
+    <text class="cls-3" transform="translate(6594.14 2804.2) rotate(-43.08)" svgjs:data="{&quot;leading&quot;:&quot;1.3&quot;}"><tspan x="0" y="0" svgjs:data="{&quot;leading&quot;:&quot;1.3&quot;}">P</tspan></text>
+    <text class="cls-3" transform="translate(6604.83 2794.26) rotate(-28.03)" svgjs:data="{&quot;leading&quot;:&quot;1.3&quot;}"><tspan x="0" y="0" svgjs:data="{&quot;leading&quot;:&quot;1.3&quot;}">L</tspan></text>
+    <text class="cls-3" transform="translate(6615.26 2788.21) rotate(-11.96)" svgjs:data="{&quot;leading&quot;:&quot;1.3&quot;}"><tspan x="0" y="0" svgjs:data="{&quot;leading&quot;:&quot;1.3&quot;}">A</tspan></text>
+    <text class="cls-3" transform="translate(6628.6 2785.09) rotate(2.22)" svgjs:data="{&quot;leading&quot;:&quot;1.3&quot;}"><tspan x="0" y="0" svgjs:data="{&quot;leading&quot;:&quot;1.3&quot;}">T</tspan></text>
+    <text class="cls-3" transform="translate(6640.91 2784.71) rotate(19.64)" svgjs:data="{&quot;leading&quot;:&quot;1.3&quot;}"><tspan x="0" y="0" svgjs:data="{&quot;leading&quot;:&quot;1.3&quot;}">O</tspan></text>
+    <text class="cls-2" transform="translate(6659.48 2792.2) rotate(33.88)" svgjs:data="{&quot;leading&quot;:&quot;1.3&quot;}"><tspan x="0" y="0" svgjs:data="{&quot;leading&quot;:&quot;1.3&quot;}">.</tspan></text>
+  </g>
+  <g>
+    <text class="cls-1" transform="translate(6664.99 3169.38) rotate(47.14)" svgjs:data="{&quot;leading&quot;:&quot;1.3&quot;}"><tspan x="0" y="0" svgjs:data="{&quot;leading&quot;:&quot;1.3&quot;}">R</tspan></text>
+    <text class="cls-1" transform="translate(6675.49 3180.3) rotate(64.66)" svgjs:data="{&quot;leading&quot;:&quot;1.3&quot;}"><tspan x="0" y="0" svgjs:data="{&quot;leading&quot;:&quot;1.3&quot;}">A</tspan></text>
+    <text class="cls-1" transform="translate(6682.72 3194.6) rotate(84.02)" svgjs:data="{&quot;leading&quot;:&quot;1.3&quot;}"><tspan x="0" y="0" svgjs:data="{&quot;leading&quot;:&quot;1.3&quot;}">D</tspan></text>
+    <text class="cls-1" transform="translate(6683.98 3212.97) rotate(97.69)" svgjs:data="{&quot;leading&quot;:&quot;1.3&quot;}"><tspan x="0" y="0" svgjs:data="{&quot;leading&quot;:&quot;1.3&quot;}">I</tspan></text>
+    <text class="cls-1" transform="translate(6684.28 3218.51) rotate(112.08)" svgjs:data="{&quot;leading&quot;:&quot;1.3&quot;}"><tspan x="0" y="0" svgjs:data="{&quot;leading&quot;:&quot;1.3&quot;}">O</tspan></text>
+    <text class="cls-1" transform="translate(6676.01 3236.73) rotate(126.26)" svgjs:data="{&quot;leading&quot;:&quot;1.3&quot;}"><tspan x="0" y="0" svgjs:data="{&quot;leading&quot;:&quot;1.3&quot;}"> </tspan></text>
+    <text class="cls-1" transform="translate(6673.55 3241.05) rotate(137.61)" svgjs:data="{&quot;leading&quot;:&quot;1.3&quot;}"><tspan x="0" y="0" svgjs:data="{&quot;leading&quot;:&quot;1.3&quot;}">P</tspan></text>
+    <text class="cls-1" transform="translate(6662.72 3250.89) rotate(152.7)" svgjs:data="{&quot;leading&quot;:&quot;1.3&quot;}"><tspan x="0" y="0" svgjs:data="{&quot;leading&quot;:&quot;1.3&quot;}">L</tspan></text>
+    <text class="cls-1" transform="translate(6652.24 3256.8) rotate(168.73)" svgjs:data="{&quot;leading&quot;:&quot;1.3&quot;}"><tspan x="0" y="0" svgjs:data="{&quot;leading&quot;:&quot;1.3&quot;}">A</tspan></text>
+    <text class="cls-1" transform="translate(6638.89 3259.75) rotate(-177.11)" svgjs:data="{&quot;leading&quot;:&quot;1.3&quot;}"><tspan x="0" y="0" svgjs:data="{&quot;leading&quot;:&quot;1.3&quot;}">T</tspan></text>
+    <text class="cls-1" transform="translate(6626.56 3259.98) rotate(-159.68)" svgjs:data="{&quot;leading&quot;:&quot;1.3&quot;}"><tspan x="0" y="0" svgjs:data="{&quot;leading&quot;:&quot;1.3&quot;}">O</tspan></text>
+    <text class="cls-2" transform="translate(6608.06 3252.26) rotate(-145.42)" svgjs:data="{&quot;leading&quot;:&quot;1.3&quot;}"><tspan x="0" y="0" svgjs:data="{&quot;leading&quot;:&quot;1.3&quot;}">.</tspan></text>
+    <text class="cls-1" transform="translate(6603.57 3249.95) rotate(-133.55)" svgjs:data="{&quot;leading&quot;:&quot;1.3&quot;}"><tspan x="0" y="0" svgjs:data="{&quot;leading&quot;:&quot;1.3&quot;}">R</tspan></text>
+    <text class="cls-1" transform="translate(6592.95 3239.18) rotate(-116.07)" svgjs:data="{&quot;leading&quot;:&quot;1.3&quot;}"><tspan x="0" y="0" svgjs:data="{&quot;leading&quot;:&quot;1.3&quot;}">A</tspan></text>
+    <text class="cls-1" transform="translate(6585.54 3224.94) rotate(-96.68)" svgjs:data="{&quot;leading&quot;:&quot;1.3&quot;}"><tspan x="0" y="0" svgjs:data="{&quot;leading&quot;:&quot;1.3&quot;}">D</tspan></text>
+    <text class="cls-1" transform="translate(6584.05 3206.57) rotate(-82.98)" svgjs:data="{&quot;leading&quot;:&quot;1.3&quot;}"><tspan x="0" y="0" svgjs:data="{&quot;leading&quot;:&quot;1.3&quot;}">I</tspan></text>
+    <text class="cls-1" transform="translate(6583.68 3201.08) rotate(-68.64)" svgjs:data="{&quot;leading&quot;:&quot;1.3&quot;}"><tspan x="0" y="0" svgjs:data="{&quot;leading&quot;:&quot;1.3&quot;}">O</tspan></text>
+    <text class="cls-1" transform="translate(6591.73 3182.73) rotate(-54.44)" svgjs:data="{&quot;leading&quot;:&quot;1.3&quot;}"><tspan x="0" y="0" svgjs:data="{&quot;leading&quot;:&quot;1.3&quot;}"> </tspan></text>
+    <text class="cls-1" transform="translate(6594.14 3178.38) rotate(-43.07)" svgjs:data="{&quot;leading&quot;:&quot;1.3&quot;}"><tspan x="0" y="0" svgjs:data="{&quot;leading&quot;:&quot;1.3&quot;}">P</tspan></text>
+    <text class="cls-1" transform="translate(6604.83 3168.43) rotate(-28.03)" svgjs:data="{&quot;leading&quot;:&quot;1.3&quot;}"><tspan x="0" y="0" svgjs:data="{&quot;leading&quot;:&quot;1.3&quot;}">L</tspan></text>
+    <text class="cls-1" transform="translate(6615.26 3162.38) rotate(-11.96)" svgjs:data="{&quot;leading&quot;:&quot;1.3&quot;}"><tspan x="0" y="0" svgjs:data="{&quot;leading&quot;:&quot;1.3&quot;}">A</tspan></text>
+    <text class="cls-1" transform="translate(6628.6 3159.26) rotate(2.22)" svgjs:data="{&quot;leading&quot;:&quot;1.3&quot;}"><tspan x="0" y="0" svgjs:data="{&quot;leading&quot;:&quot;1.3&quot;}">T</tspan></text>
+    <text class="cls-1" transform="translate(6640.91 3158.89) rotate(19.64)" svgjs:data="{&quot;leading&quot;:&quot;1.3&quot;}"><tspan x="0" y="0" svgjs:data="{&quot;leading&quot;:&quot;1.3&quot;}">O</tspan></text>
+    <text class="cls-2" transform="translate(6659.48 3166.37) rotate(33.88)" svgjs:data="{&quot;leading&quot;:&quot;1.3&quot;}"><tspan x="0" y="0" svgjs:data="{&quot;leading&quot;:&quot;1.3&quot;}">.</tspan></text>
+  </g>
+  <g>
+    <text class="cls-4" transform="translate(6879.75 3070.73) rotate(47.14)" svgjs:data="{&quot;leading&quot;:&quot;1.3&quot;}"><tspan x="0" y="0" svgjs:data="{&quot;leading&quot;:&quot;1.3&quot;}">R</tspan></text>
+    <text class="cls-4" transform="translate(6890.24 3081.63) rotate(64.62)" svgjs:data="{&quot;leading&quot;:&quot;1.3&quot;}"><tspan x="0" y="0" svgjs:data="{&quot;leading&quot;:&quot;1.3&quot;}">A</tspan></text>
+    <text class="cls-4" transform="translate(6897.46 3095.88) rotate(83.97)" svgjs:data="{&quot;leading&quot;:&quot;1.3&quot;}"><tspan x="0" y="0" svgjs:data="{&quot;leading&quot;:&quot;1.3&quot;}">D</tspan></text>
+    <text class="cls-4" transform="translate(6898.73 3114.35) rotate(97.6)" svgjs:data="{&quot;leading&quot;:&quot;1.3&quot;}"><tspan x="0" y="0" svgjs:data="{&quot;leading&quot;:&quot;1.3&quot;}">I</tspan></text>
+    <text class="cls-4" transform="translate(6899.1 3119.63) rotate(111.91)" svgjs:data="{&quot;leading&quot;:&quot;1.3&quot;}"><tspan x="0" y="0" svgjs:data="{&quot;leading&quot;:&quot;1.3&quot;}">O</tspan></text>
+    <text class="cls-4" transform="translate(6890.81 3138.02) rotate(126.31)" svgjs:data="{&quot;leading&quot;:&quot;1.3&quot;}"><tspan x="0" y="0" svgjs:data="{&quot;leading&quot;:&quot;1.3&quot;}"> </tspan></text>
+    <text class="cls-4" transform="translate(6888.22 3142.51) rotate(137.74)" svgjs:data="{&quot;leading&quot;:&quot;1.3&quot;}"><tspan x="0" y="0" svgjs:data="{&quot;leading&quot;:&quot;1.3&quot;}">P</tspan></text>
+    <text class="cls-4" transform="translate(6877.44 3152.27) rotate(152.83)" svgjs:data="{&quot;leading&quot;:&quot;1.3&quot;}"><tspan x="0" y="0" svgjs:data="{&quot;leading&quot;:&quot;1.3&quot;}">L</tspan></text>
+    <text class="cls-4" transform="translate(6866.83 3158.2) rotate(168.91)" svgjs:data="{&quot;leading&quot;:&quot;1.3&quot;}"><tspan x="0" y="0" svgjs:data="{&quot;leading&quot;:&quot;1.3&quot;}">A</tspan></text>
+    <text class="cls-4" transform="translate(6853.66 3161.1) rotate(-177.11)" svgjs:data="{&quot;leading&quot;:&quot;1.3&quot;}"><tspan x="0" y="0" svgjs:data="{&quot;leading&quot;:&quot;1.3&quot;}">T</tspan></text>
+    <text class="cls-4" transform="translate(6841.43 3161.36) rotate(-159.72)" svgjs:data="{&quot;leading&quot;:&quot;1.3&quot;}"><tspan x="0" y="0" svgjs:data="{&quot;leading&quot;:&quot;1.3&quot;}">O</tspan></text>
+    <text class="cls-5" transform="translate(6822.78 3153.59) rotate(-145.33)" svgjs:data="{&quot;leading&quot;:&quot;1.3&quot;}"><tspan x="0" y="0" svgjs:data="{&quot;leading&quot;:&quot;1.3&quot;}">.</tspan></text>
+    <text class="cls-4" transform="translate(6818.23 3151.21) rotate(-133.42)" svgjs:data="{&quot;leading&quot;:&quot;1.3&quot;}"><tspan x="0" y="0" svgjs:data="{&quot;leading&quot;:&quot;1.3&quot;}">R</tspan></text>
+    <text class="cls-4" transform="translate(6807.66 3140.44) rotate(-115.98)" svgjs:data="{&quot;leading&quot;:&quot;1.3&quot;}"><tspan x="0" y="0" svgjs:data="{&quot;leading&quot;:&quot;1.3&quot;}">A</tspan></text>
+    <text class="cls-4" transform="translate(6800.27 3126.24) rotate(-96.59)" svgjs:data="{&quot;leading&quot;:&quot;1.3&quot;}"><tspan x="0" y="0" svgjs:data="{&quot;leading&quot;:&quot;1.3&quot;}">D</tspan></text>
+    <text class="cls-4" transform="translate(6798.82 3107.8) rotate(-82.98)" svgjs:data="{&quot;leading&quot;:&quot;1.3&quot;}"><tspan x="0" y="0" svgjs:data="{&quot;leading&quot;:&quot;1.3&quot;}">I</tspan></text>
+    <text class="cls-4" transform="translate(6798.4 3102.53) rotate(-68.68)" svgjs:data="{&quot;leading&quot;:&quot;1.3&quot;}"><tspan x="0" y="0" svgjs:data="{&quot;leading&quot;:&quot;1.3&quot;}">O</tspan></text>
+    <text class="cls-4" transform="translate(6806.5 3084.04) rotate(-54.26)" svgjs:data="{&quot;leading&quot;:&quot;1.3&quot;}"><tspan x="0" y="0" svgjs:data="{&quot;leading&quot;:&quot;1.3&quot;}"> </tspan></text>
+    <text class="cls-4" transform="translate(6809.04 3079.55) rotate(-42.86)" svgjs:data="{&quot;leading&quot;:&quot;1.3&quot;}"><tspan x="0" y="0" svgjs:data="{&quot;leading&quot;:&quot;1.3&quot;}">P</tspan></text>
+    <text class="cls-4" transform="translate(6819.74 3069.66) rotate(-27.73)" svgjs:data="{&quot;leading&quot;:&quot;1.3&quot;}"><tspan x="0" y="0" svgjs:data="{&quot;leading&quot;:&quot;1.3&quot;}">L</tspan></text>
+    <text class="cls-4" transform="translate(6830.29 3063.62) rotate(-11.66)" svgjs:data="{&quot;leading&quot;:&quot;1.3&quot;}"><tspan x="0" y="0" svgjs:data="{&quot;leading&quot;:&quot;1.3&quot;}">A</tspan></text>
+    <text class="cls-4" transform="translate(6843.42 3060.6) rotate(2.31)" svgjs:data="{&quot;leading&quot;:&quot;1.3&quot;}"><tspan x="0" y="0" svgjs:data="{&quot;leading&quot;:&quot;1.3&quot;}">T</tspan></text>
+    <text class="cls-4" transform="translate(6855.63 3060.21) rotate(19.69)" svgjs:data="{&quot;leading&quot;:&quot;1.3&quot;}"><tspan x="0" y="0" svgjs:data="{&quot;leading&quot;:&quot;1.3&quot;}">O</tspan></text>
+    <text class="cls-5" transform="translate(6874.38 3067.8) rotate(34.1)" svgjs:data="{&quot;leading&quot;:&quot;1.3&quot;}"><tspan x="0" y="0" svgjs:data="{&quot;leading&quot;:&quot;1.3&quot;}">.</tspan></text>
+  </g>
+</svg><style>@media (prefers-color-scheme: light) { :root { filter: none; } }
+@media (prefers-color-scheme: dark) { :root { filter: invert(100%); } }
+</style></svg>

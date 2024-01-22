@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import { isMobileOnly } from 'react-device-detect';
 import { useHistory, useLocation } from 'react-router-dom';
 
 import ReactMarkdown from 'react-markdown'

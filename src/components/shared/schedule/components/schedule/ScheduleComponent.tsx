@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react'
 
 import moment from 'moment';
-import { isMobileOnly } from 'react-device-detect';
 
 import { scheduleService } from '../../services/ScheduleService';
 
@@ -44,10 +43,13 @@ function ScheduleTableComponent() {
     }, []);
 
     const scheduleShowlineBuilder = (scheduleCard: ScheduleCard) => {
+        const isNow = scheduleCard.azuracastID === nowPlayingInformation?.name
+            && moment().isBetween(moment(scheduleCard.startDate), moment(scheduleCard.endDate));
+
         return (
             <ScheduleLine
                 scheduleCard={scheduleCard}
-                isNow={scheduleCard.azuracastID === nowPlayingInformation?.name}
+                isNow={isNow}
                 key={`${selectedDay}-${scheduleCard.title}-${scheduleCard.startDate}-${scheduleCard.startTime}`}
             />
         );

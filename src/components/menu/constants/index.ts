@@ -1,4 +1,3 @@
-import { ICON_KEY } from '../../shared/icons/icons';
 import { MenuButton } from '../models';
 
 export const MENU_BUTTONS: MenuButton[] = [

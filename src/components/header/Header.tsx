@@ -2,8 +2,6 @@ import React, { createElement } from 'react'
 
 import { Route, Switch, useHistory } from 'react-router-dom';
 
-import { isMobileOnly, isTablet } from 'react-device-detect';
-
 import HeaderPlayerComponent from '../shared/player/components/header-player/HeaderPlayerComponent';
 import MenuButton from '../menu/components/menu-button/MenuButton';
 

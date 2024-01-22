@@ -1,18 +1,17 @@
-import React, { Component, useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
+import { useLocation } from 'react-router-dom';
 
-import { isMobileOnly } from 'react-device-detect';
+import qs from 'qs';
 
 import SocialButtonsComponent from '../../../shared/social-links/components/social-buttons/SocialButtonsComponent';
 import ShowCardComponent from '../../components/show-card/ShowCardComponent';
+import ScheduleLine from '../../../shared/schedule/components/schedule-line/ScheduleLineComponent';
 
 import { Seo } from '../../../shared/wrappers/seo/Seo'
 import { Show, ShowCard, ShowEntry } from '../../models';
 
-import './ShowComponent.scss';
-import { useHistory, useLocation } from 'react-router-dom';
-import qs from 'qs';
 import { ICON_KEY } from '../../../shared/icons/icons';
-import ScheduleLine from '../../../shared/schedule/components/schedule-line/ScheduleLineComponent';
+import './ShowComponent.scss';
 
 
 interface ShowComponentProperties {
@@ -125,7 +124,7 @@ export function ShowComponent({
     }, [show]);
 
     return show ? (
-        <article className={`show-container ${isMobileOnly ? 'mobile' : 'desktop'}`}>
+        <article className='show-container'>
             <Seo meta={{
                 title: show.title,
                 description: show.description,

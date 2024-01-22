@@ -1,4 +1,3 @@
-import moment from 'moment';
 import React from 'react'
 
 import { Link } from 'react-router-dom';
@@ -63,7 +62,7 @@ function scheduleCardWrapper(scheduleCard: ScheduleCard, isNow = false) {
                         )
                     }
                     <div className='title'>{title ? title : ''}</div>
-                    <div className='type'>{`${type} ` + `${author ? 'by ' + author : ''}`}</div>
+                    <div className='type'>{`${type} ${author ? 'by ' + author : ''}`}</div>
                     <div className='description'>{description ? description : ''}</div>
                 </div>
             </div>
