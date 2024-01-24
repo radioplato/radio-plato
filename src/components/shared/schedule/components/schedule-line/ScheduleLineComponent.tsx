@@ -8,23 +8,13 @@ import './ScheduleLineComponent.scss'
 
 
 interface ScheduleLineProperties {
-    scheduleCard: ScheduleCard,
+    card?: ScheduleCard,
     isNow?: boolean
 }
 
-function scheduleCardWrapper(scheduleCard: ScheduleCard, isNow = false) {
-    const {
-        title,
-        description,
-        type,
-        link,
-        author,
-        startTime,
-        endTime,
-        periodicity
-    } = scheduleCard;
-    const interval = startTime && endTime ? `${startTime} - ${endTime}` : '';
-    const href = link ? link : null;
+function ScheduleLine({card, isNow }: ScheduleLineProperties) {
+    const interval = card?.startTime && card?.endTime ? `${card?.startTime} - ${card?.endTime}` : '';
+    const href = card?.link ? card?.link : null;
 
     const renderOnAir = () => {
         return (
@@ -39,39 +29,37 @@ function scheduleCardWrapper(scheduleCard: ScheduleCard, isNow = false) {
         <div className='schedule-line-container'>
             <div className='schedule-line'>
                 <div className='visual-container'>
-                    {isNow && renderOnAir()}
+                    {card && isNow && renderOnAir()}
                     <div
                         className='image'
                         style={{
-                            backgroundImage: scheduleCard.image ? `url(${scheduleCard.image.url})` : '',
+                            backgroundImage: card?.image ? `url(${card?.image.url})` : '',
                         }}
                     ></div>
                 </div>
                 <div className='information-container'>
                     {
-                        (interval || periodicity) && (
+                        (interval || card?.periodicity) && (
                             <div className='time'>
                                 {
                                     interval && (<span className='interval'>{interval}</span>)
                                 }
                                 {
-                                    periodicity && (<span className='periodicity'>{periodicity}</span>)
+                                    card?.periodicity && (<span className='periodicity'>{card?.periodicity}</span>)
                                 }
                                 <span className='utc'>UTC+3</span>
                             </div>
                         )
                     }
-                    <div className='title'>{title ? title : ''}</div>
-                    <div className='type'>{`${type} ${author ? 'by ' + author : ''}`}</div>
-                    <div className='description'>{description ? description : ''}</div>
+                    <div className='title'>{card?.title ? card?.title : ''}</div>
+                    <div className='type'>{`${card?.type ? card?.type : ''} ${card?.author ? 'by ' + card?.author : ''}`}</div>
+                    <div className='description'>{card?.description ? card?.description : ''}</div>
                 </div>
             </div>
         </div>
     );
 
-    return href ? (<Link to={href}>{content}</Link>) : (<div>{content}</div>);
+    return href ? (<Link className='schedule-line-wrapper' to={href}>{content}</Link>) : (<div className='schedule-line-wrapper'>{content}</div>);
 }
-
-const ScheduleLine = ({ scheduleCard, isNow }: ScheduleLineProperties) => scheduleCardWrapper(scheduleCard, isNow);
 
 export default ScheduleLine 

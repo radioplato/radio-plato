@@ -5,6 +5,7 @@ import Content from '../content/Content'
 import FooterPlayerComponent from '../shared/player/components/footer-player/FooterPlayerComponent';
 
 import './Main.scss'
+import { Route, Switch } from 'react-router-dom';
 
 class Main extends Component {
     render() {
@@ -12,10 +13,19 @@ class Main extends Component {
             <main className='main-container'>
                 <MenuButton isAside={true} />
                 <Content />
-                <FooterPlayerComponent />
+                <Switch>
+                    <Route exact path='/player' render={
+                        () => null
+                    } />
+                    <Route path='/' render={
+                        () => (
+                            <FooterPlayerComponent />
+                        )
+                    } />
+                </Switch>
             </main>
         );
     }
 }
-  
+
 export default Main;

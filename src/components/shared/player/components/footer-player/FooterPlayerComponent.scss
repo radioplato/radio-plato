@@ -8,7 +8,7 @@
     position: fixed;
     bottom: 0;
     left: 0;
-    z-index: 10;
+    z-index: 5001;
     
     flex-direction: column;    
     flex-wrap: nowrap;
@@ -29,15 +29,16 @@
         flex-direction: column;    
         flex-wrap: nowrap;
         align-content: center;
-        justify-content: flex-start;
+        justify-content: space-between;
         align-items: center;
 
         position: absolute;
         transform: translateY(100%);
-        z-index: 9;
+        z-index: 5005;
 
         width: 100%;
-        height: calc(100vh - 148px);
+        height: calc(100vh - 64px);
+        height: calc(100dvh - 64px);
 
         background-color: $black;
 
@@ -48,6 +49,21 @@
 
         &.full {
             transform: translateY(calc(-1 * (100vh - 148px)));
+            transform: translateY(calc(-1 * (100dvh - 148px)));
+        }
+
+        .controls-container {
+            display: flex;
+            display: -webkit-flex;
+            flex: 0 0 auto;
+
+            flex-direction: column;    
+            flex-wrap: nowrap;
+            align-content: center;
+            justify-content: center;
+            align-items: center;
+
+            width: 100%;
         }
 
         .track-art-container {
@@ -62,44 +78,32 @@
             align-items: center;
 
             width: 100%;
-            height: calc(100% - 176px);
 
             .track-art {
-                width: 240px;
-                height: 240px;
+                width: 200px;
+                height: 200px;
         
                 background-size: cover;
                 background-position: center;
                 background-repeat: no-repeat;
-                background-color: $grey-50;
+                background-color: $grey-200;
             }
         }
-        
-        .controls-container {
-            width: 272px;
-            height: 176px;
 
-            .volume-controls {
-                width: 272px;
+        .track-information-container {
+            margin: 0;
+            padding: 0 16px;
 
-                margin-bottom: 16px;
+            .static-name {
+                margin: 0;
 
-                .horizontal-slider {
-                    width: calc(100% - 64px);
-                }
+                text-align: center;
             }
+        }
 
-            .other-controls {
-                display: flex;
-                display: -webkit-flex;
-                flex: 0 0 auto;
-
-                flex-direction: row;    
-                flex-wrap: nowrap;
-                align-content: center;
-                justify-content: flex-start;
-                align-items: center;
-            }
+        .schedule-line-container {
+            border-bottom: none;
+            border-top: 2px solid $grey-200;
         }
     }
 
@@ -115,7 +119,7 @@
         align-items: center;
 
         position: absolute;
-        z-index: 11;
+        z-index: 5003;
     
         width: 100%;
         height: 84px;
@@ -136,7 +140,7 @@
             background-size: cover;
             background-position: center;
             background-repeat: no-repeat;
-            background-color: $grey-50;
+            background-color: $grey-200;
         }
     
         .track-title-component {

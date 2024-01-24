@@ -67,7 +67,7 @@ function HeaderPlayerComponent() {
                 title={playing ? `pause` : 'play'}
                 onClick={togglePlayingMode}
             />
-            <TrackTitle className='track-title-component' isTicker={true} />
+            <TrackTitle className='track-title-component' isTicker={true} showOnAir={true}/>
             <VolumeControls className='volume-controls' />
             <StreamLinks className='stream-links' />
             <Button

@@ -48,7 +48,7 @@ function ScheduleTableComponent() {
 
         return (
             <ScheduleLine
-                scheduleCard={scheduleCard}
+                card={scheduleCard}
                 isNow={isNow}
                 key={`${selectedDay}-${scheduleCard.title}-${scheduleCard.startDate}-${scheduleCard.startTime}`}
             />

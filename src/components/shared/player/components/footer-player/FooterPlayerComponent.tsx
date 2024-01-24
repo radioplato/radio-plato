@@ -1,27 +1,37 @@
 import React, { RefObject, useEffect, useState } from 'react';
 
+import moment from 'moment';
+
 import { isMobileOnly } from 'react-device-detect';
+import { useLocation } from 'react-router-dom';
 
 import { playerService } from '../../services/PlayerService';
-import { TrackInformation } from '../../models';
+import { scheduleService } from '../../../schedule/services/ScheduleService';
 
 import TrackTitle from '../track-info/TrackTitleComponent';
+import ScheduleLine from '../../../schedule/components/schedule-line/ScheduleLineComponent';
 
+import { NowPlayingInformation, TrackInformation } from '../../models';
+import { ScheduleCard } from '../../../schedule/models/schedule';
 import { BUTTON_SIZE, BUTTON_TYPE, Button } from '../../../button/components/Button';
 import { ICON_KEY } from '../../../icons/icons';
 
 import './FooterPlayerComponent.scss';
-import VolumeControls from '../volume-controls/VolumeControlsComponent';
-import StreamLinks from '../playlists/StreamLinksComponent';
 
 function FooterPlayerComponent() {
+    const location = useLocation();
+    
+    const [schedule, setSchedule] = useState<ScheduleCard[][]>(scheduleService.schedule);
+    const [scheduleCard, setScheduleCard] = useState<ScheduleCard | undefined>();
     const [playing, setPlaying] = useState(playerService.playing);
     const [trackArt, setTrackArt] = useState(playerService.trackArt);
+    const [nowPlayingInformation, setNowPlayingInformation] = useState<NowPlayingInformation>(playerService.nowPlaying);
 
     const panelRef: RefObject<HTMLDivElement> = React.createRef();
 
     useEffect(() => {
-        const subscription = playerService.subscribeOnTrackInformationChanges((information: TrackInformation) => {
+        const scheduleChangesSubscription = scheduleService.subscribeOnScheduleChanges((schedule: ScheduleCard[][]) => setSchedule(schedule));
+        const trackInformationSubscription = playerService.subscribeOnTrackInformationChanges((information: TrackInformation) => {
             if (isMobileOnly) {
                 setTrackArt(information.art);
             } else {
@@ -37,9 +47,27 @@ function FooterPlayerComponent() {
                 setTimeout(() => tracktitle?.classList.remove('hidden'), 2000);
             }
         });
+        const nowPlayingInformationSubscription = playerService.subscribeOnNowPlayingInformationChanges((information: NowPlayingInformation) => setNowPlayingInformation(information));
 
-        return () => subscription?.unsubscribe();
+        return () => {
+            scheduleChangesSubscription?.unsubscribe();
+            trackInformationSubscription?.unsubscribe();
+            nowPlayingInformationSubscription?.unsubscribe();
+        };
     }, []);
+
+    useEffect(() => {
+        const weekday = moment().isoWeekday() - 1;
+
+        setScheduleCard(schedule[weekday].find((scheduleCard) =>
+            scheduleCard.azuracastID === nowPlayingInformation?.name
+                && moment().isBetween(moment(scheduleCard.startDate), moment(scheduleCard.endDate))
+        ));
+    }, [schedule, nowPlayingInformation]);
+
+    useEffect(() => {
+        panelRef.current?.classList.remove('full');
+    }, [location]);
 
     const togglePlayingMode = () => {
         playerService.playing = !playerService.playing;
@@ -54,6 +82,17 @@ function FooterPlayerComponent() {
     return (
         <div className='player'>
             <div ref={panelRef} className='main-panel'>
+                <div className='controls-container'>
+                    <Button
+                        className='fullscreen-button'
+                        type={BUTTON_TYPE.GHOST}
+                        size={BUTTON_SIZE.LARGE}
+                        icon={ICON_KEY.CHEVRON_REGULAR}
+                        iconRotate={180}
+                        title='minimize player'
+                        onClick={togglePanel}
+                    />
+                </div>
                 <div className='track-art-container'>
                     <div
                         className='track-art'
@@ -63,20 +102,8 @@ function FooterPlayerComponent() {
                         onClick={togglePanel}
                     ></div>
                 </div>
-                <div className='controls-container'>
-                    <VolumeControls className='volume-controls' />
-                    <div className='other-controls'>
-                        <StreamLinks className='stream-links' />
-                        <Button
-                            className='fullscreen-button'
-                            type={BUTTON_TYPE.GHOST}
-                            size={BUTTON_SIZE.LARGE}
-                            icon={ICON_KEY.MINIMIZE_REGULAR}
-                            title='minimize player'
-                            onClick={togglePanel}
-                        />
-                    </div>
-                </div>
+                <TrackTitle className='track-title-component' isTicker={false} showOnAir={false}/>
+                <ScheduleLine card={scheduleCard} isNow={true} />
             </div>
             <div className='footer-panel'>
                 <div
@@ -86,7 +113,7 @@ function FooterPlayerComponent() {
                     }}
                     onClick={togglePanel}
                 ></div>
-                <TrackTitle className='track-title-component' isTicker={true} />
+                <TrackTitle className='track-title-component' isTicker={true} showOnAir={true}/>
                 <Button
                     className='play-button'
                     type={BUTTON_TYPE.OUTLINE}

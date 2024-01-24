@@ -36,7 +36,7 @@ export function Header() {
                 </div>
                 <Switch>
                     <Route exact path='/player' render={
-                        props => (
+                        () => (
                             <div className='donate-button-container'>
                                 <Button
                                     type={BUTTON_TYPE.OUTLINE}
@@ -51,7 +51,7 @@ export function Header() {
                         )
                     } />
                     <Route path='/' render={
-                        props => (
+                        () => (
                             <>
                                 <div className='player-container'>
                                     <HeaderPlayerComponent></HeaderPlayerComponent>

@@ -1,6 +1,10 @@
 @import 'styles/colors.scss';
 @import 'styles/fonts.scss';
 
+.schedule-line-wrapper {
+    width: 100%;
+}
+
 .schedule-line-container {
     display: flex;
     display: -webkit-flex;

@@ -19,10 +19,12 @@ const copyToClipboard = (text: string) => {
 
 interface TrackTitleProperties extends HTMLAttributes<HTMLElement> {
     isTicker?: boolean;
+    showOnAir?: boolean;
 }
 
 function TrackTitle({
     isTicker,
+    showOnAir,
     className
 }: TrackTitleProperties) {
     const [trackName, setTrackName] = useState(playerService.trackName);
@@ -86,15 +88,22 @@ function TrackTitle({
 
     return (
         <div className={`track-information-container ${className}`}>
-            <div className='on-air'>
-                <span className='red-dot'></span>
-                <span className='title'>On Air</span>
-            </div>
+            {
+                showOnAir
+                    ? (
+                        <div className='on-air'>
+                            <span className='red-dot'></span>
+                            <span className='title'>On Air</span>
+                        </div>
+                    )
+                    : null
+            }
+
             <div className='track-name-container'>
                 {
                     isTicker
-                    && trackName !== PLAYER_CONNECTING
-                    && trackName !== PLAYER_COPIED
+                        && trackName !== PLAYER_CONNECTING
+                        && trackName !== PLAYER_COPIED
                         ? renderTicker()
                         : renderStatic()
                 }

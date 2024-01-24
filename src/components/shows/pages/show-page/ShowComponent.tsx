@@ -160,7 +160,7 @@ export function ShowComponent({
                                 {
                                     show.schedules.map((scheduleCard) => (
                                         <ScheduleLine
-                                            scheduleCard={scheduleCard}
+                                            card={scheduleCard}
                                             key={`${scheduleCard.title}-${scheduleCard.periodicity}`.toLowerCase()}
                                         />
                                     ))

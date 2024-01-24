@@ -26,10 +26,11 @@
     position: absolute;
     top: 102px;
     left: -482px;
-    z-index: 100;
+    z-index: 10000;
 
     width: 482px;
     height: calc(100vh - 102px);
+    height: calc(100dvh - 102px);
 
     background: $white;
 
@@ -58,6 +59,7 @@
         width: 120px;
         min-width: 120px;
         height: calc(100vh - 102px);
+        height: calc(100dvh - 102px);
 
         background: $white;
         border-right: 2px solid $grey-700;
@@ -215,7 +217,7 @@
     left: 0;
     width: 100vw;
     height: 100vh;
-    z-index: 99;
+    z-index: 9998;
 
     display: none;
 
@@ -261,6 +263,7 @@
 @media (max-width: 1279px) {
     .menu {
         height: 100vh;
+        height: 100dvh;
         top: 0;
 
         .aside-button-close {
@@ -276,6 +279,7 @@
 @media (max-width: 767px) {
     .menu {
         height: 100vh;
+        height: 100dvh;
         width: 100vw;
         left: -100vw;
 
