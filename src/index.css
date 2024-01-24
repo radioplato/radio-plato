@@ -1,6 +1,7 @@
 html,
 body {
     height: 100vh;
+    height: 100dvh;
 }
 
 @import url("https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&family=Open+Sans+Condensed:wght@300;400;500;600;700;800&display=swap");
@@ -21,11 +22,11 @@ body {
 @media (pointer: none), (pointer: coarse) {
     html,
     body {
-        height: auto;
-    }
+        width: 100%;
+        height: 100vh;
+        height: 100dvh;
 
-    body {
-        overflow: visible;
+        position: fixed;
     }
 }
 

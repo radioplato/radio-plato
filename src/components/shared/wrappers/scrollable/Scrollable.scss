@@ -4,6 +4,7 @@
 .scrollable-container {
     width: calc(100% - 122px);
     height: calc(100vh - 102px);
+    height: calc(100dvh - 102px);
     
     overflow-x: hidden;
     overflow-y: overlay;
@@ -33,6 +34,7 @@
     .scrollable-container {
         width: 100%;
         height: calc(100vh - 148px);
+        height: calc(100dvh - 148px);
     }
 }
 

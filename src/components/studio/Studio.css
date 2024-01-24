@@ -13,6 +13,7 @@
 
     width: calc(100% - 122px);
     height: calc(100vh - 102px);
+    height: calc(100dvh - 102px);
 
     overflow-x: hidden;
     overflow-y: overlay;
@@ -298,6 +299,7 @@
 
     width: calc(100vw - 122px);
     height: calc(100vh - 102px);
+    height: calc(100dvh - 102px);
 }
 
 .mobile .loader-container {

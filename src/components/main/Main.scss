@@ -8,11 +8,13 @@
     align-content: stretch;
 
     outline: 0;
+
+    width: 100%;
 }
 
 @media (max-width: 1279px) {
     .main-container {
-        margin-top: 64px;
+        padding-top: 64px;
         height: calc(100vh - 148px);
     }
 
