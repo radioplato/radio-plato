@@ -8,7 +8,7 @@
     position: fixed;
     bottom: 0;
     left: 0;
-    z-index: 5001;
+    z-index: 10000;
     
     flex-direction: column;    
     flex-wrap: nowrap;
@@ -34,11 +34,11 @@
 
         position: absolute;
         transform: translateY(100%);
-        z-index: 5005;
+        z-index: 10002;
 
         width: 100%;
-        height: calc(100vh - 64px);
-        height: calc(100dvh - 64px);
+        height: calc(100vh);
+        height: calc(100dvh);
 
         background-color: $black;
 
@@ -47,9 +47,30 @@
 
         overflow: hidden;
 
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+
         &.full {
-            transform: translateY(calc(-1 * (100vh - 148px)));
-            transform: translateY(calc(-1 * (100dvh - 148px)));
+            transform: translateY(calc(-1 * (100vh - 84px)));
+            transform: translateY(calc(-1 * (100dvh - 84px)));
+        }
+
+        .content-container {
+            display: flex;
+            display: -webkit-flex;
+            flex: 0 0 auto;
+
+            flex-direction: column;    
+            flex-wrap: nowrap;
+            align-content: center;
+            justify-content: space-between;
+            align-items: center;
+
+            width: 100%;
+            height: 100%;
+
+            backdrop-filter: blur(8px) brightness(25%);
         }
 
         .controls-container {
@@ -80,6 +101,16 @@
             width: 100%;
 
             .track-art {
+                display: flex;
+                display: -webkit-flex;
+                flex: 0 0 auto;
+
+                flex-direction: column;    
+                flex-wrap: nowrap;
+                align-content: center;
+                justify-content: center;
+                align-items: center;
+
                 width: 200px;
                 height: 200px;
         
@@ -91,10 +122,15 @@
         }
 
         .track-information-container {
+            width: 100%;
+            height: auto;
+
             margin: 0;
             padding: 0 16px;
 
             .static-name {
+                width: 100%;
+
                 margin: 0;
 
                 text-align: center;
@@ -105,6 +141,8 @@
         .schedule-line-container {
             border-bottom: none;
             border-top: 2px solid $grey-200;
+
+            background-color: $black;
         }
     }
 
@@ -120,7 +158,7 @@
         align-items: center;
 
         position: absolute;
-        z-index: 5003;
+        z-index: 10001;
     
         width: 100%;
         height: 84px;
