@@ -1,6 +1,6 @@
 import { Subject } from 'rxjs';
 import { DEFAULT_PLAYER_STATE, PLAYER_CONNECTING } from '../constants';
-import { NowPlayingInformation, PlayerState, TrackInformation } from '../models';
+import { ListenersInformation, NowPlayingInformation, PlayerState, TrackInformation } from '../models';
 
 enum StorageKey {
     Volume = 'volume',
@@ -20,10 +20,12 @@ class PlayerService {
     private nowPlayingInformation: NowPlayingInformation = {
         name: null
     };
+    private listeners = 'n/a';
 
     private playerStateSubject: Subject<PlayerState>;
     private trackInformationSubject: Subject<TrackInformation>;
     private nowPlayingInformationSubject: Subject<NowPlayingInformation>;
+    private listenersSubject: Subject<string>;
     private connection = new WebSocket(process.env.REACT_APP_DATA_URL as string);
 
     private fadingTimer: ReturnType<typeof setInterval>;
@@ -38,8 +40,10 @@ class PlayerService {
             });
 
             this.updateNowPlayingInformation({
-                name: data.pub.data.np.live.is_live ? data.pub.data.np.live.streamer_name : data.pub.data.np.now_playing.playlist
+                name: data.pub.data.np.live.is_live ? data.pub.data.np.live.streamer_name : data.pub.data.np.now_playing.playlist,
             });
+
+            this.updateTotalListeners(data.pub.data.np.listeners.total);
         }
     }
 
@@ -49,6 +53,7 @@ class PlayerService {
         this.playerStateSubject = new Subject();
         this.trackInformationSubject = new Subject();
         this.nowPlayingInformationSubject = new Subject();
+        this.listenersSubject = new Subject();
 
         this.fadingTimer = setInterval(() => {}, 0);
 
@@ -115,6 +120,10 @@ class PlayerService {
         return this.nowPlayingInformation;
     }
 
+    get currentListeners() {
+        return this.listeners;
+    }
+
     subscribeOnPlayerStateChanges(onNext: Function) {
         return this.playerStateSubject.subscribe((data) => onNext(data));
     }
@@ -125,6 +134,10 @@ class PlayerService {
 
     subscribeOnNowPlayingInformationChanges(onNext: Function) {
         return this.nowPlayingInformationSubject.subscribe((data) => onNext(data));
+    }
+
+    subscribeOnListenersChanges(onNext: Function) {
+        return this.listenersSubject.subscribe((data) => onNext(data));
     }
 
     async updateTrackInformation(information: TrackInformation) {
@@ -143,6 +156,16 @@ class PlayerService {
             };
             this.nowPlayingInformationSubject.next(this.nowPlayingInformation);
         }
+    }
+
+    async updateTotalListeners(listeners: number) {
+        const update = listeners.toString();
+
+        if (listeners > 0 && update !== this.listeners) {
+            this.listeners = update;
+        }
+        
+        this.listenersSubject.next(this.listeners);
     }
 
     fadeOut() {

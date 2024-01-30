@@ -26,6 +26,7 @@ function FooterPlayerComponent() {
     const [playing, setPlaying] = useState(playerService.playing);
     const [trackArt, setTrackArt] = useState(playerService.trackArt);
     const [nowPlayingInformation, setNowPlayingInformation] = useState<NowPlayingInformation>(playerService.nowPlaying);
+    const [currentListeners, setCurrentListeners] = useState<string>(playerService.currentListeners);
 
     const panelRef: RefObject<HTMLDivElement> = React.createRef();
 
@@ -48,11 +49,13 @@ function FooterPlayerComponent() {
             }
         });
         const nowPlayingInformationSubscription = playerService.subscribeOnNowPlayingInformationChanges((information: NowPlayingInformation) => setNowPlayingInformation(information));
+        const listenersSubscription = playerService.subscribeOnListenersChanges((listeners: string) => setCurrentListeners(listeners));
 
         return () => {
             scheduleChangesSubscription?.unsubscribe();
             trackInformationSubscription?.unsubscribe();
             nowPlayingInformationSubscription?.unsubscribe();
+            listenersSubscription?.unsubscribe();
         };
     }, []);
 
@@ -83,7 +86,7 @@ function FooterPlayerComponent() {
     return (
         <div className='player'>
             <div ref={panelRef} className='main-panel' style={{
-                backgroundImage: `url(${trackArt})`,
+                backgroundImage: `url(${scheduleCard?.image?.url ?? trackArt})`,
             }}>
                 <div className='content-container'>
                     <div className='controls-container'>
@@ -97,44 +100,54 @@ function FooterPlayerComponent() {
                             onClick={togglePanel}
                         />
                     </div>
+                    <div className='schedule-information-container'>
+                        <div className='schedule-title'>{scheduleCard?.title}</div>
+                        <div className='schedule-type'>{scheduleCard?.type}</div>
+                    </div>
                     <div className='track-art-container'>
                         <div
                             className='track-art'
                             style={{
                                 backgroundImage: `url(${trackArt})`,
                             }}
-                            onClick={togglePanel}
                         >
                         </div>
                     </div>
-                    <TrackTitle className='track-title-component' isTicker={false} showOnAir={false} />
-                    <Button
-                        className='play-button'
-                        type={BUTTON_TYPE.OUTLINE}
-                        size={BUTTON_SIZE.ENORMOUS}
-                        icon={playing ? ICON_KEY.PAUSE_FILLED : ICON_KEY.PLAY_FILLED}
-                        title={playing ? 'pause' : 'play'}
-                        onClick={togglePlayingMode}
-                    />
-                    <ScheduleLine card={scheduleCard} isNow={true} />
+                    <TrackTitle className='main-panel-track-title' isTicker={false} showOnAir={false} />
+                    <div className='main-panel-footer'>
+                        <div className='broadcast-information-container'>
+                            <div className='on-air'>
+                                <span className='red-dot'></span>
+                                <span className='title'>On Air</span>
+                            </div>
+                            <div className='listeners'>{`Listeners: ${currentListeners}`}</div>
+                        </div>
+                        <Button
+                            className='play-button'
+                            type={BUTTON_TYPE.OUTLINE}
+                            size={BUTTON_SIZE.LARGE}
+                            icon={playing ? ICON_KEY.PAUSE_FILLED : ICON_KEY.PLAY_FILLED}
+                            title={playing ? `pause` : 'play'}
+                            onClick={togglePlayingMode}
+                        />
+                    </div>
                 </div>
             </div>
-            <div className='footer-panel'>
+            <div className='footer-panel' onClick={togglePanel}>
                 <div
                     className='track-art'
                     style={{
                         backgroundImage: `url(${trackArt})`,
                     }}
-                    onClick={togglePanel}
                 ></div>
-                <TrackTitle className='track-title-component' isTicker={true} showOnAir={true} />
+                <TrackTitle className='track-title-component' isTicker={true} showOnAir={true} copyNameOnClick={false}/>
                 <Button
                     className='play-button'
                     type={BUTTON_TYPE.OUTLINE}
                     size={BUTTON_SIZE.LARGE}
                     icon={playing ? ICON_KEY.PAUSE_FILLED : ICON_KEY.PLAY_FILLED}
                     title={playing ? `pause` : 'play'}
-                    onClick={togglePlayingMode}
+                    onClick={togglePanel}
                 />
             </div>
         </div>

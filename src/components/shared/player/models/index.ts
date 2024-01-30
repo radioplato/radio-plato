@@ -13,3 +13,7 @@ export interface TrackInformation {
 export interface NowPlayingInformation {
     name: string | null;
 }
+
+export interface ListenersInformation {
+    total: string;
+}

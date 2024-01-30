@@ -20,11 +20,13 @@ const copyToClipboard = (text: string) => {
 interface TrackTitleProperties extends HTMLAttributes<HTMLElement> {
     isTicker?: boolean;
     showOnAir?: boolean;
+    copyNameOnClick?: boolean;
 }
 
 function TrackTitle({
     isTicker,
     showOnAir,
+    copyNameOnClick = true,
     className
 }: TrackTitleProperties) {
     const [trackName, setTrackName] = useState(playerService.trackName);
@@ -47,11 +49,13 @@ function TrackTitle({
     }, []);
 
     const handleTrackTitleClick = () => {
-        const memoizedTrackName = trackName;
+        if (copyNameOnClick) {
+            const memoizedTrackName = trackName;
 
-        copyToClipboard(trackName);
-        setTrackName(PLAYER_COPIED);
-        setTimeout(() => setTrackName(memoizedTrackName), 1000)
+            copyToClipboard(trackName);
+            setTrackName(PLAYER_COPIED);
+            setTimeout(() => setTrackName(memoizedTrackName), 1000);
+        }
     }
 
     const renderTicker = () => {

@@ -1,6 +1,6 @@
 import React, { createElement } from 'react'
 
-import { Route, Switch, useHistory } from 'react-router-dom';
+import { Route, Switch } from 'react-router-dom';
 
 import HeaderPlayerComponent from '../shared/player/components/header-player/HeaderPlayerComponent';
 import MenuButton from '../menu/components/menu-button/MenuButton';
@@ -15,12 +15,10 @@ import { DONATE_LINK } from '../shared/constants';
 import './Header.scss'
 
 export function Header() {
-    const history = useHistory();
-
     return (
         <>
             <header className='header-container desktop'>
-                <div className='logo-container' title='back to main page' onClick={() => history.push('/')}>
+                <a className='logo-container' title='back to main page' href='/'>
                     <div
                         className='logo'
                         aria-label='radio plato logo'
@@ -33,7 +31,7 @@ export function Header() {
                             )
                         }
                     </div>
-                </div>
+                </a>
                 <Switch>
                     <Route exact path='/player' render={
                         () => (
@@ -73,7 +71,7 @@ export function Header() {
             </header>
             <header className='header-container mobile'>
                 <MenuButton isAside={false} />
-                <div className='logo-container' title='back to main page' onClick={() => history.push('/')}>
+                <a className='logo-container' title='back to main page' href='/'>
                     <div
                         className='logo'
                         aria-label='radio plato logo'
@@ -86,7 +84,7 @@ export function Header() {
                             )
                         }
                     </div>
-                </div>
+                </a>
                 <Button
                     className='donate-button'
                     type={BUTTON_TYPE.GHOST}
