@@ -59,7 +59,7 @@ function ScheduleLine({card, isNow }: ScheduleLineProperties) {
         </div>
     );
 
-    return href ? (<Link className='schedule-line-wrapper' to={href}>{content}</Link>) : (<div className='schedule-line-wrapper'>{content}</div>);
+    return href ? (<Link className='schedule-line-wrapper' to={`shows/${href}`}>{content}</Link>) : (<div className='schedule-line-wrapper'>{content}</div>);
 }
 
 export default ScheduleLine 

@@ -58,7 +58,16 @@ function HeaderPlayerComponent() {
                 style={{
                     backgroundImage: `url(${trackArt})`,
                 }}
-            ></div>
+            >
+                <Button
+                    className='fullscreen-button'
+                    type={BUTTON_TYPE.GHOST}
+                    size={BUTTON_SIZE.LARGE}
+                    icon={ICON_KEY.MAXIMIZE_REGULAR}
+                    title='go to player page'
+                    onClick={navigateToPlayerPage}
+                />
+            </div>
             <Button
                 className='play-button'
                 type={BUTTON_TYPE.OUTLINE}

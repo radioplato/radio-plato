@@ -12,7 +12,7 @@
     align-content: center;
     align-items: flex-start;
 
-    width: calc(100% - 122px);
+    width: 100%;
     height: calc(100vh - 102px);
     height: calc(100dvh - 102px);
 
@@ -35,6 +35,8 @@
     }
 
     .left-section {
+        width: 660px;
+
         .track-information-container.page {
             width: 100%;
             height: fit-content;
@@ -96,52 +98,79 @@
     }
 
     .right-section {
+        width: calc(100% - 780px);
+        padding: 48px 0 0 0;
+
         border-left: 2px solid $grey-200;
 
         .track-art {
+            width: calc(100% - 192px);
+            height: auto;
+            aspect-ratio: 1 / 1;
+
             background-size: cover;
             background-position: center;
             background-repeat: no-repeat;
             background-color: $grey-200;
         }
     }
+}
 
-    @media (min-width: 960px) and (max-width: 1439px) {
-        .left-section,
-        .right-section {
-            width: 50%;
-        }
+@media (max-width: 1279px) {
+    .page-player-container {
+        height: calc(100dvh - 64px);
 
-        .right-section > .track-art {
-            aspect-ratio: 1 / 1;
-            width: 100%;
-            height: auto;
-        }
-    }
-
-    @media (min-width: 1440px) and (max-width: 1919px) {
-        .left-section,
-        .right-section {
-            width: 50%;
-        }
-
-        .right-section > .track-art {
-            width: 468px;
-            height: 468px;
-        }
-    }
-
-    @media (min-width: 1920px) {
         .left-section {
-            width: 40%;
-        }
-        .right-section {
-            width: 60%;
+            justify-content: center;
+            flex-direction: column-reverse;
 
-            .track-art {
-                width: 720px;
-                height: 720px;
+            padding: 16px;
+
+            width: 100%;
+
+            .track-information-container {
+                align-items: center;
+
+                .on-air {
+                    margin-right: 12px;
+                }
+
+                .track-name-container {
+                    width: 100%;
+                    height: 108px;
+    
+                    padding: 0 16px;
+                    margin-bottom: 8px;
+                    box-sizing: border-box;
+    
+                    .static-name {
+                        display: -webkit-box;
+                        margin: 0;
+    
+                        text-align: center;
+    
+                        white-space: wrap;
+                        -webkit-line-clamp: 3;
+                        -webkit-box-orient: vertical; 
+                    }
+                }
             }
+
+            .player-primary-controls {
+                justify-content: center;
+                
+                .volume-controls {
+                    display: none;
+                }
+            }
+
+            .player-secondary-controls {
+                display: none;
+            }
+        }
+
+        .right-section {
+            display: none;
         }
     }
 }

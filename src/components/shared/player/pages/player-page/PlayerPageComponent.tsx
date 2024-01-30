@@ -57,7 +57,7 @@ function PlayerPageComponent() {
     }
 
     return (
-        <div className={`page-player-container ${isMobileOnly ? 'mobile' : 'desktop'}`}>
+        <div className='page-player-container'>
             <div className='left-section'>
                 <TrackTitle className='page' isTicker={false} showOnAir={true}/>
                 <div className='player-primary-controls'>

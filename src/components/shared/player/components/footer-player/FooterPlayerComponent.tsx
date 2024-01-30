@@ -3,7 +3,7 @@ import React, { RefObject, useEffect, useState } from 'react';
 import moment from 'moment';
 
 import { isMobileOnly } from 'react-device-detect';
-import { useLocation } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 
 import { playerService } from '../../services/PlayerService';
 import { scheduleService } from '../../../schedule/services/ScheduleService';
@@ -101,8 +101,16 @@ function FooterPlayerComponent() {
                         />
                     </div>
                     <div className='schedule-information-container'>
-                        <div className='schedule-title'>{scheduleCard?.title}</div>
-                        <div className='schedule-type'>{scheduleCard?.type}</div>
+                        {
+                            scheduleCard?.link
+                            ? (
+                                <Link className='schedule-title' to={`shows/${scheduleCard?.link}`}>{scheduleCard?.title}</Link>
+                            )
+                            : (
+                                <div className='schedule-title'>{scheduleCard?.title}</div>
+                            )
+                        }
+                        <div className='schedule-type'>{`${scheduleCard?.type ? scheduleCard?.type : ''} ${scheduleCard?.author ? 'by ' + scheduleCard?.author : ''}`}</div>
                     </div>
                     <div className='track-art-container'>
                         <div
