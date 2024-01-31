@@ -1,6 +1,6 @@
 import React, { createElement } from 'react'
 
-import { Route, Switch } from 'react-router-dom';
+import { Link, Route, Switch } from 'react-router-dom';
 
 import HeaderPlayerComponent from '../shared/player/components/header-player/HeaderPlayerComponent';
 import MenuButton from '../menu/components/menu-button/MenuButton';
@@ -18,7 +18,7 @@ export function Header() {
     return (
         <>
             <header className='header-container desktop'>
-                <a className='logo-container' title='back to main page' href='/'>
+                <Link className='logo-container' title='back to main page' to='/'>
                     <div
                         className='logo'
                         aria-label='radio plato logo'
@@ -31,7 +31,7 @@ export function Header() {
                             )
                         }
                     </div>
-                </a>
+                </Link>
                 <Switch>
                     <Route exact path='/player' render={
                         () => (
@@ -71,7 +71,7 @@ export function Header() {
             </header>
             <header className='header-container mobile'>
                 <MenuButton isAside={false} />
-                <a className='logo-container' title='back to main page' href='/'>
+                <Link className='logo-container' title='back to main page' to='/'>
                     <div
                         className='logo'
                         aria-label='radio plato logo'
@@ -84,7 +84,7 @@ export function Header() {
                             )
                         }
                     </div>
-                </a>
+                </Link>
                 <Button
                     className='donate-button'
                     type={BUTTON_TYPE.GHOST}
