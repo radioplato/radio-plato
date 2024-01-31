@@ -314,6 +314,57 @@
 
                 .about-title {
                     margin-bottom: 24px;
+
+                    h1,
+                    h2,
+                    h3,
+                    h4,
+                    h5 {
+                        width: 744px;
+
+                        margin: 8px 0;
+                    }
+
+                    p {
+                        width: 744px;
+                        margin: 16px 0;
+
+                        img {
+                            width: 744px;
+                            height: auto;
+
+                            margin: 32px 0;
+                        }
+
+                        &:has(img) {
+                            width: 744px;
+                        }
+                    }
+
+                    span {
+                        width: 744px;
+                    }
+
+                    iframe {
+                        width: 100%;
+
+                        margin: 16px 0;
+                    }
+
+                    ul,
+                    ol {
+                        width: 744px;
+
+                        padding: 24px 32px 24px 0;
+                    }
+
+                    li {
+                        margin: 8px 0 8px 64px;
+                    }
+
+                    hr {
+                        margin: 8px 0;
+                    }
                 }
 
                 .about-text {
@@ -354,7 +405,47 @@
                 }
 
                 .about-text {
-                    @include interFont(16px, 400, 24px);
+
+                    h1,
+                    h2,
+                    h3,
+                    h4,
+                    h5 {
+                        width: 100%;
+
+                        @include openSansFont(24px, 600, 32px);
+                    }
+
+                    p {
+                        width: 100%;
+
+                        @include interFont(16px, 400, 24px);
+
+                        img {
+                            width: 100%;
+                        }
+
+                        &:has(img) {
+                            width: 100%;
+                        }
+
+                        br {
+                            height: 8px;
+                        }
+                    }
+
+                    span {
+                        width: 100%;
+                    }
+
+                    iframe {
+                        width: 100% !important;
+                    }
+
+                    ul,
+                    ol {
+                        width: 100%;
+                    }
                 }
             }
         }
