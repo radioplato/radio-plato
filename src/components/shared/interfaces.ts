@@ -1,14 +1,4 @@
-export enum Locale {
-    English = 'en',
-    Belorussian = 'be-BY',
-    Russian = 'ru-RU',
-}
-
-export enum LocaleString {
-    English = 'EN',
-    Belorussian = 'BY',
-    Russian = 'RU',
-}
+import { Locale } from "../news/enums";
 
 export interface StrapiObjectDto {
     createdAt: string;

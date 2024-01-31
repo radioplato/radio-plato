@@ -1,4 +1,5 @@
-import { CoverDto, Locale, SimpleImage, StrapiImageAttributes, StrapiList, StrapiLocalization, StrapiObject, StrapiObjectDto, StrapiResponse } from '../../shared/interfaces';
+import { SimpleImage, StrapiImageAttributes, StrapiList, StrapiObject, StrapiResponse } from '../../shared/interfaces';
+import { Locale } from '../enums';
 
 export interface NewsPostAttributes extends StrapiObject {
     Category: string;
@@ -10,6 +11,8 @@ export interface NewsPostAttributes extends StrapiObject {
     Slug: string;
     Title: string;
     WordsBy: string;
+    localizations?: StrapiList<NewsEntry[]>;
+    locale: Locale;
 }
 
 export type NewsImageData = {
@@ -31,8 +34,15 @@ export interface NewsCard {
     publishDate: string;
 };
 
-export interface NewsArticle extends NewsCard {
+export interface NewsArticleLocalization {
+    locale: Locale;
+    label?: string;
+    title: string;
+    excerpt: string;
     content: string;
-    photosBy?: string;
-    wordsBy: string;
+}
+
+export interface NewsArticle extends NewsCard {
+    locale: Locale;
+    localizations: NewsArticleLocalization[];
 }

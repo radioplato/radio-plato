@@ -3,7 +3,8 @@ export enum NEWS_CARD_SIZE {
     BIG = 'large',
 };
 
-export enum LOCALE {
-    BY = 'be-BY',
-    EN = 'en',
-};
+export enum Locale {
+    English = 'en',
+    Belarusian = 'be',
+    Russian = 'ru',
+}

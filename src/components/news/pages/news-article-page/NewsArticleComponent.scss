@@ -187,6 +187,26 @@
         }
     }
 
+    .localization-button-container {
+        display: flex;
+        display: -webkit-flex;
+        flex: 0 0 auto;
+
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: center;
+        align-content: center;
+        align-items: center;
+
+        width: 740px;
+
+        margin-top: 52px;
+
+        .localization-button {
+            margin: 0 8px 8px;
+        }
+    }
+
     .news-content-container {
         display: flex;
         display: -webkit-flex;
@@ -440,6 +460,10 @@
         width: 100%;
         height: calc(100vh - 148px);
         height: calc(100dvh - 148px);
+
+        .localization-button-container {
+            width: 100%;
+        }
     }
 }
 
