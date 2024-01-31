@@ -72,14 +72,19 @@ function FooterPlayerComponent() {
         panelRef.current?.classList.remove('full');
     }, [location]);
 
-    const togglePlayingMode = () => {
+    const togglePlayingMode = (event?: React.MouseEvent<Element, MouseEvent>) => {
+        if (event) {
+            console.log(event);
+            event.preventDefault();
+            event.stopPropagation();
+        }
+
         playerService.playing = !playerService.playing;
 
         setPlaying(playerService.playing);
     }
 
     const togglePanel = () => {
-        document.querySelector('.header-container.mobile')?.classList.toggle('bring-back');
         panelRef.current?.classList.toggle('full');
     }
 
@@ -155,7 +160,7 @@ function FooterPlayerComponent() {
                     size={BUTTON_SIZE.LARGE}
                     icon={playing ? ICON_KEY.PAUSE_FILLED : ICON_KEY.PLAY_FILLED}
                     title={playing ? `pause` : 'play'}
-                    onClick={togglePanel}
+                    onClick={(event) => togglePlayingMode(event)}
                 />
             </div>
         </div>

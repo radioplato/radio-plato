@@ -22,10 +22,20 @@ function MenuButton({ isAside }: MenuButtonProperties) {
     const toggleMenu = () => {
         const bodyOverflow = isOpened ? 'hidden' : 'unset';
 
+        if (isOpened) {
+            document.querySelector('.header-container.mobile')?.classList.toggle('bring-forward');
+        } else {
+            setTimeout(() => document.querySelector('.header-container.mobile')?.classList.toggle('bring-forward'), 200);
+        }
+
+
         wrapperRef.current?.classList.toggle('hidden');
         wrapperRef.current?.classList.toggle('shown');
+
         menuRef.current?.classList.toggle('opened');
+
         document.body.style.overflow = bodyOverflow;
+
         changeMenuStatus(!isOpened);
     }
 
