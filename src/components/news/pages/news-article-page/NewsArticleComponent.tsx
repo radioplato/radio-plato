@@ -81,7 +81,7 @@ export function NewsArticleComponent({
                 ? entry.attributes.localizations.data
                     .map((datum) => parseLocalization(datum))
                     .concat([parseLocalization(entry)])
-                : [],
+                : [parseLocalization(entry)],
         }
 
     }
@@ -175,7 +175,7 @@ export function NewsArticleComponent({
                 </div>
             </div>
             {
-                newsArticle.localizations && newsArticle.localizations.length
+                newsArticle.localizations && newsArticle.localizations.length > 1
                     ? (
                         <div className='localization-button-container'>
                             {
