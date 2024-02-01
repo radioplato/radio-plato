@@ -11,7 +11,7 @@ import ShowComponent from '../shows/pages/show-page/ShowComponent';
 import NewsArticleComponent from '../news/pages/news-article-page/NewsArticleComponent';
 import { AboutPageComponent } from '../../pages/about/AboutPageComponent';
 import { SchedulePageComponent } from '../shared/schedule/components/schedule/ScheduleComponent';
-import StudioComponent from '../studio/Studio';
+import StudioComponent from '../../pages/studio/StudioPageComponent';
 import { NotFoundPageComponent } from '../../pages/not-found/NotFoundPageComponent';
 import PlayerPageComponent from '../shared/player/pages/player-page/PlayerPageComponent';
 import { NewsPageComponent } from '../news/pages/news-list-page/NewsPageComponent';

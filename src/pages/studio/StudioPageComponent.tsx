@@ -1,47 +1,44 @@
 import React, { Component, RefObject } from 'react';
 
+import qs from 'qs';
+
 import { isMobileOnly } from 'react-device-detect';
 import ReactMarkdown from 'react-markdown';
 
 import { fromEvent, Subject } from 'rxjs';
 import { debounceTime, first, mapTo, takeUntil } from 'rxjs/operators';
 
-import SocialButtonsComponent from '../shared/social-links/components/social-buttons/SocialButtonsComponent';
+import { Seo } from '../../components/shared/wrappers/seo/Seo';
+
+import SocialButtonsComponent from '../../components/shared/social-links/components/social-buttons/SocialButtonsComponent';
 import ProjectCardComponent from './project-card/ProjectCardComponent';
-import { Seo } from '../shared/wrappers/seo/Seo';
 
 import { FilterItem, ProjectTag } from './enums';
-import { StudioHeaderDto, StudioHeader, PortfolioDto, Project, PortfolioTagDto } from './interfaces';
+import { Project, Portfolio, PorfolioEntry, PortfolioItemTagData } from './models';
 import { projectTagToFilterItem, filterItemToProjectTag } from './constants';
-import { PLATO_SOCIAL_BUTTONS } from '../shared/social-links/constants';
+import { PLATO_SOCIAL_BUTTONS } from '../../components/shared/social-links/constants';
 
-import Loader from '../../components/shared/loader/Loader';
-
-import './Studio.css';
+import './StudioPageComponent.scss';
 
 const STUDIO_SEO_TITLE = 'Radio Plato Studio';
 const STUDIO_SEO_DESCRIPTION = 'Plato is a team of professional sound designers, audio engineers, managers and music producers.';
 
 interface StudioComponentState {
-    studio: StudioHeader | null;
-    projects: Project[] | null;
+    portfolio: Portfolio | null;
     displayedProjects: Project[] | null;
     activeProject: Project | null;
     filterItems: FilterItem[] | null;
     currentFilter: FilterItem | null;
-    isLoading: boolean;
 }
 
 export class StudioComponent extends Component {
     potfolioContainerRef: RefObject<HTMLDivElement>;
     state: StudioComponentState = {
-        studio: null,
-        projects: [],
+        portfolio: null,
         displayedProjects: [],
         activeProject: null,
         filterItems: [],
         currentFilter: FilterItem.All,
-        isLoading: true,
     };
 
     private destroySubject = new Subject<void>();
@@ -52,81 +49,75 @@ export class StudioComponent extends Component {
         this.potfolioContainerRef = React.createRef();
     }
 
-    parseStudio(studioDto: StudioHeaderDto): StudioHeader | null {
-        return studioDto
-            ? {
-                  title: studioDto.Title,
-                  description: studioDto.Description,
-                  studioImage: {
-                      alternativeText: studioDto.Image.alternativeText,
-                      caption: studioDto.Image.caption,
-                      url: studioDto.Image.url,
-                  },
-              }
-            : null;
-    }
-
-    parseTags(tag: PortfolioTagDto): ProjectTag[] {
+    parseTags(tag: PortfolioItemTagData): ProjectTag[] {
         return Object.entries(tag)
             .filter((entry) => entry[1] === true)
             .map((entry) => entry[0]) as ProjectTag[];
     }
 
-    parseProjects(portfolioDto: PortfolioDto[]): Project[] | null {
-        return portfolioDto
-            ? portfolioDto.map((project) => {
-                  return {
-                      title: project.Title,
-                      description: project.Description,
-                      image: project.Image,
-                      tags: this.parseTags(project.Tag),
-                      video: project.Video,
-                      id: project.id,
-                  };
-              })
-            : null;
+    parsePortfolio(entry: PorfolioEntry): Portfolio | null {
+        console.log(entry)
+        return {
+            description: entry.attributes.Description,
+            title: entry.attributes.Title,
+            studioImage: {
+                alternativeText: entry.attributes.Image.data.attributes.alternativeText,
+                caption: entry.attributes.Image.data.attributes.caption,
+                url: entry.attributes.Image.data.attributes.url
+            },
+            projects: entry.attributes.PortfolioItem.map((item) => ({
+                description: item.Description,
+                image: {
+                    ...item.Image.data.attributes
+                },
+                tags: this.parseTags(item.Tag),
+                title: item.Title,
+                video: {
+                    ...item.Video.data.attributes
+                },
+                id: item.id.toString(),
+            })),
+        };
     }
 
-    fetchStudio() {
-        fetch(`${process.env.REACT_APP_BACKEND_URL}/portfolio-header`)
-            .then((response) => response.json())
-            .then((data: StudioHeaderDto) => this.parseStudio(data))
-            .then((studio) => {
-                this.setState({ studio });
+    fetchPortfolioV2() {
+        const query = qs.stringify({
+            populate: [
+                'Image',
+                'PortfolioItem',
+                'PortfolioItem',
+                'PortfolioItem.Image',
+                'PortfolioItem.Video',
+                'PortfolioItem.Tag',
+            ],
+        });
 
-                setTimeout(() => {
-                    this.setState({ isLoading: false });
-                }, 3000);
-            });
-    }
-
-    fetchPortfolio() {
-        fetch(`${process.env.REACT_APP_BACKEND_URL}/portfolios`)
-            .then((response) => response.json())
-            .then((data: PortfolioDto[]) => this.parseProjects(data))
-            .then((projects) => {
-                const filterItems = Array.from(
-                    new Set(
-                        projects
-                            ?.map((project) => project.tags)
-                            .flat()
-                            .map((tag) => projectTagToFilterItem.get(tag!))
-                    )
+        return fetch(`${process.env.REACT_APP_BACKEND_URL}/portfolio?${query}`)
+        .then((response) => response.json())
+        .then(data => this.parsePortfolio(data.data))
+        .then((portfolio) => {
+            const filterItems = Array.from(
+                new Set(
+                    portfolio?.projects
+                        ?.map((project) => project.tags)
+                        .flat()
+                        .map((tag) => projectTagToFilterItem.get(tag!))
                 )
-                    .concat([FilterItem.All])
-                    .sort((a: FilterItem | undefined, b: FilterItem | undefined) => a!.localeCompare(b!));
+            )
+                .concat([FilterItem.All])
+                .sort((a: FilterItem | undefined, b: FilterItem | undefined) => a!.localeCompare(b!));
 
-                this.setState({
-                    filterItems,
-                    projects,
-                    displayedProjects: projects,
-                });
+            this.setState({
+                filterItems,
+                portfolio,
+                displayedProjects: portfolio?.projects,
+                isLoading: false,
             });
+        });
     }
 
     componentDidMount() {
-        this.fetchStudio();
-        this.fetchPortfolio();
+        this.fetchPortfolioV2();
     }
 
     componentWillUnmount() {
@@ -139,7 +130,7 @@ export class StudioComponent extends Component {
 
         this.setState({
             currentFilter: filter,
-            displayedProjects: tag ? this.state.projects?.filter((project) => project.tags.includes(tag)) : this.state.projects,
+            displayedProjects: tag ? this.state.portfolio?.projects?.filter((project) => project.tags.includes(tag)) : this.state.portfolio?.projects,
             activeProject: null,
         });
     }
@@ -154,7 +145,7 @@ export class StudioComponent extends Component {
 
     handleCardClick(id: string): void {
         this.setState({
-            activeProject: this.state.activeProject?.id === id ? null : this.state.projects?.find((project) => project.id === id),
+            activeProject: this.state.activeProject?.id === id ? null : this.state.portfolio?.projects?.find((project) => project.id === id),
         });
     }
 
@@ -169,7 +160,6 @@ export class StudioComponent extends Component {
                     >
                         {item}
                     </div>
-                    <div className={`filter-separator ${index === filterItems.length - 1 ? 'hidden' : 'visible'}`}>/</div>
                 </div>
             ))
         );
@@ -200,8 +190,8 @@ export class StudioComponent extends Component {
     }
 
     render() {
-        const { studio, displayedProjects, filterItems, isLoading } = this.state;
-        const imageSrc = studio ? studio.studioImage.url : '';
+        const { portfolio, displayedProjects, filterItems } = this.state;
+        const imageSrc = portfolio ? portfolio.studioImage.url : '';
         const imageStyle = {
             backgroundPosition: 'center',
             backgroundRepeat: 'no-repeat',
@@ -220,17 +210,14 @@ export class StudioComponent extends Component {
                             thumbnail: imageSrc,
                         }}
                     />
-                    <div className={`loader-container ${isLoading ? 'visible' : 'hidden'}`}>
-                        <Loader />
-                    </div>
                     <div className='image' style={imageStyle}>
-                        <div className='left'>
-                            <h1>{studio?.title}</h1>
+                        <div className='left-section'>
+                            <h1>{portfolio?.title}</h1>
                         </div>
-                        <div className='right'>
+                        <div className='right-section'>
                             <div className='description'>
-                                     <ReactMarkdown source={studio?.description} escapeHtml={false} />
-                                <div className='social-links'>
+                                     <ReactMarkdown source={portfolio?.description} escapeHtml={false} />
+                                <div className='social-buttons'>
                                       <SocialButtonsComponent socialLinks={ PLATO_SOCIAL_BUTTONS }></SocialButtonsComponent>
                                 </div>
                             </div>

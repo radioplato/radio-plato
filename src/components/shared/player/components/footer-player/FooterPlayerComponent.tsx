@@ -9,7 +9,6 @@ import { playerService } from '../../services/PlayerService';
 import { scheduleService } from '../../../schedule/services/ScheduleService';
 
 import TrackTitle from '../track-info/TrackTitleComponent';
-import ScheduleLine from '../../../schedule/components/schedule-line/ScheduleLineComponent';
 
 import { NowPlayingInformation, TrackInformation } from '../../models';
 import { ScheduleCard } from '../../../schedule/models/schedule';

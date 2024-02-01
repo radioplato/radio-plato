@@ -30,7 +30,6 @@ export function ShowListComponent() {
     const [showCards, setShowCards] = useState<ShowCard[]>([]);
     const [visibleShowCards, setVisibleShowCards] = useState<ShowCard[]>([]);
     const [currentFilter, setCurrentFilter] = useState<SHOW_STATUS_FILTER>();
-    const [isLoading, setLoading] = useState(false);
 
     const loadShows = () => {
         const query = qs.stringify({
@@ -40,7 +39,7 @@ export function ShowListComponent() {
             }
         });
 
-        fetch(`${ process.env.REACT_APP_BACKEND_URL_V2 }/shows?${query}`)
+        fetch(`${ process.env.REACT_APP_BACKEND_URL }/shows?${query}`)
             .then(response => response.json())
             .then(data => data.data.map((entry: ShowEntry) => parseShowCard(entry)))
             .then(shows => handleLoadResponse(shows));
@@ -64,7 +63,6 @@ export function ShowListComponent() {
     const handleLoadResponse = (shows: ShowCard[]) => {
         if (shows) {           
             setShowCards(shows);
-            setLoading(false);
             setCurrentFilter(SHOW_STATUS_FILTER.CURRENT);
         }
     }

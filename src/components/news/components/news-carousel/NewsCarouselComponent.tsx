@@ -30,7 +30,7 @@ export function NewsCarouselComponent() {
 
         setLoading(true);
 
-        fetch(`${process.env.REACT_APP_BACKEND_URL_V2}/posts?${query}`)
+        fetch(`${process.env.REACT_APP_BACKEND_URL}/posts?${query}`)
             .then(response => response.json())
             .then(data => data.data.map((entry: NewsEntry) => parseNewsCard(entry)).sort(() => .6 - Math.random()).sort( () => .4 - Math.random()))
             .then(newsCards => handleLoadResponse(newsCards));

@@ -1,6 +1,6 @@
 import { Subject } from 'rxjs';
 import { DEFAULT_PLAYER_STATE, PLAYER_CONNECTING } from '../constants';
-import { ListenersInformation, NowPlayingInformation, PlayerState, TrackInformation } from '../models';
+import { NowPlayingInformation, PlayerState, TrackInformation } from '../models';
 
 enum StorageKey {
     Volume = 'volume',

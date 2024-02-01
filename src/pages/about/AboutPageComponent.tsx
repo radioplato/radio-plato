@@ -34,7 +34,7 @@ export function AboutPageComponent() {
             populate: '*',
         });
 
-        fetch(`${process.env.REACT_APP_BACKEND_URL_V2}/about?${query}`)
+        fetch(`${process.env.REACT_APP_BACKEND_URL}/about?${query}`)
             .then(response => response.json())
             .then((data: AboutPageDto) => parseAbout(data))
             .then(about => setAbout(about));

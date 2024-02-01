@@ -51,7 +51,7 @@ class ScheduleService {
             }
         });
 
-        return await fetch(`${process.env.REACT_APP_BACKEND_URL_V2}/schedules?${query}`)
+        return await fetch(`${process.env.REACT_APP_BACKEND_URL}/schedules?${query}`)
             .then(response => response.json())
             .then(data => (this.scheduleInformationList = data));
     }

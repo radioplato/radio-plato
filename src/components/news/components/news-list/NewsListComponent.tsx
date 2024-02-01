@@ -39,7 +39,6 @@ export function NewsListComponent({
     const [highlightCard, setHighlightCard] = useState<NewsCard | null>(null);
     const [otherCards, setOtherCards] = useState<NewsCard[]>([]);
     const [isLoading, setLoading] = useState(false);
-    const [isEnd, setEnd] = useState(false);
 
     const loadNews = () => {
         const query = qs.stringify({
@@ -58,7 +57,7 @@ export function NewsListComponent({
 
         setLoading(true);
 
-        fetch(`${process.env.REACT_APP_BACKEND_URL_V2}/posts?${query}`)
+        fetch(`${process.env.REACT_APP_BACKEND_URL}/posts?${query}`)
             .then(response => response.json())
             .then(data => data.data.map((entry: NewsEntry) => parseNewsCard(entry)))
             .then(newsCards => handleLoadResponse(newsCards));
@@ -91,7 +90,7 @@ export function NewsListComponent({
             sort: ['PublishAt:desc'],
         });
 
-        fetch(`${process.env.REACT_APP_BACKEND_URL_V2}/posts?${query}`)
+        fetch(`${process.env.REACT_APP_BACKEND_URL}/posts?${query}`)
             .then(response => response.json())
             .then(data => data.data.map((entry: NewsEntry) => parseNewsCard(entry)))
             .then(newsCards => handleLoadMoreResponse(newsCards));

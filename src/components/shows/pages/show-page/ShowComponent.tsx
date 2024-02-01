@@ -95,7 +95,7 @@ export function ShowComponent({
 
         setShow(null);
 
-        return fetch(`${process.env.REACT_APP_BACKEND_URL_V2}/shows?${query}`)
+        return fetch(`${process.env.REACT_APP_BACKEND_URL}/shows?${query}`)
             .then(response => response.json())
             .then(data => data.data[0] ? parseShow(data.data[0]) : null)
             .then(article => setShow(article));
@@ -109,7 +109,7 @@ export function ShowComponent({
             }
         });
 
-        fetch(`${process.env.REACT_APP_BACKEND_URL_V2}/shows?${query}`)
+        fetch(`${process.env.REACT_APP_BACKEND_URL}/shows?${query}`)
             .then(response => response.json())
             .then(data => data.data.map((entry: ShowEntry) => parseShowCard(entry)))
             .then(shows => setMoreShows(shows));

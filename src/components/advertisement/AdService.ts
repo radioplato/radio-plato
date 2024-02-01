@@ -47,7 +47,7 @@ class AdService {
     }
 
     async fetchAdvertisements () {
-        await fetch(`${ process.env.REACT_APP_BACKEND_URL_V2 }/advertisements`)
+        await fetch(`${ process.env.REACT_APP_BACKEND_URL }/advertisements`)
             .then(response => response.json())
             .then(data => this.parseAdvertisements(data))
             .then(advertisements => this.updateAdvertisements(advertisements));

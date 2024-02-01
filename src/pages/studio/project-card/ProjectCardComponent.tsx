@@ -4,13 +4,13 @@ import ReactPlayer from 'react-player';
 import Icon from '@iconify/react';
 import playIcon from '@iconify/icons-el/play';
 
-import { playerService } from '../../shared/player/services/PlayerService';
+import { playerService } from '../../../components/shared/player/services/PlayerService';
 import { projectTagToFilterItem } from '../constants';
 import { ProjectTag } from '../enums';
 
-import { Project } from '../interfaces';
+import { Project } from '../models';
 
-import './ProjectCardComponent.css';
+import './ProjectCardComponent.scss';
 
 const PLAYER_CONFIG = {
     file: {
@@ -86,7 +86,7 @@ function ProjectCardComponent ({ project, shouldPlay, onTagClick, onCardClick }:
                     {
                         project.tags.length
                             ? project.tags.map((tag) => (
-                                <div className="tag" key={ `${project.id}-${tag.toLowerCase()}` }>
+                                <div className='tag' key={ `${project.id}-${tag.toLowerCase()}` }>
                                     <div className='tag-name' onClick={ () => handleTagClick(tag) }>{ projectTagToFilterItem.get(tag) }</div>
                                 </div>
                             ))

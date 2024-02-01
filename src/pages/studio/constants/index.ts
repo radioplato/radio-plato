@@ -1,4 +1,4 @@
-import { FilterItem, ProjectTag } from "./enums";
+import { FilterItem, ProjectTag } from "../enums";
 
 export const projectTagToFilterItem = new Map<ProjectTag, FilterItem>([
     [ProjectTag.Animation, FilterItem.Animation],

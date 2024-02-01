@@ -98,7 +98,7 @@ export function NewsArticleComponent({
 
         setNewsArticle(null);
 
-        return fetch(`${process.env.REACT_APP_BACKEND_URL_V2}/posts?${query}`)
+        return fetch(`${process.env.REACT_APP_BACKEND_URL}/posts?${query}`)
             .then(response => response.json())
             .then(data => data.data[0] ? parseArticle(data.data[0]) : null)
             .then((article: NewsArticle | null): void => {
@@ -123,7 +123,7 @@ export function NewsArticleComponent({
             sort: ['publishedAt:desc'],
         });
 
-        return fetch(`${process.env.REACT_APP_BACKEND_URL_V2}/posts?${query}`)
+        return fetch(`${process.env.REACT_APP_BACKEND_URL}/posts?${query}`)
             .then(response => response.json())
             .then(data => data.data.map((entry: NewsEntry) => parseNews(entry)))
             .then(cards => setRelatedNewsCards(cards));
