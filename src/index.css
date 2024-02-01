@@ -4,12 +4,12 @@ body {
     height: 100dvh;
 }
 
-@import url("https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&family=Open+Sans+Condensed:wght@300;400;500;600;700;800&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&family=Open+Sans+Condensed:wght@300;400;500;600;700;800&display=swap');
 
 body {
     margin: 0;
     background: #000000;
-    font-family: "Inter", "Open Sans", BlinkMacSystemFont, "Helvetica Neue";
+    font-family: 'Inter', 'Open Sans Condensed', BlinkMacSystemFont, 'Helvetica Neue';
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     background-color: black;
@@ -91,4 +91,8 @@ a {
 
 video::-webkit-media-controls-timeline {
     display: none;
+}
+
+.chatbro_container * {
+    font-family: 'Inter', BlinkMacSystemFont, 'Helvetica Neue' !important;
 }
