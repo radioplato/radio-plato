@@ -18,7 +18,7 @@ export function Header() {
     return (
         <>
             <header className='header-container desktop'>
-                <Link className='logo-container' title='back to main page' to='/'>
+                <Link className='logo-container' title='back to main page' to='/' replace={false}>
                     <div
                         className='logo'
                         aria-label='radio plato logo'
@@ -71,7 +71,7 @@ export function Header() {
             </header>
             <header className='header-container mobile'>
                 <MenuButton isAside={false} />
-                <Link className='logo-container' title='back to main page' to='/'>
+                <Link className='logo-container' title='back to main page' to='/' replace={false}>
                     <div
                         className='logo'
                         aria-label='radio plato logo'
