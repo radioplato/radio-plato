@@ -196,14 +196,6 @@
                 }
             }
         }
-
-        .google-play-button {
-            color: $black;
-
-            &:active {
-                color: $grey-500;
-            }
-        }
     }
 
     &.opened {

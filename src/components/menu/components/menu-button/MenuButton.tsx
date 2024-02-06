@@ -25,7 +25,7 @@ function MenuButton({ isAside }: MenuButtonProperties) {
         if (isOpened) {
             document.querySelector('.header-container.mobile')?.classList.toggle('bring-forward');
         } else {
-            setTimeout(() => document.querySelector('.header-container.mobile')?.classList.toggle('bring-forward'), 200);
+            setTimeout(() => document.querySelector('.header-container.mobile')?.classList.toggle('bring-forward'), 400);
         }
 
 

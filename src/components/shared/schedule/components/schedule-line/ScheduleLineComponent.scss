@@ -130,11 +130,6 @@
             .periodicity {
                 @include openSansFont(20px, 700, 24px);
             }
-
-            .utc {
-                margin-left: 8px;
-                @include interFont(14px, 400, 24px);
-            }
         }
 
         .title {

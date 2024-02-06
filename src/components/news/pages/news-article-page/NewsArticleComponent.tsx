@@ -22,9 +22,9 @@ interface NewsArticleComponentProperties {
 }
 
 const mapLocaleToLabel = new Map([
-    [Locale.Belarusian, 'belarusian'],
-    [Locale.English, 'english'],
-    [Locale.Russian, 'russian']
+    [Locale.Belarusian, 'Чытаць па-беларуску'],
+    [Locale.English, 'Read in English'],
+    [Locale.Russian, 'Читать на русском']
 ]);
 
 export function NewsArticleComponent({
@@ -187,8 +187,8 @@ export function NewsArticleComponent({
                                             className='localization-button'
                                             type={BUTTON_TYPE.OUTLINE}
                                             size={BUTTON_SIZE.SMALL}
-                                            label={`read in ${localization.label}`}
-                                            title={`read in ${localization.label}`}
+                                            label={localization.label}
+                                            title={localization.label}
                                             onClick={() => setCurrentLocale(localization.locale)}
                                         />
                                     ))

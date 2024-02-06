@@ -8,7 +8,7 @@ import { BASIC_SEO_IMG } from '../../components/shared/constants';
 
 import './StartPageComponent.scss';
 
-const INDEX_SEO_TITLE = 'From Minsk with ❤'
+const INDEX_SEO_TITLE = 'Community Radio and Music Magazine'
 const INDEX_SEO_DESCRIPTION = 'Radio Plato is a space for music lovers'
 
 export class StartPageComponent extends Component {

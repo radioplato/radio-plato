@@ -1,5 +1,3 @@
-export const BASIC_SEO_IMG = 'https://res.cloudinary.com/radio-plato/image/upload/v1595347571/og_image_plato_0158fb0d85.jpg';
+export const BASIC_SEO_IMG = 'https://d6bibcz2xnnr9.cloudfront.net/IMG_0305_min_86feaa4553_6d7bad9fa7.jpg';
 
 export const DONATE_LINK = 'https://www.patreon.com/radioplato';
-
-export const DONATE = 'Donate';

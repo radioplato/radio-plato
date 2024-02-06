@@ -47,7 +47,6 @@ function ScheduleLine({card, isNow }: ScheduleLineProperties) {
                                 {
                                     card?.periodicity && (<span className='periodicity'>{card?.periodicity}</span>)
                                 }
-                                <span className='utc'>UTC+3</span>
                             </div>
                         )
                     }
