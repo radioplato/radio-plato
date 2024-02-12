@@ -26,7 +26,9 @@ export function NewsPageComponent({
         thumbnail: BASIC_SEO_IMG
     }, withScroll(
         <div>
-            <NewsCarouselComponent />
+            {
+                !category ? <NewsCarouselComponent /> : null
+            }
             <NewsListComponent isStartPage={false} category={category} />
         </div>
     ));

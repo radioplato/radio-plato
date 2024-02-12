@@ -39,6 +39,7 @@ export function NewsListComponent({
     const [highlightCard, setHighlightCard] = useState<NewsCard | null>(null);
     const [otherCards, setOtherCards] = useState<NewsCard[]>([]);
     const [isLoading, setLoading] = useState(false);
+    const [total, setTotal]= useState<number>(0);
 
     const loadNews = () => {
         const query = qs.stringify({
@@ -59,7 +60,11 @@ export function NewsListComponent({
 
         fetch(`${process.env.REACT_APP_BACKEND_URL}/posts?${query}`)
             .then(response => response.json())
-            .then(data => data.data.map((entry: NewsEntry) => parseNewsCard(entry)))
+            .then(data => {
+                setTotal(data.meta.pagination.total);
+
+                return data.data.map((entry: NewsEntry) => parseNewsCard(entry));
+            })
             .then(newsCards => handleLoadResponse(newsCards));
     }
 
@@ -80,7 +85,7 @@ export function NewsListComponent({
             populate: '*',
             pagination: {
                 start: newsCards.length,
-                limit: 6,
+                limit,
             },
             filters: category ? {
                 Category: {
@@ -92,7 +97,11 @@ export function NewsListComponent({
 
         fetch(`${process.env.REACT_APP_BACKEND_URL}/posts?${query}`)
             .then(response => response.json())
-            .then(data => data.data.map((entry: NewsEntry) => parseNewsCard(entry)))
+            .then(data => {
+                setTotal(data.meta.pagination.total);
+
+                return data.data.map((entry: NewsEntry) => parseNewsCard(entry));
+            })
             .then(newsCards => handleLoadMoreResponse(newsCards));
     }
 
@@ -161,8 +170,7 @@ export function NewsListComponent({
             label = 'Load more news';
         }
 
-
-        return !isLoading ? (
+        return !isLoading && otherCards.length < total ? (
             <div
                 className='load-more-container'
                 style={{
