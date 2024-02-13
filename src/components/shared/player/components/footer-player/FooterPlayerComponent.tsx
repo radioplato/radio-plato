@@ -93,7 +93,7 @@ function FooterPlayerComponent() {
                 backgroundImage: `url(${scheduleCard?.image?.url ?? trackArt})`,
             }}>
                 <div className='content-container'>
-                    <div className='controls-container'>
+                    <div className='controls-container' onClick={togglePanel}>
                         <Button
                             className='fullscreen-button'
                             type={BUTTON_TYPE.GHOST}
@@ -101,7 +101,6 @@ function FooterPlayerComponent() {
                             icon={ICON_KEY.CHEVRON_REGULAR}
                             iconRotate={180}
                             title='minimize player'
-                            onClick={togglePanel}
                         />
                     </div>
                     <div className='schedule-information-container'>
