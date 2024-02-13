@@ -22,7 +22,7 @@ export interface ScheduleConnectedShow {
 export interface ScheduleInformationAttributes {
     AzuracastID: string;
     Description: string;
-    Episodes?: any[];
+    Episodes?: string;
     Image: ScheduleInformationImageData;
     Livestream: boolean;
     Show: ScheduleConnectedShow;
@@ -45,7 +45,8 @@ export interface ScheduleCard {
     description: string;
     type: string;
     author?: string | null;
-    link: string | null;
+    link: string;
+    slug: string;
     startDate?: string;
     startTime?: string;
     endDate?: string;

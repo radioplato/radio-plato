@@ -74,9 +74,10 @@ class ScheduleService {
                         azuracastID: scheduleInformation.attributes.AzuracastID,
                         title: scheduleInformation.attributes.Title,
                         description: scheduleInformation.attributes.Description,
-                        link: scheduleInformation.attributes.Show.data
+                        link: '',
+                        slug: scheduleInformation.attributes.Show.data
                             ? scheduleInformation.attributes.Show.data.attributes.Slug
-                            : null,
+                            : '',
                         type: scheduleInformation.attributes.Type,
                         author: scheduleInformation.attributes.Show.data
                             ? scheduleInformation.attributes.Show.data.attributes.Author

@@ -17,7 +17,7 @@
     align-items: center;
 
     width: 100%;
-    height: fit-content;
+    height: auto;
 
     border-bottom: 2px solid $grey-200;
 
@@ -107,7 +107,7 @@
         align-content: center;
         align-items: flex-start;
 
-        width: calc(100% - 152px);
+        width: calc(100% - 320px);
 
         margin-left: 24px;
 
@@ -151,6 +151,20 @@
             color: $grey-900;
         }
     }
+
+    .episodes-link-container {
+        display: flex;
+        display: -webkit-flex;
+        flex: 0 0 auto;
+
+        flex-direction: row;
+        flex-wrap: nowrap;
+        justify-content: flex-end;
+        align-content: center;
+        align-items: center;
+
+        height: 128px;
+    }
 }
 
 @media (max-width: 1279px) {
@@ -186,6 +200,8 @@
 @media (max-width: 767px) {
     .schedule-line-container {
         .schedule-line {
+            flex-wrap: wrap;
+
             width: 100%;
 
             .visual-container {
@@ -199,6 +215,13 @@
                 width: calc(100% - 88px);
 
                 margin-left: 16px;
+            }
+
+            .episodes-link-container {
+                height: auto;
+
+                margin-left: 68px;
+                margin-top: 8px;
             }
         }
     }

@@ -11,6 +11,7 @@ import { Seo } from '../../../shared/wrappers/seo/Seo'
 import { Show, ShowCard, ShowEntry } from '../../models';
 
 import { ICON_KEY } from '../../../shared/icons/icons';
+
 import './ShowComponent.scss';
 
 
@@ -50,7 +51,8 @@ export function ShowComponent({
                         title: scheduleInformation.attributes.Title,
                         description: scheduleInformation.attributes.Description,
                         type: scheduleInformation.attributes.Type,
-                        link: null,
+                        link: scheduleInformation.attributes.Episodes ?? '',
+                        slug: '',
                         image: {
                             alternativeText: scheduleInformation.attributes.Image.data.attributes.alternativeText,
                             caption: scheduleInformation.attributes.Image.data.attributes.caption,
@@ -161,6 +163,7 @@ export function ShowComponent({
                                     show.schedules.map((scheduleCard) => (
                                         <ScheduleLine
                                             card={scheduleCard}
+                                            shouldShowEpisodesLink={true}
                                             key={`${scheduleCard.title}-${scheduleCard.periodicity}`.toLowerCase()}
                                         />
                                     ))
