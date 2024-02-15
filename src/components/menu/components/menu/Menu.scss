@@ -1,0 +1,282 @@
+@import 'styles/colors.scss';
+@import 'styles/fonts.scss';
+
+@keyframes blur-in {
+    from {
+        backdrop-filter: blur(0px);
+    }
+
+    to {
+        backdrop-filter: blur(2px);
+    }
+}
+
+@keyframes blur-out {
+    from {
+        backdrop-filter: blur(2px);
+    }
+
+    to {
+        display: none;
+        backdrop-filter: blur(0);
+    }
+}
+
+.menu {
+    position: absolute;
+    top: 102px;
+    left: -482px;
+    z-index: 9999;
+
+    width: 482px;
+    height: calc(100vh - 102px);
+    height: calc(100dvh - 102px);
+
+    background: $white;
+
+    display: flex;
+    display: -webkit-flex;
+    flex: 0 0 auto;
+
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+    align-content: stretch;
+
+    transition: 0.5s;
+
+    .aside-button-close {
+        display: flex;
+        display: -webkit-flex;
+        flex: 0 0 auto;
+
+        flex-direction: row;
+        flex-wrap: nowrap;
+        justify-content: center;
+        align-content: stretch;
+        align-items: center;
+
+        width: 120px;
+        min-width: 120px;
+        height: calc(100vh - 102px);
+        height: calc(100dvh - 102px);
+
+        background: $white;
+        border-right: 2px solid $grey-700;
+
+        cursor: pointer;
+
+        .close-button {
+            display: flex;
+            flex-direction: row;
+            transform: rotate(-90deg);
+
+            .close-button-icon {
+                color: $black;
+                margin-right: 8px;
+            }
+
+            .close-button-label {
+                @include interFont(16px, 600, 20px);
+                color: $black;
+                letter-spacing: 1.25px;
+                text-transform: uppercase;
+                user-select: none;
+            }
+        }
+
+        &:hover {
+            .close-button-label {
+                text-decoration: underline;
+                text-underline-offset: 3px;
+            }
+        }
+
+        &:active {
+
+            .close-button-icon,
+            .close-button-label {
+                color: $grey-500;
+            }
+
+            .close-button-label {
+                text-decoration: underline;
+                text-underline-offset: 3px;
+                text-decoration-color: $grey-500;
+            }
+        }
+    }
+
+    .menu-items-container {
+        height: 100%;
+        width: 360px;
+        box-sizing: border-box;
+
+        padding: 48px;
+
+        background: $white;
+
+        display: flex;
+        display: -webkit-flex;
+        flex: 0 0 auto;
+
+        flex-direction: column;
+        flex-wrap: nowrap;
+        justify-content: flex-start;
+        align-content: center;
+        align-items: flex-start;
+
+        overflow: hidden;
+
+        .menu-items {
+            width: 100%;
+            padding: 0;
+            margin: 0;
+
+            .menu-item {
+                width: 100%;
+                margin-bottom: 36px;
+
+                @include interFont(36px, 400, 36px);
+                text-transform: uppercase;
+
+                cursor: pointer;
+
+                &.donate-button {
+                    margin-top: 8px;
+                }
+
+                & > a {
+                    display: block;
+                    height: 36px;
+                    line-height: 36px;
+                }
+
+                &:hover {
+                    text-decoration: underline;
+                    text-underline-offset: 4px;
+                }
+
+                &:active {
+                    color: $grey-500;
+                    text-decoration: underline;
+                    text-underline-offset: 4px;
+                    text-decoration-color: $grey-500;
+                }
+            }
+        }
+
+        .menu-social-buttons {
+            display: flex;
+            display: -webkit-flex;
+            flex: 0 0 auto;
+
+            flex-direction: row;
+            flex-wrap: wrap;
+            justify-content: flex-start;
+            align-content: center;
+            align-items: flex-start;
+
+            max-width: 256px;
+
+            margin-bottom: 16px;
+
+            .social-button .button {
+                margin: 0 16px 24px 0;
+                padding: 0;
+
+                color: $black;
+
+                &:hover {
+                    color: $grey-200;
+                }
+
+                &:active {
+                    color: $grey-100;
+                }
+            }
+        }
+    }
+
+    &.opened {
+        left: 0;
+    }
+}
+
+.overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: 9998;
+
+    display: none;
+
+    overflow: hidden;
+
+    cursor: pointer;
+
+    &.hidden {
+        animation: blur-out 0.5s forwards;
+    }
+
+    &.shown {
+        display: block;
+        animation: blur-in 0.5s forwards;
+    }
+}
+
+@media (max-width: 1439px) {
+    .menu {
+        width: 360px;
+
+        .aside-button-close {
+            width: 86px;
+            min-width: 86px;
+        }
+
+        .menu-items-container {
+            width: 272px;
+
+            padding: 32px;
+
+            .menu-items {
+                .menu-item {
+                    margin-bottom: 24px;
+
+                    @include interFont(28px, 400);
+                }
+            }
+        }
+    }
+}
+
+@media (max-width: 1279px) {
+    .menu {
+        height: 100vh;
+        height: 100dvh;
+        top: 0;
+
+        .aside-button-close {
+            height: 100%;
+        }
+    }
+
+    .wrapper {
+        position: relative;
+    }
+}
+
+@media (max-width: 767px) {
+    .menu {
+        height: 100vh;
+        height: 100dvh;
+        width: 100vw;
+        left: -100vw;
+
+        .menu-items-container {
+            width: calc(100vw - 88px);
+        }
+    }
+}

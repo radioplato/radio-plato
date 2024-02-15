@@ -1,91 +1,102 @@
-import React, { Component } from 'react'
+import React, { createElement } from 'react'
 
-import {
-  Link,
-  Switch,
-  Route
-} from 'react-router-dom';
+import { Link, Route, Switch } from 'react-router-dom';
 
-import { BrowserView, isMobileOnly } from 'react-device-detect';
-import googlePlay from '@iconify/icons-cib/google-play';
-import cardsHeart from '@iconify/icons-mdi/cards-heart';
-import Icon from '@iconify/react';
+import HeaderPlayerComponent from '../shared/player/components/header-player/HeaderPlayerComponent';
+import MenuButton from '../menu/components/menu-button/MenuButton';
 
-import MenuButton from '../menu/menu-button/MenuButton';
-import SocialLinksComponent from '../shared/SocialLinksComponent/SocialLinksComponent';
-import PlayerComponent from '../shared/Player/PlayerComponent/PlayerComponent';
-import { ANDROID_APP, DONATE, DONATE_LINK, HEADER_SOCIAL_LINKS } from '../shared/constants';
-import { PlayerTypes } from '../shared/enums';
+import { ReactComponent as LogoDesktop } from '../../assets/logo-desktop.svg';
+import { ReactComponent as LogoMobile } from '../../assets/logo-mobile.svg';
 
-import './Header.css'
+import { BUTTON_SIZE, BUTTON_TYPE, Button, ICON_POSITION } from '../shared/button/components/Button';
+import { ICON_KEY } from '../shared/icons/icons';
+import { DONATE_LINK } from '../shared/constants';
 
+import './Header.scss'
 
-const RADIO_PLATO = '';
-
-export class Header extends Component {
-    renderMobileDonateButton() {
-        return (
-            <a className='donate-link'
-                target='_blank'
-                href={ DONATE_LINK }
-                title={ `A Radio Plato Patreon link` }
-                aria-label={ `A Radio Plato Patreon link` }
-                rel='noopener noreferrer'
-            >   
-                <Icon className='heart-icon' icon={ cardsHeart } width='24' height='24'/>
-            </a>
-        );
-    }
-
-    render() {
-        return (
-            <header className={ `header-container ${ isMobileOnly ? 'mobile' : 'desktop' }` }>
-                { isMobileOnly && <MenuButton /> }
-                <div className='logo-container'>
-                    <Link to='/' className='logo-text'>{ RADIO_PLATO }</Link>
-                </div>
-                <BrowserView>
-                    <div className='social-container'>
-                        <Switch>
-                            <Route exact path='/' render={
-                                props => (<SocialLinksComponent { ...props } socialLinks={ HEADER_SOCIAL_LINKS }/>)
-                            }/>
-                            <Route path='/' render={
-                                props => (<PlayerComponent { ...props } playerType={ PlayerTypes.Header }/>)
-                            }/>
-                        </Switch>
-                        
-                        <div className="android-link-wrapper">
-                            <a className='android-link'
-                                target='_blank'
-                                href={ HEADER_SOCIAL_LINKS.googlePlay }
-                                title={ `A link to Android App` }
-                                aria-label={ `A link to Android App` }
-                                rel='noopener noreferrer'
-                            >
-                                <Icon className='google-play-icon' icon={ googlePlay }/>
-                                { ANDROID_APP }
-                            </a>
-                        </div>
-                        
-                        <div className="donate-link-wrapper">
-                            <a className='donate-link'
-                                target='_blank'
-                                href={ DONATE_LINK }
-                                title={ `A Radio Plato Patreon link` }
-                                aria-label={ `A Radio Plato Patreon link` }
-                                rel='noopener noreferrer'
-                            >   
-                                <Icon className='heart-icon' icon={ cardsHeart } width='18' height='18'/>
-                                { DONATE }
-                            </a>
-                        </div>
+export function Header() {
+    return (
+        <>
+            <header className='header-container desktop'>
+                <Link className='logo-container' title='back to main page' to='/' replace={false}>
+                    <div
+                        className='logo'
+                        aria-label='radio plato logo'
+                        role='img'
+                    >
+                        {
+                            createElement(
+                                LogoDesktop,
+                                { style: { width: '100%', height: '100%' } }
+                            )
+                        }
                     </div>
-                </BrowserView>
-                { isMobileOnly && this.renderMobileDonateButton() }
+                </Link>
+                <Switch>
+                    <Route exact path='/player' render={
+                        () => (
+                            <div className='donate-button-container'>
+                                <Button
+                                    type={BUTTON_TYPE.OUTLINE}
+                                    size={BUTTON_SIZE.MEDIUM}
+                                    icon={ICON_KEY.HEART_REGULAR}
+                                    iconPosition={ICON_POSITION.LEFT}
+                                    label='donate'
+                                    href={DONATE_LINK}
+                                    title='donate link'
+                                ></Button>
+                            </div>
+                        )
+                    } />
+                    <Route path='/' render={
+                        () => (
+                            <>
+                                <div className='player-container'>
+                                    <HeaderPlayerComponent></HeaderPlayerComponent>
+                                    <Button
+                                        type={BUTTON_TYPE.OUTLINE}
+                                        size={BUTTON_SIZE.MEDIUM}
+                                        icon={ICON_KEY.HEART_REGULAR}
+                                        iconPosition={ICON_POSITION.LEFT}
+                                        label='donate'
+                                        href={DONATE_LINK}
+                                        title='donate link'
+                                    ></Button>
+                                </div>
+                                <div className='fake-container'></div>
+                            </>
+                        )
+                    } />
+                </Switch>
             </header>
-        );
-    }
+            <header className='header-container mobile'>
+                <MenuButton isAside={false} />
+                <Link className='logo-container' title='back to main page' to='/' replace={false}>
+                    <div
+                        className='logo'
+                        aria-label='radio plato logo'
+                        role='img'
+                    >
+                        {
+                            createElement(
+                                LogoMobile,
+                                { style: { width: '100%', height: '100%' } }
+                            )
+                        }
+                    </div>
+                </Link>
+                <Button
+                    className='donate-button'
+                    type={BUTTON_TYPE.GHOST}
+                    size={BUTTON_SIZE.BIG}
+                    icon={ICON_KEY.HEART_REGULAR}
+                    iconPosition={ICON_POSITION.LEFT}
+                    href={DONATE_LINK}
+                    title='donate link'
+                />
+            </header>
+        </>
+    );
 }
-  
+
 export default Header;

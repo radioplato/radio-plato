@@ -1,0 +1,178 @@
+@import 'styles/colors.scss';
+@import 'styles/fonts.scss';
+
+.schedule-container {
+    display: flex;
+    display: -webkit-flex;
+    flex: 0 0 auto;
+    
+    flex-direction: column;
+    flex: 2 1 100%;
+
+    width: 100%;
+    height: auto;
+
+    box-sizing: border-box;
+
+    .schedule-headline-container {
+        display: flex;
+        display: -webkit-flex;
+        flex: 0 0 auto;
+        
+        flex-direction: row;
+        flex-wrap: nowrap;
+        align-content: stretch;
+        justify-content: center;
+        align-items: center;
+
+        .schedule-headline {
+            display: flex;
+            display: -webkit-flex;
+            flex: 0 0 auto;
+            
+            flex-direction: row;
+            flex-wrap: nowrap;
+            align-content: stretch;
+            justify-content: space-between;
+            align-items: center;
+
+            width: 100%;
+            max-width: 1160px;
+
+            box-sizing: border-box;
+            padding: 56px 16px;
+
+            .schedule-title {
+                display: flex;
+                display: -webkit-flex;
+                flex: 0 0 auto;
+                
+                flex-direction: row;
+                flex-wrap: nowrap;
+                justify-content: flex-start;
+                align-content: center;
+                align-items: center;
+
+                height: 48px;
+
+                @include interFont(36px, 400, 36px);
+                letter-spacing: 0.5px;
+                text-transform: uppercase;
+            }
+    
+            .schedule-days {
+                display: flex;
+                display: -webkit-flex;
+                flex: 0 0 auto;
+    
+                flex-direction: row;
+                flex-wrap: nowrap;
+                justify-content: flex-start;
+                align-content: center;
+                align-items: flex-start;
+    
+                float: right;
+                font-size: 14px;
+    
+                .schedule-day-button {
+                    margin-left: 8px;
+    
+                    .button-label {
+                        color: $grey-800;
+                    }
+    
+                    &.selected {
+                        .button-label {
+                            color: $white;
+                            text-decoration: underline;
+                            text-underline-offset: 3px;
+                        }
+                    }
+    
+                    &:hover {
+                        .button-label {
+                            color: $yellow-1000;
+                            text-decoration: underline;
+                            text-underline-offset: 3px;
+                        }
+                    }
+    
+                    &:active {
+                        .button-label {
+                            color: $yellow-600;
+                            text-decoration: underline;
+                            text-underline-offset: 3px;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+@media (max-width: 1279px) {
+    .schedule-container {
+        .schedule-headline-container {
+            .schedule-headline {
+                flex-direction: column;
+                justify-content: flex-start;
+                align-items: flex-start;
+
+                max-width: 1024px;
+
+                padding: 32px 16px;
+
+                .schedule-title {
+                    margin-bottom: 16px;
+                }
+
+                .schedule-days {
+                    flex-wrap: wrap;
+    
+                    .schedule-day-button {
+                        margin: 0 16px 0 0;
+    
+                        & > .button {
+                            padding: 0;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+@media (max-width: 1023px) {
+    .schedule-container {
+        .schedule-headline-container {
+            .schedule-headline {
+                flex-direction: column;
+                justify-content: flex-start;
+                align-items: flex-start;
+
+                max-width: 768px;
+
+                padding: 24px 16px;
+
+                .schedule-title {
+                    margin-bottom: 16px;
+                }
+            }
+        }
+    }
+}
+
+@media (max-width: 767px) {
+    .schedule-container {
+        .schedule-headline-container {
+            .schedule-headline {
+                width: 100%;
+
+                .schedule-title {
+                    height: 28px;
+                    @include interFont(28px, 400, 28px);
+                }
+            }
+        }
+    }
+}

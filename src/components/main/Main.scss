@@ -1,0 +1,24 @@
+.main-container {
+    display: flex;
+    display: -webkit-flex;
+    flex: 0 0 auto;
+    
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+    align-content: stretch;
+
+    outline: 0;
+
+    width: 100%;
+}
+
+@media (max-width: 1279px) {
+    .main-container {
+        padding-top: 64px;
+        height: calc(100vh - 148px);
+    }
+
+    .aside-button-open {
+        display: none;
+    }
+}

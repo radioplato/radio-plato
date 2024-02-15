@@ -1,0 +1,192 @@
+@import 'styles/colors.scss';
+@import 'styles/fonts.scss';
+
+.news-carousel-container {
+    display: flex;
+    display: -webkit-flex;
+    flex: 0 0 auto;
+
+    flex-direction: column;
+    flex: 2 1 100%;
+
+    width: 100%;
+    height: auto;
+
+    box-sizing: border-box;
+
+    border-bottom: 2px solid $grey-200;
+
+    .news-carousel-headline-container {
+        display: flex;
+        display: -webkit-flex;
+        flex: 0 0 auto;
+
+        flex-direction: row;
+        flex-wrap: nowrap;
+        align-content: stretch;
+        justify-content: center;
+        align-items: center;
+
+        width: 100%;
+
+        .news-carousel-headline {
+            display: flex;
+            display: -webkit-flex;
+            flex: 0 0 auto;
+
+            flex-direction: row;
+            flex-wrap: nowrap;
+            align-content: stretch;
+            justify-content: space-between;
+            align-items: center;
+
+            width: 100%;
+            max-width: 1160px;
+
+            box-sizing: border-box;
+            padding: 56px 16px;
+        }
+
+        .news-carousel-title {
+            display: flex;
+            display: -webkit-flex;
+            flex: 0 0 auto;
+
+            flex-direction: column;
+            flex-wrap: nowrap;
+            align-content: flex-start;
+            justify-content: center;
+            align-items: flex-start;
+
+            @include interFont(36px, 400, 48px);
+            color: $white;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+        }
+
+        .news-navigation {
+            display: flex;
+            display: -webkit-flex;
+            flex: 0 0 auto;
+
+            flex-direction: row;
+            flex-wrap: nowrap;
+            justify-content: center;
+            align-content: center;
+            align-items: center;
+
+            float: right;
+            font-size: 14px;
+
+            .news-navigation-counter {
+                margin: 0 4px;
+
+                width: 64px;
+                overflow-x: visible;
+
+                color: $white;
+                @include interFont(16px, 400, 24px);
+                user-select: none;
+                text-align: center;
+            }
+        }
+    }
+
+    .highlight-carousel-container {
+        display: flex;
+        display: -webkit-flex;
+        flex: 0 0 auto;
+
+        flex-direction: row;
+        flex-wrap: nowrap;
+        align-content: stretch;
+        justify-content: center;
+        align-items: center;
+
+        width: 100%;
+        
+        margin-bottom: 56px;
+
+        .news-card-wrapper {
+            max-width: 1160px;
+            height: 420px;
+
+            margin-bottom: 16px;
+            
+            overflow: visible;
+        }
+    }
+}
+
+@media (max-width: 1279px) {
+    .news-carousel-container {
+        .news-carousel-headline-container {
+            .news-carousel-headline {
+                max-width: 1024px;
+                
+                padding: 32px 16px;
+            }
+        }
+
+        .highlight-carousel-container {
+            .news-card-wrapper {
+                height: 280px;
+            }
+        }
+    }
+}
+
+@media (max-width: 1023px) {
+    .news-carousel-container {
+        .news-carousel-headline-container {
+            .news-carousel-headline {
+                max-width: 768px;
+                
+                padding: 24px 16px;
+            }
+        }
+
+        .highlight-carousel-container {
+            margin-bottom: 24px;
+            
+            .news-card-wrapper {
+                height: 600px;
+            }
+        }
+    }
+}
+
+@media (max-width: 767px) {
+    .news-carousel-container {
+        .news-carousel-headline-container {
+            .news-carousel-headline {
+                width: 100%;
+
+                padding: 14px 16px;
+
+                .news-carousel-title {
+                    height: 48px;
+
+                    @include interFont(28px, 400, 28px);
+                }
+            }
+
+            .news-navigation {
+                .news-navigation-counter {
+                    margin: 0;
+                    width: 48px;
+                    font-size: 14px;
+                }
+            }
+        }
+        
+
+        .highlight-carousel-container {
+            margin-bottom: 24px;
+            
+            .news-card-wrapper {
+                height: auto;
+            }
+        }
+    }
+}

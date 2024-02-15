@@ -1,0 +1,75 @@
+@import 'styles/colors.scss';
+@import 'styles/fonts.scss';
+
+.aside-button-open {
+    display: flex;
+    display: -webkit-flex;
+    flex: 0 0 auto;
+    
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: center;
+    align-content: stretch;
+    align-items: center;
+
+    width: 120px;
+    min-width: 120px;
+    height: calc(100vh - 102px);
+    height: calc(100dvh - 102px);
+
+    background: $black;
+    border-right: 2px solid $grey-200;
+
+    cursor: pointer;
+
+    .open-button {
+        display: flex;
+        flex-direction: row;
+        transform: rotate(-90deg);
+
+        .open-button-icon {
+            color: $white;
+            margin-right: 8px;
+        }
+
+        .open-button-label {
+            @include interFont(16px, 500, 20px);
+            color: $white;
+            letter-spacing: 1.25px;
+            text-transform: uppercase;
+            user-select: none;
+        }
+    }
+
+    &:hover {
+        .open-button-icon,
+        .open-button-label {
+            color: $yellow-1000;
+        }
+
+        .open-button-label {
+            text-decoration: underline;
+            text-underline-offset: 3px;
+            text-decoration-color: $yellow-1000;
+        }
+    }
+
+    &:active {
+        .open-button-icon,
+        .open-button-label {
+            color: $yellow-600;
+        }
+
+        .open-button-label {
+            text-decoration: underline;
+            text-underline-offset: 3px;
+            text-decoration-color: $yellow-600;
+        }
+    }
+}
+
+@media (max-width: 1279px) {
+    .aside-button-open {
+        display: none;
+    }
+}

@@ -1,0 +1,180 @@
+@import 'styles/colors.scss';
+@import 'styles/fonts.scss';
+
+.page-player-container {
+    display: flex;
+    display: -webkit-flex;
+    flex: 0 0 auto;
+    
+    flex-direction: row;    
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+    align-content: center;
+    align-items: flex-start;
+
+    width: calc(100vw - 122px);
+    height: calc(100vh - 102px);
+    height: calc(100dvh - 102px);
+
+    .left-section,
+    .right-section  {
+        display: flex;
+        display: -webkit-flex;
+        flex: 0 0 auto;
+
+        flex-direction: column;
+        flex-wrap: nowrap;
+        justify-content: flex-start;
+        align-content: center;
+        align-items: center;
+
+        height: 100%;
+        padding: 48px 96px 0 96px;
+
+        box-sizing: border-box;
+    }
+
+    .left-section {
+        width: 660px;
+
+        .track-information-container.page {
+            width: 100%;
+            height: fit-content;
+
+            margin: 0 0 48px 0;
+
+            .track-name-container {
+                height: 100%;
+
+                .static-name {
+                    margin-left: 0;
+
+                    @include interFont(22px, 300, 36px);
+                    letter-spacing: 0.25px;
+                    user-select: initial;
+                    white-space: wrap;
+                }
+            }
+        }
+
+        .player-primary-controls {
+            display: flex;
+            display: -webkit-flex;
+            flex: 0 0 auto;
+
+            flex-direction: row;
+            flex-wrap: nowrap;
+            justify-content: space-between;
+            align-content: center;
+            align-items: center;
+
+            width: 100%;
+
+            margin-bottom: 48px;
+
+            .volume-controls {
+                width: calc(100% - 144px);
+                margin-left: 48px;
+
+                .horizontal-slider {
+                    width: calc(100% - 60px);
+                }
+            }
+        }
+
+        .player-secondary-controls {
+            display: flex;
+            display: -webkit-flex;
+            flex: 0 0 auto;
+
+            flex-direction: row;
+            flex-wrap: nowrap;
+            justify-content: space-between;
+            align-content: center;
+            align-items: center;
+
+            width: 100%;
+        }
+    }
+
+    .right-section {
+        align-items: center;
+
+        width: calc(100% - 660px);
+        padding: 48px 0 0 0;
+
+        border-left: 2px solid $grey-200;
+
+        .track-art {
+            width: calc(100% - 192px);
+            max-width: 640px;
+            height: auto;
+            aspect-ratio: 1 / 1;
+
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-color: $grey-200;
+        }
+    }
+}
+
+@media (max-width: 1279px) {
+    .page-player-container {
+        width: 100%;
+        height: calc(100dvh - 64px);
+
+        .left-section {
+            justify-content: center;
+            flex-direction: column-reverse;
+
+            padding: 16px;
+
+            width: 100%;
+
+            .track-information-container {
+                align-items: center;
+
+                .on-air {
+                    margin-right: 12px;
+                }
+
+                .track-name-container {
+                    width: 100%;
+                    height: 108px;
+    
+                    padding: 0 16px;
+                    margin-bottom: 8px;
+                    box-sizing: border-box;
+    
+                    .static-name {
+                        display: -webkit-box;
+                        margin: 0;
+    
+                        text-align: center;
+    
+                        white-space: wrap;
+                        -webkit-line-clamp: 3;
+                        -webkit-box-orient: vertical; 
+                    }
+                }
+            }
+
+            .player-primary-controls {
+                justify-content: center;
+                
+                .volume-controls {
+                    display: none;
+                }
+            }
+
+            .player-secondary-controls {
+                display: none;
+            }
+        }
+
+        .right-section {
+            display: none;
+        }
+    }
+}

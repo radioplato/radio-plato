@@ -1,6 +1,6 @@
 {
   "name": "radio-plato",
-  "version": "1.2.1",
+  "version": "3.0.0",
   "private": true,
   "dependencies": {
     "@testing-library/jest-dom": "^4.2.4",
@@ -15,6 +15,7 @@
     "@types/react-slider": "^1.0.0",
     "env-cmd": "^10.1.0",
     "moment": "^2.24.0",
+    "qs": "^6.11.2",
     "react": "^16.13.1",
     "react-device-detect": "^1.13.1",
     "react-dom": "^16.13.1",
@@ -25,7 +26,6 @@
     "react-player": "^1.15.3",
     "react-responsive-carousel": "^3.2.9",
     "react-router-dom": "^5.1.2",
-    "react-router-ga": "^1.2.3",
     "react-scripts": "^3.4.3",
     "react-slider": "^1.0.8",
     "rxjs": "^6.5.5",
@@ -76,8 +76,10 @@
     "@iconify/icons-ps": "^1.0.3",
     "@iconify/icons-simple-icons": "^1.0.31",
     "@iconify/react": "^1.1.4",
+    "@types/qs": "^6.9.10",
     "cross-env": "^7.0.2",
     "gh-pages": "^2.2.0",
-    "react-snap": "^1.23.0"
+    "react-snap": "^1.23.0",
+    "sass": "^1.69.4"
   }
 }

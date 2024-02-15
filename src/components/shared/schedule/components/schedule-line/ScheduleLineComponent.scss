@@ -1,0 +1,228 @@
+@import 'styles/colors.scss';
+@import 'styles/fonts.scss';
+
+.schedule-line-wrapper {
+    width: 100%;
+}
+
+.schedule-line-container {
+    display: flex;
+    display: -webkit-flex;
+    flex: 0 0 auto;
+
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: center;
+    align-content: center;
+    align-items: center;
+
+    width: 100%;
+    height: auto;
+
+    border-top: 2px solid $grey-200;
+
+    .schedule-line {
+        display: flex;
+        display: -webkit-flex;
+        flex: 0 0 auto;
+
+        flex-direction: row;
+        flex-wrap: nowrap;
+        justify-content: flex-start;
+        align-content: center;
+        align-items: flex-start;
+
+        width: 100%;
+        max-width: 1160px;
+
+        box-sizing: border-box;
+        padding: 16px;
+    }
+
+    .visual-container {
+        display: flex;
+        display: -webkit-flex;
+        flex: 0 0 auto;
+
+        flex-direction: column;
+        flex-wrap: nowrap;
+        justify-content: center;
+        align-content: center;
+        align-items: center;
+
+        .on-air {
+            display: flex;
+            display: -webkit-flex;
+            flex: 0 0 auto;
+
+            flex-direction: row;
+            flex-wrap: nowrap;
+            align-content: center;
+            justify-content: flex-start;
+            align-items: center;
+
+            height: 24px;
+            margin-bottom: 12px;
+
+            .red-dot {
+                width: 4px;
+                height: 4px;
+
+                margin-right: 8px;
+
+                border-radius: 2px;
+                background-color: $red-600;
+                animation: pulse 4s linear infinite;
+            }
+
+            .title {
+                @include interFont(12px, 700, 20px);
+                color: $white;
+                letter-spacing: 0.4px;
+                text-transform: uppercase;
+                user-select: none;
+            }
+        }
+
+        .image {
+            width: 128px;
+            height: 128px;
+
+            background-color: $grey-200;
+
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+        }
+    }
+
+    .information-container {
+        display: flex;
+        display: -webkit-flex;
+        flex: 0 0 auto;
+
+        flex-direction: column;
+        flex-wrap: nowrap;
+        justify-content: flex-start;
+        align-content: center;
+        align-items: flex-start;
+
+        width: calc(100% - 320px);
+
+        margin-left: 24px;
+
+        color: $white;
+
+        .time {
+            display: flex;
+            display: -webkit-flex;
+            flex: 0 0 auto;
+
+            flex-direction: row;
+            flex-wrap: nowrap;
+            justify-content: flex-start;
+            align-content: center;
+            align-items: flex-start;
+
+            margin-bottom: 12px;
+
+            .interval,
+            .periodicity {
+                @include openSansFont(20px, 700, 24px);
+            }
+        }
+
+        .title {
+            margin-bottom: 4px;
+            @include openSansFont(24px, 700, 32px);
+            letter-spacing: 0.5px;
+        }
+
+        .type {
+            margin-bottom: 12px;
+            color: $grey-500;
+            @include interFont(12px, 400, 20px);
+            letter-spacing: 0.4px;
+            text-transform: uppercase;
+        }
+
+        .description {
+            @include interFont(16px, 400, 24px);
+            color: $grey-900;
+        }
+    }
+
+    .episodes-link-container {
+        display: flex;
+        display: -webkit-flex;
+        flex: 0 0 auto;
+
+        flex-direction: row;
+        flex-wrap: nowrap;
+        justify-content: flex-end;
+        align-content: center;
+        align-items: center;
+
+        height: 128px;
+    }
+}
+
+@media (max-width: 1279px) {
+    .schedule-line-container {
+        .schedule-line {
+            max-width: 1024px;
+        }
+    }
+}
+
+@media (max-width: 1023px) {
+    .schedule-line-container {
+        .schedule-line {
+            max-width: 768px;
+
+            .information-container {
+                .time {
+                    margin-bottom: 8px;
+                }
+
+                .title {
+                    @include openSansFont(22px, 600, 24px);
+                }
+
+                .type {
+                    margin-bottom: 8px;
+                }
+            }
+        }
+    }
+}
+
+@media (max-width: 767px) {
+    .schedule-line-container {
+        .schedule-line {
+            flex-wrap: wrap;
+
+            width: 100%;
+
+            .visual-container {
+                .image {
+                    width: 64px;
+                    height: 64px;
+                }
+            }
+
+            .information-container {
+                width: calc(100% - 88px);
+
+                margin-left: 16px;
+            }
+
+            .episodes-link-container {
+                height: auto;
+
+                margin-left: 68px;
+                margin-top: 8px;
+            }
+        }
+    }
+}

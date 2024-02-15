@@ -1,0 +1,13 @@
+.social-links-container {
+    display: flex;
+    display: -webkit-flex;
+    flex: 0 0 auto;
+    
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    align-content: stretch;
+    align-items: center;
+
+    width: 100%;
+}

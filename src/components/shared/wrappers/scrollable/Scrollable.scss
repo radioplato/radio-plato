@@ -1,0 +1,40 @@
+@import 'styles/colors.scss';
+@import 'styles/fonts.scss';
+
+.scrollable-container {
+    width: calc(100% - 122px);
+    height: calc(100vh - 102px);
+    height: calc(100dvh - 102px);
+    
+    overflow-x: hidden;
+    overflow-y: overlay;
+    box-sizing: border-box;
+
+    scrollbar-gutter: stable;
+
+    &::-webkit-scrollbar {
+        width: 2px;
+    }
+    
+    &::-webkit-scrollbar-track {
+        background-color: $transparent;
+        border: 0;
+    }
+    
+    &::-webkit-scrollbar-thumb {
+        background-color: $grey-100;
+    }
+    
+    &::-webkit-scrollbar-button {
+        display: none;
+    }
+}
+
+@media (max-width: 1279px) {
+    .scrollable-container {
+        width: 100%;
+        height: calc(100vh - 148px);
+        height: calc(100dvh - 148px);
+    }
+}
+

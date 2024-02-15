@@ -1,0 +1,219 @@
+@import 'styles/colors.scss';
+@import 'styles/fonts.scss';
+
+.button-background {
+    position: relative;
+    border-radius: 2px;
+
+    cursor: pointer;
+
+    &:not(.ghost) {
+        background-color: $yellow-400;
+    }
+
+    .button {
+        display: flex;
+        display: -webkit-flex;
+        flex: 0 0 auto;
+        
+        flex-direction: row;    
+        flex-wrap: nowrap;
+        align-content: center;
+        justify-content: flex-start;
+        align-items: center;
+
+        position: relative;
+        border-radius: 2px;
+    
+        text-transform: uppercase;
+        user-select: none;
+        cursor: pointer;
+
+        .button-label {
+            letter-spacing: 1.25px;
+        }
+
+        .button-icon {
+            display: flex;
+            display: -webkit-flex;
+            flex: 0 0 auto;
+            
+            flex-direction: row;    
+            flex-wrap: nowrap;
+            align-content: center;
+            justify-content: center;
+            align-items: center;
+        }
+
+        &.enormous {
+            height: 96px;
+            padding: 0 24px;
+            
+            .button-icon {
+                width: 48px;
+                height: 48px;
+            }
+        }
+
+        &.huge {
+            height: 72px;
+
+            @include interFont(36px, 400, 36px);
+
+            .button-label {
+                letter-spacing: 0.5px;
+            }
+
+            .button-icon {
+                width: 40px;
+                height: 40px;
+            }
+
+            &.icon-only {
+                padding: 0 16px;
+            }
+
+            &.ghost {
+                height: 36px;
+            }
+        }
+
+        &.large {
+            height: 48px;
+            padding: 0 16px;
+
+            @include interFont(16px, 500, 20px);
+
+            .button-icon {
+                width: 24px;
+                height: 24px;
+            }
+
+            &.icon-only {
+                padding: 0 12px;
+            }
+        }
+    
+        &.big {
+            height: 40px;
+            min-width: 40px;
+            padding: 0 14px;
+
+            @include interFont(16px, 500, 20px);
+
+            .button-icon {
+                width: 32px;
+                height: 32px;
+            }
+
+            &.icon-only {
+                justify-content: center;
+
+                padding: 12px;
+            }
+        }
+
+        &.medium {
+            height: 40px;
+            padding: 0 14px;
+
+            @include interFont(16px, 500, 20px);
+
+            .button-icon {
+                width: 20px;
+                height: 20px;
+            }
+
+            &.icon-only {
+                padding: 0 10px;
+            }
+        }
+
+        &.small {
+            height: 32px;
+            padding: 0 12px;
+
+            @include interFont(14px, 500, 20px);
+
+            .button-icon {
+                width: 16px;
+                height: 16px;
+            }
+
+            &.icon-only {
+                padding: 0 8px;
+            }
+        }
+
+        &.filled {
+            color: $white;
+            background-color: $grey-200;
+        }
+
+        &.outline {
+            color: $white;
+            border: 1.4px solid $grey-700;
+            background-color: $black;
+        }
+
+        &.ghost {
+            color: $white;
+        }
+    }
+
+    &:hover {
+        .filled {
+            color: $black;
+            background-color: $yellow-1000;
+            transform: translate(-4px, -4px);
+
+            .button-label {
+                color: $black;
+            }
+        }
+
+        .outline {
+            color: $yellow-1000;
+            background-color: $yellow-200;
+            border-color: $yellow-1000;
+            transform: translate(-4px, -4px);
+
+            .button-label {
+                color: $yellow-1000;
+            }
+        }
+
+        .ghost {
+            color: $yellow-1000;
+
+            .button-label {
+                color: $yellow-1000;
+                text-decoration: underline;
+                text-underline-offset: 3px;
+            }
+        }
+    }
+
+    &:active {
+        .filled {
+            transform: translate(0, 0);
+            background-color: $yellow-600;
+        }
+
+        .outline {
+            transform: translate(0, 0);
+            background-color: $yellow-400;
+        }
+
+        .ghost {
+            color: $yellow-600;
+
+            .button-label {
+                color: $yellow-600;
+                text-decoration: underline;
+                text-underline-offset: 3px;
+            }
+        }
+    }
+}
+

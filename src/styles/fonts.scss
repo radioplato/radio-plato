@@ -1,0 +1,15 @@
+@mixin interFont($font-size: 12px, $font-weight: 400, $line-height: $font-size) {
+    font-family: "Inter";
+    font-style: normal;
+    font-size: $font-size;
+    font-weight: $font-weight;
+    line-height: $line-height;
+}
+
+@mixin openSansFont($font-size: 12px, $font-weight: 400, $line-height: $font-size) {
+    font-family: "Open Sans Condensed";
+    font-style: normal;
+    font-size: $font-size;
+    font-weight: $font-weight;
+    line-height: $line-height;
+}

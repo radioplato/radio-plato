@@ -1,35 +1,31 @@
 import React, { Component } from 'react'
 
-import {
-    Switch,
-    Route,
-} from 'react-router-dom';
-
-import { BrowserView, isMobileOnly } from 'react-device-detect';
-
-import MenuButton from '../menu/menu-button/MenuButton'
-import PlayerComponent from '../shared/Player/PlayerComponent/PlayerComponent'
+import MenuButton from '../menu/components/menu-button/MenuButton'
 import Content from '../content/Content'
-import { PlayerTypes } from '../shared/enums';
+import FooterPlayerComponent from '../shared/player/components/footer-player/FooterPlayerComponent';
 
-import './Main.css'
+import './Main.scss'
+import { Route, Switch } from 'react-router-dom';
 
 class Main extends Component {
     render() {
         return (
-            <main className={ isMobileOnly ? 'mobile' : 'desktop' }>
-                <BrowserView>
-                    <MenuButton />
-                </BrowserView>
-                <Switch>
-                    <Route exact path='/' render={
-                        props => <PlayerComponent { ...props } playerType={ PlayerTypes.Main }/>
-                    }/>
-                </Switch>
+            <main className='main-container'>
+                <MenuButton isAside={true} />
                 <Content />
+                <Switch>
+                    <Route exact path='/player' render={
+                        () => null
+                    } />
+                    <Route path='/' render={
+                        () => (
+                            <FooterPlayerComponent />
+                        )
+                    } />
+                </Switch>
             </main>
         );
     }
 }
-  
+
 export default Main;
