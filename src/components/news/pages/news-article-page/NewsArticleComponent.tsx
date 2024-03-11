@@ -82,6 +82,8 @@ export function NewsArticleComponent({
                     .map((datum) => parseLocalization(datum))
                     .concat([parseLocalization(entry)])
                 : [parseLocalization(entry)],
+            wordsBy: entry.attributes.WordsBy ?? '',
+            photosBy: entry.attributes.PhotosBy ?? ''
         }
 
     }
@@ -160,6 +162,18 @@ export function NewsArticleComponent({
                 <div className='news-information'>
                     <h1 className='news-title'>{newsArticle.localizations.find((localization) => localization.locale === currentLocale)?.title}</h1>
                     <p className='news-excerpt'>{newsArticle.localizations.find((localization) => localization.locale === currentLocale)?.excerpt}</p>
+                    <div className='article-creators-information'>
+                        {
+                            newsArticle.wordsBy
+                                ? (<p>Author: {newsArticle.wordsBy}</p>)
+                                : null
+                        }
+                        {
+                            newsArticle.photosBy
+                                ? (<p>Photos by: {newsArticle.photosBy}</p>)
+                                : null
+                        }
+                    </div>
                     <div className='news-service-information'>
                         <div className='news-date'>{moment(newsArticle.publishDate).format(DATE_FORMAT)}</div>
                         <div className='separator'></div>

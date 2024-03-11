@@ -45,4 +45,6 @@ export interface NewsArticleLocalization {
 export interface NewsArticle extends NewsCard {
     locale: Locale;
     localizations: NewsArticleLocalization[];
+    wordsBy?: string;
+    photosBy?: string;
 }
