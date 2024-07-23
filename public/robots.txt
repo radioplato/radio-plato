@@ -1,3 +1,4 @@
 # https://www.robotstxt.org/robotstxt.html
 User-agent: *
+Sitemap: https://admin.radioplato.by/api/sitemap/index.xml
 Disallow:
