@@ -148,7 +148,9 @@
                     box-sizing: border-box;
     
                     .static-name {
+                        width: 100%;
                         display: -webkit-box;
+                        max-height: 72px;
                         margin: 0;
     
                         text-align: center;
@@ -156,6 +158,7 @@
                         white-space: wrap;
                         -webkit-line-clamp: 3;
                         -webkit-box-orient: vertical; 
+                        line-break: after-white-space;
                     }
                 }
             }
