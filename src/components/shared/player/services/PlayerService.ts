@@ -26,7 +26,7 @@ class PlayerService {
     private trackInformationSubject: Subject<TrackInformation>;
     private nowPlayingInformationSubject: Subject<NowPlayingInformation>;
     private listenersSubject: Subject<string>;
-    private connection = new WebSocket(process.env.REACT_APP_DATA_URL as string);
+    private connection: WebSocket | null = null;
 
     private fadingTimer: ReturnType<typeof setInterval>;
 
@@ -59,15 +59,7 @@ class PlayerService {
 
         this.volume = parseVolume(localStorage.getItem(StorageKey.Volume));
 
-        this.connection.onopen = () => {
-            this.connection.send(JSON.stringify({
-                'subs': {
-                    'station:radioplato': {}
-                }
-            }))
-        }
-
-        this.connection.onmessage = (event) => this.onMessage(event);
+        this.initializeConnection();
     }
 
     set playing(isPlaying: boolean) {
@@ -122,6 +114,27 @@ class PlayerService {
 
     get currentListeners() {
         return this.listeners;
+    }
+
+    initializeConnection() {
+        this.connection = new WebSocket(process.env.REACT_APP_DATA_URL as string);
+
+        if (this.connection) {
+            this.connection.onopen = () => {
+                this.connection && this.connection.send(JSON.stringify({
+                    'subs': {
+                        'station:radioplato': {}
+                    }
+                }))
+            }
+    
+            this.connection.onmessage = (event: any) => this.onMessage(event);
+
+            this.connection.onclose = () => {
+                this.connection = null;
+                this.initializeConnection();
+            }
+        }
     }
 
     subscribeOnPlayerStateChanges(onNext: Function) {
