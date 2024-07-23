@@ -218,15 +218,18 @@ export function NewsListComponent({
                     <div className='news-categories-container'>
                         {
                             NEWS_CATEGORIES.map((newsCategory, index) => (
-                                <Button
-                                    key={`${newsCategory}-${index}`}
-                                    className={`category-button ${newsCategory === category ? 'selected' : ''}`}
-                                    type={BUTTON_TYPE.GHOST}
-                                    size={BUTTON_SIZE.SMALL}
-                                    label={newsCategory}
-                                    title={`'${newsCategory}' category page`}
-                                    onClick={() => navigateToCategoryPage(newsCategory)}
-                                ></Button>
+                                <>
+                                    <Button
+                                        key={`${newsCategory}-${index}`}
+                                        className={`category-button ${newsCategory === category ? 'selected' : ''}`}
+                                        type={BUTTON_TYPE.GHOST}
+                                        size={BUTTON_SIZE.SMALL}
+                                        label={newsCategory}
+                                        title={`'${newsCategory}' category page`}
+                                        onClick={() => navigateToCategoryPage(newsCategory)}
+                                    ></Button>
+                                    <a className="meta-link" href={`/news/${newsCategory}`}>{newsCategory}</a>
+                                </>
                             ))
                         }
                     </div>
