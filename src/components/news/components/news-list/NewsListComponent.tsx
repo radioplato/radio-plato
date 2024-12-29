@@ -19,7 +19,8 @@ const NEWS_CATEGORIES = [
     'events',
     'feature',
     'wishlist',
-    'knowledge'
+    'knowledge',
+    'ikarus'
 ];
 
 interface NewsListComponentProperties extends HTMLAttributes<HTMLElement> {
